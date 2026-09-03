@@ -1,0 +1,136 @@
+/*
+  Ported from the Vite build's src/index.css.
+
+  Two deliberate changes, both behaviour-preserving:
+
+  1. The `@import url('...fonts.googleapis.com...Outfit...')` on line 1 is gone.
+     The font is now self-hosted via next/font/google in app/layout.tsx, which
+     removes a render-blocking chained network request without changing the
+     rendered typeface. This is the single biggest LCP win available here.
+
+  2. The `#root` selector is now `.site-root`. Next has no #root element (React
+     mounts into <body>), so the class is applied to the layout's outermost div
+     in app/layout.tsx. Identical computed styles, no visual change.
+
+  Everything else — keyframes, marquee, entry animation, reduced-motion block
+  and the dark react-datepicker overrides — is byte-for-byte unchanged.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+.site-root {
+  width: 100%;
+  min-width: 0;
+}
+
+html,
+body {
+  overflow-x: clip;
+  background: #000;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+/* Continuous right-to-left logo marquee.
+   The track holds the logo set twice; translating by -50% loops seamlessly. */
+@keyframes marquee-rtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes site-entry {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-entry {
+  animation: site-entry 0.65s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-entry,
+  .animate-fade-in,
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Dark-themed react-datepicker overrides for the Contact form */
+.ash-datepicker-popper {
+  z-index: 50;
+}
+
+.ash-datepicker-popper .react-datepicker {
+  background-color: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: inherit;
+}
+
+.ash-datepicker-popper .react-datepicker__triangle {
+  display: none;
+}
+
+.ash-datepicker-popper .react-datepicker__header {
+  background-color: #161616;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ash-datepicker-popper .react-datepicker__current-month,
+.ash-datepicker-popper .react-datepicker__day-name,
+.ash-datepicker-popper .react-datepicker__day {
+  color: #e5e7eb;
+}
+
+.ash-datepicker-popper .react-datepicker__day:hover {
+  background-color: #2a2a2a;
+  border-radius: 4px;
+}
+
+.ash-datepicker-popper .react-datepicker__day--selected,
+.ash-datepicker-popper .react-datepicker__day--keyboard-selected {
+  background: linear-gradient(90deg, #ff781d 0%, #008080 100%);
+  border-radius: 4px;
+  color: #fff;
+}
+
+.ash-datepicker-popper .react-datepicker__day--disabled {
+  color: #4b5563;
+}
+
+.ash-datepicker-popper .react-datepicker__navigation-icon::before {
+  border-color: #e5e7eb;
+}

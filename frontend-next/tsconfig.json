@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    /* Linting — carried over from the Vite build's tsconfig.app.json so the
+       migrated code is held to the same standard it already meets. */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    /* `@/*` resolves from the project root, so components copied verbatim into
+       src/ keep their existing deep relative imports (../../../../assets/...)
+       working unchanged, while the thin app/ routing layer addresses them as
+       `@/src/Components/...`. This is what makes a no-rewrite component port
+       possible across 411 asset imports. */
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
