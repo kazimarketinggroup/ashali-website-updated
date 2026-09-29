@@ -8,8 +8,7 @@ import reportCover from "../../../assets/home/indexreport.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
 import { api } from "../../../utils/api";
 
-const REPORT_PDF_URL =
-  "https://cdn.prod.website-files.com/67711b0a4ee52eb3b356506c/69f07a8b933aea433a5d61f1_Global%20Sales%20Capability%20Index%202026%20(Uhubs).pdf";
+const REPORT_PDF_URL = "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf";
 
 export const CapabilityIndexSection = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -52,7 +51,12 @@ export const CapabilityIndexSection = () => {
     setIsSubmitted(true);
 
     if (typeof window !== "undefined") {
-      window.open(REPORT_PDF_URL, "_blank");
+      const link = document.createElement("a");
+      link.href = REPORT_PDF_URL;
+      link.setAttribute("download", "Global-Sales-Capability-Index-2026-Uhubs.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     }
 
     try {
@@ -336,9 +340,8 @@ export const CapabilityIndexSection = () => {
 
                     <a
                       href={REPORT_PDF_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-8 py-3.5 bg-[#202326] hover:bg-black text-white font-medium text-[15px] rounded-full shadow-md transition-all duration-200 transform hover:scale-[1.02] inline-flex items-center justify-center mb-8 sm:mb-10 tracking-wide"
+                      download="Global-Sales-Capability-Index-2026-Uhubs.pdf"
+                      className="px-8 py-3.5 bg-[#202326] hover:bg-black text-white font-medium text-[15px] rounded-full shadow-md transition-all duration-200 transform hover:scale-[1.02] inline-flex items-center justify-center mb-8 sm:mb-10 tracking-wide cursor-pointer"
                     >
                       Download Now
                     </a>
