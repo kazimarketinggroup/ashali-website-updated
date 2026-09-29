@@ -198,26 +198,39 @@ export const CapabilityIndexSection = () => {
               className="fixed inset-0 bg-black/90 backdrop-blur-[3px]"
             />
 
-            {/* Modal box — compact, no scroll */}
+            {/* Modal box */}
             <motion.div
+              layout
               initial={{ opacity: 0, scale: 0.97, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.97, y: 8 }}
-              transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-              className="relative w-full max-w-3xl z-10 rounded-xl overflow-hidden"
-              style={{
-                background: "#0F0F0F",
-                boxShadow: "0 0 0 1px rgba(255,255,255,0.07), 0 8px 48px rgba(0,0,0,0.7), 0 0 80px rgba(255,255,255,0.03)",
-              }}
+              transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+              className={`relative w-full z-10 overflow-hidden transition-all duration-300 ${
+                isSubmitted
+                  ? "max-w-2xl bg-[#F6F4EB] text-[#1A1A1A] rounded-[24px] sm:rounded-[32px] p-8 sm:p-14 shadow-2xl"
+                  : "max-w-3xl bg-[#0F0F0F] rounded-xl shadow-2xl"
+              }`}
+              style={
+                isSubmitted
+                  ? { backgroundColor: "#F6F4EB", boxShadow: "0 25px 60px -15px rgba(0,0,0,0.5)" }
+                  : {
+                      background: "#0F0F0F",
+                      boxShadow: "0 0 0 1px rgba(255,255,255,0.07), 0 8px 48px rgba(0,0,0,0.7), 0 0 80px rgba(255,255,255,0.03)",
+                    }
+              }
             >
               {/* Close */}
               <button
                 onClick={handleCloseModal}
                 type="button"
-                className="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors p-1 z-10"
+                className={`absolute top-5 right-5 sm:top-6 sm:right-6 transition-colors p-1.5 z-10 ${
+                  isSubmitted
+                    ? "text-[#4B5056] hover:text-black"
+                    : "text-neutral-500 hover:text-white"
+                }`}
                 aria-label="Close modal"
               >
-                <X size={20} strokeWidth={1.5} />
+                <X size={24} strokeWidth={1.5} />
               </button>
 
               <AnimatePresence mode="wait">
@@ -315,20 +328,17 @@ export const CapabilityIndexSection = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="p-10 sm:p-14 text-center flex flex-col items-center justify-center"
+                    className="flex flex-col items-center justify-center text-center py-6 sm:py-10"
                   >
-                    <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3">
+                    <h3 className="text-2xl sm:text-4xl font-normal text-[#1A1A1A] tracking-tight mb-8 sm:mb-10">
                       Global Sales Capability Index 2026
                     </h3>
-                    <p className="text-neutral-400 text-[13px] mb-8 font-light max-w-md">
-                      Your full 40-page research report is ready. Click below to download or view the report.
-                    </p>
 
                     <a
                       href={REPORT_PDF_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-8 py-3.5 bg-white text-black font-semibold text-[13px] rounded-full shadow-lg hover:bg-neutral-200 transition-all duration-200 transform hover:scale-105 inline-flex items-center gap-2 mb-6"
+                      className="px-8 py-3.5 bg-[#202326] hover:bg-black text-white font-medium text-[15px] rounded-full shadow-md transition-all duration-200 transform hover:scale-[1.02] inline-flex items-center justify-center mb-8 sm:mb-10 tracking-wide"
                     >
                       Download Now
                     </a>
@@ -336,7 +346,7 @@ export const CapabilityIndexSection = () => {
                     <button
                       onClick={handleCloseModal}
                       type="button"
-                      className="text-neutral-400 hover:text-white transition-colors text-[13px] tracking-wide underline underline-offset-4"
+                      className="text-[#1A1A1A] hover:text-neutral-600 transition-colors text-[15px] underline underline-offset-4 font-normal"
                     >
                       Back to the page
                     </button>
