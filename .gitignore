@@ -12,3 +12,7 @@ node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Internal reports (local only)
+Ash_Ali_Technical_SEO_Fix_Report.pdf
+*Report*.pdf
