@@ -6,10 +6,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown } from "lucide-react";
 import reportCover from "../../../assets/home/indexreport.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
+import { api } from "../../../utils/api";
+
+const REPORT_PDF_URL =
+  "https://cdn.prod.website-files.com/67711b0a4ee52eb3b356506c/69f07a8b933aea433a5d61f1_Global%20Sales%20Capability%20Index%202026%20(Uhubs).pdf";
 
 export const CapabilityIndexSection = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    jobTitle: "",
+    orgSize: "",
+  });
 
   /*
     SSR guard for the portal below.
@@ -34,14 +46,42 @@ export const CapabilityIndexSection = () => {
     return () => { document.body.style.overflow = "unset"; };
   }, [isModalOpen]);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     setIsSubmitted(true);
+
+    if (typeof window !== "undefined") {
+      window.open(REPORT_PDF_URL, "_blank");
+    }
+
+    try {
+      if (formData.email) {
+        await api.post("/contact/submit", {
+          type: "advisory",
+          name: formData.name || "Uhubs Report Requester",
+          email: formData.email,
+          message: "Downloaded Global Sales Capability Index 2026 Report",
+          details: {
+            Company: formData.company,
+            "Job Title": formData.jobTitle,
+            "Revenue Org Size": formData.orgSize,
+          },
+        });
+      }
+    } catch {
+      // Non-blocking: user still downloads the report
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setTimeout(() => setIsSubmitted(false), 300);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({ name: "", email: "", company: "", jobTitle: "", orgSize: "" });
+    }, 300);
   };
 
   return (
@@ -204,10 +244,31 @@ export const CapabilityIndexSection = () => {
 
                     <form onSubmit={handleFormSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
-                        <ModalInput label="Full name" required />
-                        <ModalInput label="Email" required type="email" />
-                        <ModalInput label="Company" required />
-                        <ModalInput label="Job Title" required />
+                        <ModalInput
+                          label="Full name"
+                          required
+                          value={formData.name}
+                          onChange={(name) => setFormData((prev) => ({ ...prev, name }))}
+                        />
+                        <ModalInput
+                          label="Email"
+                          required
+                          type="email"
+                          value={formData.email}
+                          onChange={(email) => setFormData((prev) => ({ ...prev, email }))}
+                        />
+                        <ModalInput
+                          label="Company"
+                          required
+                          value={formData.company}
+                          onChange={(company) => setFormData((prev) => ({ ...prev, company }))}
+                        />
+                        <ModalInput
+                          label="Job Title"
+                          required
+                          value={formData.jobTitle}
+                          onChange={(jobTitle) => setFormData((prev) => ({ ...prev, jobTitle }))}
+                        />
                       </div>
 
                       {/* Select */}
@@ -217,7 +278,8 @@ export const CapabilityIndexSection = () => {
                         </label>
                         <div className="relative w-full border-b border-neutral-700 focus-within:border-white transition-colors duration-200">
                           <select
-                            defaultValue=""
+                            value={formData.orgSize}
+                            onChange={(e) => setFormData((prev) => ({ ...prev, orgSize: e.target.value }))}
                             required
                             className="w-full bg-transparent text-neutral-300 py-2.5 pr-8 text-[12px] outline-none appearance-none cursor-pointer font-light focus:text-white"
                           >
@@ -238,9 +300,10 @@ export const CapabilityIndexSection = () => {
                         </p>
                         <button
                           type="submit"
-                          className="w-full sm:w-auto px-6 py-3 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-200 hover:bg-neutral-200 shrink-0 text-center"
+                          disabled={isSubmitting}
+                          className="w-full sm:w-auto px-6 py-3 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-200 hover:bg-neutral-200 shrink-0 text-center disabled:opacity-50"
                         >
-                          Get instant access →
+                          {isSubmitting ? "Unlocking..." : "Get instant access →"}
                         </button>
                       </div>
                     </form>
@@ -248,33 +311,32 @@ export const CapabilityIndexSection = () => {
                 ) : (
                   <motion.div
                     key="success-screen"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="p-8 sm:p-10 text-center flex flex-col items-center justify-center"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="p-10 sm:p-14 text-center flex flex-col items-center justify-center"
                   >
-                    <h3 className="text-fluid-30 font-bold tracking-tight mb-5">
-                      You're in.{" "}
-                      <span className="text-[#14b8a6]">Check your</span>{" "}
-                      <span className="text-[#d97736]">inbox.</span>
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3">
+                      Global Sales Capability Index 2026
                     </h3>
+                    <p className="text-neutral-400 text-[13px] mb-8 font-light max-w-md">
+                      Your full 40-page research report is ready. Click below to download or view the report.
+                    </p>
 
-                    <div className="space-y-4 text-neutral-300 font-light text-[13px] sm:text-[14px] leading-[1.75] max-w-lg antialiased">
-                      <p>
-                        The Global Sales Capability Index 2026 is on its way to your inbox. If it doesn't
-                        arrive in the next few minutes, check your spam folder.
-                      </p>
-                      <p>
-                        While you wait — 76% of the reps on your team right now believe they're executing
-                        better than they are. The data on what to do about it is in the report.
-                      </p>
-                    </div>
+                    <a
+                      href={REPORT_PDF_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-8 py-3.5 bg-white text-black font-semibold text-[13px] rounded-full shadow-lg hover:bg-neutral-200 transition-all duration-200 transform hover:scale-105 inline-flex items-center gap-2 mb-6"
+                    >
+                      Download Now
+                    </a>
 
                     <button
                       onClick={handleCloseModal}
                       type="button"
-                      className="mt-8 text-neutral-400 hover:text-white transition-colors text-[12px] tracking-wide underline underline-offset-4"
+                      className="text-neutral-400 hover:text-white transition-colors text-[13px] tracking-wide underline underline-offset-4"
                     >
                       Back to the page
                     </button>
@@ -296,9 +358,11 @@ interface ModalInputProps {
   label: string;
   required?: boolean;
   type?: string;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const ModalInput: React.FC<ModalInputProps> = ({ label, required = false, type = "text" }) => (
+const ModalInput: React.FC<ModalInputProps> = ({ label, required = false, type = "text", value, onChange }) => (
   <div className="flex flex-col w-full relative group text-left">
     <label className="text-white font-normal text-[12px]">
       {label}{required && <span className="text-red-500 ml-0.5">*</span>}
@@ -306,7 +370,8 @@ const ModalInput: React.FC<ModalInputProps> = ({ label, required = false, type =
     <input
       type={type}
       required={required}
-      placeholder=""
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
       className="w-full bg-transparent border-b border-neutral-700 py-2 text-[12px] font-light text-white outline-none focus:border-white transition-colors duration-200"
     />
   </div>
