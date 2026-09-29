@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Enquire about speaking, advisory, media, Malaysia & Southeast Asia opportunities or selected pro-bono impact work.",
   path: "/contact",
+  ogImage: "/og/contact.png",
 });
 
 export default function Page() {

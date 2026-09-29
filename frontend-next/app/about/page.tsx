@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "25 years building what he now speaks about. From inner-city Birmingham to Just Eat UK's first Marketing Director, author and investor.",
   path: "/about",
+  ogImage: "/og/about.png",
 });
 
 export default function Page() {

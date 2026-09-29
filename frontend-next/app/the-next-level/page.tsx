@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Four pathways with Ash Ali: The Growth Games, Life Is Unfair, Leadership Development and a tailored Secret Level.",
   path: "/the-next-level",
+  ogImage: "/og/the-next-level.png",
 });
 
 export default function Page() {

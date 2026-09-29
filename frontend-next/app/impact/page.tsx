@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Ash gives a limited number of pro-bono talks each year to schools, colleges and organisations supporting young people from underrepresented backgrounds.",
   path: "/impact",
+  ogImage: "/og/impact.png",
 });
 
 export default function Page() {

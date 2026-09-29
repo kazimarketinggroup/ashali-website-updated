@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Just Eat, Uhubs, WashPlus, Fare Exchange — the ventures behind the experience Ash brings to stages and boardrooms.",
   path: "/portfolio",
+  ogImage: "/og/portfolio.png",
 });
 
 export default function Page() {

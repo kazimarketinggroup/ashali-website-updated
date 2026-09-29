@@ -106,13 +106,16 @@ export const CapabilityIndexSection = () => {
                 >
                   Visit Uhubs
                 </a>
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  type="button"
-                  className="border border-white/40 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black shadow-md rounded-[2px]"
+                <a
+                  href="#download-report"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsModalOpen(true);
+                  }}
+                  className="inline-block border border-white/40 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black shadow-md rounded-[2px] cursor-pointer"
                 >
                   Download the full report →
-                </button>
+                </a>
               </motion.div>
             </div>
 

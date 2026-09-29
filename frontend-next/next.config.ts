@@ -21,7 +21,58 @@ const nextConfig: NextConfig = {
     sanctioned way to change a URL's behaviour.
   */
   async redirects() {
-    return [];
+    return [
+      {
+        source: "/home",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/home-booked",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/consulting",
+        destination: "/advisory",
+        permanent: true,
+      },
+      {
+        source: "/testimonials",
+        destination: "/speaking",
+        permanent: true,
+      },
+      {
+        source: "/contact-us",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/change-your-life",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/just-eat-gets-10-5-million-in-vc-investment",
+        destination: "/portfolio/just-eat",
+        permanent: true,
+      },
+      {
+        source: "/book",
+        destination: "/unfair-advantage",
+        permanent: true,
+      },
+      {
+        source: "/workshop",
+        destination: "/workshops",
+        permanent: true,
+      },
+      {
+        source: "/unlock",
+        destination: "/the-next-level",
+        permanent: true,
+      },
+    ];
   },
 };
 

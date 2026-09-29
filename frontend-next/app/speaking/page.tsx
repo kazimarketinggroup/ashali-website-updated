@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Keynotes on unfair advantage, AI, entrepreneurship and human potential — for leadership teams, universities, founders and conferences.",
   path: "/speaking",
+  ogImage: "/og/speaking.png",
 });
 
 export default function Page() {

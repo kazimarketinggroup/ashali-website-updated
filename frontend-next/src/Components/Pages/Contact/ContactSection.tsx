@@ -266,11 +266,10 @@ export const ContactSection: React.FC = () => {
 
         {/* ───────── RIGHT SIDE: DYNAMIC CONDITIONAL INPUT GENERATOR ───────── */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="bg-[#0c0c0c] border border-white/[0.02] p-8 md:p-10 rounded-[4px] lg:col-span-8 flex flex-col justify-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="bg-[#0c0c0c] border border-white/[0.04] p-8 md:p-10 rounded-[4px] lg:col-span-8 flex flex-col justify-center"
         >
           <form className="space-y-4 w-full" onSubmit={handleSubmit}>
             <AnimatePresence mode="wait">
@@ -330,7 +329,7 @@ export const ContactSection: React.FC = () => {
                 placeholder="Write Something"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full h-[120px] rounded-[4px] bg-[#2a2a2a] text-white px-4 py-3 text-[13px] font-light placeholder-gray-500 outline-none border border-transparent focus:border-white/20 transition-all duration-200 resize-none"
+                className="w-full h-[120px] rounded-[4px] bg-[#1a1a1a] text-white px-4 py-3 text-[13px] font-light placeholder-gray-400 outline-none border border-white/10 hover:border-white/25 focus:border-white/50 transition-all duration-200 resize-none"
               />
             </div>
 
@@ -369,7 +368,7 @@ const Input: React.FC<{
       value={value}
       onChange={(e) => onChange(e.target.value)}
       required={required}
-      className="w-full rounded-[4px] bg-[#2a2a2a] text-white px-4 py-3 text-[13px] font-light placeholder-gray-500 outline-none border border-transparent focus:border-white/20 transition-all duration-200"
+      className="w-full rounded-[4px] bg-[#1a1a1a] text-white px-4 py-3 text-[13px] font-light placeholder-gray-400 outline-none border border-white/10 hover:border-white/25 focus:border-white/50 transition-all duration-200"
     />
   );
 };
@@ -390,7 +389,7 @@ const DateField: React.FC<{
         minDate={new Date()}
         popperClassName="ash-datepicker-popper"
         wrapperClassName="w-full"
-        className="w-full rounded-[4px] bg-[#2a2a2a] text-white pl-4 pr-9 py-3 text-[13px] font-light placeholder-gray-500 outline-none border border-transparent focus:border-white/20 transition-all duration-200"
+        className="w-full rounded-[4px] bg-[#1a1a1a] text-white pl-4 pr-9 py-3 text-[13px] font-light placeholder-gray-400 outline-none border border-white/10 hover:border-white/25 focus:border-white/50 transition-all duration-200"
       />
       <CalendarDays
         size={14}

@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "The award-winning book challenging the myth that success is purely grit and hustle. Business Book of the Year 2021, by Ash Ali & Hasan Kubba.",
   path: "/unfair-advantage",
+  ogImage: "/og/unfair-advantage.png",
 });
 
 export default function Page() {

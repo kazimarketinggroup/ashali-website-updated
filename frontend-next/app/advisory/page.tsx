@@ -10,6 +10,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Selective strategic advisory for founders and leadership teams — go-to-market, growth and building practical advantage in an AI-shaped world.",
   path: "/advisory",
+  ogImage: "/og/advisory.png",
 });
 
 export default function Page() {

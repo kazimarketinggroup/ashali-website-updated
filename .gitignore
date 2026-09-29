@@ -1,0 +1,14 @@
+# Environment files
+.env
+.env.*
+.env*.local
+env
+env.*
+*.download
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
