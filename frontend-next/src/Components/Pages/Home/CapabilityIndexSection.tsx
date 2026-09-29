@@ -50,15 +50,6 @@ export const CapabilityIndexSection = () => {
     setIsSubmitting(true);
     setIsSubmitted(true);
 
-    if (typeof window !== "undefined") {
-      const link = document.createElement("a");
-      link.href = REPORT_PDF_URL;
-      link.setAttribute("download", "Global-Sales-Capability-Index-2026-Uhubs.pdf");
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-
     try {
       if (formData.email) {
         await api.post("/contact/submit", {
