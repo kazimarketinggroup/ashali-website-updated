@@ -55,7 +55,7 @@ export const ImpactHero: React.FC = () => {
           >
             <span className="text-[#14b8a6]">Helping</span>{" "}
             <span className="text-[#65735b]">young people</span>{" "}
-            <span className="text-white">recognise <br /> the advantages they already hold.</span>
+            <span className="text-white">recognise the advantages they already hold.</span>
           </motion.h1>
 
           {/* Accurate Paragraph Summary Body */}
