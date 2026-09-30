@@ -11,7 +11,8 @@ import allCovers from "../../../assets/home/updatedImage.png";
 
 const tags = [
   { icon: Award,         label: "Business Book of the Year" },
-  { icon: Globe,         label: "Translated Wordwide" },
+  { icon: Globe,         label: "Translated worldwide" },
+  { icon: Award,         label: "150,000+ copies sold" },
   { icon: GraduationCap, label: "Used in MBA & university courses" },
   { icon: LayoutGrid,    label: "The MILES framework" },
 ];
@@ -63,9 +64,9 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
 
           {/* Body */}
           <p className="mt-6 max-w-[560px] text-[13px] leading-[1.9] text-white/75 sm:text-sm">
-            Success Is Shaped By Context, Timing, Access, Skills, Mindset, Networks And Knowing How To
-            Use What You Already Have. The Book Has Become Core IP Behind Ash's Talks, Frameworks And
-            Global Work.
+            Success is shaped by context, timing, access, skills, mindset, networks and knowing how to
+            use what you already have. The book has become core IP behind Ash's talks, frameworks and
+            global work.
           </p>
 
           {/* Tags */}

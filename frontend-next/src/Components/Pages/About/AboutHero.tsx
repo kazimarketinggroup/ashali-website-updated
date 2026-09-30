@@ -41,7 +41,7 @@ const AboutIntro: React.FC = () => (
       */}
       <Image
         src={heroBg}
-        alt=""
+        alt="Ash Ali speaking on stage at a global keynote event"
         fill
         priority
         sizes="100vw"

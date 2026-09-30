@@ -52,7 +52,7 @@ const workshops: Workshop[] = [
     bestFor:
       "Leadership teams, people leaders, functional heads and organisations redesigning roles or capability.",
     helps: [
-      "Identify the human capabilities AI makes more—not less—valuable",
+      "Identify the human capabilities AI makes more, not less, valuable",
       "Recognise where AI is strengthening output but weakening judgement or ownership",
       "Define leadership principles for responsible augmentation",
       "Design practical team experiments that build confidence and capability",
@@ -69,7 +69,7 @@ const workshops: Workshop[] = [
     number: "03",
     title: "The AI-Era Sales Transformation Lab",
     promise:
-      "Redesign the people, capability and AI layer of sales performance—not just the tech stack.",
+      "Redesign the people, capability and AI layer of sales performance, not just the tech stack.",
     bestFor:
       "CROs, sales leadership teams, enablement leaders, revenue operations and transformation sponsors.",
     description:

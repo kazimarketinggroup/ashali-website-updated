@@ -55,6 +55,18 @@ const pages = [
     tag: 'ASH ALI  •  PORTFOLIO',
     title: 'Ventures & Investments',
     subtitle: 'Track record across Just Eat, Uhubs, Fare Exchange, and early-stage tech investments.',
+  },
+  {
+    filename: 'home.png',
+    tag: 'ASH ALI  •  OFFICIAL SITE',
+    title: 'Find Your Unfair Advantage in an AI-Shaped World',
+    subtitle: 'International Keynote Speaker, Tech Entrepreneur, Investor, and Co-Author of The Unfair Advantage.',
+  },
+  {
+    filename: 'malaysia-sea.png',
+    tag: 'ASH ALI  •  MALAYSIA & SEA',
+    title: 'Malaysia & Southeast Asia',
+    subtitle: 'Speaking, advisory and impact work across Malaysia and Southeast Asia. London and Kuala Lumpur.',
   }
 ];
 

@@ -12,6 +12,7 @@ export const metadata: Metadata = pageMetadata({
     "Executive workshops that turn the AI conversation into decisions: the AI Advantage Lab, Human Advantage Leadership Lab and AI-Era Sales Lab.",
   path: "/workshops",
   ogImage: "/og/workshops.png",
+  ogImageAlt: "Ash Ali, Executive Workshops and Leadership Labs on AI Strategy",
 });
 
 export default function Page() {

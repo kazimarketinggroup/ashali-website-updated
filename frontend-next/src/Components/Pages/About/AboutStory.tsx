@@ -33,14 +33,14 @@ const blocks = [
       "Bestselling author of 'The Unfair Advantage', winner of the UK Business Book of the Year Award and the 2021 Best Startup / Scale Up Book Award. The book helps entrepreneurs unlock their unique strengths to succeed in business.",
   },
   {
-    title: "Co-Founder Of Uhubs",
+    title: "Co-Founder of Uhubs",
     body:
-      "Uhubs has been recognised as a pioneering sales performance platform: revenue leaders assess, benchmark, and elevate sales teams with data-driven insights and real-time performance tracking — trusted by ambitious organisations globally.",
+      "Uhubs has been recognised as a pioneering sales performance platform: revenue leaders assess, benchmark, and elevate sales teams with data-driven insights and real-time performance tracking, trusted by ambitious organisations globally.",
   },
   {
     title: "Global Keynote Speaker",
     body:
-      "Ash speaks internationally across the UK, USA, UAE, Southeast Asia, and China — covering entrepreneurship, startup growth, unfair advantages, and what it takes to scale in the digital age.",
+      "Ash speaks internationally across the UK, USA, UAE, Southeast Asia, and China, covering entrepreneurship, startup growth, unfair advantages, and what it takes to scale in the digital age.",
   },
 ];
 
@@ -77,7 +77,7 @@ const AboutStory: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.55 }}
-            className="max-w-xl text-sm capitalize leading-relaxed text-white/95 sm:text-base"
+            className="max-w-xl text-sm leading-relaxed text-white/95 sm:text-base"
           >
             Ash Ali is an entrepreneur, investor, speaker, and author. As Just Eat&apos;s first marketing director, he
             helped drive its £1.5 billion IPO. He co-authored the bestseller{" "}

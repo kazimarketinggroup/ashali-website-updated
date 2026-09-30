@@ -17,7 +17,7 @@ const photos: PhotoItem[] = [
   {
     id: 1,
     src: image1.src,
-    alt: "Group photo at a KL community event",
+    alt: "Group photo at a Kuala Lumpur community event",
     aspectClass: "aspect-[4/3]",
   },
   {
@@ -41,26 +41,21 @@ const OnTheGround: React.FC = () => {
 
         {/* TOP META */}
         <div className="mb-6 flex items-center gap-2">
-
           <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500">
-            Regional Proof
+            Regional proof
           </span>
         </div>
 
         {/* HEADER */}
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <h2 className="text-fluid-30 font-medium leading-[1.2] tracking-tight text-white">
-              On The Ground
-            </h2>
-
-            <h2 className="text-fluid-34 font-semibold leading-[1.2] tracking-tight">
-              <span style={brandGradientTextStyle}>Across The Region.</span>
+            <h2 className="text-fluid-32 font-medium leading-[1.2] tracking-tight text-white">
+              On the ground <span style={brandGradientTextStyle}>across the region.</span>
             </h2>
           </div>
 
           <p className="max-w-xs text-[13.5px] font-light leading-[1.65] text-gray-400 lg:max-w-[260px] lg:pt-1">
-            KL and Malaysia events, university talks,
+            Kuala Lumpur and Malaysia events, university talks,
             community sessions and local partnerships.
           </p>
         </div>

@@ -64,13 +64,12 @@ export const HowAshWorks: React.FC = () => {
 
         {/* Main Section Headline */}
         <h2 className="text-fluid-38 font-normal tracking-tight text-white/90 max-w-xl leading-tight mb-8">
-          Premium And Selective A <br className="hidden sm:block" />
-          Few Formats.
+          How advisory engagements work.
         </h2>
 
         {/* Informative Sub-Headline Description */}
         <p className="text-gray-400 font-light text-[13px] sm:text-[14px] tracking-wide mb-14 max-w-2xl antialiased">
-          Engagements Are Kept Deliberately Selective So Each One Gets Real Attention:
+          Engagements are kept deliberately selective so each one gets real attention:
         </p>
 
         {/* ================= 4-CARD FLOW GRID WITH INTEGRATED TIMELINE ================= */}

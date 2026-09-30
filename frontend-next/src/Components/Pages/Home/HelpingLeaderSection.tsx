@@ -36,10 +36,10 @@ const cards: CardData[] = [
     to: '/workshops',
   },
   {
-    title: 'Advisory',
+    title: 'ADVISORY',
     description:
-      'A founder/operator voice on advantage, AI and the human side of success. Sharp, warm, practical.',
-    buttonLabel: 'Invite Ash as a Guest',
+      'Direct strategic advisory for founders, boards and executive leadership teams navigating the AI shift.',
+    buttonLabel: 'Explore Advisory',
     bgImage: mediaBg.src,
     to: '/advisory',
   },
@@ -77,7 +77,7 @@ export const HelpingLeadersSection: React.FC = () => {
           </div>
 
           <h2 className="text-white text-fluid-32 font-semibold leading-tight tracking-tight">
-            <span className="text-[#d97736]">Helping Leaders</span> Build For The AI Era
+            <span className="text-[#d97736]">Helping leaders</span> build for the AI era
           </h2>
           <p className="text-gray-400 text-[13px] sm:text-[14px] leading-[1.85] tracking-wide max-w-2xl text-center font-light antialiased">
             Technology is becoming more accessible. Judgement, context, capability, relationships and execution are not. Ash helps leaders understand what AI changes, what remains deeply human and where their organisation can build an advantage that competitors cannot simply copy.

@@ -30,7 +30,7 @@ const SpeakingHero: React.FC = () => (
       >
         <img
           src={aboutPortrait.src}
-          alt="Ash Ali"
+          alt="Ash Ali, keynote speaker and entrepreneur"
           className="block w-full object-cover object-top"
         />
       </div>
@@ -52,9 +52,9 @@ const SpeakingHero: React.FC = () => (
       </h1>
 
       <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/85">
-        Ash Ali is an award winning entrepreneur, author, and keynote speaker
-        with over 20 years of experience in B2B sales, marketing, and go to
-        market strategies.
+        Ash Ali is an award-winning entrepreneur, author, and keynote speaker
+        with over 20 years of experience in B2B sales, marketing, and go-to-market
+        strategies.
       </p>
 
       <p className="mt-2 text-sm sm:text-base leading-relaxed text-white/85">

@@ -93,7 +93,7 @@ export const CapabilityIndexSection = () => {
                 viewport={{ once: true }}
                 className="flex items-center mb-3 text-[11px] uppercase tracking-[0.2em] text-white/70 font-medium"
               >
-                <span>Currently 2026</span>
+                <span>Operating now</span>
               </motion.div>
 
               <motion.h2
@@ -123,7 +123,7 @@ export const CapabilityIndexSection = () => {
                 transition={{ delay: 0.2 }}
                 className="mt-8 text-[15px] text-white/85 font-medium"
               >
-                The Global Sales Capability Index 2026 Is Out.
+                The Global Sales Capability Index 2026 is out.
               </motion.p>
 
               <motion.div

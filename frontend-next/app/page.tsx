@@ -10,6 +10,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Ash Ali is a British tech entrepreneur, investor and international keynote speaker. Co-author of the award-winning The Unfair Advantage.",
   path: "/",
+  ogImage: "/og/home.png",
+  ogImageAlt: "Ash Ali, British tech entrepreneur, investor and international keynote speaker",
 });
 
 export default function Page() {

@@ -57,7 +57,7 @@ const RegionalFocusSection: React.FC = () => {
           >
             {/* Eyebrow */}
             <div className="mb-3 flex items-center text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-white/50">
-              <span>Regional Topics</span>
+              <span>Regional topics</span>
             </div>
 
             {/* Heading */}
@@ -92,16 +92,16 @@ const RegionalFocusSection: React.FC = () => {
         >
           {/* Eyebrow */}
           <div className="mb-3 flex items-center text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-white/50">
-            <span>London &amp; Kuala Lumpur</span>
+            <span>Regional perspective</span>
           </div>
 
           {/* Quote */}
-          <p className="max-w-4xl text-fluid-30  text-white">
-            "Based Between London And Kuala Lumpur, Ash Brings <br /> A{" "}
-            <span className="bg-gradient-to-r from-[#008080] to-[#FF781D] bg-clip-text text-transparent">
-              Global Founder/Operator Perspective
+          <p className="max-w-4xl text-fluid-24 text-white/90 font-normal leading-relaxed">
+            &ldquo;Southeast Asia is at a pivotal inflection point. The combination of hungry talent, rapid AI adoption and cross-border ambition means the{" "}
+            <span className="bg-gradient-to-r from-[#008080] to-[#FF781D] bg-clip-text text-transparent font-medium">
+              next generation of global market leaders
             </span>{" "}
-            To Organisations And Communities Across The UK, Malaysia And Southeast Asia."
+            will be built right here.&rdquo;
           </p>
         </motion.div>
 

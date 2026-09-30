@@ -51,11 +51,10 @@ const CTAHero: React.FC = () => {
           // variants={elementVariants}
           className="text-white text-fluid-36 font-normal leading-[1.35] tracking-tight max-w-2xl mb-8 font-sans"
         >
-          <span style={brandGradientTextStyle}>Tell Us What You Have In Mind,</span>{" "}
-
+          <span style={brandGradientTextStyle}>Planning a keynote, workshop</span>{" "}
           <br />
-          We'll Route It To The Right <br />
-          <span >Conversation.</span>
+          or advisory conversation? <br />
+          <span>Tell us about it.</span>
         </motion.h1>
 
         {/* 3. Narrative Service Router Copy Block */}
@@ -63,9 +62,9 @@ const CTAHero: React.FC = () => {
           // variants={elementVariants}
           className="text-gray-400 font-light text-[13px] sm:text-[14px] leading-relaxed tracking-wide max-w-xl antialiased"
         >
-          For Speaking, Advisory, Media, Malaysia & Southeast Asia{" "}
+          For speaking, advisory, media, Malaysia &amp; Southeast Asia{" "}
           <br className="hidden sm:block" />
-          Opportunities, Or Selected Pro-Bono Impact Work,
+          opportunities, or selected pro-bono impact work.
         </motion.p>
 
       </motion.div>

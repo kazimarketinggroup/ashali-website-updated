@@ -205,7 +205,7 @@ export const ContactSection: React.FC = () => {
         >
           <div>
             <h2 className="text-white text-fluid-28 font-normal tracking-tight mb-6">
-              Fill The form
+              Fill in the form.
             </h2>
 
             <p className="text-gray-400 text-xs tracking-wider uppercase mb-5 font-medium">
@@ -234,6 +234,34 @@ export const ContactSection: React.FC = () => {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Direct Contact & Booking Essentials */}
+            <div className="mt-8 pt-6 border-t border-white/10 space-y-4 text-left">
+              <div>
+                <p className="text-[11px] uppercase tracking-wider text-gray-400 font-medium">Direct Enquiries</p>
+                <a href="mailto:speaking@ashali.com" className="text-[13px] text-white hover:text-white/80 transition-colors">
+                  speaking@ashali.com
+                </a>
+                <p className="text-[11px] text-gray-400 mt-0.5">Typically responds within 24–48 hours</p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 pt-1">
+                <a
+                  href="/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf"
+                  target="_blank"
+                  className="text-[12px] text-white/80 hover:text-white underline underline-offset-4 transition-colors"
+                >
+                  Speaker One-Sheet (PDF)
+                </a>
+                <span className="text-white/30">•</span>
+                <a
+                  href="/about"
+                  className="text-[12px] text-white/80 hover:text-white underline underline-offset-4 transition-colors"
+                >
+                  Press Headshots
+                </a>
+              </div>
             </div>
           </div>
 
@@ -275,10 +303,10 @@ export const ContactSection: React.FC = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedType}
-                initial={{ opacity: 0, x: 8 }}
+                initial={false}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -8 }}
-                transition={{ duration: 0.22, ease: "easeInOut" }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
                 className="grid grid-cols-1 sm:grid-cols-2 gap-4"
               >
                 {(() => {
@@ -311,11 +339,11 @@ export const ContactSection: React.FC = () => {
                 {selectedType === "speaking" && (
                   <div className="sm:col-span-2 flex items-center gap-6 py-2 text-gray-300 text-[13px]">
                     <label className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" className="accent-[#FF781D] rounded bg-[#2a2a2a] border-transparent focus:ring-0 w-4 h-4" />
+                      <input type="checkbox" className="accent-[#FF781D] rounded bg-[#2a2a2a] border-white/20 focus:ring-0 w-4 h-4" />
                       <span className="group-hover:text-white transition-colors">In-person</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" className="accent-[#FF781D] rounded bg-[#2a2a2a] border-transparent focus:ring-0 w-4 h-4" />
+                      <input type="checkbox" className="accent-[#FF781D] rounded bg-[#2a2a2a] border-white/20 focus:ring-0 w-4 h-4" />
                       <span className="group-hover:text-white transition-colors">Virtual</span>
                     </label>
                   </div>
@@ -329,7 +357,7 @@ export const ContactSection: React.FC = () => {
                 placeholder="Write Something"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full h-[120px] rounded-[4px] bg-[#1a1a1a] text-white px-4 py-3 text-[13px] font-light placeholder-gray-400 outline-none border border-white/10 hover:border-white/25 focus:border-white/50 transition-all duration-200 resize-none"
+                className="w-full h-[120px] rounded-[4px] bg-[#141414] text-white px-4 py-3 text-[13px] font-normal placeholder-gray-400 outline-none border border-white/25 hover:border-white/45 focus:border-white focus:bg-[#1a1a1a] transition-all duration-200 resize-none"
               />
             </div>
 
@@ -368,7 +396,7 @@ const Input: React.FC<{
       value={value}
       onChange={(e) => onChange(e.target.value)}
       required={required}
-      className="w-full rounded-[4px] bg-[#1a1a1a] text-white px-4 py-3 text-[13px] font-light placeholder-gray-400 outline-none border border-white/10 hover:border-white/25 focus:border-white/50 transition-all duration-200"
+      className="w-full rounded-[4px] bg-[#141414] text-white px-4 py-3 text-[13px] font-normal placeholder-gray-400 outline-none border border-white/25 hover:border-white/45 focus:border-white focus:bg-[#1a1a1a] transition-all duration-200"
     />
   );
 };
@@ -389,7 +417,7 @@ const DateField: React.FC<{
         minDate={new Date()}
         popperClassName="ash-datepicker-popper"
         wrapperClassName="w-full"
-        className="w-full rounded-[4px] bg-[#1a1a1a] text-white pl-4 pr-9 py-3 text-[13px] font-light placeholder-gray-400 outline-none border border-white/10 hover:border-white/25 focus:border-white/50 transition-all duration-200"
+        className="w-full rounded-[4px] bg-[#141414] text-white pl-4 pr-9 py-3 text-[13px] font-normal placeholder-gray-400 outline-none border border-white/25 hover:border-white/45 focus:border-white focus:bg-[#1a1a1a] transition-all duration-200"
       />
       <CalendarDays
         size={14}

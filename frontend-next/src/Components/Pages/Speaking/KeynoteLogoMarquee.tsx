@@ -3,50 +3,42 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Speaking / event logos
-import digitalDna from "../../../assets/speaking/digitaldna.png";
+// Corporate / speaking logos
 import eyLogo from "../../../assets/speaking/ey-logo.png";
-import natwest from "../../../assets/speaking/Natwest_Secondary_Horizontal_RGB_NEG.png";
 import salesforce from "../../../assets/speaking/salesforce.png";
-import tedxRh from "../../../assets/speaking/theroyalholloway.png";
+import natwest from "../../../assets/speaking/Natwest_Secondary_Horizontal_RGB_NEG.png";
 import in5Logo from "../../../assets/speaking/u5logo.png";
-import weWork from "../../../assets/speaking/wework-logo-white.png";
-import techLonon from "../../../assets/speaking/imperial-college-logo.png";
-import kanguru from "../../../assets/speaking/warwick-event-background.png";
-import triva from "../../../assets/speaking/techitalia-logo.png";
+import digitalDna from "../../../assets/speaking/digitaldna.png";
 import worq from "../../../assets/speaking/worq-logo.png";
+import weWork from "../../../assets/speaking/wework-logo-white.png";
 
 // Educational institute logos
-import imperialCollege from "../../../assets/speaking/loughborough-university-logo.png";
-import escpSchool from "../../../assets/speaking/escp-business-school-logo.png";
-import loughboroughUni from "../../../assets/speaking/loughborough-university-logo-alt.png";
+import imperialCollege from "../../../assets/speaking/imperial-college-logo.png";
 import uclLogo from "../../../assets/speaking/ucl-logo.png";
-import royalHolloway from "../../../assets/speaking/royal-holloway-logo.png";
+import loughboroughUni from "../../../assets/speaking/loughborough-university-logo.png";
 import warwickUni from "../../../assets/speaking/warwick-university-logo.png";
-
-// import { brandGradientTextStyle } from "../../../constants/brandGradient";
+import royalHolloway from "../../../assets/speaking/royal-holloway-logo.png";
+import escpSchool from "../../../assets/speaking/escp-business-school-logo.png";
+import tedxRh from "../../../assets/speaking/theroyalholloway.png";
 
 type Logo = { src: string; alt: string; w: string };
 
-// All logos merged into one continuous track.
+// Corporate logos lead the track, followed by universities and partners.
 const logos: Logo[] = [
-  { src: tedxRh.src, alt: "TEDx Royal Holloway", w: "w-[130px] md:w-[145px]" },
-  { src: salesforce.src, alt: "Salesforce", w: "w-[55px] md:w-[60px]" },
   { src: eyLogo.src, alt: "EY", w: "w-[40px] md:w-[42px]" },
-  { src: in5Logo.src, alt: "in5", w: "w-[34px] md:w-[38px]" },
-  { src: digitalDna.src, alt: "Digital DNA", w: "w-[85px] md:w-[95px]" },
-  { src: weWork.src, alt: "WeWork", w: "w-[70px] md:w-[75px]" },
-  { src: techLonon.src, alt: "Tech London", w: "w-[65px] md:w-[70px]" },
+  { src: salesforce.src, alt: "Salesforce", w: "w-[55px] md:w-[60px]" },
   { src: natwest.src, alt: "NatWest", w: "w-[85px] md:w-[90px]" },
-  { src: kanguru.src, alt: "Kanguru", w: "w-[80px] md:w-[85px]" },
-  { src: triva.src, alt: "Triva Global", w: "w-[70px] md:w-[75px]" },
+  { src: in5Logo.src, alt: "in5 Dubai", w: "w-[34px] md:w-[38px]" },
+  { src: digitalDna.src, alt: "Digital DNA", w: "w-[85px] md:w-[95px]" },
   { src: worq.src, alt: "Worq", w: "w-[60px] md:w-[65px]" },
   { src: imperialCollege.src, alt: "Imperial College Business School", w: "w-[150px] md:w-[165px]" },
-  { src: escpSchool.src, alt: "ESCP Business School", w: "w-[110px] md:w-[125px]" },
-  { src: loughboroughUni.src, alt: "Loughborough University", w: "w-[135px] md:w-[150px]" },
   { src: uclLogo.src, alt: "UCL", w: "w-[85px] md:w-[95px]" },
-  { src: royalHolloway.src, alt: "Royal Holloway University of London", w: "w-[85px] md:w-[95px]" },
+  { src: loughboroughUni.src, alt: "Loughborough University", w: "w-[135px] md:w-[150px]" },
   { src: warwickUni.src, alt: "The University of Warwick", w: "w-[95px] md:w-[105px]" },
+  { src: royalHolloway.src, alt: "Royal Holloway University of London", w: "w-[85px] md:w-[95px]" },
+  { src: escpSchool.src, alt: "ESCP Business School", w: "w-[110px] md:w-[125px]" },
+  { src: tedxRh.src, alt: "TEDx Royal Holloway", w: "w-[130px] md:w-[145px]" },
+  { src: weWork.src, alt: "WeWork", w: "w-[70px] md:w-[75px]" },
 ];
 
 const LogoItem: React.FC<{ logo: Logo }> = ({ logo }) => (

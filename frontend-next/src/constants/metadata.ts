@@ -50,7 +50,7 @@ export function pageMetadata({
   description,
   path,
   ogImage = DEFAULT_OG_IMAGE,
-  ogImageAlt = "Ash Ali — entrepreneur, investor and keynote speaker",
+  ogImageAlt = "Ash Ali, entrepreneur, investor and keynote speaker",
   index = true,
   type = "website",
   publishedTime,

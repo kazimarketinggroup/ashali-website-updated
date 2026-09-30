@@ -72,6 +72,11 @@ const nextConfig: NextConfig = {
         destination: "/the-next-level",
         permanent: true,
       },
+      {
+        source: "/blog/:slug*",
+        destination: "/updates",
+        permanent: true,
+      },
     ];
   },
   async headers() {

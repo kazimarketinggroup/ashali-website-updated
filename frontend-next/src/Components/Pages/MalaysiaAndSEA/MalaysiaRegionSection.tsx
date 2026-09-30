@@ -59,10 +59,10 @@ const MalaysiaRegionSection: React.FC = () => {
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                A Region At
+                A region at
               </span>
               <br />
-              An Important Moment.
+              an important moment.
             </h2>
 
             {/* TEXT */}
@@ -119,7 +119,7 @@ const MalaysiaRegionSection: React.FC = () => {
           <div className="flex items-center gap-3 mb-8">
           
             <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
-              Who Ash Works With
+              Who Ash works with
             </span>
           </div>
 

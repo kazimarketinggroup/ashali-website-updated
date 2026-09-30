@@ -50,7 +50,7 @@ const row2Cards: CardDef[] = [
   {
     icon: Mic,
     label: "Global",
-    title: "Keynotes Speaker",
+    title: "Keynote Speaker",
     w: "w-full sm:grow sm:basis-[215px]",
   },
   {
@@ -109,7 +109,7 @@ const WhyAshSection: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="mb-10 text-white text-fluid-30 font-semibold tracking-tight"
         >
-          Built Through Experience, Not Theory.
+          Built through experience, not theory.
         </motion.h2>
         <p className="text-xs mb-8 mt-2 max-w-4xl text-gray-300">Ash brings the pattern recognition of 25+ years spent building, operating, advising and investing. The value is not another framework deck. It is an external perspective that can challenge assumptions, sharpen the story and help leaders see the decision more clearly.</p>
 

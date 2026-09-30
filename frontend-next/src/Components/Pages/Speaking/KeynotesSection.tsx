@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, BrainCircuit, BookOpen, UserCheck, Globe, Mic } from 'lucide-react';
+import { Users, BrainCircuit, BookOpen, UserCheck } from 'lucide-react';
 
 interface KeynoteCardProps {
   icon: React.ReactNode;
@@ -31,23 +31,15 @@ export const KeynotesSection: React.FC = () => {
     },
     {
       icon: <BrainCircuit size={32} strokeWidth={1.2} />,
-      text: "AI & Future-Of-\nWork Events;"
+      text: "AI & Future-Of-\nWork Events"
     },
     {
       icon: <BookOpen size={32} strokeWidth={1.2} />,
-      text: "Universities/\nBusiness Schools;"
+      text: "Universities &\nBusiness Schools"
     },
     {
       icon: <UserCheck size={32} strokeWidth={1.2} />,
-      text: "Private Founder/\nCEO Sessions"
-    },
-    {
-      icon: <Globe size={32} strokeWidth={1.2} />,
-      text: "Muslim/Diversity/\nSocial Mobility Events"
-    },
-    {
-      icon: <Mic size={32} strokeWidth={1.2} />,
-      text: "Podcasts/Panels/\nMedia"
+      text: "Private Founder &\nCEO Sessions"
     }
   ];
 
@@ -57,11 +49,11 @@ export const KeynotesSection: React.FC = () => {
         
         {/* Main Title Header with contrasting orange focus color */}
         <h2 className="text-white text-fluid-26 font-medium tracking-tight text-center mb-12 sm:mb-16">
-          <span className="text-[#d97736]">Keynotes</span> That Shift How People Think
+          Who Ash <span className="text-[#d97736]">speaks to</span>
         </h2>
 
         {/* Dense Matte-Grid System */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-4 w-full">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-5 w-full max-w-4xl">
           {items.map((item, index) => (
             <KeynoteCard 
               key={index}

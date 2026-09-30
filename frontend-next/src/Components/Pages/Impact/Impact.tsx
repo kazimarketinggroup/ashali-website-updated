@@ -17,9 +17,9 @@ const Impact = () => {
             <TalkThemes/>
             <AvailabilityCriteria/>
             <FinalCta
-        heading="Planning a keynote, leadership offsite or executive workshop?"
-        body="Share the audience, date and outcome you want to create. We'll recommend the most suitable format and confirm availability."
-        ctaLabel="Enquire now"
+        heading="Propose an impact, school or community engagement"
+        body="Ash dedicates a portion of his time each year to pro bono talks, youth initiatives and community programmes. Tell us about your initiative and audience."
+        ctaLabel="Submit an enquiry"
       />
         </div>
     );

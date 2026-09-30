@@ -69,9 +69,8 @@ export const AdvisoryHero: React.FC = () => {
         >
           {/* Eyebrow */}
           <motion.div variants={elementVariants} className="flex items-center gap-2 mb-4">
-            {/* <span className="block w-5 h-[1.5px] bg-[#d97736]" /> */}
             <span className="text-[10px] tracking-[0.22em] uppercase text-gray-400 font-medium">
-             SELECTIVE STRATEGIC ADVISORY
+              Selective strategic advisory
             </span>
           </motion.div>
 
@@ -89,12 +88,6 @@ export const AdvisoryHero: React.FC = () => {
             </span>
           </motion.h1>
 
-          {/* Divider */}
-          {/* <motion.div
-            variants={elementVariants}
-            className="w-10 h-[1px] bg-[#d97736]/40 mb-5"
-          /> */}
-
           {/* Body */}
           <motion.p
             variants={elementVariants}
@@ -103,7 +96,7 @@ export const AdvisoryHero: React.FC = () => {
               text-[12px] sm:text-[13px] max-w-[440px]
             "
           >
-            Ash advises a small number of founders, CEOs and leadership teams navigating growth, positioning, AI-driven change and the decisions that are difficult to make from inside the business.
+            Advising high-growth tech founders, CEOs and executives across the UK, Europe, MENA and Southeast Asia. Ash advises a small number of leadership teams navigating growth, positioning, AI-driven change and the decisions that are difficult to make from inside the business.
           </motion.p>
 
           {/* CTA */}
@@ -119,7 +112,7 @@ export const AdvisoryHero: React.FC = () => {
                   rounded-[2px] shadow-lg transition-colors duration-150
                 "
               >
-                Discuss Advisory
+                Discuss advisory
               </motion.button>
             </Link>
           </motion.div>

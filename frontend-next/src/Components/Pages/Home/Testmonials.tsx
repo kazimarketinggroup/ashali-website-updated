@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
   {
     id: "t1",
     quote:
-      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with — many thanks!",
+      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with, many thanks!",
     fullName: "Freddie Monk",
     organisation: "EY",
     event: "Innova",

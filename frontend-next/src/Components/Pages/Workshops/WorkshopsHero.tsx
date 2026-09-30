@@ -32,7 +32,7 @@ const WorkshopsHero: React.FC = () => (
           <Body className="mt-6 max-w-[640px]">
             Ash works with leadership teams to identify where AI creates real leverage, which human
             capabilities matter most and what the organisation should prioritise next. Every session
-            is tailored around the audience, the business context and a tangible output—not a generic
+            is tailored around the audience, the business context and a tangible output, not a generic
             tour of AI tools.
           </Body>
 

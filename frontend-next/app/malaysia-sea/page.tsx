@@ -10,6 +10,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Speaking, advisory and impact work across Malaysia and Southeast Asia. Based between London and Kuala Lumpur.",
   path: "/malaysia-sea",
+  ogImage: "/og/malaysia-sea.png",
+  ogImageAlt: "Ash Ali, speaking, advisory and impact work across Malaysia and Southeast Asia",
 });
 
 export default function Page() {

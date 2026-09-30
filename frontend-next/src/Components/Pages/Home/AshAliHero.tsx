@@ -80,7 +80,7 @@ const AshAliHero: React.FC = () => {
               text-gray-400 font-light leading-[1.65] tracking-wide antialiased mb-8
               text-[13px] sm:text-[14px] lg:text-[15px] max-w-[540px]
             ">
-            Ash Ali helps leaders and organisations turn AI disruption into sharper strategy, stronger human capability and practical competitive advantage. He brings 25+ years of experience building technology businesses—including serving as Just Eat UK's first Marketing Director, co-authoring The Unfair Advantage and co-founding Uhubs.ai.
+            Ash Ali helps leaders and organisations turn AI disruption into sharper strategy, stronger human capability and practical competitive advantage. He brings 25+ years of experience building technology businesses, including serving as Just Eat UK's first Marketing Director, co-authoring The Unfair Advantage and co-founding Uhubs.ai.
             </p>
 
             {/* CTAs */}
@@ -106,7 +106,7 @@ const AshAliHero: React.FC = () => {
                 </Link>
               ))}
             </div>
-            <p className="text-xs mt-4 text-gray-400">Based between Uk, London and KL, Malaysia. Available globally for keynotes, leadership offsites and executive workshops.</p>
+            <p className="text-xs mt-4 text-gray-400">Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops.</p>
           </motion.div>
 
         </div>

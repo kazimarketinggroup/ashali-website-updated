@@ -24,7 +24,7 @@ type Thought = {
 const thoughts: Thought[] = [
   {
     quote:
-      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with many thanks!",
+      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with. Many thanks!",
     person: "Freddie Monk",
     logoSrc: eyLogo.src,
     logoAlt: "EY",
@@ -62,7 +62,7 @@ const SpeakingThoughts: React.FC = () => (
         className="mb-4 text-xl font-bold leading-tight sm:text-2xl"
         style={brandGradientTextStyle}
       >
-        Feedback...
+        What organisers say
       </motion.h2>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">

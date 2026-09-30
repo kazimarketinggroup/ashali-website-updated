@@ -17,7 +17,7 @@ export const SignatureTalks: React.FC = () => {
     {
       id: 'talk-1',
       title: 'The Unfair Advantage in the Age of AI',
-      subTitle: 'How leaders identify the advantages they already possess—and use AI to amplify rather than erase them.',
+      subTitle: 'How leaders identify the advantages they already possess, and use AI to amplify rather than erase them.',
       description: 'How leaders identify the advantages they already possess and use AI to amplify rather than erase them.'
     },
     {
@@ -36,7 +36,7 @@ export const SignatureTalks: React.FC = () => {
       id: 'talk-4',
       title: 'From Inner-City Birmingham to Global Entrepreneurship',
       subTitle: '',
-      description: "A founder's story of access, reinvention and opportunity inspiring without losing its commercial edge."
+      description: "A founder's story of access, reinvention and opportunity: inspiring without losing its commercial edge."
     },
     {
       id: 'talk-5',
@@ -56,7 +56,7 @@ export const SignatureTalks: React.FC = () => {
         
         {/* Header containing exact brand focus accent coloration */}
         <h2 className="text-white text-fluid-26 font-medium tracking-tight mb-10 text-left">
-          <span style={brandGradientTextStyle}>Signature</span> Talks
+          <span style={brandGradientTextStyle}>Signature</span> talks
         </h2>
 
         {/* Dynamic Split Content Row */}

@@ -32,7 +32,7 @@ export const KeynotesBanner: React.FC = () => {
     <div className="flex-shrink-0 flex items-end self-end justify-center w-full md:w-auto md:pl-8 lg:pl-14">
       <img
         src={ashImage.src}
-        alt="Ash"
+        alt="Ash Ali delivering a keynote presentation on unfair advantage and AI strategy"
         className="h-[340px] sm:h-[420px] md:h-[min(85vh,680px)] w-auto object-contain object-bottom"
         draggable={false}
       />

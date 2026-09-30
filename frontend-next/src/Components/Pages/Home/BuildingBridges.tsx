@@ -81,11 +81,11 @@ const BuildingBridges: React.FC = () => {
       text-fluid-30 font-medium leading-[1.25] max-w-[650px] tracking-tight text-white/95
     "
   >
-    A Global Founder&apos;s Perspective,
+    A global founder&apos;s perspective,
     <br />
-    On The Ground In{" "}
+    on the ground in{" "}
     <span className="text-[#19b5a5]">
-      Malaysia & SEA.
+      Malaysia and SEA.
     </span>
   </h2>
 
@@ -109,7 +109,7 @@ const BuildingBridges: React.FC = () => {
       Based between London and Kuala Lumpur, Ash
       brings a global founder/operator perspective to
       organisations and communities across the UK,
-      Malaysia and Southeast Asia speaking, advising
+      Malaysia and Southeast Asia: speaking, advising
       and supporting the region&apos;s next generation
       of founders and leaders.
     </p>

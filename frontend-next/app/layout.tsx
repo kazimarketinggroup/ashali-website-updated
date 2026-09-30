@@ -4,6 +4,8 @@ import { Toaster } from "sonner";
 
 import SiteFooter from "@/src/Components/Layouts/SiteFooter";
 import SiteHeader from "@/src/Components/Layouts/SiteHeader";
+import JsonLd from "@/src/Components/Shared/JsonLd";
+import { personSchema } from "@/src/constants/structuredData";
 import PageTransition from "./_components/PageTransition";
 import "./globals.css";
 
@@ -65,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={outfit.variable}>
       <body>
+        <JsonLd schema={[personSchema]} />
         {/*
           Mirrors the old MainLayout wrapper div exactly. `site-root` replaces
           the `#root` selector from index.css — see the note in globals.css.

@@ -61,13 +61,13 @@ const SiteHeader: React.FC = () => {
       <div className="h-[3px] w-full shrink-0" style={{ background: BRAND_GRADIENT_LR }} aria-hidden />
 
       <div className="mx-auto flex max-w-fluid items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-[17px] font-bold tracking-[0.12em] text-white" onClick={() => setOpen(false)}>
+        <Link href="/" className="text-[17px] font-bold tracking-[0.12em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm" onClick={() => setOpen(false)}>
           ASH ALI
         </Link>
 
         <nav className="hidden items-center gap-5 lg:flex xl:gap-8 2xl:gap-10" aria-label="Primary">
           {navItems.map(({ to, label, end }) => (
-            <Link key={to} href={to} className={linkClass({ isActive: isPathActive(pathname, to, end) })}>
+            <Link key={to} href={to} className={`${linkClass({ isActive: isPathActive(pathname, to, end) })} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm`}>
               {label}
             </Link>
           ))}
@@ -76,7 +76,7 @@ const SiteHeader: React.FC = () => {
         <div className="hidden lg:block">
           <Link
             href="/contact"
-            className="inline-block rounded-sm border border-white px-5 py-2 text-[13px] font-bold tracking-wide text-white transition-colors hover:bg-white/10"
+            className="inline-block rounded-sm border border-white px-5 py-2 text-[13px] font-bold tracking-wide text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Enquire now
           </Link>
@@ -84,7 +84,7 @@ const SiteHeader: React.FC = () => {
 
         <button
           type="button"
-          className="rounded-md p-2 text-white lg:hidden"
+          className="rounded-md p-2 text-white lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}

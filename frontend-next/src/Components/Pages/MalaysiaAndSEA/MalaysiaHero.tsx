@@ -11,7 +11,7 @@ const MalaysiaHero: React.FC = () => {
       {/* Background Image */}
       <img
         src={malaysiaHero.src}
-        alt="Malaysia & Southeast Asia"
+        alt="Ash Ali in Malaysia and Southeast Asia"
         className="absolute inset-0 h-full w-full object-cover"
       />
 
@@ -45,8 +45,6 @@ const MalaysiaHero: React.FC = () => {
 
             {/* Label */}
             <div className="flex items-center gap-3 mb-8">
-              
-
               <span className="text-[11px] uppercase tracking-[0.18em] text-white/55">
                 Malaysia & Southeast Asia
               </span>
@@ -54,21 +52,13 @@ const MalaysiaHero: React.FC = () => {
 
             {/* Heading */}
             <h1 className="text-white font-medium leading-[1.18] text-fluid-30 max-w-[760px]">
-
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                Speaking, Advisory And Impact <br /> Work  {}
-              </span>
-
-          
-
-               Across Malaysia And
-
-              <br />
-
-              Southeast Asia.
+                Speaking, advisory and impact work
+              </span>{" "}
+              across Malaysia and Southeast Asia.
             </h1>
 
             {/* Description */}
@@ -81,9 +71,7 @@ const MalaysiaHero: React.FC = () => {
                 leading-[1.9]
               "
             >
-              Based Between London And Kuala Lumpur, Ash Brings A Global
-              Founder/Operator Perspective To Organisations And Communities
-              Across The UK, Malaysia And Southeast Asia.
+              Operating from Kuala Lumpur, bridging Southeast Asia and the UK/Europe. Keynotes, masterclasses and advisory for founders, corporate leaders and ecosystem builders across the region.
             </p>
 
             {/* CTA */}

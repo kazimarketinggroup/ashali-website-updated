@@ -18,9 +18,9 @@ const Advisory = () => {
             <HowAshWorks/>
             {/* <StartConversation/> */}
            <FinalCta
-        heading="Planning a keynote, leadership offsite or executive workshop?"
-        body="Share the audience, date and outcome you want to create. We'll recommend the most suitable format and confirm availability."
-        ctaLabel="Enquire now"
+        heading="Looking for a sounding board, strategic advisor or board member?"
+        body="Let's discuss where you are and where you need to get to. We'll recommend the most suitable engagement format and confirm Ash's availability."
+        ctaLabel="Start a conversation"
       />
         </div>
     );

@@ -31,9 +31,9 @@ const keynotes: Keynote[] = [
     number: "01",
     title: "The Unfair Advantage in the Age of AI",
     promise:
-      "How leaders identify the advantages they already possess—and use AI to amplify rather than erase them.",
+      "How leaders identify the advantages they already possess, and use AI to amplify rather than erase them.",
     description:
-      "AI is changing how advantage is created, but not every organisation needs the same tools or strategy. In this keynote, Ash shows leaders how to identify the assets, context, relationships, judgement and capabilities that competitors cannot easily copy—and how to use AI to multiply their value.",
+      "AI is changing how advantage is created, but not every organisation needs the same tools or strategy. In this keynote, Ash shows leaders how to identify the assets, context, relationships, judgement and capabilities that competitors cannot easily copy, and how to use AI to multiply their value.",
     outcomes: [
       "Distinguish genuine competitive advantage from AI theatre",
       "Apply the MILES framework to an individual, team or organisation",
@@ -51,7 +51,7 @@ const keynotes: Keynote[] = [
     title: "The Human Advantage: Leading When AI Changes the Work",
     promise: "What must stay human when machines become faster, cheaper and more capable.",
     description:
-      "AI can increase output while quietly weakening judgement, curiosity and ownership. Ash explores the capabilities leaders must protect and strengthen—and how to build teams that use AI confidently without outsourcing their thinking.",
+      "AI can increase output while quietly weakening judgement, curiosity and ownership. Ash explores the capabilities leaders must protect and strengthen, and how to build teams that use AI confidently without outsourcing their thinking.",
     outcomes: [
       "Recognise the human capabilities that become more valuable as AI spreads",
       "Separate productive augmentation from passive dependence",

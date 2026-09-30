@@ -255,7 +255,7 @@ function MiddleTimeline() {
         <span className="pointer-events-none absolute bottom-0 left-1/2 top-[clamp(22px,5.8vw,48px)] w-px -translate-x-1/2 bg-white/20" />
 
         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-          <p className="mb-[clamp(10px,2.5vw,22px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2012-2016</p>
+          <p className="mb-[clamp(10px,2.5vw,22px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2012–2016</p>
           <div className="grid grid-cols-2 gap-0">
             <div className="flex justify-end border-r border-white/35 pr-[clamp(12px,3.6vw,30px)]">
               <CopyBlock align="right">
@@ -278,7 +278,7 @@ function MiddleTimeline() {
         </motion.div>
 
         <motion.div className="mt-[clamp(18px,4.1vw,36px)]" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-          <p className="mb-[clamp(10px,2.5vw,22px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2015-2018</p>
+          <p className="mb-[clamp(10px,2.5vw,22px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2015–2018</p>
           <div className="grid grid-cols-2 gap-0">
             <div className="flex justify-end border-r border-white/35 pr-[clamp(12px,3.6vw,30px)]">
               <PhotoFrame src={imgWash.src} alt="Ash Ali building WashPlus" edge="left" size="normal" />
@@ -295,14 +295,14 @@ function MiddleTimeline() {
                   <img src={logoWash.src} alt="WashPlus" className="h-[clamp(9px,2.2vw,18px)] w-auto object-contain" />
                 </div>
                 <Location>UAE, Dubai</Location>
-                <p>Co-founded Washplus, an on demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. At the end of his journey, he successfully scaled the business and sold Washplus for a seven-figure sum.</p>
+                <p>Co-founded Washplus, an on demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. At the end of his journey, he successfully scaled and exited the business in a multi-million acquisition.</p>
               </CopyBlock>
             </div>
           </div>
         </motion.div>
 
         <motion.div className="mt-[clamp(22px,5.1vw,44px)]" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.16 }}>
-          <p className="mb-[clamp(12px,3vw,26px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2020-2021</p>
+          <p className="mb-[clamp(12px,3vw,26px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2019–2020</p>
           <div className="grid grid-cols-2 gap-0">
             <div className="relative flex justify-end border-r border-white/35 pr-[clamp(16px,5.1vw,42px)] pt-[clamp(28px,7.5vw,62px)]">
               <img src={imgBookPair.src} alt="" className="absolute right-[104px] top-[4px] hidden h-[172px] w-[172px] object-cover opacity-[0.1] blur-[1px] lg:block" />
@@ -323,7 +323,8 @@ function MiddleTimeline() {
             </div>
           </div>
 
-          <div className="mt-[clamp(30px,8.6vw,72px)] grid grid-cols-2 gap-0">
+          <p className="mb-[clamp(12px,3vw,26px)] mt-[clamp(24px,6vw,48px)] text-center text-[clamp(14px,4.1vw,35px)] font-black leading-none tracking-[-0.04em]">2021</p>
+          <div className="grid grid-cols-2 gap-0">
             <div className="flex justify-end border-r border-white/35 pr-[clamp(16px,5.1vw,42px)]">
               <PhotoFrame src={imgBookPair.src} alt="Ash Ali holding The Unfair Advantage" edge="right" size="large" />
             </div>
@@ -332,7 +333,7 @@ function MiddleTimeline() {
                 <h3 className="mb-[clamp(3px,0.9vw,7px)] text-[clamp(6px,1.35vw,11px)] font-black uppercase leading-[1.18] text-white">
                   AWARDED BUSINESS
                   <br />
-                  BOOK OF THE YEAR - 2021
+                  BOOK OF THE YEAR – 2021
                 </h3>
                 <Location>London</Location>
                 <p>The Unfair Advantage was picked from a shortlist of over 250 books and was chosen over the course of an intensive six-month judging process and was awarded Business Book of the Year 2021.</p>
@@ -356,7 +357,7 @@ function UhubsTimeline() {
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <p className="mb-[clamp(14px,3.3vw,28px)] text-center text-[clamp(15px,4vw,34px)] font-black leading-none tracking-[-0.04em]">2019-Present</p>
+      <p className="mb-[clamp(14px,3.3vw,28px)] text-center text-[clamp(15px,4vw,34px)] font-black leading-none tracking-[-0.04em]">2019–Present</p>
       <div className="grid grid-cols-2 gap-0">
         <div className="flex justify-end border-r border-white/35 pr-[clamp(14px,4.2vw,34px)]">
           <PhotoFrame src={imgUhubs.src} alt="Ash Ali and Uhubs co-founder" edge="left" size="large" />

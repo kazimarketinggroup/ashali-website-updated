@@ -136,15 +136,18 @@ const SiteFooter: React.FC = () => {
           </div>
 
           <div className="min-w-0">
-            <p className="text-[clamp(1.25rem,2vw,1.55rem)] font-semibold leading-tight">Let&apos;s Keep Connected</p>
+            <p className="text-[clamp(1.25rem,2vw,1.55rem)] font-semibold leading-tight">Let&apos;s keep connected</p>
+            <p className="mt-2 text-[13px] font-normal text-white/75">
+              Join 10,000+ founders, operators and leaders receiving Ash&apos;s thinking on advantage, AI and growth.
+            </p>
 
-            <form className="mt-7 grid gap-3 sm:grid-cols-[1fr_1fr_auto]" onSubmit={handleSubscribe}>
+            <form className="mt-5 grid gap-3 sm:grid-cols-[1fr_1fr_auto]" onSubmit={handleSubscribe}>
               <input
                 type="text"
                 placeholder="Name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                className="h-9 min-w-0 bg-white px-6 text-[12px] font-normal text-black outline-none placeholder:text-black/45"
+                className="h-9 min-w-0 bg-white px-6 text-[12px] font-normal text-black outline-none placeholder:text-black/60 focus:ring-1 focus:ring-white"
               />
               <input
                 type="email"
@@ -152,12 +155,12 @@ const SiteFooter: React.FC = () => {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
-                className="h-9 min-w-0 bg-white px-6 text-[12px] font-normal text-black outline-none placeholder:text-black/45"
+                className="h-9 min-w-0 bg-white px-6 text-[12px] font-normal text-black outline-none placeholder:text-black/60 focus:ring-1 focus:ring-white"
               />
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="h-9 border border-white bg-transparent px-9 text-[12px] font-normal text-white transition-colors hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                className="h-9 border border-white bg-transparent px-9 text-[12px] font-normal text-white transition-colors hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isSubmitting ? "..." : "Subscribe"}
               </button>
@@ -175,12 +178,12 @@ const SiteFooter: React.FC = () => {
                             href={link.to}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[13px] font-normal text-white/55 transition-colors hover:text-white"
+                            className="text-[13px] font-normal text-white/70 transition-colors hover:text-white"
                           >
                             {link.label}
                           </a>
                         ) : (
-                          <Link href={link.to} className="text-[13px] font-normal text-white/55 transition-colors hover:text-white">
+                          <Link href={link.to} className="text-[13px] font-normal text-white/70 transition-colors hover:text-white">
                             {link.label}
                           </Link>
                         )}
@@ -195,8 +198,8 @@ const SiteFooter: React.FC = () => {
 
         <div className="my-6 h-[3px] w-full sm:my-7" style={{ background: BRAND_GRADIENT_LR }} aria-hidden />
 
-        <p className="text-left text-[11px] font-normal text-white/90">
-          {year} © — Ash Ali | All Rights Reserved
+        <p className="text-left text-[12px] font-normal text-white/80">
+          © {year} Ash Ali. All rights reserved.
         </p>
       </div>
     </footer>

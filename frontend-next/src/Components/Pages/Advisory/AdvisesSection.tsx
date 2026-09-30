@@ -88,7 +88,7 @@ export const AdvisesSection: React.FC = () => {
         
         {/* Main Section Header displaying exact orange accent typography alignment */}
         <h2 className="text-white text-fluid-24 font-normal tracking-tight text-center mb-12 sm:mb-16">
-          Ash <span className="text-[#d97736]">advises</span> a selective group of
+          Where Ash <span className="text-[#d97736]">advises.</span>
         </h2>
 
         {/* Outer Motion Wrapper for Stagger Effect */}

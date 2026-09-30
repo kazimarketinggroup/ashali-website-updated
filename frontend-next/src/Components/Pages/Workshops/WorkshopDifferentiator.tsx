@@ -11,7 +11,7 @@ const WorkshopDifferentiator: React.FC = () => (
       </SectionHeading>
       <Body className="max-w-2xl">
         The sessions combine Ash&apos;s operating experience, the MILES framework, structured
-        exercises and—where appropriate—capability data from Uhubs. Teams leave with a shared view
+        exercises and, where appropriate, capability data from Uhubs. Teams leave with a shared view
         of the opportunity, the risks and the priorities they will act on.
       </Body>
     </Reveal>

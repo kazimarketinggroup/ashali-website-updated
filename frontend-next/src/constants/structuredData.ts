@@ -26,7 +26,24 @@ export const personSchema = {
     "Sales transformation",
     "Leadership and human capability",
   ],
-  sameAs: ["https://uk.linkedin.com/in/ashali", "https://x.com/Ash_Ali"],
+  sameAs: [
+    "https://uk.linkedin.com/in/ashali",
+    "https://x.com/Ash_Ali",
+    "https://www.amazon.com/stores/Ash-Ali/author/B082V279X1",
+  ],
+};
+
+/** Service / Speaker schema for speaking engagements. */
+export const speakerServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Keynote Speaking by Ash Ali",
+  serviceType: "Keynote Speaking, Executive Workshops, Leadership Presentations",
+  provider: personSchema,
+  areaServed: ["United Kingdom", "Southeast Asia", "Worldwide"],
+  description:
+    "Keynote speeches and executive sessions on unfair advantage, artificial intelligence, entrepreneurship and leadership.",
+  url: `${SITE_ORIGIN}/speaking`,
 };
 
 /** Book schema for The Unfair Advantage. */
