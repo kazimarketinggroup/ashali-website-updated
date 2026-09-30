@@ -4,7 +4,7 @@ import { Body, Card, Reveal, Section, SectionHeading } from "../../Shared/Sectio
 
 const formats = [
   {
-    title: "Founder Lessons from the Messy Middle",
+    title: "Founder lessons from the messy middle",
     description: "Fireside chat / founder-session format",
   },
   {
@@ -13,7 +13,7 @@ const formats = [
   },
   {
     title: "Keynote-to-action",
-    description: "Keynote followed by a facilitated 60–90 minute workshop",
+    description: "Keynote followed by a facilitated 60-90 minute workshop",
   },
   {
     title: "Panels, podcasts and media",

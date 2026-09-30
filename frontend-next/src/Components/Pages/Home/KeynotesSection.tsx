@@ -13,31 +13,31 @@ import world from '../../../assets/home/world.png';
 const keynotes = [
   {
     title: "The Unfair Advantage",
-    description: "Why Success Is Not A Level Playing Field",
+    description: "Why success is not a level playing field",
     icon: book.src,
     isImage: true,
   },
   {
-    title: "AI-Native Thinking",
-    description: "How Leaders Can Adapt Before They Are Forced To",
+    title: "AI-native thinking",
+    description: "How leaders can adapt before they are forced to",
     icon: brain.src,
     isImage: true,
   },
   {
-    title: "From Potential To Performance",
-    description: "Building High-Performing Teams That Execute",
+    title: "From potential to performance",
+    description: "Building high-performing teams that execute",
     icon: medel.src,
     isImage: true,
   },
   {
-    title: "Founders' Growth Mindset",
-    description: "Resilience, Reframes And Real-World Entrepreneurship",
+    title: "Founders' growth mindset",
+    description: "Resilience, reframes and real-world entrepreneurship",
     icon: flower.src,
     isImage: true,
   },
   {
-    title: "The Future Workforce",
-    description: "Emerging Markets, Youth & The Future Of Work",
+    title: "The future workforce",
+    description: "Emerging markets, youth & the future of work",
     icon: world.src,
     isImage: true,
   },
@@ -51,7 +51,7 @@ const KeynotesSection: React.FC = () => {
         {/* Heading */}
         <div className="mb-12 text-center">
           <h2 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-light tracking-tight text-white">
-            <span className="text-[#d98324]">Keynotes</span> That Shift How People Think
+            <span className="text-[#d98324]">Keynotes</span> that shift how people think
           </h2>
         </div>
 

@@ -27,19 +27,19 @@ export const KeynotesSection: React.FC = () => {
   const items = [
     {
       icon: <Users size={32} strokeWidth={1.2} />,
-      text: "Corporate\nLeadership Teams"
+      text: "Corporate\nleadership teams"
     },
     {
       icon: <BrainCircuit size={32} strokeWidth={1.2} />,
-      text: "AI & Future-Of-\nWork Events"
+      text: "AI & future-of-\nwork events"
     },
     {
       icon: <BookOpen size={32} strokeWidth={1.2} />,
-      text: "Universities &\nBusiness Schools"
+      text: "Universities &\nbusiness schools"
     },
     {
       icon: <UserCheck size={32} strokeWidth={1.2} />,
-      text: "Private Founder &\nCEO Sessions"
+      text: "Private founder &\nCEO sessions"
     }
   ];
 

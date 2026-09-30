@@ -29,7 +29,7 @@ type Keynote = {
 const keynotes: Keynote[] = [
   {
     number: "01",
-    title: "The Unfair Advantage in the Age of AI",
+    title: "The Unfair Advantage in the age of AI",
     promise:
       "How leaders identify the advantages they already possess, and use AI to amplify rather than erase them.",
     description:
@@ -48,7 +48,7 @@ const keynotes: Keynote[] = [
   },
   {
     number: "02",
-    title: "The Human Advantage: Leading When AI Changes the Work",
+    title: "The human advantage: leading when AI changes the work",
     promise: "What must stay human when machines become faster, cheaper and more capable.",
     description:
       "AI can increase output while quietly weakening judgement, curiosity and ownership. Ash explores the capabilities leaders must protect and strengthen, and how to build teams that use AI confidently without outsourcing their thinking.",
@@ -66,7 +66,7 @@ const keynotes: Keynote[] = [
   },
   {
     number: "03",
-    title: "From Outsider to Operator: Building Advantage Without the Usual Access",
+    title: "From outsider to operator: building advantage without the usual access",
     promise:
       "A candid founder story about background, reinvention, judgement and creating opportunity before anyone gives permission.",
     description:
