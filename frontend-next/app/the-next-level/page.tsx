@@ -6,7 +6,7 @@ import { breadcrumbSchema } from "@/src/constants/structuredData";
 import TheNextLevel from "@/src/Components/Pages/TheNextLevel/TheNextLevel";
 
 export const metadata: Metadata = pageMetadata({
-  title: "The Next Level — Programmes | Ash Ali",
+  title: "The Next Level: Programmes | Ash Ali",
   description:
     "Four pathways with Ash Ali: The Growth Games, Life Is Unfair, Leadership Development and a tailored Secret Level.",
   path: "/the-next-level",

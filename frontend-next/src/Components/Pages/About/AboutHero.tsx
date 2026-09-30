@@ -12,7 +12,7 @@ import { Body, CtaRow, PrimaryLink, ProofStrip, SecondaryLink } from "../../Shar
 const credentials = [
   "25+ years in technology",
   "Just Eat UK's first Marketing Director",
-  "Business Book of the Year 2021",
+  "Business Book of the Year 2021, The Business Book Awards",
   "Co-founder, Uhubs.ai",
   "London • Kuala Lumpur • Global",
 ];

@@ -59,7 +59,7 @@ export const bookSchema = {
   url: `${SITE_ORIGIN}/unfair-advantage`,
   description:
     "The award-winning framework for finding what gives you an edge. The MILES framework helps people and organisations see the assets, context and capabilities they already possess.",
-  award: "Business Book of the Year 2021",
+  award: "Business Book of the Year 2021, The Business Book Awards",
 };
 
 /** BreadcrumbList for a page's position in the site hierarchy. */

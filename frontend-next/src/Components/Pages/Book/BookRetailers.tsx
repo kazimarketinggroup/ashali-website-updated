@@ -13,7 +13,7 @@ const retailers = [
   {
     src: amazonLogo.src,
     alt: "Amazon",
-    href: "https://www.amazon.com/Unfair-Advantage-Already-Takes-Succeed/dp/1250280524",
+    href: "https://www.amazon.co.uk/dp/1788163311",
   },
   {
     src: audibleLogo.src,
@@ -33,13 +33,13 @@ const retailers = [
   {
     src: appleLogo.src,
     alt: "Apple Books",
-    href: "https://books.apple.com/ca/book/the-unfair-advantage/id1584662439",
+    href: "https://books.apple.com/gb/book/the-unfair-advantage/id1584662439",
   },
 ];
 
 const BookRetailers: React.FC = () => {
   return (
-    <section className="bg-black px-4 py-16 md:py-20 text-white sm:px-6 lg:px-8">
+    <section id="retailers" className="bg-black px-4 py-16 md:py-20 text-white sm:px-6 lg:px-8">
       <motion.h2
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -47,9 +47,7 @@ const BookRetailers: React.FC = () => {
         transition={{ duration: 0.45, ease: easeOut }}
         className="text-center text-xl font-semibold tracking-tight sm:text-2xl"
       >
-        Get Your Copy Of
-        <br />
-        ‘The Unfair Advantage’
+        Get your copy of The Unfair Advantage
       </motion.h2>
 
       <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">

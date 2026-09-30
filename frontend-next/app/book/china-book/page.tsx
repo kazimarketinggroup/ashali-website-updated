@@ -6,9 +6,9 @@ import { bookSchema, breadcrumbSchema } from "@/src/constants/structuredData";
 import China from "@/src/Components/Pages/Book/China/China";
 
 export const metadata: Metadata = pageMetadata({
-  title: "The Unfair Advantage — China Edition | Ash Ali",
+  title: "The Unfair Advantage: China Edition | Ash Ali",
   description:
-    "The Chinese edition of The Unfair Advantage — the award-winning framework for finding the edge you already have.",
+    "The Chinese edition of The Unfair Advantage: the award-winning framework for finding the edge you already have.",
   path: "/book/china-book",
 });
 

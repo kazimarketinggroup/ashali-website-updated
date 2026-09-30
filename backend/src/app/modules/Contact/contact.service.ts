@@ -91,7 +91,7 @@ const createContactIntoDB = async (payload: TCreateContact) => {
       from: `"${BRAND.name} Website" <${OWNER_EMAIL}>`,
       to: OWNER_EMAIL,
       replyTo: normalizedPayload.email,
-      subject: `New ${ENQUIRY_TYPE_LABELS[normalizedPayload.type]} Enquiry from ${normalizedPayload.name}`,
+      subject: `ashali.com enquiry: ${normalizedPayload.type === 'impact' ? 'pro-bono' : normalizedPayload.type}`,
       text: [
         'New website enquiry',
         `Type: ${ENQUIRY_TYPE_LABELS[normalizedPayload.type]}`,

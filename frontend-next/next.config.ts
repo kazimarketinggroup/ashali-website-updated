@@ -74,7 +74,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/blog/:slug*",
-        destination: "/updates",
+        destination: "/",
         permanent: true,
       },
     ];

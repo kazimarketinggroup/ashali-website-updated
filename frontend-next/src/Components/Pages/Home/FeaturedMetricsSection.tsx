@@ -41,8 +41,8 @@ const row1Cards: CardDef[] = [
   },
   {
     icon: Trophy,
-    label: "Winner, 2021",
-    title: "Business Book of the Year",
+    label: "Winner",
+    title: "Business Book of the Year 2021, The Business Book Awards",
     sub: null,
     w: "w-full sm:grow sm:basis-0",
   },

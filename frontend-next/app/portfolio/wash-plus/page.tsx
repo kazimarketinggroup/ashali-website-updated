@@ -8,7 +8,7 @@ import WashPlus from "@/src/Components/Pages/WashPlus/WashPlus";
 export const metadata: Metadata = pageMetadata({
   title: "WashPlus | Ash Ali",
   description:
-    "WashPlus — one of the ventures in Ash Ali's portfolio of businesses and social impact work.",
+    "WashPlus: one of the ventures in Ash Ali's portfolio of businesses and social impact work.",
   path: "/portfolio/wash-plus",
 });
 

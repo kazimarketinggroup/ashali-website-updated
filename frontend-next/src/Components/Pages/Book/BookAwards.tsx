@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, ShieldCheck, Trophy } from "lucide-react";
+import { Award, Trophy } from "lucide-react";
 
 import awardsLogo from "../../../assets/book/businessbookAwardLogo.png";
 // import bookImage from "../../../assets/book/bookimage.png";
@@ -12,26 +12,25 @@ export const BookAwards: React.FC = () => {
   const easeOutTransition = { duration: 0.65, ease: "easeOut" as const };
 
   const accolades = [
-    { id: 1, text: "Business Book Of The Year 2021", icon: <Trophy className="text-[#d97736]" size={18} strokeWidth={1.5} /> },
-    { id: 2, text: "Best Startup/Scaleup Book Award 2021", icon: <Award className="text-[#008080]" size={18} strokeWidth={1.5} /> },
-    { id: 3, text: "Business Book Of The Year 2022 Finalist", icon: <ShieldCheck className="text-[#65735b]" size={18} strokeWidth={1.5} /> },
+    { id: 1, text: "Business Book of the Year 2021, The Business Book Awards", icon: <Trophy className="text-[#d97736]" size={18} strokeWidth={1.5} /> },
+    { id: 2, text: "Best Startup / Scaleup Book Award 2021", icon: <Award className="text-[#008080]" size={18} strokeWidth={1.5} /> },
   ];
 
   const talkTopics = [
     {
-      title: "The Unfair Advantage in the Age of AI",
+      title: "The Unfair Advantage in the age of AI",
       desc: "How the book's core ideas apply now that AI is rewriting the rules of advantage."
     },
     {
-      title: "Using Your Story as an Advantage",
+      title: "Using your story as an advantage",
       desc: "Turning your background, journey and identity into a genuine edge."
     },
     {
-      title: "Social Mobility, Entrepreneurship and Opportunity",
+      title: "Social mobility, entrepreneurship and opportunity",
       desc: "Why talent is everywhere but access isn't and what to do about it."
     },
     {
-      title: "Hidden Forces Behind Success",
+      title: "Hidden forces behind success",
       desc: "The unseen factors that shape who wins, and how to use them deliberately."
     }
   ];

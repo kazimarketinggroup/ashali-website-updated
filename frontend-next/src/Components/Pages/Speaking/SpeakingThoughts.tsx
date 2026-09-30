@@ -24,7 +24,7 @@ type Thought = {
 const thoughts: Thought[] = [
   {
     quote:
-      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with. Many thanks!",
+      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with, many thanks!",
     person: "Freddie Monk",
     logoSrc: eyLogo.src,
     logoAlt: "EY",

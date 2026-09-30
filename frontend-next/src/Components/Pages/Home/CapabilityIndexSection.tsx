@@ -37,6 +37,7 @@ export const CapabilityIndexSection = () => {
     either way.
   */
   const [mounted, setMounted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -61,7 +62,9 @@ export const CapabilityIndexSection = () => {
             Company: formData.company,
             "Job Title": formData.jobTitle,
             "Revenue Org Size": formData.orgSize,
+            enquiry_source: "Uhubs Report Download",
           },
+          website_hp: honeypot,
         });
       }
     } catch {
@@ -251,6 +254,16 @@ export const CapabilityIndexSection = () => {
                     </p>
 
                     <form onSubmit={handleFormSubmit} className="space-y-6">
+                      <input
+                        type="text"
+                        name="website_hp"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        style={{ position: "absolute", opacity: 0, pointerEvents: "none", zIndex: -1, width: 0, height: 0 }}
+                      />
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
                         <ModalInput
                           label="Full name"

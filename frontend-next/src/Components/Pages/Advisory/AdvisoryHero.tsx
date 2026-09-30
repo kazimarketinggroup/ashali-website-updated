@@ -82,7 +82,7 @@ export const AdvisoryHero: React.FC = () => {
               text-fluid-32
             "
           >
-            <span className="text-[#3ecfb2]">A trusted operator's  </span>
+            <span className="text-[#3ecfb2]">A trusted operator's </span>
             <span className="text-white">
               perspective on consequential decisions.
             </span>

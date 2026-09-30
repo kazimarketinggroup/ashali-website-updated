@@ -56,23 +56,23 @@ export const WhoItsFor: React.FC = () => {
   const cardsData = [
     {
       icon: <AspiringUserIcon size={32} />,
-      text: "Founders And\nAspiring\nEntrepreneurs"
+      text: "Founders and\naspiring\nentrepreneurs"
     },
     {
       icon: <GraduationCap size={32} strokeWidth={1.2} />,
-      text: "Students And\nRecent\nGraduates"
+      text: "Students and\nrecent\ngraduates"
     },
     {
       icon: <Rocket size={32} strokeWidth={1.2} />,
-      text: "Professionals\nAnd Career\nChangers"
+      text: "Professionals\nand career\nchangers"
     },
     {
       icon: <BrainCircuit size={32} strokeWidth={1.2} />,
-      text: "Underrepresented\nAnd Underserved\nTalent"
+      text: "Underrepresented\nand underserved\ntalent"
     },
     {
       icon: <Users size={32} strokeWidth={1.2} />,
-      text: "Leaders Developing\nAnd Backing Their\nPeople"
+      text: "Leaders developing\nand backing their\npeople"
     }
   ];
 

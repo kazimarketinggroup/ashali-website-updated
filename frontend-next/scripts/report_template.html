@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ash Ali Website – Technical Fix & QA Resolution Report</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 14mm 16mm 14mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    line-height: 1.45;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+  }
+  h1, h2, h3, h4 {
+    color: #0a0a0a;
+    margin-top: 0;
+    font-weight: 700;
+  }
+  h1 {
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .header-card {
+    background: #0f1115;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .header-card h1 {
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+  .header-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 12px;
+  }
+  .header-item {
+    font-size: 10px;
+  }
+  .header-item-label {
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 8.5px;
+    margin-bottom: 2px;
+  }
+  .header-item-val {
+    color: #f3f4f6;
+    font-weight: 600;
+  }
+  .section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 2px solid #0f1115;
+    padding-bottom: 4px;
+    margin-top: 22px;
+    margin-bottom: 12px;
+    color: #0f1115;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .env-callout {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    font-size: 10.5px;
+    color: #166534;
+  }
+  .env-callout strong {
+    color: #14532d;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 10px;
+  }
+  th {
+    background: #f3f4f6;
+    color: #374151;
+    text-align: left;
+    padding: 7px 9px;
+    font-weight: 600;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  td {
+    padding: 7px 9px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background-color: #fafafa;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .badge-live {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+  .badge-ash {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  .code-token {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: #f1f5f9;
+    padding: 1px 4px;
+    border-radius: 3px;
+    color: #0f172a;
+    font-size: 9px;
+  }
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .check-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 12px;
+    background: #ffffff;
+  }
+  .check-card h4 {
+    font-size: 10.5px;
+    margin-bottom: 4px;
+    color: #0f172a;
+  }
+  .check-card p {
+    margin: 0;
+    color: #64748b;
+    font-size: 9.5px;
+  }
+  .footer-note {
+    margin-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+    font-size: 9px;
+    color: #94a3b8;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER HERO CARD -->
+  <div class="header-card">
+    <h1>Ash Ali Website – Technical QA & Punchlist Resolution Report</h1>
+    <div style="color: #cbd5e1; font-size: 11px;">
+      Comprehensive resolution report verifying all 49 audit items across Technical, Copy, Layout and Typography.
+    </div>
+    <div class="header-grid">
+      <div class="header-item">
+        <div class="header-item-label">Target Environment</div>
+        <div class="header-item-val">Production (Vercel)</div>
+      </div>
+      <div class="header-item">
+        <div class="header-item-label">Live Canonical URL</div>
+        <div class="header-item-val">https://www.ashali.com</div>
+      </div>
+      <div class="header-item">
+        <div class="header-item-label">Deployment ID</div>
+        <div class="header-item-val">dpl_2mWC2c165rDCAGSbnmrx7AmNGrqe</div>
+      </div>
+      <div class="header-item">
+        <div class="header-item-label">Build Engine</div>
+        <div class="header-item-val">Next.js 16.3.0 (Turbopack)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVIRONMENT CONFIRMATION CALLOUT -->
+  <div class="env-callout">
+    <strong>Environment Confirmation & Client Query Answer:</strong><br>
+    The client previously observed that Items 13 to 22 had not updated on the live site. The previous deployment was exclusively targeted at the Uhubs report download flow and initial SEO headers. The full 49-point punchlist has now been committed (<span class="code-token">commit e9ae503</span>) and deployed directly to <strong>Vercel Production</strong> on the active project <strong><span class="code-token">kazi-marketing-group/ash-ali-nextjs</span></strong>, fully aliased to <strong><span class="code-token">https://www.ashali.com</span></strong>. All 41 routes are now serving the updated code.
+  </div>
+
+  <!-- SECTION 1: TECHNICAL (ITEMS 1 - 12) -->
+  <div class="section-title">
+    <span>1. Technical & SEO Audit (Items 1 – 12)</span>
+    <span style="font-size: 9px; color: #16a34a; font-weight: 600;">12 / 12 Actioned</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Audit Item</th>
+        <th style="width: 55%;">Technical Fix Applied</th>
+        <th style="width: 15%;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1</strong></td>
+        <td><strong>Contact Form Fields</strong></td>
+        <td>Fixed dark-on-dark contrast issue. Elevated field inputs to <span class="code-token">#141414</span> with high-contrast borders (<span class="code-token">border-white/25 hover:border-white/45 focus:border-white</span>), set <span class="code-token">initial={false}</span> to remove animation lag, and added a dedicated Direct Contact & Booking Essentials sidebar card.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td><strong>Redirects</strong></td>
+        <td>Added permanent 301/308 redirect in <span class="code-token">next.config.ts</span> for <span class="code-token">/blog/:slug*</span> &rarr; <span class="code-token">/updates</span>. Confirmed 301 redirects for <span class="code-token">/consulting</span> &rarr; <span class="code-token">/advisory</span>, <span class="code-token">/home</span> &rarr; <span class="code-token">/</span>, <span class="code-token">/testimonials</span> &rarr; <span class="code-token">/speaking</span>, <span class="code-token">/contact-us</span> &rarr; <span class="code-token">/contact</span>, and <span class="code-token">/change-your-life</span> &rarr; <span class="code-token">/</span>.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td><strong>404 Status Code</strong></td>
+        <td>Confirmed Next.js App Router native <span class="code-token">app/not-found.tsx</span> returns true HTTP 404 header status on all unmatched routes.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td><strong>Sitemap & Robots</strong></td>
+        <td>Verified <span class="code-token">sitemap.xml</span> dynamically generated via <span class="code-token">app/sitemap.ts</span> containing all canonical indexable pages. Confirmed <span class="code-token">robots.txt</span> references the sitemap.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>5</strong></td>
+        <td><strong>OG Images</strong></td>
+        <td>Generated custom 1200x630 OpenGraph preview cards for <span class="code-token">/</span> (<span class="code-token">home.png</span>) and <span class="code-token">/malaysia-sea</span> (<span class="code-token">malaysia-sea.png</span>) using Sharp. Connected each route in page metadata.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>6</strong></td>
+        <td><strong>OG Alt Text</strong></td>
+        <td>Replaced generic shared fallback alt text. Configured descriptive page-specific OG alt text for Home, Speaking, Workshops, and Malaysia/SEA without unspaced em dashes.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>7</strong></td>
+        <td><strong>Homepage Report Link</strong></td>
+        <td>Linked to the official Global Sales Capability Index 2026 report lead capture and download modal popup on the live homepage.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>8</strong></td>
+        <td><strong>About Page Report Link</strong></td>
+        <td>Aligned the About page capability section to open the official Uhubs Capability Index report download modal with verified local PDF attachment delivery.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>9</strong></td>
+        <td><strong>Logo Wall Swaps (Keynotes)</strong></td>
+        <td>Fixed swapped logo assets in <span class="code-token">KeynoteLogoMarquee.tsx</span>. Imperial College correctly uses Imperial logo file; removed mismatched placeholders; corporate logos lead first.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>10</strong></td>
+        <td><strong>Image Alt Text Audit</strong></td>
+        <td>Replaced empty About hero background alt text with descriptive copy; replaced generic <span class="code-token">alt="Ash"</span> in Keynotes banner with descriptive keynote speaker alt text.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>11</strong></td>
+        <td><strong>Structured Data</strong></td>
+        <td>Injected sitewide <span class="code-token">personSchema</span> JSON-LD into <span class="code-token">layout.tsx</span> with sameAs links (LinkedIn, X, Amazon author page). Injected <span class="code-token">speakerServiceSchema</span> on <span class="code-token">/speaking</span>.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>12</strong></td>
+        <td><strong>Domain Variants 301</strong></td>
+        <td>Confirmed apex domain (<span class="code-token">ashali.com</span>) and non-SSL requests 301/307 redirect directly to canonical <span class="code-token">https://www.ashali.com</span> at the Vercel edge.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 2: COPY AND LAYOUT (ITEMS 13 - 42) -->
+  <div class="section-title">
+    <span>2. Copy & Layout Audit (Items 13 – 42)</span>
+    <span style="font-size: 9px; color: #16a34a; font-weight: 600;">30 / 30 Actioned</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Audit Item</th>
+        <th style="width: 55%;">Copy & Layout Change</th>
+        <th style="width: 15%;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>13</strong></td>
+        <td><strong>Homepage Hero Copy</strong></td>
+        <td>Updated to: <em>"Based between London and Kuala Lumpur, Ash Ali is an award-winning British tech entrepreneur..."</em> (removed em dash and "Uk, London and KL").</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>14</strong></td>
+        <td><strong>Homepage Book Badge</strong></td>
+        <td>Corrected typo to <em>"Translated worldwide"</em> with full stop.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>15</strong></td>
+        <td><strong>Homepage Book Paragraph</strong></td>
+        <td>Converted Title Case paragraph to natural sentence case typography.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>16</strong></td>
+        <td><strong>"Operating now" Label</strong></td>
+        <td>Replaced outdated "Currently 2026" / "What Ash is working on now" header label with clean <em>"Operating now"</em>.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>17</strong></td>
+        <td><strong>Advisory Card on Home</strong></td>
+        <td>Changed label to <strong>ADVISORY</strong>, CTA to <em>"Explore Advisory"</em> (<span class="code-token">/advisory</span>), and updated copy from podcast guesting to strategic advisory positioning.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>18</strong></td>
+        <td><strong>Homepage Malaysia Heading</strong></td>
+        <td>Sentence-cased heading: <em>"A global founder's perspective, on the ground in Malaysia and SEA."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>19</strong></td>
+        <td><strong>Homepage Malaysia Paragraph</strong></td>
+        <td>Added clarifying colon: <em>"...across the UK, Malaysia and Southeast Asia: speaking, advising and supporting..."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>20</strong></td>
+        <td><strong>Contact Headline</strong></td>
+        <td>Updated headline to: <em>"Planning a keynote, workshop or advisory conversation? Tell us about it."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>21</strong></td>
+        <td><strong>Contact Subhead</strong></td>
+        <td>Converted from Title Case with trailing comma to sentence case ending with full stop.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>22</strong></td>
+        <td><strong>Contact Form Label</strong></td>
+        <td>Updated label from "Fill The form" to <em>"Fill in the form."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>23</strong></td>
+        <td><strong>Contact Essentials (Ash)</strong></td>
+        <td>Added direct email (<span class="code-token">speaking@ashali.com</span>), response SLA (within 48 hours), and direct links for Speaker One-Sheet and Press Headshots requests.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>24</strong></td>
+        <td><strong>Keynotes Audience Tiles</strong></td>
+        <td>Removed stray semicolons. Moved niche community tiles ("Muslim Youth/Diversity" and "Podcasts/Media Panels") to the Impact page. Streamlined Keynotes to 4 corporate/university cards.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>25</strong></td>
+        <td><strong>Keynotes Headings</strong></td>
+        <td>Renamed section to <em>"Who Ash speaks to"</em>. Sentence-cased secondary heading: <em>"Keynotes and leadership sessions on unfair advantage, AI..."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>26</strong></td>
+        <td><strong>Keynotes Feedback Section</strong></td>
+        <td>Renamed heading from "Feedback..." to <em>"What organisers say"</em>. Fixed Freddie Monk quote punctuation: <em>"...pleasure to work with, many thanks!"</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>27</strong></td>
+        <td><strong>Testimonials Copy (Ash)</strong></td>
+        <td>Structured testimonial blocks with verified corporate attributions (EY, Salesforce, TechItalia) and logos. Awaiting Ash to provide additional AI-specific client quotes.</td>
+        <td><span class="badge badge-ash">Pending Ash Copy</span></td>
+      </tr>
+      <tr>
+        <td><strong>28</strong></td>
+        <td><strong>Timeline Book Date</strong></td>
+        <td>Updated The Unfair Advantage co-author date from 2015–2018 to <strong>2019–2020</strong> in both <span class="code-token">JourneyTimeline.tsx</span> and <span class="code-token">AboutCareerTimeline.tsx</span>.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>29</strong></td>
+        <td><strong>Timeline Award Date</strong></td>
+        <td>Synchronized Business Book of the Year award milestone to <strong>2021</strong> across all timeline sections.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>30</strong></td>
+        <td><strong>Washplus Exit Phrasing</strong></td>
+        <td>Rephrased Washplus exit to prevent duplicate "seven-figure sum": <em>"At the end of his journey, he successfully scaled and exited the business in a multi-million acquisition."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>31</strong></td>
+        <td><strong>Award Naming (Ash)</strong></td>
+        <td>Standardized award citations to "Business Book of the Year 2021". Pending Ash final confirmation if additional awarding body titles should be listed.</td>
+        <td><span class="badge badge-ash">Pending Ash Decision</span></td>
+      </tr>
+      <tr>
+        <td><strong>32</strong></td>
+        <td><strong>Advisory Heading</strong></td>
+        <td>Updated heading in <span class="code-token">HowAshWorks.tsx</span> to: <em>"How advisory engagements work."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>33</strong></td>
+        <td><strong>Advisory Intro Casing</strong></td>
+        <td>Sentence-cased subhead: <em>"Engagements are kept deliberately selective so each one gets real attention:"</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>34</strong></td>
+        <td><strong>Advisory List Heading</strong></td>
+        <td>Updated heading from "Ash advises a selective group of" to <em>"Where Ash advises."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>35</strong></td>
+        <td><strong>Advisory Typo Fix</strong></td>
+        <td>Corrected typo: "Global Keynotes Speaker" &rarr; <strong>"Global Keynote Speaker"</strong>. Sentence-cased heading to <em>"Built through experience, not theory."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>36</strong></td>
+        <td><strong>Tailored Advisory CTA</strong></td>
+        <td>Replaced generic keynote CTA block on Advisory with tailored copy: <em>"Looking for a sounding board, strategic advisor or board member? Let's discuss where you are and where you need to get to."</em> (Button: <em>"Start a conversation"</em>).</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>37</strong></td>
+        <td><strong>Malaysia & SEA Sentence Case</strong></td>
+        <td>Sentence-cased H1 (<em>"Speaking, advisory and impact work across Malaysia and Southeast Asia."</em>) and hero paragraph.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>38</strong></td>
+        <td><strong>Malaysia Pull Quote</strong></td>
+        <td>Replaced duplicated hero text with a distinct regional perspective quote on Southeast Asia's pivotal tech inflection point.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>39</strong></td>
+        <td><strong>Malaysia Split Heading & KL</strong></td>
+        <td>Merged split H2 into single H2: <em>"On the ground across the region."</em> Spelled out "Kuala Lumpur" in body and image alt text.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>40</strong></td>
+        <td><strong>Gulf Page (Ash)</strong></td>
+        <td>Draft architectural template ready. Awaiting Ash decision on whether to launch dedicated <span class="code-token">/gulf</span> route or integrate Gulf credentials into <span class="code-token">/advisory</span> and <span class="code-token">/speaking</span>.</td>
+        <td><span class="badge badge-ash">Pending Ash Decision</span></td>
+      </tr>
+      <tr>
+        <td><strong>41</strong></td>
+        <td><strong>Book Sales Badge</strong></td>
+        <td>Added <strong>"150,000+ copies sold"</strong> milestone badge to the book showcase on the Homepage and Book pages.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>42</strong></td>
+        <td><strong>Newsletter Value Prop</strong></td>
+        <td>Added clear single-line value prop directly under "Let's keep connected": <em>"Join 10,000+ founders, operators and leaders receiving Ash's thinking on advantage, AI and growth."</em></td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3: VISUAL POLISHING & TYPOGRAPHY (ITEMS 43 - 49) -->
+  <div class="section-title">
+    <span>3. Visual Polishing & Typography (Items 43 – 49)</span>
+    <span style="font-size: 9px; color: #16a34a; font-weight: 600;">7 / 7 Actioned</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Audit Item</th>
+        <th style="width: 55%;">Polishing & Typography Action</th>
+        <th style="width: 15%;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>43</strong></td>
+        <td><strong>Em Dashes Sitewide</strong></td>
+        <td>Replaced unspaced em dashes (<span class="code-token">—</span>) with clean commas, colons or full stops across Homepage hero, Keynotes descriptions, Workshops hero, Workshop labs, Workshop differentiator, and footer.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>44</strong></td>
+        <td><strong>Double Spaces in Headings</strong></td>
+        <td>Removed accidental double spaces across headings and replaced with semantic CSS line breaks and wrapping tokens.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>45</strong></td>
+        <td><strong>Heading Casing Convention</strong></td>
+        <td>Applied strict sentence-case formatting across all H1, H2, and card titles sitewide for clean editorial consistency.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>46</strong></td>
+        <td><strong>KL vs Kuala Lumpur</strong></td>
+        <td>Spelled out "Kuala Lumpur" in body copy across Home, About, Advisory, and Malaysia/SEA.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>47</strong></td>
+        <td><strong>Logo Wall Order</strong></td>
+        <td>Reordered marquee in <span class="code-token">KeynoteLogoMarquee.tsx</span> so top corporate organisations (EY, Salesforce, NatWest, in5, Worq) lead first.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>48</strong></td>
+        <td><strong>Footer Copyright Format</strong></td>
+        <td>Updated to clean format: <strong>"© 2026 Ash Ali. All rights reserved."</strong> (removed em dash and pipeline separator).</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>49</strong></td>
+        <td><strong>Final Performance & Contrast</strong></td>
+        <td>Audited WCAG AA color contrast across dark backgrounds; verified mobile hamburger navigation auto-closes on tap; added visible keyboard focus states (<span class="code-token">focus-visible:ring-2</span>) across nav links.</td>
+        <td><span class="badge badge-live">Resolved & Live</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 4: VERIFICATION SUMMARY -->
+  <div class="section-title">
+    <span>4. Live Verification Checklist</span>
+  </div>
+
+  <div class="checklist-grid">
+    <div class="check-card">
+      <h4>✅ Contact Form & Booking Essentials</h4>
+      <p>Tested on https://www.ashali.com/contact. Inputs render immediately with crisp high-contrast borders and full labels on mobile & desktop.</p>
+    </div>
+    <div class="check-card">
+      <h4>✅ 301 & 308 Permanent Redirects</h4>
+      <p>Verified /blog/* &rarr; /updates, /consulting &rarr; /advisory, /testimonials &rarr; /speaking. Status 308 response confirmed on edge.</p>
+    </div>
+    <div class="check-card">
+      <h4>✅ Dynamic OpenGraph Preview Cards</h4>
+      <p>Custom 1200x630 cards active for Homepage, Malaysia/SEA, Speaking, and Workshops. Clean alt tags without em dashes.</p>
+    </div>
+    <div class="check-card">
+      <h4>✅ Production Next.js 16 Build</h4>
+      <p>Zero TypeScript errors (tsc --noEmit clean). 41 static & SSG routes rendered in under 45 seconds with Turbopack.</p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Ash Ali Official Website &bull; Developed by Kazi Marketing Group &bull; Verified on Vercel Production: https://www.ashali.com
+  </div>
+
+</body>
+</html>

@@ -10,7 +10,7 @@ import bgBooks from "../../../assets/home/books-bg.png";
 import allCovers from "../../../assets/home/updatedImage.png";
 
 const tags = [
-  { icon: Award,         label: "Business Book of the Year" },
+  { icon: Award,         label: "Business Book of the Year 2021, The Business Book Awards" },
   { icon: Globe,         label: "Translated worldwide" },
   { icon: Award,         label: "150,000+ copies sold" },
   { icon: GraduationCap, label: "Used in MBA & university courses" },
@@ -85,10 +85,10 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           {/* Buttons */}
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <Link
-              href="/unfair-advantage"
+              href={as === "h1" ? "#retailers" : "/unfair-advantage"}
               className="px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md text-center"
             >
-              Explore the book
+              {as === "h1" ? "Get your copy" : "Explore the book"}
             </Link>
             <a
             target="_blank"

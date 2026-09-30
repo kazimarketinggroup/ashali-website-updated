@@ -295,7 +295,7 @@ function MiddleTimeline() {
                   <img src={logoWash.src} alt="WashPlus" className="h-[clamp(9px,2.2vw,18px)] w-auto object-contain" />
                 </div>
                 <Location>UAE, Dubai</Location>
-                <p>Co-founded Washplus, an on demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. At the end of his journey, he successfully scaled and exited the business in a multi-million acquisition.</p>
+                <p>Co-founded WashPlus, an on-demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. Scaled the business and completed a successful exit in the GCC region.</p>
               </CopyBlock>
             </div>
           </div>
@@ -333,10 +333,10 @@ function MiddleTimeline() {
                 <h3 className="mb-[clamp(3px,0.9vw,7px)] text-[clamp(6px,1.35vw,11px)] font-black uppercase leading-[1.18] text-white">
                   AWARDED BUSINESS
                   <br />
-                  BOOK OF THE YEAR – 2021
+                  BOOK OF THE YEAR 2021
                 </h3>
                 <Location>London</Location>
-                <p>The Unfair Advantage was picked from a shortlist of over 250 books and was chosen over the course of an intensive six-month judging process and was awarded Business Book of the Year 2021.</p>
+                <p>The Unfair Advantage was picked from a shortlist of over 250 books and was chosen over the course of an intensive six-month judging process and was awarded Business Book of the Year 2021, The Business Book Awards.</p>
               </CopyBlock>
             </div>
           </div>

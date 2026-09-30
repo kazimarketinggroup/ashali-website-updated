@@ -5,17 +5,17 @@ import { motion } from 'framer-motion';
 
 export const SelectiveAdvisory: React.FC = () => {
   const rowOneTags = [
-    "Schools & Sixth Forms",
-    "Colleges & Universities",
-    "Youth Programmes",
-    "Social Mobility Organisations"
+    "Schools & sixth forms",
+    "Colleges & universities",
+    "Youth programmes",
+    "Social mobility organisations"
   ];
 
   const rowTwoTags = [
-    "Muslim Youth & Community Organisations",
-    "Diversity & Inclusion Initiatives",
-    "Entrepreneurship Programmes",
-    "Podcasts & Media Panels"
+    "Muslim youth & community organisations",
+    "Diversity & inclusion initiatives",
+    "Entrepreneurship programmes",
+    "Podcasts & media panels"
   ];
 
   // Animation variants for an elegant staggered cascade on view entry

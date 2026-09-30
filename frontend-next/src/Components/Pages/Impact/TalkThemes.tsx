@@ -41,23 +41,23 @@ export const TalkThemes: React.FC = () => {
   // Accurate content matrix extracted verbatim from image_91d296.png
   const themesData = [
     {
-      title: "Finding Your Unfair Advantage",
+      title: "Finding your unfair advantage",
       description: "Seeing the strengths and circumstances you already have."
     },
     {
-      title: "Entrepreneurship & Self-Belief",
+      title: "Entrepreneurship and self-belief",
       description: "Permission, mindset and the first steps that build momentum."
     },
     {
-      title: "Using AI Without Losing Your Own Thinking",
+      title: "Using AI without losing your own thinking",
       description: "Staying sharp, curious and human in an AI-shaped world."
     },
     {
-      title: "Social Mobility & Opportunity",
+      title: "Social mobility and opportunity",
       description: "How access really works and how to create your own."
     },
     {
-      title: "Turning Your Story Into Strength",
+      title: "Turning your story into strength",
       description: "Making background and identity a source of advantage."
     },
     {
@@ -72,13 +72,13 @@ export const TalkThemes: React.FC = () => {
         
         {/* ================= 1. MINIMALIST ACCENT EYEBROW ================= */}
         <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-500 uppercase">
-          <span>Talk Themes</span>
+          <span>Talk themes</span>
         </div>
 
         {/* ================= 2. TITLE WITH EXACT BRAND COLOR BREAKS ================= */}
         <h2 className="text-white text-fluid-30 font-medium tracking-tight text-center leading-tight mb-14 max-w-2xl">
-          Concrete, Hopeful <br />
-          And <span style={brandGradientTextStyle}>Genuinely Useful.</span>
+          Concrete, hopeful <br />
+          and <span style={brandGradientTextStyle}>genuinely useful.</span>
         </h2>
 
         {/* ================= 3. 3-COLUMN GRADIENT BORDER GRID ================= */}
@@ -100,10 +100,10 @@ export const TalkThemes: React.FC = () => {
 
         {/* ================= 4. CENTRAL CALL TO ACTION BUTTON ================= */}
         <div className="w-full flex justify-center pt-2">
-          <Link href="/contact" className="inline-block">
+          <Link href="/contact?type=impact" className="inline-block">
             <button
             type="button"
-            className="px-7 py-3 bg-white text-black font-semibold text-[12.5px] tracking-wide rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md"
+            className="px-7 py-3 bg-white text-black font-semibold text-[12.5px] tracking-wide rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md cursor-pointer"
           >
             Work with Ash
           </button>

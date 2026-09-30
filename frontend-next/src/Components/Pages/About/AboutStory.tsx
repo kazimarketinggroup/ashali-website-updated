@@ -30,7 +30,7 @@ const blocks = [
   {
     title: "Bestselling Author",
     body:
-      "Bestselling author of 'The Unfair Advantage', winner of the UK Business Book of the Year Award and the 2021 Best Startup / Scale Up Book Award. The book helps entrepreneurs unlock their unique strengths to succeed in business.",
+      "Bestselling author of 'The Unfair Advantage', winner of Business Book of the Year 2021, The Business Book Awards and the 2021 Best Startup / Scale Up Book Award. The book helps entrepreneurs unlock their unique strengths to succeed in business.",
   },
   {
     title: "Co-Founder of Uhubs",

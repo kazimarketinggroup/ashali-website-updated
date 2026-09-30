@@ -16,7 +16,7 @@ const SupportingVideos: React.FC<{ id?: string }> = ({ id }) => (
         <SectionHeading>Podcasts, panels and longer talks.</SectionHeading>
         <Body className="max-w-2xl">
           Ash is a regular podcast and panel guest on advantage, AI and the human side of building
-          things—bringing founder insight and practical stories.
+          things, bringing founder insight and practical stories.
         </Body>
       </Reveal>
 

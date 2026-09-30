@@ -8,7 +8,7 @@ import FareExchange from "@/src/Components/Pages/FareExchange/FareExchange";
 export const metadata: Metadata = pageMetadata({
   title: "Fare Exchange | Ash Ali",
   description:
-    "Fare Exchange — one of the ventures in Ash Ali's portfolio of businesses and social impact work.",
+    "Fare Exchange: one of the ventures in Ash Ali's portfolio of businesses and social impact work.",
   path: "/portfolio/fare-exchange",
 });
 

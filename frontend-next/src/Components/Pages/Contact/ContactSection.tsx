@@ -125,7 +125,18 @@ export const ContactSection: React.FC = () => {
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [dateValues, setDateValues] = useState<Record<string, Date | null>>({});
   const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const t = params.get("type");
+      if (t && ["speaking", "advisory", "impact", "media", "sea"].includes(t)) {
+        setSelectedType(t as EnquiryType);
+      }
+    }
+  }, []);
 
   const categories = [
     { id: "speaking", label: "Speaking / Keynote" },
@@ -151,6 +162,7 @@ export const ContactSection: React.FC = () => {
     setFormValues({});
     setDateValues({});
     setMessage("");
+    setHoneypot("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -178,6 +190,7 @@ export const ContactSection: React.FC = () => {
         email,
         message: message.trim() || undefined,
         details,
+        website_hp: honeypot,
       });
       toast.success(
         response.data?.message ||
@@ -209,7 +222,7 @@ export const ContactSection: React.FC = () => {
             </h2>
 
             <p className="text-gray-400 text-xs tracking-wider uppercase mb-5 font-medium">
-              Select Enquiry Type
+              Select enquiry type
             </p>
 
             {/* Dynamic Interactive Pill Selection Matrix */}
@@ -239,11 +252,8 @@ export const ContactSection: React.FC = () => {
             {/* Direct Contact & Booking Essentials */}
             <div className="mt-8 pt-6 border-t border-white/10 space-y-4 text-left">
               <div>
-                <p className="text-[11px] uppercase tracking-wider text-gray-400 font-medium">Direct Enquiries</p>
-                <a href="mailto:speaking@ashali.com" className="text-[13px] text-white hover:text-white/80 transition-colors">
-                  speaking@ashali.com
-                </a>
-                <p className="text-[11px] text-gray-400 mt-0.5">Typically responds within 24–48 hours</p>
+                <p className="text-[11px] uppercase tracking-wider text-gray-400 font-medium">Response time</p>
+                <p className="text-[13px] text-white">Typically responds within 24 to 48 hours</p>
               </div>
 
               <div className="flex flex-wrap gap-3 pt-1">
@@ -351,14 +361,31 @@ export const ContactSection: React.FC = () => {
               </motion.div>
             </AnimatePresence>
 
+            {/* Hidden honeypot field */}
+            <input
+              type="text"
+              name="website_hp"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{ position: "absolute", opacity: 0, pointerEvents: "none", zIndex: -1, width: 0, height: 0 }}
+            />
+
             {/* Global Styled Textarea */}
             <div className="w-full pt-2">
               <textarea
-                placeholder="Write Something"
+                placeholder="Message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full h-[120px] rounded-[4px] bg-[#141414] text-white px-4 py-3 text-[13px] font-normal placeholder-gray-400 outline-none border border-white/25 hover:border-white/45 focus:border-white focus:bg-[#1a1a1a] transition-all duration-200 resize-none"
               />
+            </div>
+
+            {/* Cloudflare Turnstile Verification */}
+            <div className="pt-1">
+              <div className="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark" />
             </div>
 
             {/* Action Frame Submission Trigger */}
@@ -366,7 +393,7 @@ export const ContactSection: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-2.5 text-[13px] font-semibold border border-white bg-transparent text-white uppercase tracking-wider rounded-[2px] hover:bg-white hover:text-black transition-all duration-300 transform active:scale-98 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-2.5 text-[13px] font-semibold border border-white bg-transparent text-white uppercase tracking-wider rounded-[2px] hover:bg-white hover:text-black transition-all duration-300 transform active:scale-98 shadow-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>

@@ -20,14 +20,14 @@
 /** Speaker showreel recovered from the previous build. */
 export const SHOWREEL_ID = "OzrKO5IhJiE";
 
-/** TEDx Royal Holloway — "Unpacking Your Unfair Advantage". */
+/** TEDx Royal Holloway: "Unpacking Your Unfair Advantage". */
 export const TEDX_ID = "rMB2lFUMXpY";
 
 /** Longer podcast / panel appearances, for below-the-fold placement. */
 export const PODCAST_VIDEOS = [
-  { id: "Nqsqj0LaP78", title: "Ash Ali in conversation — podcast appearance" },
+  { id: "Nqsqj0LaP78", title: "Ash Ali in conversation: podcast appearance" },
   { id: "Ap8YiydvQ1g", title: "Ash Ali on advantage and entrepreneurship" },
-  { id: TEDX_ID, title: "TEDx Royal Holloway — Unpacking Your Unfair Advantage" },
+  { id: TEDX_ID, title: "TEDx Royal Holloway: Unpacking Your Unfair Advantage" },
 ];
 
 /** Builds a privacy-friendly embed URL (no cookies until playback). */

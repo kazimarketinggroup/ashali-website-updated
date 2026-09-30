@@ -59,7 +59,7 @@ export const JourneyTimeline: React.FC = () => {
       year: "2015–2018",
       title: "BUILDING WASHPLUS",
       location: "London",
-      description: "Co-founded Washplus, an on demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. At the end of his journey, he successfully scaled and exited the business in a multi-million acquisition.",
+      description: "Co-founded WashPlus, an on-demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. Scaled the business and completed a successful exit in the GCC region.",
       logoSrc: washPlusLogo.src,
       logoAlt: "WashPlus Logo",
       logoStyles: "h-4 sm:h-5 w-auto object-contain"
@@ -72,9 +72,9 @@ export const JourneyTimeline: React.FC = () => {
     },
     {
       year: "2021",
-      title: "AWARDED BUSINESS BOOK OF THE YEAR – 2021",
+      title: "AWARDED BUSINESS BOOK OF THE YEAR 2021",
       location: "London",
-      description: "'The Unfair Advantage' was picked from a shortlist of over 250 books and was chosen over the course of an intensive six month judging process and was awarded business book of the year 2021."
+      description: "'The Unfair Advantage' was picked from a shortlist of over 250 books and was chosen over the course of an intensive six-month judging process and was awarded Business Book of the Year 2021, The Business Book Awards."
     },
     {
       year: "2019–Now",

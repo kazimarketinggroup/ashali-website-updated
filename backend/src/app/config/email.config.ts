@@ -19,7 +19,7 @@ export const BRAND = {
 
 export const SITE_URL = config.frontend_url || 'https://ashali.com';
 
-export const OWNER_EMAIL = config.contact_owner_email || config.mail_user || '';
+export const OWNER_EMAIL = config.contact_owner_email || 'ash@ashali.com';
 
 export const getMailCredentials = () => {
   const user = config.mail_user;

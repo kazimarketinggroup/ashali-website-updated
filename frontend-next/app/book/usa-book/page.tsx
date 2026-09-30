@@ -6,7 +6,7 @@ import { bookSchema, breadcrumbSchema } from "@/src/constants/structuredData";
 import UsaBook from "@/src/Components/Pages/Book/UsaBook/UsaBook";
 
 export const metadata: Metadata = pageMetadata({
-  title: "The Unfair Advantage — US Edition | Ash Ali",
+  title: "The Unfair Advantage: US Edition | Ash Ali",
   description:
     "Buy the US edition of The Unfair Advantage. Available at Amazon, Barnes & Noble and Books-A-Million.",
   path: "/book/usa-book",

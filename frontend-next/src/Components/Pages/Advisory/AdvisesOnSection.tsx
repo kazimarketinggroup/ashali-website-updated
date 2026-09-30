@@ -30,7 +30,7 @@ export const AdvisesOnSection: React.FC = () => {
     {
       id: 'topic-4',
       title: 'AI-era advantage',
-      description: "Where AI genuinely changes the game for your business — and where it doesn't."
+      description: "Where AI genuinely changes the game for your business, and where it doesn't."
     },
     {
       id: 'topic-5',

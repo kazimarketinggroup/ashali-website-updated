@@ -35,10 +35,10 @@ const UnlockNewsletterSection: React.FC = () => {
             Request a talk for your <br /> young people.
           </h2>
           <Link
-            href="/contact"
-            className="rounded-sm border border-white/75 bg-transparent px-5 py-2 text-[11px] font-normal text-white transition-colors hover:bg-white hover:text-black"
+            href="/contact?type=impact"
+            className="rounded-sm border border-white/75 bg-transparent px-5 py-2 text-[11px] font-normal text-white transition-colors hover:bg-white hover:text-black cursor-pointer"
           >
-            Work With Ash
+            Work with Ash
           </Link>
         </motion.div>
       </section>

@@ -8,7 +8,7 @@ import SecretLevel from "@/src/Components/Pages/TheNextLevel/SecretLevel/SecretL
 export const metadata: Metadata = pageMetadata({
   title: "Secret Level: Tailored Development | Ash Ali",
   description:
-    "A hands-on workshop built around your challenges — personalised solutions, industry-focused content and actionable insights.",
+    "A hands-on workshop built around your challenges, with personalised solutions, industry-focused content and actionable insights.",
   path: "/the-next-level/secret-level",
 });
 

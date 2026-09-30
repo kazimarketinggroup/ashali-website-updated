@@ -35,32 +35,33 @@ export const WhyThisMatters: React.FC = () => {
         
         {/* ================= 1. MINIMALIST ACCENT EYEBROW ================= */}
         <motion.div 
-        //   variants={elementVariants}
           className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-500 uppercase font-sans"
         >
-          <span>Why This Matters</span>
+          <span>Why this matters</span>
         </motion.div>
 
         {/* ================= 2. PRECISE MULTI-TONE BRAND HEADLINE SPLIT ================= */}
         <motion.h2 
-        //   variants={elementVariants}
-          className="text-white text-fluid-30  leading-[1.35] tracking-tight max-w-4xl mb-8 font-sans"
+          className="text-white text-fluid-30 leading-[1.35] tracking-tight max-w-4xl mb-4 font-sans"
         >
-          <span style={brandGradientTextStyle}>From Inner-City Birmingham To Startups,</span>
-          <br />
-          <span className="text-white">
-            Technology, Authorship And Global Work Talent Is Everywhere, But Access, Confidence And Context Are Not.
-          </span>
+          <span style={brandGradientTextStyle}>Talent is everywhere.</span>{" "}
+          <span className="text-white">Access, confidence and context are not.</span>
         </motion.h2>
+
+        {/* Supporting Line: Journey from inner-city Birmingham */}
+        <motion.p
+          className="text-white/80 font-normal text-[15px] sm:text-[16px] leading-relaxed tracking-wide max-w-3xl mb-6 antialiased"
+        >
+          From inner-city Birmingham to startups, technology, authorship and global work.
+        </motion.p>
 
         {/* ================= 3. NARRATIVE EXPLANATORY BODY COPY ================= */}
         <motion.p 
-        //   variants={elementVariants}
           className="text-gray-400 font-light text-[13.5px] sm:text-[14.5px] leading-[1.75] tracking-wide max-w-3xl antialiased"
         >
-          Ash's Own Story Is Proof That Potential Isn't The Problem. This Work Is About Helping Young People 
+          Ash's own story is proof that potential isn't the problem. This work is about helping young people 
           <br className="hidden md:block" />
-          See The Advantages They Already Hold And Believe They're Allowed To Use Them.
+          see the advantages they already hold and believe they're allowed to use them.
         </motion.p>
 
       </motion.div>

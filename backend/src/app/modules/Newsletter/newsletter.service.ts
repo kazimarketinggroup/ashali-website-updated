@@ -90,7 +90,7 @@ const subscribeToNewsletter = async (payload: TCreateNewsletter) => {
     await transporter.sendMail({
       from: `"${BRAND.name} Website" <${OWNER_EMAIL}>`,
       to: OWNER_EMAIL,
-      subject: `New newsletter subscriber: ${email}`,
+      subject: 'ashali.com enquiry: newsletter signup',
       text: `New newsletter subscriber\nName: ${name || '-'}\nEmail: ${email}`,
       html: generateOwnerEmailTemplate({ name, email }),
     });

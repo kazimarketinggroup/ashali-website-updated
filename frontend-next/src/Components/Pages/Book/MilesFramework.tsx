@@ -19,7 +19,7 @@ export const MilesFramework: React.FC = () => {
         <p className="text-[12px] sm:text-[13px]  md:text-[13.5px] font-semibold tracking-wider leading-relaxed text-gray-200">
           MONEY{" "}
           <span className="font-light text-gray-400">
-            THE FINANCIAL RESOURCES, RUNWAY AND CAPITAL YOU CAN DRAW ON.
+            The financial resources, runway and capital you can draw on.
           </span>
         </p>
       ),
@@ -30,7 +30,7 @@ export const MilesFramework: React.FC = () => {
         <p className="text-[12px] sm:text-[13px] md:text-[13.5px] font-semibold tracking-wider leading-relaxed text-gray-200">
           INTELLIGENCE & INSIGHT{" "}
           <span className="font-light text-gray-400">
-            YOUR KNOWLEDGE, SKILLS, INSTINCTS AND THE WAY YOU SEE PROBLEMS OTHERS MISS.
+            Your knowledge, skills, instincts and the way you see problems others miss.
           </span>
         </p>
       ),
@@ -41,7 +41,7 @@ export const MilesFramework: React.FC = () => {
         <p className="text-[12px] sm:text-[13px] md:text-[13.5px] font-semibold tracking-wider leading-relaxed text-gray-200">
           LOCATION & LUCK{" "}
           <span className="font-light text-gray-400">
-            WHERE YOU ARE, WHO'S AROUND YOU, AND THE TIMING YOU CAN POSITION YOURSELF TO BENEFIT FROM.
+            Where you are, who's around you, and the timing you can position yourself to benefit from.
           </span>
         </p>
       ),
@@ -52,7 +52,7 @@ export const MilesFramework: React.FC = () => {
         <p className="text-[12px] sm:text-[13px] md:text-[13.5px] font-semibold tracking-wider leading-relaxed text-gray-200">
           EDUCATION & EXPERTISE{" "}
           <span className="font-light text-gray-400">
-            WHAT YOU'VE LEARNED — FORMALLY AND THROUGH EXPERIENCE — AND THE CREDIBILITY IT GIVES YOU.
+            What you've learned, formally and through experience, and the credibility it gives you.
           </span>
         </p>
       ),
@@ -63,7 +63,7 @@ export const MilesFramework: React.FC = () => {
         <p className="text-[12px] sm:text-[13px] md:text-[13.5px] font-semibold tracking-wider leading-relaxed text-gray-200">
           STATUS{" "}
           <span className="font-light text-gray-400">
-            YOUR REPUTATION, NETWORKS AND THE DOORS YOUR STANDING CAN OPEN.
+            Your reputation, networks and the doors your standing can open.
           </span>
         </p>
       ),
@@ -105,7 +105,7 @@ export const MilesFramework: React.FC = () => {
 
         {/* Section Description Copy */}
         <p className="text-gray-400 font-light text-[12.5px] sm:text-[13.5px] tracking-wide mb-14 max-w-2xl antialiased">
-          The Book Gives You A Practical Way To Spot Your Own Advantages, Across Five Areas:
+          The book gives you a practical way to spot your own advantages, across five areas:
         </p>
 
         {/* ================= MILES FRAMEWORK MATRIX ================= */}

@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     quote:
-      "Buku ini menawarkan rangka kerja yang jelas untuk kejayaan dan membantu pembaca memanfaatkan kekuatan mereka. Bacaan yang menyeronokkan dan ditulis dengan baik—sangat disyorkan untuk usahawan!",
+      "Buku ini menawarkan rangka kerja yang jelas untuk kejayaan dan membantu pembaca memanfaatkan kekuatan mereka. Bacaan yang menyeronokkan dan ditulis dengan baik, sangat disyorkan untuk usahawan!",
     name: "Az Samad",
     title: "Pemuzik di Malaysia",
     company: "",

@@ -6,9 +6,9 @@ const UnfairAdvantageQuote: React.FC = () => {
       <div className="mx-auto w-full max-w-[860px] text-center">
         <p className="text-fluid-28 font-medium leading-[1.5] tracking-tight text-white">
           <span className="text-[#4db89e]">The Unfair Advantage</span>{" "}
-          Has Reached Readers, Students And Leaders Around The World And
-          Changed How Many Of Them Think About Success, Opportunity And Their
-          Own Potential.
+          has reached readers, students and leaders around the world and
+          changed how many of them think about success, opportunity and their
+          own potential.
         </p>
       </div>
     </section>

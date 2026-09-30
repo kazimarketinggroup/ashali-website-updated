@@ -77,6 +77,7 @@ const SiteFooter: React.FC = () => {
   const year = new Date().getFullYear();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubscribe = async (event: React.FormEvent) => {
@@ -92,10 +93,12 @@ const SiteFooter: React.FC = () => {
       const response = await api.post("/newsletter/subscribe", {
         name: name.trim() || undefined,
         email: email.trim(),
+        website_hp: honeypot,
       });
       toast.success(response.data?.message || "Thank you for subscribing!");
       setName("");
       setEmail("");
+      setHoneypot("");
     } catch (error) {
       toast.error(getApiErrorMessage(error, "Something went wrong. Please try again."));
     } finally {
@@ -138,10 +141,20 @@ const SiteFooter: React.FC = () => {
           <div className="min-w-0">
             <p className="text-[clamp(1.25rem,2vw,1.55rem)] font-semibold leading-tight">Let&apos;s keep connected</p>
             <p className="mt-2 text-[13px] font-normal text-white/75">
-              Join 10,000+ founders, operators and leaders receiving Ash&apos;s thinking on advantage, AI and growth.
+              Ash&apos;s thinking on advantage, AI and growth, straight to your inbox.
             </p>
 
             <form className="mt-5 grid gap-3 sm:grid-cols-[1fr_1fr_auto]" onSubmit={handleSubscribe}>
+              <input
+                type="text"
+                name="website_hp"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: "absolute", opacity: 0, pointerEvents: "none", zIndex: -1, width: 0, height: 0 }}
+              />
               <input
                 type="text"
                 placeholder="Name"

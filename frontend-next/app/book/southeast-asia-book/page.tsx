@@ -6,7 +6,7 @@ import { bookSchema, breadcrumbSchema } from "@/src/constants/structuredData";
 import SouthEastAsia from "@/src/Components/Pages/Book/SouthEastAsia/SouthEastAsia";
 
 export const metadata: Metadata = pageMetadata({
-  title: "The Unfair Advantage — SE Asia Edition | Ash Ali",
+  title: "The Unfair Advantage: SE Asia Edition | Ash Ali",
   description:
     "Buy the Southeast Asia edition of The Unfair Advantage. Available at Kinokuniya, Daraz, Litbooks and BookXcess.",
   path: "/book/southeast-asia-book",

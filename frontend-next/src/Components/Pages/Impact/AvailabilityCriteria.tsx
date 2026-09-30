@@ -35,7 +35,7 @@ const AvailabilityCriteria: React.FC = () => {
             <div className="flex items-center gap-3 mb-8">
               
               <span className="text-[11px] uppercase tracking-[0.18em] text-white/50">
-                Availability Criteria
+                Availability criteria
               </span>
             </div>
 
@@ -46,16 +46,16 @@ const AvailabilityCriteria: React.FC = () => {
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                Limited Number Of
+                limited number of
               </span>
               <br />
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                Sessions
+                sessions
               </span>{" "}
-              Given Carefully.
+              given carefully.
             </h2>
 
             {/* Description */}
@@ -66,7 +66,7 @@ const AvailabilityCriteria: React.FC = () => {
             </p>
 
             {/* Button */}
-            <Link href="/contact" className="inline-block mt-10">
+            <Link href="/contact?type=impact" className="inline-block mt-10">
               <button
               className="
                 mt-12

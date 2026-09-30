@@ -58,10 +58,9 @@ const WashPlusFounder: React.FC = () => {
 
             {/* Paragraph with precise leading and color */}
             <p className="text-[16px] sm:text-[17px] text-white/80 leading-[1.75] font-light mb-10 max-w-lg">
-              Ash Ali Co-founded Washplus, an on demand eco friendly laundry and dry
-              cleaning startup, bringing innovation to the industry with a tech driven
-              approach. At the end of his journey, he successfully scaled the business
-              and sold Washplus for a seven-figure sum.
+              Ash Ali co-founded WashPlus, an on-demand eco-friendly laundry and dry
+              cleaning startup, bringing innovation to the industry with a tech-driven
+              approach. Scaled the business and completed a successful exit in the GCC region.
             </p>
 
             {/* Button: Sharp edges, small bold text */}

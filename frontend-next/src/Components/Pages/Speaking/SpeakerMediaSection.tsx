@@ -126,7 +126,7 @@ export const SpeakerMediaSection: React.FC = () => {
             </h2>
             <p className="text-white/70 font-light text-[13px] sm:text-[14px] leading-[1.8] tracking-wide max-w-xl antialiased">
               Ash is a regular podcast and panel guest on advantage, AI and the human side of
-              building things—bringing sharp founder insight and honest, practical stories.
+              building things, bringing sharp founder insight and honest, practical stories.
             </p>
           </div>
 

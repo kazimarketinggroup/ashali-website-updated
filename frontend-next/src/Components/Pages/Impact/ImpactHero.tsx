@@ -49,32 +49,32 @@ export const ImpactHero: React.FC = () => {
             <span>Impact</span>
           </motion.div>
 
-          {/* Three-Tone Multi-Accent Headline parsing verbatim from image_c3cf5d.png */}
+          {/* Main Headline */}
           <motion.h1 
-            // variants={textVariants}
-            className="text-white text-fluid-30 font-medium  tracking-tight leading-[1.25] mb-6 max-w-xl font-sans"
+            className="text-white text-fluid-30 font-medium tracking-tight leading-[1.25] mb-6 max-w-xl font-sans"
           >
             <span className="text-[#14b8a6]">Helping</span>{" "}
-            <span className="text-[#65735b]">Young People</span>{" "}
-            <span className="text-white">Recognise <br /> the advantages they already hold.</span>
+            <span className="text-[#65735b]">young people</span>{" "}
+            <span className="text-white">recognise <br /> the advantages they already hold.</span>
           </motion.h1>
 
           {/* Accurate Paragraph Summary Body */}
           <motion.p 
-            // variants={textVariants}
             className="text-gray-400 font-light text-[13.5px] sm:text-[14px] leading-[1.75] tracking-wide mb-10 max-w-xl antialiased"
           >
             Ash gives a limited number of pro-bono talks each year to schools, colleges and organisations supporting young people from underrepresented or low-opportunity backgrounds.
           </motion.p>
 
           {/* Minimalist CTA Action Button */}
-          <motion.div >
-            <Link href="/contact"><button
-              type="button"
-              className="px-6 py-3 bg-white text-black font-semibold text-[13px] tracking-wide rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md"
-            >
-              Request a pro-bono talk
-            </button></Link>
+          <motion.div>
+            <Link href="/contact?type=impact">
+              <button
+                type="button"
+                className="px-6 py-3 bg-white text-black font-semibold text-[13px] tracking-wide rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md cursor-pointer"
+              >
+                Request a pro-bono talk
+              </button>
+            </Link>
           </motion.div>
         </motion.div>
 

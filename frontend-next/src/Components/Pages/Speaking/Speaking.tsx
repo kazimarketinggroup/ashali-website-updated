@@ -144,7 +144,7 @@ const Speaking: React.FC = () => {
         logoAlt="worq"
         location="Kuala Lumpur, Malaysia"
         flag="🇲🇾"
-        body="An energetic room of entrepreneurs explored how to turn unfair advantages into momentum — from positioning to community-led growth — with frameworks Ash uses with leadership teams worldwide."
+        body="An energetic room of entrepreneurs explored how to turn unfair advantages into momentum, from positioning to community-led growth, with frameworks Ash uses with leadership teams worldwide."
         mediaSrc={eventMalaysia}
         mediaAlt="Event in Malaysia"
         mediaLeft

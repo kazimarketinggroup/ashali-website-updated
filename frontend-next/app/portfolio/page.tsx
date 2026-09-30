@@ -8,7 +8,7 @@ import Portfolio from "@/src/Components/Pages/Portfolio/Portfolio";
 export const metadata: Metadata = pageMetadata({
   title: "Portfolio & Ventures | Ash Ali",
   description:
-    "Just Eat, Uhubs, WashPlus, Fare Exchange — the ventures behind the experience Ash brings to stages and boardrooms.",
+    "Just Eat, Uhubs, WashPlus, Fare Exchange: the ventures behind the experience Ash brings to stages and boardrooms.",
   path: "/portfolio",
   ogImage: "/og/portfolio.png",
 });

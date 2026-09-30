@@ -7,12 +7,10 @@ import bookImg from "../../../../assets/bookusa/unfair-advantage-us-cover.png";
 import awardsLogo from "../../../../assets/bookusa/business-book-awards-logo.png";
 import icon1 from "../../../../assets/bookusa/icon1.png";
 import icon2 from "../../../../assets/bookusa/icon2.png";
-import icon3 from "../../../../assets/bookusa/icon3.png";
 
 const awards = [
-  { label: "Business Book Of The Year 2021", icon: icon1.src },
-  { label: "Best Startup/Scaleup Book Award 2021", icon: icon2.src },
-  { label: "Business Book Of The Year 2022 Finalist", icon: icon3.src },
+  { label: "Business Book of the Year 2021, The Business Book Awards", icon: icon1.src },
+  { label: "Best Startup / Scaleup Book Award 2021", icon: icon2.src },
 ];
 
 const BookDetails: React.FC = () => {

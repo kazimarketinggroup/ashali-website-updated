@@ -23,7 +23,7 @@ type Thought = {
 const thoughts: Thought[] = [
   {
     quote:
-      "What a masterful and thought-provoking book! a must for every entrepreneur regardless of the stage of your journey",
+      "What a masterful and thought-provoking book! A must for every entrepreneur regardless of the stage of your journey",
     name: "Byron Cole",
     role: "Entrepreneur, Author & Speaker",
     avatar: byron.src,
@@ -38,7 +38,7 @@ const thoughts: Thought[] = [
   {
     quote: "A fast-paced read with excellent insights from a remarkable entrepreneurial story.",
     name: "Daniel Priestley",
-    role: "author of The Entrepreneur Revolution",
+    role: "Author of The Entrepreneur Revolution",
     avatar: daniyel.src,
   },
   {
@@ -76,7 +76,7 @@ const BookThoughts: React.FC = () => {
           className="text-xl font-bold sm:text-2xl"
           style={brandGradientTextStyle}
         >
-          Thoughts...
+          What readers say
         </motion.h2>
 
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
