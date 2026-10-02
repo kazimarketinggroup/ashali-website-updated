@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion, easeOut } from "framer-motion";
 
 import amazonLogo from "../../../assets/book/amazon-logo.png";
@@ -11,27 +12,27 @@ import appleLogo from "../../../assets/book/appleLogo.png";
 
 const retailers = [
   {
-    src: amazonLogo.src,
+    image: amazonLogo,
     alt: "Amazon",
     href: "https://www.amazon.co.uk/dp/1788163311",
   },
   {
-    src: audibleLogo.src,
+    image: audibleLogo,
     alt: "Audible",
     href: "https://www.audible.com/pd/The-Unfair-Advantage-Audiobook/B09GD3Z8QB",
   },
   {
-    src: waterstonesLogo.src,
+    image: waterstonesLogo,
     alt: "Waterstones",
     href: "https://www.waterstones.com/book/the-unfair-advantage/ash-ali/hasan-kubba/9781788167543",
   },
   {
-    src: barnesLogo.src,
+    image: barnesLogo,
     alt: "Barnes & Noble",
     href: "https://www.barnesandnoble.com/w/the-unfair-advantage-ash-ali/1139985540",
   },
   {
-    src: appleLogo.src,
+    image: appleLogo,
     alt: "Apple Books",
     href: "https://books.apple.com/gb/book/the-unfair-advantage/id1584662439",
   },
@@ -60,7 +61,7 @@ const BookRetailers: React.FC = () => {
             aria-label={`Buy The Unfair Advantage on ${r.alt}`}
             className="flex h-[64px] items-center justify-center rounded-md border border-white/10 bg-[#121212] px-4 transition-colors duration-200 hover:border-white/30 hover:bg-[#181818]"
           >
-            <img src={r.src} alt={r.alt} className="max-h-8 w-auto max-w-[130px] object-contain opacity-95" />
+            <Image src={r.image} alt={r.alt} width={130} height={32} loading="lazy" className="max-h-8 w-auto max-w-[130px] object-contain opacity-95" />
           </a>
         ))}
       </div>

@@ -62,8 +62,10 @@ export async function subscribeToNewsletterPlatform({
 
   // 3. Mailchimp
   const mailchimpApiKey = process.env.MAILCHIMP_API_KEY;
-  const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-  const mailchimpServerPrefix = process.env.MAILCHIMP_SERVER_PREFIX || "us1";
+  const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID || process.env.MAILCHIMP_LIST_ID;
+  const mailchimpServerPrefix =
+    process.env.MAILCHIMP_SERVER_PREFIX ||
+    (mailchimpApiKey && mailchimpApiKey.includes("-") ? mailchimpApiKey.split("-").pop() : "us1");
 
   if (mailchimpApiKey && mailchimpAudienceId) {
     try {

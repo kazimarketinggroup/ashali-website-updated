@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
-import aboutImage from "../../../assets/book/updatedimage.png";
+import aboutImage from "../../../assets/book/updatedimage.webp";
 
 const ORANGE = "#FF781D";
 
@@ -20,11 +21,14 @@ const BookQuote: React.FC = () => {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="flex-shrink-0 w-full md:w-[46%] lg:w-[48%]"
         >
-          <img
-            src={aboutImage.src}
+          <Image
+            src={aboutImage}
             alt="Ash Ali and Hasan Kubba holding awards and The Unfair Advantage book"
+            width={465}
+            height={452}
+            loading="lazy"
             className="w-full h-[300px] sm:h-[360px] md:h-[420px] lg:h-[460px] rounded-2xl object-contain shadow-2xl"
-            draggable="false"
+            draggable={false}
           />
         </motion.div>
 

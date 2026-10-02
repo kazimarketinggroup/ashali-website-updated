@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image, { StaticImageData } from "next/image";
 import { motion, easeOut } from "framer-motion";
 
 import byron from "../../../assets/book/byron.png";
@@ -17,7 +18,7 @@ type Thought = {
   quote: string;
   name: string;
   role: string;
-  avatar: string;
+  avatar: StaticImageData;
 };
 
 const thoughts: Thought[] = [
@@ -26,41 +27,41 @@ const thoughts: Thought[] = [
       "What a masterful and thought-provoking book! A must for every entrepreneur regardless of the stage of your journey",
     name: "Byron Cole",
     role: "Entrepreneur, Author & Speaker",
-    avatar: byron.src,
+    avatar: byron,
   },
   {
     quote:
       "A snappy, thought-provoking book that will help anyone make something of their own unfair advantages",
     name: "Bianca Miller-Cole",
     role: "Entrepreneur & Author of 'Self Made'",
-    avatar: bianca.src,
+    avatar: bianca,
   },
   {
     quote: "A fast-paced read with excellent insights from a remarkable entrepreneurial story.",
     name: "Daniel Priestley",
     role: "Author of The Entrepreneur Revolution",
-    avatar: daniyel.src,
+    avatar: daniyel,
   },
   {
     quote:
       "Breaks down how people from all walks of life and backgrounds can achieve unfair advantages... An indispensable handbook.",
     name: "Dion McKenzie",
     role: "Founder of Colorintech",
-    avatar: dion.src,
+    avatar: dion,
   },
   {
     quote:
       "In a no-nonsense approach, this book shows you the truth that business and life aren't fair, and goes into the methods and practices to let you take full advantage of your unique skills and assets",
     name: "Rune Sovndahl",
     role: "Founder, Fantastic Services",
-    avatar: rune.src,
+    avatar: rune,
   },
   {
     quote:
       "Inspirational... if you are looking to get into entrepreneurship this book provides the practical advice to get you started.",
     name: "Mark Martin MBE",
     role: "Founder, UK Black Tech",
-    avatar: mark.src,
+    avatar: mark,
   },
 ];
 
@@ -91,7 +92,7 @@ const BookThoughts: React.FC = () => {
             >
               <p className="min-h-[78px] text-sm leading-relaxed text-white/90">“{t.quote}”</p>
               <div className="mt-5 flex items-center gap-3">
-                <img src={t.avatar} alt={t.name} className="h-12 w-12 rounded-full border border-white/15 object-cover" />
+                <Image src={t.avatar} alt={t.name} width={48} height={48} className="h-12 w-12 rounded-full border border-white/15 object-cover" loading="lazy" />
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-white">{t.name}</p>
                   <p className="text-xs text-white/60">{t.role}</p>

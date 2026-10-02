@@ -9,7 +9,7 @@ import Image from "next/image";
 
 // Assets
 import bgBooks from "../../../assets/home/books-bg.png";
-import allCovers from "../../../assets/home/updatedImage.png";
+import allCovers from "../../../assets/home/updatedImage.webp";
 
 const tags = [
   { icon: Award,         label: "Business Book of the Year 2021, The Business Book Awards" },

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Award, Trophy } from "lucide-react";
 
@@ -50,11 +51,14 @@ export const BookAwards: React.FC = () => {
         >
           {/* Left Block: Award Logo */}
           <div className="flex-shrink-0 max-w-[280px] sm:max-w-[320px] w-full">
-            <img
-              src={awardsLogo.src}
+            <Image
+              src={awardsLogo}
               alt="The Business Book Awards in partnership with Pathway Group"
+              width={320}
+              height={100}
+              loading="lazy"
               className="w-full h-auto object-contain filter brightness-110"
-              draggable="false"
+              draggable={false}
             />
           </div>
 

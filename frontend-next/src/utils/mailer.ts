@@ -107,16 +107,29 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
+const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
+const SMTP_PORT = Number(process.env.SMTP_PORT) || (process.env.SMTP_SECURE === "true" ? 465 : 587);
+const SMTP_SECURE = process.env.SMTP_SECURE === "true" || SMTP_PORT === 465;
+
 export function getTransporter() {
   if (!MAIL_USER || !MAIL_PASS) {
     return null;
   }
 
+  if (SMTP_HOST === "smtp.gmail.com") {
+    return nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: MAIL_USER,
+        pass: MAIL_PASS,
+      },
+    });
+  }
+
   return nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: SMTP_SECURE,
     auth: {
       user: MAIL_USER,
       pass: MAIL_PASS,
@@ -166,17 +179,28 @@ export async function sendTransactionalEmail({
     }
   }
 
-  // 2. SMTP fallback
+  // 2. SMTP fallback with high-deliverability anti-spam headers
   const transporter = getTransporter();
   if (transporter) {
-    const fromAddress = MAIL_USER ? `"ashali.com" <${MAIL_USER}>` : `"ashali.com" <${OWNER_EMAIL}>`;
+    const fromAddress = MAIL_USER.includes("@")
+      ? `"Ash Ali Website" <${MAIL_USER}>`
+      : `"ashali.com" <${OWNER_EMAIL}>`;
+
+    const plainText = text || html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+
     const info = await transporter.sendMail({
       from: fromAddress,
       to,
-      replyTo,
-      subject,
+      replyTo: replyTo || fromAddress,
+      subject: subject.replace(/[\r\n]/g, " ").trim(),
       html,
-      text,
+      text: plainText,
+      headers: {
+        "X-Mailer": "ashali.com Web Engine",
+        "X-Auto-Response-Suppress": "OOF, AutoReply",
+        "Auto-Submitted": "auto-generated",
+        "X-Report-Abuse-To": OWNER_EMAIL,
+      },
     });
     return { success: true, messageId: info.messageId };
   }
