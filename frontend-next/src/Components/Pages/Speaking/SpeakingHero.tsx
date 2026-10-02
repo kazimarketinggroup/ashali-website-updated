@@ -1,24 +1,15 @@
-"use client";
-
 import React from "react";
-import { motion, easeOut } from "framer-motion";
+import Image from "next/image";
 
-import aboutPortrait from "../../../assets/speaking/aboutImage.png";
+import aboutPortrait from "../../../assets/speaking/aboutImage.webp";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
-
 import GradientBorderLink from "./GradientBorderLink";
 
 const SpeakingHero: React.FC = () => (
   <div className="mx-auto grid max-w-fluid grid-cols-1 items-center gap-6 px-5 py-6 lg:grid-cols-2 lg:gap-8 lg:py-10">
     
     {/* IMAGE */}
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, ease: easeOut }}
-      className="relative flex justify-center lg:justify-start"
-    >
+    <div className="relative flex justify-center lg:justify-start">
       <div
         className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px]"
         style={{
@@ -28,25 +19,24 @@ const SpeakingHero: React.FC = () => (
             "radial-gradient(ellipse 85% 75% at 50% 45%, black 35%, transparent 72%)",
         }}
       >
-        <img
-          src={aboutPortrait.src}
+        <Image
+          src={aboutPortrait}
           alt="Ash Ali, keynote speaker and entrepreneur"
+          priority
+          fetchPriority="high"
+          width={442}
+          height={766}
+          sizes="(max-width: 640px) 260px, (max-width: 768px) 300px, 320px"
           className="block w-full object-cover object-top"
         />
       </div>
 
       {/* Bottom fade */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black to-transparent" />
-    </motion.div>
+    </div>
 
     {/* TEXT */}
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, ease: easeOut }}
-      className="text-left"
-    >
+    <div className="text-left">
       <h1 className="text-lg font-semibold leading-snug sm:text-xl md:text-2xl lg:text-[1.65rem]" style={brandGradientTextStyle}>
         Joke Of The Family To Tech Millionaire And Serial Entrepreneur
       </h1>
@@ -72,7 +62,7 @@ const SpeakingHero: React.FC = () => (
           Unlock Greatness
         </GradientBorderLink>
       </div>
-    </motion.div>
+    </div>
   </div>
 );
 

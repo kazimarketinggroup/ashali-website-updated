@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
-import bridgesImg from "../../../assets/home/hAbout1.png";
+import bridgesImg from "../../../assets/home/hAbout1.webp";
 import Link from "next/link";
 
 const BuildingBridges: React.FC = () => {

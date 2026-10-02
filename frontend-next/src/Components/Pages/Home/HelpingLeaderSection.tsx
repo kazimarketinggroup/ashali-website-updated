@@ -1,20 +1,20 @@
 "use client";
 
-import React from 'react';
+import Image, { StaticImageData } from 'next/image';
 import { motion } from 'framer-motion';
 import Link from "next/link";
 import { BRAND_GRADIENT_LR } from "../../../constants/brandGradient";
 
-import speakingBg from '../../../assets/home/speaking.png';
-import advisoryBg from '../../../assets/home/advisory.png';
-import mediaBg    from '../../../assets/home/media.png';
+import speakingBg from '../../../assets/home/speaking.webp';
+import advisoryBg from '../../../assets/home/advisory.webp';
+import mediaBg    from '../../../assets/home/media.webp';
 // import impactBg   from '../../../assets/home/impact.png';
 
 interface CardData {
   title: string;
   description: string;
   buttonLabel: string;
-  bgImage: string;
+  bgImage: StaticImageData;
   to: string; // Internal routing path
 }
 
@@ -24,7 +24,7 @@ const cards: CardData[] = [
     description:
       'Shift how people see advantage, leadership and opportunity in an AI shaped world. Story led, practical and tailored to the room.',
     buttonLabel: 'Explore Keynotes',
-    bgImage: speakingBg.src,
+    bgImage: speakingBg,
     to: '/speaking',
   },
   {
@@ -32,7 +32,7 @@ const cards: CardData[] = [
     description:
       'Turn the ideas into decisions, priorities and a practical 90 day direction for your leadership team.',
     buttonLabel: 'Explore Workshops',
-    bgImage: advisoryBg.src,
+    bgImage: advisoryBg,
     to: '/workshops',
   },
   {
@@ -40,7 +40,7 @@ const cards: CardData[] = [
     description:
       'Direct strategic advisory for founders, boards and executive leadership teams navigating the AI shift.',
     buttonLabel: 'Explore Advisory',
-    bgImage: mediaBg.src,
+    bgImage: mediaBg,
     to: '/advisory',
   },
   // {
@@ -116,9 +116,12 @@ const ServiceCard: React.FC<{ card: CardData }> = ({ card }) => {
       <div className="w-full h-full bg-[#080808] rounded-[7px] overflow-hidden relative flex flex-col items-center p-4 sm:p-6 flex-grow">
         
         {/* Background Image Asset Track */}
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-40 group-hover:opacity-15 group-hover:scale-105"
-          style={{ backgroundImage: `url(${card.bgImage})` }}
+        <Image
+          src={card.bgImage}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+          className="object-cover object-center transition-all duration-700 opacity-40 group-hover:opacity-15 group-hover:scale-105 pointer-events-none"
         />
 
         {/* Centered Matte Masking Dark Layer */}

@@ -1,9 +1,7 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 
-import heroImage from "../../../assets/book/heroImage.png";
+import heroImage from "../../../assets/book/heroImage.webp";
 import aliAvatar from "../../../assets/book/ali.png";
 import derekAvatar from "../../../assets/book/derek.png";
 
@@ -21,7 +19,7 @@ const BookHero: React.FC = () => {
           priority
           fetchPriority="high"
           fill
-          sizes="100vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1440px"
           className="object-cover object-center"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-black/40" />
