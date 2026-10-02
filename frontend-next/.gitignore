@@ -32,3 +32,6 @@ npm-debug.log*
 .visual/
 
 .vercel
+
+perf-*.json
+report-*.json
