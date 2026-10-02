@@ -1,7 +1,8 @@
 import React from "react";
 
-import { PODCAST_VIDEOS, youTubeEmbedUrl } from "../../../constants/media";
+import { PODCAST_VIDEOS } from "../../../constants/media";
 import { Body, Reveal, Section, SectionHeading } from "../../Shared/SectionKit";
+import YouTubeFacade from "../../Shared/YouTubeFacade";
 
 /**
  * Longer podcast / panel / keynote videos (§3.4).
@@ -24,14 +25,11 @@ const SupportingVideos: React.FC<{ id?: string }> = ({ id }) => (
         {PODCAST_VIDEOS.map((video, i) => (
           <Reveal key={video.id} delay={i * 0.08}>
             {/* 16:9 box reserves height before load, so no layout shift. */}
-            <div className="relative w-full overflow-hidden rounded-[4px] bg-black pb-[56.25%]">
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src={youTubeEmbedUrl(video.id)}
+            <div className="relative w-full overflow-hidden rounded-[4px] bg-black">
+              <YouTubeFacade
+                videoId={video.id}
                 title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
+                aspectRatio="16/9"
               />
             </div>
           </Reveal>

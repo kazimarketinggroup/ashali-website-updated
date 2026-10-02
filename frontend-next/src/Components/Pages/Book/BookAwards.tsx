@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Award, Trophy } from "lucide-react";
 
 import awardsLogo from "../../../assets/book/businessbookAwardLogo.png";
+import YouTubeFacade from "../../Shared/YouTubeFacade";
 // import bookImage from "../../../assets/book/bookimage.png";
 
 export const BookAwards: React.FC = () => {
@@ -122,12 +123,10 @@ export const BookAwards: React.FC = () => {
   className="md:col-span-6 w-full"
 >
   <div className="relative overflow-hidden rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] bg-black aspect-video">
-    <iframe
-      className="absolute inset-0 w-full h-full"
-      src="https://www.youtube.com/embed/RGbCR_pq4_A?rel=0"
-      title="Ash Ali Speaking"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowFullScreen
+    <YouTubeFacade
+      videoId="RGbCR_pq4_A"
+      title="Ash Ali Speaking at Business Book Awards"
+      aspectRatio="16/9"
     />
   </div>
 </motion.div>

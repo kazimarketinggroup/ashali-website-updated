@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import YouTubeFacade from "../../../Shared/YouTubeFacade";
 
 const ArabicVideoReview: React.FC = () => {
   return (
@@ -40,15 +41,11 @@ const ArabicVideoReview: React.FC = () => {
             className="flex justify-center md:justify-end"
           >
             <div className="w-full max-w-[460px] overflow-hidden rounded-xl border border-white/[0.07] bg-[#141414] shadow-2xl">
-              <div className="relative aspect-video">
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/WZ0wKi5RMDE"
-                  title="Arabic Book Review"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
+              <YouTubeFacade
+                videoId="WZ0wKi5RMDE"
+                title="Arabic Book Review"
+                aspectRatio="16/9"
+              />
             </div>
           </motion.div>
 

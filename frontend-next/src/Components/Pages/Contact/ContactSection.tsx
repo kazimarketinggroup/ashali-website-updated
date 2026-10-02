@@ -256,20 +256,13 @@ export const ContactSection: React.FC = () => {
                 <p className="text-[13px] text-white">Typically responds within 24 to 48 hours</p>
               </div>
 
-              <div className="flex flex-wrap gap-3 pt-1">
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <a
-                  href="/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf"
-                  target="_blank"
+                  href="/press/ash-ali-press-headshots.zip"
+                  download="ash-ali-press-headshots.zip"
                   className="text-[12px] text-white/80 hover:text-white underline underline-offset-4 transition-colors"
                 >
-                  Speaker One-Sheet (PDF)
-                </a>
-                <span className="text-white/30">•</span>
-                <a
-                  href="/about"
-                  className="text-[12px] text-white/80 hover:text-white underline underline-offset-4 transition-colors"
-                >
-                  Press Headshots
+                  Press Headshots (ZIP)
                 </a>
               </div>
             </div>

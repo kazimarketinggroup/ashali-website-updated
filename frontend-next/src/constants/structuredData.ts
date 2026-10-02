@@ -50,13 +50,21 @@ export const speakerServiceSchema = {
 export const bookSchema = {
   "@context": "https://schema.org",
   "@type": "Book",
-  name: "The Unfair Advantage",
+  name: "The Unfair Advantage: How You Already Have What It Takes to Succeed",
+  alternateName: "The Unfair Advantage",
   author: [
-    { "@type": "Person", name: "Ash Ali" },
+    { "@type": "Person", name: "Ash Ali", url: `${SITE_ORIGIN}/about`, sameAs: "https://uk.linkedin.com/in/ashali" },
     { "@type": "Person", name: "Hasan Kubba" },
   ],
   isbn: "9781788167543",
   url: `${SITE_ORIGIN}/unfair-advantage`,
+  image: `${SITE_ORIGIN}/og/unfair-advantage.png`,
+  inLanguage: "en",
+  datePublished: "2020-01-09",
+  publisher: {
+    "@type": "Organization",
+    name: "Profile Books",
+  },
   description:
     "The award-winning framework for finding what gives you an edge. The MILES framework helps people and organisations see the assets, context and capabilities they already possess.",
   award: "Business Book of the Year 2021, The Business Book Awards",

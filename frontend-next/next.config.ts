@@ -72,28 +72,6 @@ const nextConfig: NextConfig = {
         destination: "/the-next-level",
         permanent: true,
       },
-      {
-        source: "/blog/:slug*",
-        destination: "/",
-        permanent: true,
-      },
-    ];
-  },
-  async headers() {
-    return [
-      {
-        source: "/reports/:path*",
-        headers: [
-          {
-            key: "Content-Disposition",
-            value: 'attachment; filename="Global-Sales-Capability-Index-2026-Uhubs.pdf"',
-          },
-          {
-            key: "Content-Type",
-            value: "application/pdf",
-          },
-        ],
-      },
     ];
   },
 };

@@ -51,15 +51,15 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
         >
           {/* Eyebrow */}
           <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
-            <span>The Unfair Advantage</span>
+            <span>Bestselling Book by Ash Ali &amp; Hasan Kubba</span>
           </div>
 
-          {/* Headline */}
+          {/* Headline — Includes 'The Unfair Advantage' in the H1 tag itself */}
           <Heading className="text-fluid-30 font-semibold tracking-tight text-white leading-[1.2]">
             <span className="bg-gradient-to-r from-[#2dd4bf] to-[#0e9aa8] bg-clip-text text-transparent">
-              The award winning book
+              The Unfair Advantage:
             </span>{" "}
-            challenging the myth that success is only about hard work.
+            the award winning book challenging the myth that success is only about hard work.
           </Heading>
 
           {/* Body */}

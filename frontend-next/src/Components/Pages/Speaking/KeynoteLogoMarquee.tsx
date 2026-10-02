@@ -41,11 +41,15 @@ const logos: Logo[] = [
   { src: weWork.src, alt: "WeWork", w: "w-[70px] md:w-[75px]" },
 ];
 
-const LogoItem: React.FC<{ logo: Logo }> = ({ logo }) => (
-  <div className={`flex shrink-0 items-center justify-center ${logo.w}`}>
+const LogoItem: React.FC<{ logo: Logo; isDuplicate?: boolean }> = ({ logo, isDuplicate }) => (
+  <div
+    className={`flex shrink-0 items-center justify-center ${logo.w}`}
+    aria-hidden={isDuplicate ? "true" : undefined}
+  >
     <img
       src={logo.src}
-      alt={logo.alt}
+      alt={isDuplicate ? "" : logo.alt}
+      aria-hidden={isDuplicate ? "true" : undefined}
       className="h-auto w-full object-contain opacity-90"
       draggable="false"
       loading="lazy"
@@ -62,11 +66,6 @@ const KeynoteLogoMarquee: React.FC = () => (
     className="w-full select-none bg-black pt-12"
   >
     <div className="mx-auto flex max-w-fluid flex-col items-center px-4 sm:px-6 lg:px-8">
-      {/* Heading */}
-      {/* <h2 className="mb-10 text-center text-fluid-24 font-normal tracking-wide sm:mb-12">
-        <span style={brandGradientTextStyle}>A Global Keynote Speaker</span>
-      </h2> */}
-
       {/* Marquee viewport with edge fade masks */}
       <div
         className="relative w-full overflow-hidden"
@@ -78,16 +77,19 @@ const KeynoteLogoMarquee: React.FC = () => (
         }}
       >
         <div className="marquee-track">
-          {/* First set */}
+          {/* First set — exposed to screen readers */}
           <div className="flex items-center gap-x-12 pr-12 md:gap-x-16 md:pr-16">
             {logos.map((logo) => (
               <LogoItem key={`a-${logo.alt}`} logo={logo} />
             ))}
           </div>
-          {/* Duplicate set for a seamless loop */}
-          <div className="flex items-center gap-x-12 pr-12 md:gap-x-16 md:pr-16" aria-hidden="true">
+          {/* Duplicate set for a seamless loop — hidden from screen readers */}
+          <div
+            className="flex items-center gap-x-12 pr-12 md:gap-x-16 md:pr-16"
+            aria-hidden="true"
+          >
             {logos.map((logo) => (
-              <LogoItem key={`b-${logo.alt}`} logo={logo} />
+              <LogoItem key={`b-${logo.alt}`} logo={logo} isDuplicate />
             ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion, easeOut } from "framer-motion";
 
 import heroImage from "../../../assets/book/heroImage.png";
@@ -15,11 +16,14 @@ const BookHero: React.FC = () => {
     <>
       {/* ── MOBILE layout (< sm): image + cards stacked normally ── */}
       <section className="block bg-black text-white sm:hidden">
-        <div className="relative w-full">
-          <img
-            src={heroImage.src}
+        <div className="relative w-full h-[240px]">
+          <Image
+            src={heroImage}
             alt="The Unfair Advantage book"
-            className="w-full h-[240px] object-cover object-center"
+            priority
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-black/40" />
         </div>
@@ -80,10 +84,13 @@ const BookHero: React.FC = () => {
 
       {/* ── TABLET + DESKTOP layout (sm+): capped hero height with overlaid cards ── */}
       <section className="relative hidden min-h-[min(90vh,780px)] w-full overflow-hidden bg-black sm:block">
-        <img
-          src={heroImage.src}
+        <Image
+          src={heroImage}
           alt="The Unfair Advantage book"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          priority
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-black/40" />
 

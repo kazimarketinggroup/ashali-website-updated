@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { brandGradientTextStyle } from '../../../constants/brandGradient';
+import YouTubeFacade from '../../Shared/YouTubeFacade';
 
 export const SpeakerBioSection: React.FC = () => {
   // Balanced scroll-reveal animation configuration
@@ -66,13 +67,10 @@ export const SpeakerBioSection: React.FC = () => {
         >
           {/* Ash Ali Tedx Video Container Frame */}
           <div className="relative w-full aspect-video rounded-[4px] bg-[#1a1a1a] border border-white/[0.03] shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden">
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src="https://www.youtube.com/embed/_ZXJ9V3D4lA"
-              title="Ash Ali Keynote"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
+            <YouTubeFacade
+              videoId="_ZXJ9V3D4lA"
+              title="Ash Ali Keynote Presentation"
+              aspectRatio="16/9"
             />
           </div>
         </motion.div>

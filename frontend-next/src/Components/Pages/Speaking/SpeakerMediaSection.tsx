@@ -4,13 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 // import type { Variants } from 'framer-motion';
 
-/* ── Helper: YouTube video ID extractor ── */
-const getYouTubeId = (url: string): string => {
-  const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-  );
-  return match ? match[1] : '';
-};
+
 
 /* ── Reusable YouTube embed ── */
 interface YouTubeEmbedProps {
@@ -19,20 +13,15 @@ interface YouTubeEmbedProps {
   title?: string;
 }
 
-const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ url, className = '', title = 'YouTube video' }) => {
-  const id = getYouTubeId(url);
-  if (!id) return null;
+import YouTubeFacade from '../../Shared/YouTubeFacade';
 
+const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ url, className = '', title = 'YouTube video' }) => {
   return (
-    <div className={`relative w-full overflow-hidden rounded-xl bg-black ${className}`}
-         style={{ paddingBottom: '56.25%' /* 16:9 */ }}>
-      <iframe
-        className="absolute inset-0 w-full h-full"
-        src={`https://www.youtube.com/embed/${id}`}
+    <div className={`relative w-full overflow-hidden rounded-xl bg-black ${className}`}>
+      <YouTubeFacade
+        url={url}
         title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        loading="lazy"
+        aspectRatio="16/9"
       />
     </div>
   );

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkRateLimit, getTransporter, MAIL_USER, OWNER_EMAIL } from "@/src/utils/mailer";
+import { checkRateLimit, sendTransactionalEmail, verifyTurnstileToken, OWNER_EMAIL } from "@/src/utils/mailer";
+import { generateReportToken } from "@/src/utils/reportToken";
 
 export async function POST(req: NextRequest) {
   try {
@@ -7,8 +8,9 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json().catch(() => ({}));
     const { name, email, type, message, details, website_hp } = body;
+    const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
 
-    // 1. Honeypot verification: bots populate hidden fields
+    // 1. Honeypot verification: reject bot spam
     if (website_hp && String(website_hp).trim().length > 0) {
       return NextResponse.json(
         { success: false, message: "Bot submission detected and rejected." },
@@ -16,15 +18,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. IP rate limiting (a few submissions per IP per hour)
-    if (!checkRateLimit(ip, 8, 3600000)) {
+    // 2. Cloudflare Turnstile verification (verifies against Cloudflare API if TURNSTILE_SECRET_KEY is set)
+    const isTurnstileValid = await verifyTurnstileToken(turnstileToken, ip);
+    if (!isTurnstileValid) {
+      return NextResponse.json(
+        { success: false, message: "Security verification failed. Please try again." },
+        { status: 403 }
+      );
+    }
+
+    // 3. Distributed IP rate limiting (Upstash Redis or in-memory fallback: 8 per hour)
+    const isAllowed = await checkRateLimit(ip, 8, 3600000);
+    if (!isAllowed) {
       return NextResponse.json(
         { success: false, message: "Too many enquiries submitted from this IP. Please try again in an hour." },
         { status: 429 }
       );
     }
 
-    // 3. Field validation
+    // 4. Field validation
     if (!name || !email) {
       return NextResponse.json(
         { success: false, message: "Name and email are required." },
@@ -32,27 +44,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 4. Construct enquiry type and subject according to client spec
-    // Spec: "ashali.com enquiry: [enquiry type]"
+    // 5. Construct enquiry type and subject
     let enquiryLabel = type ? String(type).toLowerCase() : "general";
-    if (details && details.enquiry_source === "Uhubs Report Download") {
+    const isReportDownload = details && details.enquiry_source === "Uhubs Report Download";
+
+    if (isReportDownload) {
       enquiryLabel = "uhubs report download";
     } else if (enquiryLabel === "impact") {
       enquiryLabel = "pro-bono";
     }
 
     const emailSubject = `ashali.com enquiry: ${enquiryLabel}`;
-
-    // 5. Send notification email to Ash
-    const transporter = getTransporter();
-
-    if (!transporter) {
-      console.warn("Contact email skipped: MAIL_USER / MAIL_PASS not configured in environment.");
-      return NextResponse.json({
-        success: true,
-        message: "Thank you! Your enquiry has been submitted. We will be in touch soon.",
-      });
-    }
 
     const formattedDetails = details && typeof details === "object"
       ? Object.entries(details)
@@ -76,10 +78,8 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const fromAddress = MAIL_USER ? `"ashali.com" <${MAIL_USER}>` : `"ashali.com" <${OWNER_EMAIL}>`;
-
-    await transporter.sendMail({
-      from: fromAddress,
+    // 6. Deliver email via transactional provider (Resend) or SMTP fallback
+    await sendTransactionalEmail({
       to: OWNER_EMAIL,
       replyTo: email,
       subject: emailSubject,
@@ -87,9 +87,15 @@ export async function POST(req: NextRequest) {
       text: `New website enquiry\nType: ${enquiryLabel}\nName: ${name}\nEmail: ${email}\n${message ? `Message: ${message}\n` : ""}`,
     });
 
+    // 7. For report downloads, generate a secure time-limited download URL
+    const downloadToken = isReportDownload ? generateReportToken() : undefined;
+    const downloadUrl = downloadToken ? `/api/reports/download?token=${downloadToken}` : undefined;
+
     return NextResponse.json({
       success: true,
       message: "Thank you! Your enquiry has been submitted. We will be in touch soon.",
+      downloadToken,
+      downloadUrl,
     });
   } catch (error) {
     console.error("Contact submission error:", error);

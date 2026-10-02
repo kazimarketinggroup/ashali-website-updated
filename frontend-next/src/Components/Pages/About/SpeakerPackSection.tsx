@@ -7,43 +7,7 @@ import { brandGradientTextStyle } from '../../../constants/brandGradient';
 
 import tedxImage from '../../../assets/about/tedxImage.png';
 
-/* ── YouTube ID extractor ── */
-const getYouTubeId = (url: string): string => {
-  const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-  );
-  return match ? match[1] : '';
-};
-
-/* ── YoutubeEmbed component ── */
-interface YoutubeEmbedProps {
-  videoId: string;        // accepts full URL or raw ID
-  thumbnail?: string;     // optional poster image (unused once iframe loads)
-  title?: string;
-}
-
-const YoutubeEmbed: React.FC<YoutubeEmbedProps> = ({
-  videoId,
-  title = 'YouTube video',
-}) => {
-  const id = getYouTubeId(videoId) || videoId; // fallback: treat prop as raw ID
-
-  return (
-    <div
-      className="relative w-full overflow-hidden rounded-xl bg-black shadow-lg"
-      style={{ paddingBottom: '56.25%' /* 16:9 */ }}
-    >
-      <iframe
-        className="absolute inset-0 w-full h-full"
-        src={`https://www.youtube.com/embed/${id}`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        loading="lazy"
-      />
-    </div>
-  );
-};
+import YouTubeFacade from '../../Shared/YouTubeFacade';
 
 /* ── Main section ── */
 export const SpeakerPackSection: React.FC = () => {
@@ -80,10 +44,12 @@ export const SpeakerPackSection: React.FC = () => {
 
         {/* LEFT: video embed */}
         <div className="md:col-span-6 w-full">
-          <YoutubeEmbed
-            videoId="https://www.youtube.com/watch?v=rMB2lFUMXpY"
-            thumbnail={tedxImage.src}
+          <YouTubeFacade
+            url="https://www.youtube.com/watch?v=rMB2lFUMXpY"
+            posterImage={tedxImage}
             title="Ash Ali TEDx Talk"
+            aspectRatio="16/9"
+            className="rounded-xl shadow-lg"
           />
         </div>
 

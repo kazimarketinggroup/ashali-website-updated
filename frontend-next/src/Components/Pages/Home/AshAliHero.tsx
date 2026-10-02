@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -34,17 +35,19 @@ const AshAliHero: React.FC = () => {
               lg:col-span-5
             "
           >
-            <img
-              src={ashAliImg.src}
-              alt="Ash Ali pointing up and presenting"
-              className="
-                object-contain object-bottom filter brightness-105
-                h-full w-auto max-w-[72%]
-                sm:max-w-[60%]
-                lg:max-w-full lg:h-full
-              "
-              draggable="false"
-            />
+            <div className="relative h-full w-auto max-w-[72%] sm:max-w-[60%] lg:max-w-full flex items-end justify-center">
+              <Image
+                src={ashAliImg}
+                alt="Ash Ali pointing up and presenting"
+                priority
+                sizes="(max-width: 640px) 72vw, (max-width: 1024px) 50vw, 450px"
+                className="
+                  object-contain object-bottom filter brightness-105
+                  h-full w-auto
+                "
+                draggable={false}
+              />
+            </div>
           </motion.div>
 
           {/* COPY — right, vertically centered against the image */}

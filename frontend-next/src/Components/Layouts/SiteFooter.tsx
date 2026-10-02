@@ -47,7 +47,7 @@ function GradientRingIcon({ href, label, children }: { href: string; label: stri
     <a
       href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="me noopener noreferrer"
       aria-label={label}
       className="inline-flex h-8 w-8 items-center justify-center rounded-full p-px transition-opacity hover:opacity-90"
       style={{ background: BRAND_GRADIENT_LR }}
@@ -113,10 +113,10 @@ const SiteFooter: React.FC = () => {
           <div className="max-w-[410px]">
             <p className="text-[clamp(1.7rem,3vw,2.1rem)] font-semibold leading-none tracking-normal">ASH ALI</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <GradientRingIcon href="https://uk.linkedin.com/in/ashali" label="LinkedIn">
+              <GradientRingIcon href="https://uk.linkedin.com/in/ashali" label="Ash Ali on LinkedIn">
                 <Linkedin className="h-4 w-4" strokeWidth={1.75} />
               </GradientRingIcon>
-              <GradientRingIcon href="https://x.com/Ash_Ali" label="X">
+              <GradientRingIcon href="https://x.com/Ash_Ali" label="Ash Ali on X">
                 <IconX className="h-[15px] w-[15px]" />
               </GradientRingIcon>
               {/* <GradientRingIcon href="https://www.tiktok.com/@ashali" label="TikTok">

@@ -8,8 +8,6 @@ import reportCover from "../../../assets/home/indexreport.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
 import { api } from "../../../utils/api";
 
-const REPORT_PDF_URL = "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf";
-
 export const CapabilityIndexSection = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
@@ -38,6 +36,7 @@ export const CapabilityIndexSection = () => {
   */
   const [mounted, setMounted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -53,7 +52,7 @@ export const CapabilityIndexSection = () => {
 
     try {
       if (formData.email) {
-        await api.post("/contact/submit", {
+        const response = await api.post("/contact/submit", {
           type: "advisory",
           name: formData.name || "Uhubs Report Requester",
           email: formData.email,
@@ -66,9 +65,13 @@ export const CapabilityIndexSection = () => {
           },
           website_hp: honeypot,
         });
+
+        if (response.data?.downloadUrl) {
+          setDownloadUrl(response.data.downloadUrl);
+        }
       }
     } catch {
-      // Non-blocking: user still downloads the report
+      // Non-blocking
     } finally {
       setIsSubmitting(false);
     }
@@ -343,8 +346,14 @@ export const CapabilityIndexSection = () => {
                     </h3>
 
                     <a
-                      href={REPORT_PDF_URL}
+                      href={downloadUrl || "#"}
                       download="Global-Sales-Capability-Index-2026-Uhubs.pdf"
+                      onClick={(e) => {
+                        if (!downloadUrl) {
+                          e.preventDefault();
+                          alert("Preparing your download, please wait a moment...");
+                        }
+                      }}
                       className="px-8 py-3.5 bg-[#202326] hover:bg-black text-white font-medium text-[15px] rounded-full shadow-md transition-all duration-200 transform hover:scale-[1.02] inline-flex items-center justify-center mb-8 sm:mb-10 tracking-wide cursor-pointer"
                     >
                       Download Now

@@ -2,10 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
-// Proper YouTube embed URL
-const VIDEO_EMBED_URL =
-  "https://www.youtube.com/embed/kjQyqkDYmHw?start=119";
+import YouTubeFacade from "../../../Shared/YouTubeFacade";
 
 const HeiFrameVideoSection: React.FC = () => {
   return (
@@ -40,17 +37,11 @@ const HeiFrameVideoSection: React.FC = () => {
           className="flex w-full justify-center md:w-1/2 md:justify-end"
         >
           <div className="relative w-full max-w-[560px] overflow-hidden rounded-xl border border-white/10 bg-[#171717] shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
-            
-            <div className="relative aspect-video">
-              <iframe
-                src={VIDEO_EMBED_URL}
-                title="HEI FRAME Video Review"
-                className="absolute inset-0 h-full w-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-
+            <YouTubeFacade
+              videoId="kjQyqkDYmHw"
+              title="HEI FRAME Video Review"
+              aspectRatio="16/9"
+            />
           </div>
         </motion.div>
 

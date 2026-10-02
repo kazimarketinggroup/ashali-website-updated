@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { brandGradientTextStyle } from '../../../constants/brandGradient';
 import ashImage from '../../../assets/speaking/updatedSpeakingimage.png';
@@ -30,9 +31,11 @@ export const KeynotesBanner: React.FC = () => {
 
     {/* IMAGE — nudged slightly right for balance */}
     <div className="flex-shrink-0 flex items-end self-end justify-center w-full md:w-auto md:pl-8 lg:pl-14">
-      <img
-        src={ashImage.src}
+      <Image
+        src={ashImage}
         alt="Ash Ali delivering a keynote presentation on unfair advantage and AI strategy"
+        priority
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 550px"
         className="h-[340px] sm:h-[420px] md:h-[min(85vh,680px)] w-auto object-contain object-bottom"
         draggable={false}
       />
