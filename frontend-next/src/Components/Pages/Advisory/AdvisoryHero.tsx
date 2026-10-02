@@ -96,7 +96,7 @@ export const AdvisoryHero: React.FC = () => {
               text-[12px] sm:text-[13px] max-w-[440px]
             "
           >
-            Advising high-growth tech founders, CEOs and executives across the UK, Europe, MENA and Southeast Asia. Ash advises a small number of leadership teams navigating growth, positioning, AI-driven change and the decisions that are difficult to make from inside the business.
+            Advising high-growth tech founders, CEOs and executives across the UK, Europe, MENA and Southeast Asia. Ash advises a small number of leadership teams navigating growth, positioning, AI driven change and the decisions that are difficult to make from inside the business.
           </motion.p>
 
           {/* CTA */}

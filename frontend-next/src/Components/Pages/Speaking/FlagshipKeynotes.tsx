@@ -41,7 +41,7 @@ const keynotes: Keynote[] = [
       "Choose practical next steps rather than accumulating more tools",
     ],
     bestFor:
-      "Executive audiences, innovation events, founder conferences, strategy days and organisations navigating AI-driven change.",
+      "Executive audiences, innovation events, founder conferences, strategy days and organisations navigating AI driven change.",
     image: keynoteStage.src,
     imageAlt:
       "Ash Ali presenting the MILES framework to a seated audience at in5 Dubai",

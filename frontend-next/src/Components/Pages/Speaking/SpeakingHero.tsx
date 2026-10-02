@@ -52,7 +52,7 @@ const SpeakingHero: React.FC = () => (
       </h1>
 
       <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/85">
-        Ash Ali is an award-winning entrepreneur, author, and keynote speaker
+        Ash Ali is an award winning entrepreneur, author, and keynote speaker
         with over 20 years of experience in B2B sales, marketing, and go-to-market
         strategies.
       </p>

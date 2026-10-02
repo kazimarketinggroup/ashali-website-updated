@@ -57,7 +57,7 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           {/* Headline */}
           <Heading className="text-fluid-30 font-semibold tracking-tight text-white leading-[1.2]">
             <span className="bg-gradient-to-r from-[#2dd4bf] to-[#0e9aa8] bg-clip-text text-transparent">
-              The award-winning book
+              The award winning book
             </span>{" "}
             challenging the myth that success is only about hard work.
           </Heading>

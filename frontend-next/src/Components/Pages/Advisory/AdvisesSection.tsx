@@ -66,7 +66,7 @@ export const AdvisesSection: React.FC = () => {
   const bottomRowTargets = [
     {
       icon: <BrainCircuit size={32} strokeWidth={1.2} />,
-      text: "AI-era competitive advantage"
+      text: "AI era competitive advantage"
     },
     {
       icon: <Mic size={32} strokeWidth={1.2} />,

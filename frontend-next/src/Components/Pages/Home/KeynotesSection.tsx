@@ -18,7 +18,7 @@ const keynotes = [
     isImage: true,
   },
   {
-    title: "AI-native thinking",
+    title: "AI native thinking",
     description: "How leaders can adapt before they are forced to",
     icon: brain.src,
     isImage: true,

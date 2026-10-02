@@ -72,7 +72,7 @@ const AshAliHero: React.FC = () => {
             ">
               Find Your <span style={brandGradientTextStyle}>Unfair Advantage</span>
               <br />
-              In An AI-Shaped World.
+              In An AI Shaped World.
             </h1>
 
             {/* Body */}

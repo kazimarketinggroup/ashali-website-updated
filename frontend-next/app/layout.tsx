@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.ashali.com"),
   title: "Ash Ali | Entrepreneur, Investor & Keynote Speaker",
   description:
-    "Ash Ali is an entrepreneur, investor, keynote speaker and co-author of The Unfair Advantage, helping founders, leaders and organisations unlock hidden advantage and build AI-ready businesses.",
+    "Ash Ali is an entrepreneur, investor, keynote speaker and co-author of The Unfair Advantage, helping founders, leaders and organisations unlock hidden advantage and build AI ready businesses.",
   openGraph: {
     type: "website",
     title: "Ash Ali | Entrepreneur, Investor & Keynote Speaker",
@@ -68,10 +68,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={outfit.variable}>
       <head>
-        <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          strategy="afterInteractive"
-        />
+        {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY &&
+          process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY !== "1x00000000000000000000AA" && (
+            <Script
+              src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+              strategy="afterInteractive"
+            />
+          )}
       </head>
       <body>
         <JsonLd schema={[personSchema]} />

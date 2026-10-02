@@ -9,7 +9,7 @@ import Workshops from "@/src/Components/Pages/Workshops/Workshops";
 export const metadata: Metadata = pageMetadata({
   title: "Executive Workshops & Leadership Labs | Ash Ali",
   description:
-    "Executive workshops that turn the AI conversation into decisions: the AI Advantage Lab, Human Advantage Leadership Lab and AI-Era Sales Lab.",
+    "Executive workshops that turn the AI conversation into decisions: the AI Advantage Lab, Human Advantage Leadership Lab and AI Era Sales Lab.",
   path: "/workshops",
   ogImage: "/og/workshops.png",
   ogImageAlt: "Ash Ali, Executive Workshops and Leadership Labs on AI Strategy",

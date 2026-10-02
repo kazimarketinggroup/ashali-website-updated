@@ -129,8 +129,8 @@ const SiteFooter: React.FC = () => {
 
             <p className="mt-6 text-[14px] sm:text-[15px] font-normal leading-[2] text-white/86">
               Ash Ali is a British tech entrepreneur, investor, international keynote speaker and co-author of the
-              award-winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an
-              AI-shaped world. Based between London and Kuala Lumpur; working globally.
+              award winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an
+              AI shaped world. Based between London and Kuala Lumpur; working globally.
             </p>
 
             <p className="mt-5 text-[13px] font-normal tracking-wide text-white/55">

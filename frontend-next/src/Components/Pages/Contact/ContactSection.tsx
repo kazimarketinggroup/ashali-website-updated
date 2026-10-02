@@ -384,9 +384,16 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Cloudflare Turnstile Verification */}
-            <div className="pt-1">
-              <div className="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark" />
-            </div>
+            {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY &&
+              process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY !== "1x00000000000000000000AA" && (
+                <div className="pt-1">
+                  <div
+                    className="cf-turnstile"
+                    data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                    data-theme="dark"
+                  />
+                </div>
+              )}
 
             {/* Action Frame Submission Trigger */}
             <div className="pt-2 flex justify-start">

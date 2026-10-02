@@ -22,7 +22,7 @@ const cards: CardData[] = [
   {
     title: 'KEYNOTES',
     description:
-      'Shift how people see advantage, leadership and opportunity in an AI-shaped world. Story-led, practical and tailored to the room.',
+      'Shift how people see advantage, leadership and opportunity in an AI shaped world. Story led, practical and tailored to the room.',
     buttonLabel: 'Explore Keynotes',
     bgImage: speakingBg.src,
     to: '/speaking',
@@ -30,7 +30,7 @@ const cards: CardData[] = [
   {
     title: 'EXECUTIVE WORKSHOPS',
     description:
-      'Turn the ideas into decisions, priorities and a practical 90-day direction for your leadership team.',
+      'Turn the ideas into decisions, priorities and a practical 90 day direction for your leadership team.',
     buttonLabel: 'Explore Workshops',
     bgImage: advisoryBg.src,
     to: '/workshops',

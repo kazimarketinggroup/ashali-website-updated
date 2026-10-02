@@ -50,7 +50,7 @@ export const SpeakerBioSection: React.FC = () => {
             className="text-[#a1a1aa] font-light text-[13px] sm:text-[14px] leading-[1.75] tracking-wide antialiased max-w-xl"
             variants={elementVariants}
           >
-            Ash Ali is a founder, operator and award-winning author who helps audiences cut through 
+            Ash Ali is a founder, operator and award winning author who helps audiences cut through 
             the noise turning big shifts like AI into practical advantage and reminding leaders that 
             talent, timing and human judgement still decide who wins.
           </motion.p>

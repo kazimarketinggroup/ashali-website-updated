@@ -50,7 +50,7 @@ export const TalkThemes: React.FC = () => {
     },
     {
       title: "Using AI without losing your own thinking",
-      description: "Staying sharp, curious and human in an AI-shaped world."
+      description: "Staying sharp, curious and human in an AI shaped world."
     },
     {
       title: "Social mobility and opportunity",

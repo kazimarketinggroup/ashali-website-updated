@@ -8,7 +8,7 @@ import Book from "@/src/Components/Pages/Book/Book";
 export const metadata: Metadata = pageMetadata({
   title: "The Unfair Advantage | Ash Ali",
   description:
-    "The award-winning book challenging the myth that success is purely grit and hustle. Business Book of the Year 2021, The Business Book Awards, by Ash Ali & Hasan Kubba.",
+    "The award winning book challenging the myth that success is purely grit and hustle. Business Book of the Year 2021, The Business Book Awards, by Ash Ali & Hasan Kubba.",
   path: "/unfair-advantage",
   ogImage: "/og/unfair-advantage.png",
 });

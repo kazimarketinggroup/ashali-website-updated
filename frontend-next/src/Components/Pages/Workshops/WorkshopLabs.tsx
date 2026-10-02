@@ -59,7 +59,7 @@ const workshops: Workshop[] = [
     ],
     outputs: [
       "Human Capability Priority Map",
-      "Leadership principles for AI-enabled work",
+      "Leadership principles for AI enabled work",
       "Team experiment backlog",
       "30/60/90-day leadership actions",
     ],
@@ -67,7 +67,7 @@ const workshops: Workshop[] = [
   },
   {
     number: "03",
-    title: "The AI-Era Sales Transformation Lab",
+    title: "The AI Era Sales Transformation Lab",
     promise:
       "Redesign the people, capability and AI layer of sales performance, not just the tech stack.",
     bestFor:
@@ -76,7 +76,7 @@ const workshops: Workshop[] = [
       "Many companies are adding AI tools without a shared view of the sales capabilities, behaviours and workflows that need to change. This workshop helps revenue leaders identify the human and AI capabilities that matter next, using the Uhubs Pulse and Global Sales Capability Index where appropriate.",
     helps: [
       "Diagnose the capability constraints behind current sales performance",
-      "Map which work should be human-led, AI-assisted or increasingly agentic",
+      "Map which work should be human-led, AI assisted or increasingly agentic",
       "Prioritise the use cases that create value in the sales workflow",
       "Align leadership, enablement and technology priorities around one roadmap",
     ],
