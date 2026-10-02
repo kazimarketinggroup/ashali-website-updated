@@ -126,7 +126,7 @@ function CtaLink({ to, children, external, cls, event }: CtaProps & { cls: strin
 export const PrimaryLink: React.FC<CtaProps> = ({ className = "", ...props }) => (
   <CtaLink
     {...props}
-    cls={`inline-block px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md ${FOCUS_RING} ${className}`}
+    cls={`inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md ${FOCUS_RING} ${className}`}
   />
 );
 
@@ -134,7 +134,7 @@ export const PrimaryLink: React.FC<CtaProps> = ({ className = "", ...props }) =>
 export const SecondaryLink: React.FC<CtaProps> = ({ className = "", ...props }) => (
   <CtaLink
     {...props}
-    cls={`inline-block px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 ${FOCUS_RING} ${className}`}
+    cls={`inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 ${FOCUS_RING} ${className}`}
   />
 );
 

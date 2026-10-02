@@ -50,7 +50,7 @@ const UpdateDetail: React.FC<{ slug?: string }> = ({ slug }) => {
   }
 
   return (
-    <main className="bg-black font-sans text-white">
+    <div className="bg-black font-sans text-white">
       <section className="px-4 pt-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <Link href="/updates" className="text-sm text-white/70 hover:text-white">
@@ -105,7 +105,7 @@ const UpdateDetail: React.FC<{ slug?: string }> = ({ slug }) => {
       <div className="mt-14">
         <EnquiryNow />
       </div>
-    </main>
+    </div>
   );
 };
 

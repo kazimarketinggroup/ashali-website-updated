@@ -106,7 +106,7 @@ const TheNextLevel: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState("level1");
 
   return (
-    <main className="bg-black font-sans text-white">
+    <div className="bg-black font-sans text-white">
       <section className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center px-6 py-16 md:py-20 lg:grid-cols-[460px_1fr] lg:px-8">
         <div className="flex justify-center lg:justify-start">
           <img src={heroImg.src} alt="Ash Ali" className="h-auto w-full max-w-[460px] object-contain object-left" />
@@ -276,7 +276,7 @@ const TheNextLevel: React.FC = () => {
           </form>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

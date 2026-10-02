@@ -13,7 +13,7 @@ import UnfairAdvantageQuote from "./UnfairAdvantageQuote";
 
 const Book: React.FC = () => {
   return (
-    <main className="min-w-0 bg-black font-sans text-white">
+    <div className="min-w-0 bg-black font-sans text-white">
       <BookHero />
       <UnfairAdvantageQuote/>
       {/* h1 for this page: BookHero above is images only, so this is the
@@ -27,7 +27,7 @@ const Book: React.FC = () => {
  <BookRetailers />
       <BookThoughts />
       {/* <AboutNewsletter/> */}
-    </main>
+    </div>
   );
 };
 

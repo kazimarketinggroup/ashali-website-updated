@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 import ashAliImg from "../../../assets/home/updatedHeroImage.png";
 
@@ -23,10 +20,7 @@ const AshAliHero: React.FC = () => {
         <div className="grid grid-cols-1 pt-4 pb-10 lg:pb-16 lg:pt-10 lg:grid-cols-12 lg:gap-10 xl:gap-12">
 
           {/* IMAGE — left, fixed design height on lg+ */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, ease: [0.25, 1, 0.5, 1] }}
+          <div
             className="
               flex items-end justify-center overflow-hidden
               h-[55vw] min-h-[240px] max-h-[420px]
@@ -40,6 +34,7 @@ const AshAliHero: React.FC = () => {
                 src={ashAliImg}
                 alt="Ash Ali pointing up and presenting"
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 640px) 72vw, (max-width: 1024px) 50vw, 450px"
                 className="
                   object-contain object-bottom filter brightness-105
@@ -48,13 +43,10 @@ const AshAliHero: React.FC = () => {
                 draggable={false}
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* COPY — right, vertically centered against the image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, ease: [0.25, 1, 0.5, 1], delay: 0.05 }}
+          <div
             className="
               flex flex-col justify-center items-start text-left
               py-10
@@ -63,8 +55,6 @@ const AshAliHero: React.FC = () => {
           >
             {/* Eyebrow */}
             <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
-              {/*
- */}
               <span>International keynote speaker • Founder • Operator • Author</span>
             </div>
 
@@ -90,7 +80,7 @@ const AshAliHero: React.FC = () => {
             <div className="flex flex-wrap items-center gap-3 w-full">
               <Link
                 href="/contact"
-                className="px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md"
+                className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md"
               >
                 Work with Ash
               </Link>
@@ -103,14 +93,14 @@ const AshAliHero: React.FC = () => {
                 <Link
                   key={btn.label}
                   href={btn.to}
-                  className="px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5"
+                  className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5"
                 >
                   {btn.label}
                 </Link>
               ))}
             </div>
             <p className="text-xs mt-4 text-gray-400">Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops.</p>
-          </motion.div>
+          </div>
 
         </div>
       </div>

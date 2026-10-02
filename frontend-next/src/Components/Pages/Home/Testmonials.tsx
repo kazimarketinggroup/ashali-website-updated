@@ -1,4 +1,5 @@
 import React from "react";
+import Image, { type StaticImageData } from "next/image";
 
 import angellaAvatar from "../../../assets/speaking/angella.png";
 import cyrusAvatar from "../../../assets/speaking/husabi.png";
@@ -30,10 +31,10 @@ export type Testimonial = {
   jobTitle?: string;
   organisation?: string;
   event?: string;
-  imageSrc?: string;
+  image?: StaticImageData;
   imageAlt?: string;
   /** Organisation logo, shown beneath the name where available. */
-  logoSrc?: string;
+  logo?: StaticImageData;
   logoAlt?: string;
 };
 
@@ -51,9 +52,9 @@ const testimonials: Testimonial[] = [
     fullName: "Freddie Monk",
     organisation: "EY",
     event: "Innova",
-    imageSrc: freddieAvatar.src,
+    image: freddieAvatar,
     imageAlt: "Freddie Monk",
-    logoSrc: eyLogo.src,
+    logo: eyLogo,
     logoAlt: "EY",
   },
   {
@@ -63,9 +64,9 @@ const testimonials: Testimonial[] = [
     fullName: "Cyrus Hessabi",
     organisation: "Salesforce",
     event: "Salesforce Tower",
-    imageSrc: cyrusAvatar.src,
+    image: cyrusAvatar,
     imageAlt: "Cyrus Hessabi",
-    logoSrc: salesforceLogo.src,
+    logo: salesforceLogo,
     logoAlt: "Salesforce",
   },
   {
@@ -75,9 +76,9 @@ const testimonials: Testimonial[] = [
     fullName: "Andrea Angella",
     organisation: "TechItalia",
     event: "TechItalia",
-    imageSrc: angellaAvatar.src,
+    image: angellaAvatar,
     imageAlt: "Andrea Angella",
-    logoSrc: techItaliaLogo.src,
+    logo: techItaliaLogo,
     logoAlt: "TechItalia",
   },
 ];
@@ -103,14 +104,13 @@ const Testimonials: React.FC = () => (
                       &ldquo;{item.quote}&rdquo;
                     </blockquote>
                     <figcaption className="mt-8 flex items-center gap-3 border-t border-white/[0.06] pt-5">
-                      {item.imageSrc && (
-                        <img
-                          src={item.imageSrc}
-                          alt={item.imageAlt ?? ""}
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt={item.imageAlt ?? item.fullName ?? ""}
                           width={48}
                           height={48}
                           loading="lazy"
-                          decoding="async"
                           className="h-12 w-12 shrink-0 rounded-full border border-white/20 object-cover"
                           draggable="false"
                         />
@@ -119,12 +119,13 @@ const Testimonials: React.FC = () => (
                         <p className="text-[13px] font-semibold tracking-wide text-white">
                           {item.fullName}
                         </p>
-                        {item.logoSrc ? (
-                          <img
-                            src={item.logoSrc}
+                        {item.logo ? (
+                          <Image
+                            src={item.logo}
                             alt={item.logoAlt ?? item.organisation ?? ""}
                             loading="lazy"
-                            decoding="async"
+                            width={100}
+                            height={24}
                             className="mt-1.5 h-6 w-auto max-w-[100px] object-contain object-left"
                             draggable="false"
                           />

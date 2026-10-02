@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Link from "next/link";
 import { Award, Globe, GraduationCap, LayoutGrid } from 'lucide-react';
 
+import Image from "next/image";
+
 // Assets
 import bgBooks from "../../../assets/home/books-bg.png";
 import allCovers from "../../../assets/home/updatedImage.png";
@@ -33,11 +35,19 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
 
   return (
     <section
-      className="relative overflow-hidden bg-cover bg-center px-4 py-16 sm:px-6 md:py-20 md:px-24"
-      style={{ backgroundImage: `url(${bgBooks.src})` }}
+      className="relative overflow-hidden bg-black px-4 py-16 sm:px-6 md:py-20 md:px-24"
     >
+      {/* Optimized Background Image */}
+      <Image
+        src={bgBooks}
+        alt=""
+        fill
+        className="object-cover object-center opacity-15 pointer-events-none -z-0"
+        sizes="100vw"
+        loading="lazy"
+      />
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/90" />
+      <div className="absolute inset-0 bg-black/80 -z-0 pointer-events-none" />
 
       <div className="relative z-10 mx-auto flex max-w-fluid flex-col items-center gap-12 lg:flex-row lg:gap-16">
 
@@ -86,14 +96,15 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <Link
               href={as === "h1" ? "#retailers" : "/unfair-advantage"}
-              className="px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md text-center"
+              className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md text-center"
             >
               {as === "h1" ? "Get your copy" : "Explore the book"}
             </Link>
             <a
-            target="_blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://www.theunfairacademy.com/"
-              className="px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 text-center"
+              className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 text-center"
             >
               The Unfair Academy
             </a>
@@ -109,9 +120,13 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           className="flex w-full justify-center lg:w-1/2"
         >
           <div className="relative flex flex-col items-center">
-            <img
-              src={allCovers.src}
+            <Image
+              src={allCovers}
               alt="International editions of The Unfair Advantage"
+              width={500}
+              height={400}
+              sizes="(max-width: 768px) 100vw, 500px"
+              loading="lazy"
               className="w-full max-w-[500px] object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.02]"
             />
 

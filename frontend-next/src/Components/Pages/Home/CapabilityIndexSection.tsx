@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown } from "lucide-react";
@@ -153,7 +154,7 @@ export const CapabilityIndexSection = () => {
                     e.preventDefault();
                     setIsModalOpen(true);
                   }}
-                  className="inline-block border border-white/40 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black shadow-md rounded-[2px] cursor-pointer"
+                  className="inline-flex min-h-[44px] items-center justify-center border border-white/40 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black shadow-md rounded-[2px] cursor-pointer"
                 >
                   Download the full report →
                 </a>
@@ -171,9 +172,13 @@ export const CapabilityIndexSection = () => {
               className="flex justify-center lg:justify-end"
             >
               <div className="rounded-lg overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.06)]">
-                <img
-                  src={reportCover.src}
+                <Image
+                  src={reportCover}
                   alt="Global Sales Capability Index"
+                  width={320}
+                  height={400}
+                  sizes="(max-width: 768px) 260px, 320px"
+                  loading="lazy"
                   className="w-[260px] md:w-[320px] h-auto object-cover"
                 />
               </div>
@@ -297,11 +302,12 @@ export const CapabilityIndexSection = () => {
 
                       {/* Select */}
                       <div className="flex flex-col w-full relative">
-                        <label className="text-white font-normal text-[12px] mb-1">
+                        <label htmlFor="modal-org-size" className="text-white font-normal text-[12px] mb-1">
                           Revenue org size<span className="text-red-500 ml-0.5">*</span>
                         </label>
                         <div className="relative w-full border-b border-neutral-700 focus-within:border-white transition-colors duration-200">
                           <select
+                            id="modal-org-size"
                             value={formData.orgSize}
                             onChange={(e) => setFormData((prev) => ({ ...prev, orgSize: e.target.value }))}
                             required
@@ -325,7 +331,7 @@ export const CapabilityIndexSection = () => {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full sm:w-auto px-6 py-3 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-200 hover:bg-neutral-200 shrink-0 text-center disabled:opacity-50"
+                          className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-200 hover:bg-neutral-200 shrink-0 text-center disabled:opacity-50"
                         >
                           {isSubmitting ? "Unlocking..." : "Get instant access →"}
                         </button>
@@ -362,7 +368,7 @@ export const CapabilityIndexSection = () => {
                     <button
                       onClick={handleCloseModal}
                       type="button"
-                      className="text-[#1A1A1A] hover:text-neutral-600 transition-colors text-[15px] underline underline-offset-4 font-normal"
+                      className="text-[#1A1A1A] hover:text-neutral-600 transition-colors text-[15px] underline underline-offset-4 font-normal min-h-[44px] inline-flex items-center justify-center"
                     >
                       Back to the page
                     </button>
@@ -388,19 +394,23 @@ interface ModalInputProps {
   onChange: (value: string) => void;
 }
 
-const ModalInput: React.FC<ModalInputProps> = ({ label, required = false, type = "text", value, onChange }) => (
-  <div className="flex flex-col w-full relative group text-left">
-    <label className="text-white font-normal text-[12px]">
-      {label}{required && <span className="text-red-500 ml-0.5">*</span>}
-    </label>
-    <input
-      type={type}
-      required={required}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full bg-transparent border-b border-neutral-700 py-2 text-[12px] font-light text-white outline-none focus:border-white transition-colors duration-200"
-    />
-  </div>
-);
+const ModalInput: React.FC<ModalInputProps> = ({ label, required = false, type = "text", value, onChange }) => {
+  const inputId = `modal-input-${label.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+  return (
+    <div className="flex flex-col w-full relative group text-left">
+      <label htmlFor={inputId} className="text-white font-normal text-[12px]">
+        {label}{required && <span className="text-red-500 ml-0.5">*</span>}
+      </label>
+      <input
+        id={inputId}
+        type={type}
+        required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full bg-transparent border-b border-neutral-700 py-2 text-[12px] font-light text-white outline-none focus:border-white transition-colors duration-200"
+      />
+    </div>
+  );
+};
 
 export default CapabilityIndexSection;

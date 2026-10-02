@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import Image from "next/image";
 import bridgesImg from "../../../assets/home/hAbout1.png";
 import Link from "next/link";
 
@@ -39,9 +40,13 @@ const BuildingBridges: React.FC = () => {
             "
           >
             <span className="absolute right-0 top-0 h-[calc(100%-22px)] w-[calc(100%-22px)] bg-[#ff7417]" />
-            <img
-              src={bridgesImg.src}
+            <Image
+              src={bridgesImg}
               alt="Ash Ali speaking on stage in Southeast Asia"
+              width={470}
+              height={336}
+              sizes="(max-width: 768px) 100vw, 470px"
+              loading="lazy"
               className="
                 relative
                 z-10
@@ -117,11 +122,11 @@ const BuildingBridges: React.FC = () => {
 
   {/* Buttons */}
   <div className="mt-10 flex flex-col gap-3 sm:flex-row lg:justify-start justify-center">
-   <Link href="/malaysia-sea" className="border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10">
+    <Link href="/malaysia-sea" className="min-h-[44px] inline-flex items-center justify-center rounded-[2px] border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10">
       Read More
     </Link>
 
-    <Link href="/contact" className="border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10">
+    <Link href="/contact" className="min-h-[44px] inline-flex items-center justify-center rounded-[2px] border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10">
       Work with Ash
     </Link>
   </div>

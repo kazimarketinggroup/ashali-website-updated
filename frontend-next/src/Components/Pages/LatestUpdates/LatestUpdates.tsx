@@ -7,12 +7,12 @@ import LatestUpdatesHero from "./LatestUpdatesHero";
 
 const LatestUpdates: React.FC = () => {
   return (
-    <main className="min-w-0 bg-black font-sans text-white">
+    <div className="min-w-0 bg-black font-sans text-white">
       <LatestUpdatesHero />
       <LatestUpdatesGrid />
       <EnquiryNow />
       {/* <AboutNewsletter /> */}
-    </main>
+    </div>
   );
 };
 

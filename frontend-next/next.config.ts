@@ -2,14 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    /*
-      The design ships ~324 source images, 316 of them PNG. Serving modern
-      formats is handled here rather than by re-encoding the source files, so
-      every existing `import img from ".../foo.png"` keeps working untouched
-      while the browser receives AVIF/WebP. This replaces the Vite build's
-      vite-plugin-image-optimizer step.
-    */
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
   /*
