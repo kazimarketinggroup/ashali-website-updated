@@ -56,6 +56,10 @@ const SiteHeader: React.FC = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() ?? "/";
 
+  if (pathname.startsWith("/cmsadmin")) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-black">
       <div className="h-[3px] w-full shrink-0" style={{ background: BRAND_GRADIENT_LR }} aria-hidden />

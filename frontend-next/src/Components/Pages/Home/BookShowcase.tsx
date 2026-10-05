@@ -1,42 +1,49 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Award, Globe, GraduationCap, LayoutGrid } from 'lucide-react';
-
+import { Award, Globe, GraduationCap, LayoutGrid } from "lucide-react";
 import Image from "next/image";
+import { useCMS } from "../../../context/CMSContext";
 
 // Assets
 import bgBooks from "../../../assets/home/books-bg.png";
 import allCovers from "../../../assets/home/updatedImage.webp";
 
-const tags = [
-  { icon: Award,         label: "Business Book of the Year 2021, The Business Book Awards" },
-  { icon: Globe,         label: "Translated worldwide" },
-  { icon: Award,         label: "150,000+ copies sold" },
+const defaultTags = [
+  { icon: Award, label: "Business Book of the Year 2021, The Business Book Awards" },
+  { icon: Globe, label: "Translated worldwide" },
+  { icon: Award, label: "150,000+ copies sold" },
   { icon: GraduationCap, label: "Used in MBA & university courses" },
-  { icon: LayoutGrid,    label: "The MILES framework" },
+  { icon: LayoutGrid, label: "The MILES framework" },
 ];
 
-/*
-  `as` controls the heading level of the headline below.
-
-  This section renders on BOTH / and /unfair-advantage. The homepage already
-  has its own h1 (the hero), so this must stay an h2 there — two h1s on one
-  page is exactly the ambiguity the audit was looking for. On
-  /unfair-advantage there is no other candidate (BookHero is images only), so
-  that page passes `as="h1"` and gains the top-level heading it was missing.
-
-  Default is the safe option: callers that say nothing keep the old h2.
-*/
 const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
   const Heading = as;
+  const { cmsData } = useCMS();
+  const bs = cmsData?.bookShowcase;
+
+  const headline = bs?.headline || "The Unfair Advantage:";
+  const highlightWord =
+    bs?.highlightWord ||
+    "the award winning book challenging the myth that success is only about hard work.";
+  const description =
+    bs?.description ||
+    "Success is shaped by context, timing, access, skills, mindset, networks and knowing how to use what you already have. The book has become core IP behind Ash's talks, frameworks and global work.";
+  const bookImgSrc = bs?.bookCoverImage || allCovers;
+  const isCustomImg = Boolean(bs?.bookCoverImage);
+
+  const tags =
+    bs?.tags && bs.tags.length > 0
+      ? bs.tags.map((t, idx) => ({
+          icon: idx % 2 === 0 ? Award : Globe,
+          label: t.label,
+        }))
+      : defaultTags;
 
   return (
-    <section
-      className="relative overflow-hidden bg-black px-4 py-16 sm:px-6 md:py-20 md:px-24"
-    >
+    <section className="relative overflow-hidden bg-black px-4 py-16 sm:px-6 md:py-20 md:px-24">
       {/* Optimized Background Image */}
       <Image
         src={bgBooks}
@@ -50,7 +57,6 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
       <div className="absolute inset-0 bg-black/80 -z-0 pointer-events-none" />
 
       <div className="relative z-10 mx-auto flex max-w-fluid flex-col items-center gap-12 lg:flex-row lg:gap-16">
-
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -64,19 +70,17 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
             <span>Bestselling Book by Ash Ali &amp; Hasan Kubba</span>
           </div>
 
-          {/* Headline — Includes 'The Unfair Advantage' in the H1 tag itself */}
+          {/* Headline */}
           <Heading className="text-fluid-30 font-semibold tracking-tight text-white leading-[1.2]">
             <span className="bg-gradient-to-r from-[#2dd4bf] to-[#0e9aa8] bg-clip-text text-transparent">
-              The Unfair Advantage:
+              {headline}
             </span>{" "}
-            the award winning book challenging the myth that success is only about hard work.
+            {highlightWord}
           </Heading>
 
           {/* Body */}
           <p className="mt-6 max-w-[560px] text-[13px] leading-[1.9] text-white/75 sm:text-sm">
-            Success is shaped by context, timing, access, skills, mindset, networks and knowing how to
-            use what you already have. The book has become core IP behind Ash's talks, frameworks and
-            global work.
+            {description}
           </p>
 
           {/* Tags */}
@@ -103,7 +107,7 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.theunfairacademy.com/"
+              href={bs?.amazonLink || "https://www.theunfairacademy.com/"}
               className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 text-center"
             >
               The Unfair Academy
@@ -121,10 +125,11 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
         >
           <div className="relative flex flex-col items-center">
             <Image
-              src={allCovers}
+              src={bookImgSrc}
               alt="International editions of The Unfair Advantage"
               width={500}
               height={400}
+              unoptimized={isCustomImg}
               sizes="(max-width: 768px) 100vw, 500px"
               loading="lazy"
               className="w-full max-w-[500px] object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.02]"
@@ -138,7 +143,6 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
             </p>
           </div>
         </motion.div>
-
       </div>
     </section>
   );

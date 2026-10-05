@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image, { type StaticImageData } from "next/image";
 
@@ -9,154 +11,134 @@ import salesforceLogo from "../../../assets/speaking/salesforce.png";
 import techItaliaLogo from "../../../assets/speaking/techitalia-logo.png";
 
 import { Card, PendingBadge, Reveal, Section, SectionHeading } from "../../Shared/SectionKit";
-
-/*
-  Testimonials.
-
-  These three quotes, names, avatars and organisation logos are the real
-  feedback carried over from the pre-rebuild site (they also render on the
-  Keynotes page). Job titles were never recorded for them, so `jobTitle` is
-  optional — a card publishes once it has a quote, a full name, an organisation
-  and an event.
-
-  Do NOT add an entry without all four of those. Anything less falls back to the
-  placeholder state rather than going live with partial attribution.
-*/
+import { useCMS } from "../../../context/CMSContext";
 
 export type Testimonial = {
   id: string;
   quote?: string;
   fullName?: string;
-  /** Optional — not recorded for the migrated quotes. */
   jobTitle?: string;
   organisation?: string;
   event?: string;
-  image?: StaticImageData;
+  image?: StaticImageData | string;
   imageAlt?: string;
-  /** Organisation logo, shown beneath the name where available. */
-  logo?: StaticImageData;
+  logo?: StaticImageData | string;
   logoAlt?: string;
 };
 
-function isPublishable(t: Testimonial): boolean {
-  return Boolean(
-    t.quote?.trim() && t.fullName?.trim() && t.organisation?.trim() && t.event?.trim(),
+const DEFAULT_AVATARS: Record<string, StaticImageData> = {
+  t1: freddieAvatar,
+  t2: cyrusAvatar,
+  t3: angellaAvatar,
+};
+
+const DEFAULT_LOGOS: Record<string, StaticImageData> = {
+  t1: eyLogo,
+  t2: salesforceLogo,
+  t3: techItaliaLogo,
+};
+
+const Testimonials: React.FC = () => {
+  const { cmsData } = useCMS();
+
+  const activeTestimonials = (cmsData?.testimonials || []).filter(
+    (t) => t.published !== false && t.featuredOnHome !== false
   );
-}
 
-const testimonials: Testimonial[] = [
-  {
-    id: "t1",
-    quote:
-      "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with, many thanks!",
-    fullName: "Freddie Monk",
-    organisation: "EY",
-    event: "Innova",
-    image: freddieAvatar,
-    imageAlt: "Freddie Monk",
-    logo: eyLogo,
-    logoAlt: "EY",
-  },
-  {
-    id: "t2",
-    quote:
-      "Ash Ali's talk at Salesforce Tower was exceptional, sharing his experience as an entrepreneur and marketing director at Just Eat. His insights on the Unfair Advantage made it one of our best events.",
-    fullName: "Cyrus Hessabi",
-    organisation: "Salesforce",
-    event: "Salesforce Tower",
-    image: cyrusAvatar,
-    imageAlt: "Cyrus Hessabi",
-    logo: salesforceLogo,
-    logoAlt: "Salesforce",
-  },
-  {
-    id: "t3",
-    quote:
-      "I've attended many entrepreneur events, but Ash's talk at TechItalia was by far one of the most authentic, inspiring, and engaging.",
-    fullName: "Andrea Angella",
-    organisation: "TechItalia",
-    event: "TechItalia",
-    image: angellaAvatar,
-    imageAlt: "Andrea Angella",
-    logo: techItaliaLogo,
-    logoAlt: "TechItalia",
-  },
-];
+  return (
+    <Section className="lg:px-14">
+      <div className="flex flex-col items-center gap-12">
+        <Reveal className="text-center">
+          <SectionHeading>
+            Trusted to bring experience, honesty and practical value to the room.
+          </SectionHeading>
+        </Reveal>
 
-const Testimonials: React.FC = () => (
-  <Section className="lg:px-14">
-    <div className="flex flex-col items-center gap-12">
-      <Reveal className="text-center">
-        <SectionHeading>
-          Trusted to bring experience, honesty and practical value to the room.
-        </SectionHeading>
-      </Reveal>
+        <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
+          {activeTestimonials.map((item, i) => {
+            const hasQuote = Boolean(item.quote?.trim() && item.fullName?.trim());
+            const staticAvatar = DEFAULT_AVATARS[item.id];
+            const staticLogo = DEFAULT_LOGOS[item.id];
 
-      <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
-        {testimonials.map((item, i) => {
-          const live = isPublishable(item);
-          return (
-            <Reveal key={item.id} delay={i * 0.08} className="h-full">
-              <Card className="flex h-full flex-col justify-between">
-                {live ? (
-                  <>
-                    <blockquote className="text-[13px] font-light leading-[1.8] tracking-wide text-gray-300 antialiased sm:text-[14px]">
-                      &ldquo;{item.quote}&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-8 flex items-center gap-3 border-t border-white/[0.06] pt-5">
-                      {item.image && (
-                        <Image
-                          src={item.image}
-                          alt={item.imageAlt ?? item.fullName ?? ""}
-                          width={48}
-                          height={48}
-                          loading="lazy"
-                          className="h-12 w-12 shrink-0 rounded-full border border-white/20 object-cover"
-                          draggable="false"
-                        />
-                      )}
-                      <div className="min-w-0">
-                        <p className="text-[13px] font-semibold tracking-wide text-white">
-                          {item.fullName}
-                        </p>
-                        {item.logo ? (
+            return (
+              <Reveal key={item.id} delay={i * 0.08} className="h-full">
+                <Card className="flex h-full flex-col justify-between">
+                  {hasQuote ? (
+                    <>
+                      <blockquote className="text-[13px] font-light leading-[1.8] tracking-wide text-gray-300 antialiased sm:text-[14px]">
+                        &ldquo;{item.quote}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-8 flex items-center gap-3 border-t border-white/[0.06] pt-5">
+                        {staticAvatar ? (
                           <Image
-                            src={item.logo}
-                            alt={item.logoAlt ?? item.organisation ?? ""}
+                            src={staticAvatar}
+                            alt={item.fullName ?? ""}
+                            width={48}
+                            height={48}
                             loading="lazy"
-                            width={100}
-                            height={24}
-                            className="mt-1.5 h-6 w-auto max-w-[100px] object-contain object-left"
+                            className="h-12 w-12 shrink-0 rounded-full border border-white/20 object-cover"
                             draggable="false"
                           />
+                        ) : item.avatarUrl ? (
+                          <img
+                            src={item.avatarUrl}
+                            alt={item.fullName ?? ""}
+                            className="h-12 w-12 shrink-0 rounded-full border border-white/20 object-cover"
+                          />
                         ) : (
-                          <p className="mt-1 text-[12px] font-light leading-[1.6] text-gray-500">
-                            {item.organisation} • {item.event}
-                          </p>
+                          <div className="h-12 w-12 shrink-0 rounded-full border border-white/20 bg-neutral-800 text-white font-bold flex items-center justify-center text-xs">
+                            {item.fullName.slice(0, 2).toUpperCase()}
+                          </div>
                         )}
-                      </div>
-                    </figcaption>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-[13px] font-light leading-[1.8] tracking-wide text-gray-600 antialiased sm:text-[14px]">
-                      Approved quote to be added.
-                    </p>
-                    <div className="mt-8 border-t border-white/[0.06] pt-5">
-                      <PendingBadge>Attribution to confirm</PendingBadge>
-                      <p className="mt-3 text-[12px] font-light leading-[1.7] text-gray-500">
-                        Full name to confirm · Job title · Organisation • Event
+                        <div className="min-w-0">
+                          <p className="text-[13px] font-semibold tracking-wide text-white">
+                            {item.fullName}
+                          </p>
+                          {staticLogo ? (
+                            <Image
+                              src={staticLogo}
+                              alt={item.organisation ?? ""}
+                              loading="lazy"
+                              width={100}
+                              height={24}
+                              className="mt-1.5 h-6 w-auto max-w-[100px] object-contain object-left"
+                              draggable="false"
+                            />
+                          ) : item.logoUrl ? (
+                            <img
+                              src={item.logoUrl}
+                              alt={item.organisation ?? ""}
+                              className="mt-1.5 h-6 w-auto max-w-[100px] object-contain object-left"
+                            />
+                          ) : (
+                            <p className="mt-1 text-[12px] font-light leading-[1.6] text-gray-500">
+                              {item.organisation} {item.event ? `• ${item.event}` : ""}
+                            </p>
+                          )}
+                        </div>
+                      </figcaption>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-[13px] font-light leading-[1.8] tracking-wide text-gray-600 antialiased sm:text-[14px]">
+                        Approved quote to be added.
                       </p>
-                    </div>
-                  </>
-                )}
-              </Card>
-            </Reveal>
-          );
-        })}
+                      <div className="mt-8 border-t border-white/[0.06] pt-5">
+                        <PendingBadge>Attribution to confirm</PendingBadge>
+                        <p className="mt-3 text-[12px] font-light leading-[1.7] text-gray-500">
+                          Full name to confirm · Job title · Organisation • Event
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </Card>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </Section>
-);
+    </Section>
+  );
+};
 
 export default Testimonials;

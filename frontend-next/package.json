@@ -12,6 +12,8 @@
   "dependencies": {
     "@upstash/ratelimit": "^2.2.0",
     "@upstash/redis": "^1.39.0",
+    "@vercel/edge-config": "^1.5.1",
+    "@vercel/global-config": "^1.5.1",
     "axios": "^1.12.2",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",

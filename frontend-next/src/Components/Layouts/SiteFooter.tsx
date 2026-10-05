@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {  Linkedin } from "lucide-react";
 import { toast } from "sonner";
 
@@ -74,11 +75,16 @@ function IconX({ className }: { className?: string }) {
 // }
 
 const SiteFooter: React.FC = () => {
+  const pathname = usePathname() ?? "/";
   const year = new Date().getFullYear();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (pathname.startsWith("/cmsadmin")) {
+    return null;
+  }
 
   const handleSubscribe = async (event: React.FormEvent) => {
     event.preventDefault();

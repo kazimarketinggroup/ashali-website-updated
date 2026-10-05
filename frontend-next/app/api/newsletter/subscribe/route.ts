@@ -71,6 +71,27 @@ export async function POST(req: NextRequest) {
       text: `New newsletter subscription\nName: ${name || "Subscriber"}\nEmail: ${email}\n${platformSync.synced ? `Synced to: ${platformSync.provider}` : ""}`,
     });
 
+    // 7. Record subscriber in CMS subscribers store
+    try {
+      const { getCmsData, saveCmsData } = await import("@/src/utils/cmsStorage");
+      const cms = getCmsData();
+      cms.subscribers = cms.subscribers || [];
+      const exists = cms.subscribers.some((s) => s.email.toLowerCase() === email.toLowerCase());
+      if (!exists) {
+        cms.subscribers.unshift({
+          id: `sub-${Date.now()}`,
+          email: String(email),
+          name: name ? String(name) : undefined,
+          date: new Date().toISOString().slice(0, 10),
+          source: "Newsletter Form",
+          status: "Active",
+        });
+        saveCmsData(cms);
+      }
+    } catch (cmsErr) {
+      console.warn("Failed to record subscriber into CMS store:", cmsErr);
+    }
+
     return NextResponse.json({
       success: true,
       message: "Thank you for subscribing! Please check your inbox to confirm your subscription.",

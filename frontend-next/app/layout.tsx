@@ -7,6 +7,7 @@ import SiteFooter from "@/src/Components/Layouts/SiteFooter";
 import SiteHeader from "@/src/Components/Layouts/SiteHeader";
 import JsonLd from "@/src/Components/Shared/JsonLd";
 import { personSchema } from "@/src/constants/structuredData";
+import { CMSProvider } from "@/src/context/CMSContext";
 import PageTransition from "./_components/PageTransition";
 import "./globals.css";
 
@@ -82,21 +83,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Mirrors the old MainLayout wrapper div exactly. `site-root` replaces
           the `#root` selector from index.css — see the note in globals.css.
         */}
-        <div className="site-root flex min-h-screen min-w-0 flex-col overflow-x-clip bg-black font-sans text-white">
-          {/*
-            Same three-part structure the old MainLayout rendered:
-            header / animated <main> / footer. <ScrollRestoration> has no
-            equivalent here and needs none — the App Router restores scroll
-            position on navigation by default.
-          */}
-          <SiteHeader />
+        <CMSProvider>
+          <div className="site-root flex min-h-screen min-w-0 flex-col overflow-x-clip bg-black font-sans text-white">
+            {/*
+              Same three-part structure the old MainLayout rendered:
+              header / animated <main> / footer. <ScrollRestoration> has no
+              equivalent here and needs none — the App Router restores scroll
+              position on navigation by default.
+            */}
+            <SiteHeader />
 
-          <PageTransition>{children}</PageTransition>
+            <PageTransition>{children}</PageTransition>
 
-          <SiteFooter />
-        </div>
+            <SiteFooter />
+          </div>
 
-        <Toaster position="top-right" richColors />
+          <Toaster position="top-right" richColors />
+        </CMSProvider>
       </body>
     </html>
   );

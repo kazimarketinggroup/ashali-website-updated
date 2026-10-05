@@ -87,7 +87,27 @@ export async function POST(req: NextRequest) {
       text: `New website enquiry\nType: ${enquiryLabel}\nName: ${name}\nEmail: ${email}\n${message ? `Message: ${message}\n` : ""}`,
     });
 
-    // 7. For report downloads, generate a secure time-limited download URL
+    // 7. Record inquiry in CMS inquiries store
+    try {
+      const { getCmsData, saveCmsData } = await import("@/src/utils/cmsStorage");
+      const cms = getCmsData();
+      cms.inquiries = cms.inquiries || [];
+      cms.inquiries.unshift({
+        id: `inq-${Date.now()}`,
+        name: String(name),
+        email: String(email),
+        type: String(enquiryLabel),
+        message: message ? String(message) : "",
+        details: details && typeof details === "object" ? details : undefined,
+        date: new Date().toISOString().replace("T", " ").slice(0, 16),
+        status: "New",
+      });
+      saveCmsData(cms);
+    } catch (cmsErr) {
+      console.warn("Failed to record inquiry into CMS store:", cmsErr);
+    }
+
+    // 8. For report downloads, generate a secure time-limited download URL
     const downloadToken = isReportDownload ? generateReportToken() : undefined;
     const downloadUrl = downloadToken ? `/api/reports/download?token=${downloadToken}` : undefined;
 

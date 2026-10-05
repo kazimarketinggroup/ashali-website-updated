@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, easeOut } from "framer-motion";
 
 import { UPDATE_POSTS, type UpdatePost } from "./updatesData";
+import { useCMS } from "../../../context/CMSContext";
 
 function CardMedia({ post }: { post: UpdatePost }) {
   return (
@@ -28,14 +29,16 @@ function CardMedia({ post }: { post: UpdatePost }) {
 }
 
 const LatestUpdatesGrid: React.FC = () => {
+  const { cmsData } = useCMS();
   const [visible, setVisible] = useState(6);
 
-  const shown = UPDATE_POSTS.slice(0, visible);
+  const cmsUpdates = (cmsData?.updates || []).filter((u) => u.published !== false);
+  const posts: UpdatePost[] = cmsUpdates.length > 0 ? cmsUpdates : UPDATE_POSTS;
+  const shown = posts.slice(0, visible);
 
   return (
     <section className="bg-black px-4 pb-16 pt-10 text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-fluid">
-
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {shown.map((post, idx) => (
             <motion.article
@@ -65,11 +68,11 @@ const LatestUpdatesGrid: React.FC = () => {
           ))}
         </div>
 
-        {visible < UPDATE_POSTS.length ? (
+        {visible < posts.length ? (
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              onClick={() => setVisible((v) => Math.min(v + 6, UPDATE_POSTS.length))}
+              onClick={() => setVisible((v) => Math.min(v + 6, posts.length))}
               className="rounded-sm border border-white/40 bg-transparent px-8 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
             >
               Load More

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/src/Components/Shared/JsonLd";
 import UpdateDetail from "@/src/Components/Pages/LatestUpdates/UpdateDetail";
 import { UPDATE_POSTS } from "@/src/Components/Pages/LatestUpdates/updatesData";
+import { getCmsData } from "@/src/utils/cmsStorage";
 import { pageMetadata } from "@/src/constants/metadata";
 import { breadcrumbSchema } from "@/src/constants/structuredData";
 
@@ -30,13 +31,8 @@ export function generateStaticParams() {
   return UPDATE_POSTS.map((post) => ({ slug: post.slug }));
 }
 
-/*
-  Reject any slug not in UPDATE_POSTS instead of rendering it on demand.
-  Without this, an unknown slug would still be server-rendered (and 200) on
-  first request; `false` makes Next return the 404 for anything outside the
-  prerendered set.
-*/
-export const dynamicParams = false;
+// Allow CMS-created dynamic posts on demand
+export const dynamicParams = true;
 
 /*
   Post titles are stored in ALL CAPS for the on-page heading design. Search
@@ -86,7 +82,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = UPDATE_POSTS.find((p) => p.slug === slug);
+  const cms = getCmsData();
+  const post = cms.updates.find((p) => p.slug === slug && p.published !== false) || UPDATE_POSTS.find((p) => p.slug === slug);
 
   if (!post) {
     // dynamicParams=false means this is unreachable, but generateMetadata must
@@ -110,8 +107,8 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-
-  const post = UPDATE_POSTS.find((p) => p.slug === slug);
+  const cms = getCmsData();
+  const post = cms.updates.find((p) => p.slug === slug && p.published !== false) || UPDATE_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
   return (
