@@ -26,8 +26,10 @@ import {
   BookOpen,
   Megaphone,
   Layers,
+  Eye,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
+import { CMSGlobalLivePreview } from "./CMSGlobalLivePreview";
 
 interface CMSLayoutProps {
   activeTab: string;
@@ -58,6 +60,7 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
   const { cmsData } = useCMS();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [liveSitePreviewOpen, setLiveSitePreviewOpen] = useState(false);
 
   const newInquiriesCount = cmsData.inquiries.filter((i) => i.status === "New").length;
 
@@ -181,14 +184,25 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
         </div>
 
         {/* Right Topbar Icons & Profile Pill (Matching Reference Image) */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => setLiveSitePreviewOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] hover:opacity-95 shadow-sm shadow-orange-500/20 transition-all cursor-pointer"
+            title="Open Interactive Full Website Preview with Desktop/Tablet/Mobile viewports"
+          >
+            <Eye size={13} />
+            <span className="hidden sm:inline">Live Site Preview</span>
+            <span className="sm:hidden">Preview</span>
+          </button>
+
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200/70 transition-all"
           >
-            <span>Live Site</span>
+            <span>New Tab</span>
             <ExternalLink size={12} />
           </a>
 
@@ -323,6 +337,23 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
           <div className="max-w-7xl mx-auto">{children}</div>
         </main>
       </div>
+
+      {/* Global Interactive Live Website Preview Modal */}
+      <CMSGlobalLivePreview
+        isOpen={liveSitePreviewOpen}
+        onClose={() => setLiveSitePreviewOpen(false)}
+        initialRoute={
+          activeTab === "updates"
+            ? "/updates"
+            : activeTab === "keynotes"
+            ? "/speaking"
+            : activeTab === "workshops"
+            ? "/workshops"
+            : activeTab === "book-showcase"
+            ? "/unfair-advantage"
+            : "/"
+        }
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Edit2, Trash2, ExternalLink } from "lucide-react";
+import { Plus, Edit2, Trash2, ExternalLink, Eye, Globe } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 import { PortfolioItem } from "../../types/cms";
 import { CMSModal } from "./CMSModal";
@@ -154,110 +154,163 @@ export const CMSPortfolioManager: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title={editingItem ? "Edit Venture" : "Add Venture"}
-        subtitle="Manage venture portfolio company"
+        subtitle="Changes reflect immediately in the live portfolio card preview on the right"
+        maxWidth="max-w-4xl"
       >
-        <form onSubmit={handleSave} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Form */}
+          <form onSubmit={handleSave} className="lg:col-span-7 space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Company / Project Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                  placeholder="e.g. Just Eat UK or Uhubs.ai"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:border-[#FF781D]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Ash Ali&apos;s Role
+                </label>
+                <input
+                  type="text"
+                  value={formData.role}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, role: e.target.value }))}
+                  placeholder="First Marketing Director / Co-Founder"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Key Metric / Outcome
+                </label>
+                <input
+                  type="text"
+                  value={formData.metrics}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, metrics: e.target.value }))}
+                  placeholder="Seed to £1.4B+ IPO"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Status
+                </label>
+                <select
+                  value={formData.status}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, status: e.target.value as any }))}
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Exited">Exited</option>
+                  <option value="Advising">Advising</option>
+                  <option value="Invested">Invested</option>
+                </select>
+              </div>
+            </div>
+
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Company / Project Name
+                Website URL
               </label>
               <input
                 type="text"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                placeholder="e.g. Just Eat UK or Uhubs.ai"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none"
+                value={formData.url}
+                onChange={(e) => setFormData((prev) => ({ ...prev, url: e.target.value }))}
+                placeholder="https://..."
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
               />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Ash Ali&apos;s Role
+                Description
               </label>
-              <input
-                type="text"
-                value={formData.role}
-                onChange={(e) => setFormData((prev) => ({ ...prev, role: e.target.value }))}
-                placeholder="First Marketing Director / Co-Founder"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Key Metric / Outcome
-              </label>
-              <input
-                type="text"
-                value={formData.metrics}
-                onChange={(e) => setFormData((prev) => ({ ...prev, metrics: e.target.value }))}
-                placeholder="Seed to £1.4B+ IPO"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+              <textarea
+                rows={3}
+                value={formData.description}
+                onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+                placeholder="Brief narrative of Ash Ali's contribution..."
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Status
-              </label>
-              <select
-                value={formData.status}
-                onChange={(e) => setFormData((prev) => ({ ...prev, status: e.target.value as any }))}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-pointer"
               >
-                <option value="Active">Active</option>
-                <option value="Exited">Exited</option>
-                <option value="Advising">Advising</option>
-                <option value="Invested">Invested</option>
-              </select>
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md cursor-pointer hover:opacity-95"
+              >
+                Save Venture
+              </button>
             </div>
-          </div>
+          </form>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Website URL
-            </label>
-            <input
-              type="text"
-              value={formData.url}
-              onChange={(e) => setFormData((prev) => ({ ...prev, url: e.target.value }))}
-              placeholder="https://..."
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-            />
-          </div>
+          {/* Right Column: Live Card Preview */}
+          <div className="lg:col-span-5 bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-5 text-white shadow-xl space-y-4 sticky top-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                <Eye size={13} className="text-[#FF781D]" />
+                <span>Live Card Preview</span>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono">Portfolio</span>
+            </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Description
-            </label>
-            <textarea
-              rows={3}
-              value={formData.description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-            />
-          </div>
+            <div className="bg-[#141414] rounded-xl border border-neutral-800 p-5 space-y-3 shadow-2xl relative">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                  {formData.status || "Active"}
+                </span>
+                {formData.url && (
+                  <span className="text-neutral-400">
+                    <Globe size={13} />
+                  </span>
+                )}
+              </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md"
-            >
-              Save Venture
-            </button>
+              <h4 className="text-base font-bold text-white leading-tight">
+                {formData.name || "Venture Name"}
+              </h4>
+
+              {formData.role && (
+                <p className="text-xs font-semibold text-orange-400/90">
+                  {formData.role}
+                </p>
+              )}
+
+              {formData.metrics && (
+                <div className="p-2.5 bg-white/5 rounded-lg border border-white/5 text-xs font-bold text-emerald-400">
+                  {formData.metrics}
+                </div>
+              )}
+
+              <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                {formData.description || "Venture summary and impact will appear here."}
+              </p>
+            </div>
+
+            <p className="text-[10px] text-gray-500 text-center pt-1">
+              Live preview updates keystroke-by-keystroke
+            </p>
           </div>
-        </form>
+        </div>
       </CMSModal>
     </div>
   );

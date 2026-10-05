@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Edit2, Trash2, HelpCircle, Briefcase } from "lucide-react";
+import { Plus, Edit2, Trash2, HelpCircle, Briefcase, Eye, Clock, Globe, ChevronDown } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 import { FaqItem, WorkshopItem } from "../../types/cms";
 import { CMSModal } from "./CMSModal";
@@ -276,168 +276,256 @@ export const CMSWorkshopsFaqManager: React.FC = () => {
         </div>
       )}
 
-      {/* Workshop Modal */}
+      {/* Workshop Modal with Real-time Live Preview */}
       <CMSModal
         isOpen={isWsModalOpen}
         onClose={() => setIsWsModalOpen(false)}
         title={editingWs ? "Edit Workshop" : "Add Workshop"}
-        subtitle="Manage workshop framework, duration, and target outcomes"
+        subtitle="Changes reflect immediately in the live workshop card preview on the right"
+        maxWidth="max-w-5xl"
       >
-        <form onSubmit={handleSaveWs} className="space-y-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Workshop Title
-            </label>
-            <input
-              type="text"
-              required
-              value={wsForm.title}
-              onChange={(e) => setWsForm((prev) => ({ ...prev, title: e.target.value }))}
-              placeholder="e.g. Executive Masterclass: Unfair Advantage Strategy Lab"
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Tagline
-            </label>
-            <input
-              type="text"
-              value={wsForm.tagline}
-              onChange={(e) => setWsForm((prev) => ({ ...prev, tagline: e.target.value }))}
-              placeholder="High-impact strategic sprint for leadership teams"
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Form Controls */}
+          <form onSubmit={handleSaveWs} className="lg:col-span-7 space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Duration
+                Workshop Title
               </label>
               <input
                 type="text"
-                value={wsForm.duration}
-                onChange={(e) => setWsForm((prev) => ({ ...prev, duration: e.target.value }))}
-                placeholder="Half-Day or Full-Day"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
+                required
+                value={wsForm.title}
+                onChange={(e) => setWsForm((prev) => ({ ...prev, title: e.target.value }))}
+                placeholder="e.g. Executive Masterclass: Unfair Advantage Strategy Lab"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:border-[#FF781D]"
               />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Format
+                Tagline
               </label>
               <input
                 type="text"
-                value={wsForm.format}
-                onChange={(e) => setWsForm((prev) => ({ ...prev, format: e.target.value }))}
-                placeholder="In-Person or Interactive Virtual"
+                value={wsForm.tagline}
+                onChange={(e) => setWsForm((prev) => ({ ...prev, tagline: e.target.value }))}
+                placeholder="High-impact strategic sprint for leadership teams"
                 className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Description
-            </label>
-            <textarea
-              rows={3}
-              required
-              value={wsForm.description}
-              onChange={(e) => setWsForm((prev) => ({ ...prev, description: e.target.value }))}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-            />
-          </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Duration
+                </label>
+                <input
+                  type="text"
+                  value={wsForm.duration}
+                  onChange={(e) => setWsForm((prev) => ({ ...prev, duration: e.target.value }))}
+                  placeholder="Half-Day or Full-Day"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
+                />
+              </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              onClick={() => setIsWsModalOpen(false)}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md"
-            >
-              Save Workshop
-            </button>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Format
+                </label>
+                <input
+                  type="text"
+                  value={wsForm.format}
+                  onChange={(e) => setWsForm((prev) => ({ ...prev, format: e.target.value }))}
+                  placeholder="In-Person or Interactive Virtual"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Description
+              </label>
+              <textarea
+                rows={3}
+                required
+                value={wsForm.description}
+                onChange={(e) => setWsForm((prev) => ({ ...prev, description: e.target.value }))}
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
+              />
+            </div>
+
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => setIsWsModalOpen(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md cursor-pointer hover:opacity-95"
+              >
+                Save Workshop
+              </button>
+            </div>
+          </form>
+
+          {/* Right Column: Live Real-time Workshop Card Preview */}
+          <div className="lg:col-span-5 bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-5 text-white shadow-xl space-y-4 sticky top-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                <Eye size={13} className="text-[#FF781D]" />
+                <span>Live Workshop Preview</span>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono">/workshops</span>
+            </div>
+
+            {/* Workshop Card Replica */}
+            <div className="bg-[#141414] rounded-xl border border-neutral-800 p-5 space-y-3 shadow-2xl relative">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-500/10 text-orange-400 border border-orange-500/20 flex items-center gap-1">
+                  <Clock size={10} />
+                  <span>{wsForm.duration || "Half-Day / Full-Day"}</span>
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/10 text-neutral-300 border border-white/10 flex items-center gap-1">
+                  <Globe size={10} />
+                  <span>{wsForm.format || "In-Person & Virtual"}</span>
+                </span>
+              </div>
+
+              <h4 className="text-sm font-bold text-white leading-snug">
+                {wsForm.title || "Your Workshop Title"}
+              </h4>
+
+              {wsForm.tagline && (
+                <p className="text-xs font-semibold text-orange-400/90">
+                  {wsForm.tagline}
+                </p>
+              )}
+
+              <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                {wsForm.description || "Detailed workshop methodology and outcomes will appear here."}
+              </p>
+
+              <div className="pt-2">
+                <div className="w-full py-2 bg-gradient-to-r from-[#FF781D] to-[#E33C3C] text-white text-xs font-semibold rounded-lg text-center shadow-md">
+                  Inquire For Workshop &rarr;
+                </div>
+              </div>
+            </div>
+
+            <p className="text-[10px] text-gray-500 text-center pt-1">
+              Preview renders in real-time as you type
+            </p>
           </div>
-        </form>
+        </div>
       </CMSModal>
 
-      {/* FAQ Modal */}
+      {/* FAQ Modal with Real-time Live Preview */}
       <CMSModal
         isOpen={isFaqModalOpen}
         onClose={() => setIsFaqModalOpen(false)}
         title={editingFaq ? "Edit FAQ" : "Add FAQ Question"}
-        subtitle="Manage frequently asked questions"
+        subtitle="Manage frequently asked questions with instant accordion preview"
+        maxWidth="max-w-4xl"
       >
-        <form onSubmit={handleSaveFaq} className="space-y-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Category
-            </label>
-            <select
-              value={faqForm.category}
-              onChange={(e) => setFaqForm((prev) => ({ ...prev, category: e.target.value }))}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-            >
-              <option value="Speaking">Speaking</option>
-              <option value="Booking">Booking</option>
-              <option value="Workshops">Workshops</option>
-              <option value="Customisation">Customisation</option>
-            </select>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left: Form */}
+          <form onSubmit={handleSaveFaq} className="lg:col-span-7 space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Category
+              </label>
+              <select
+                value={faqForm.category}
+                onChange={(e) => setFaqForm((prev) => ({ ...prev, category: e.target.value }))}
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
+              >
+                <option value="Speaking">Speaking</option>
+                <option value="Booking">Booking</option>
+                <option value="Workshops">Workshops</option>
+                <option value="Customisation">Customisation</option>
+              </select>
+            </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Question
-            </label>
-            <input
-              type="text"
-              required
-              value={faqForm.question}
-              onChange={(e) => setFaqForm((prev) => ({ ...prev, question: e.target.value }))}
-              placeholder="e.g. What formats does Ash offer for corporate keynotes?"
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none"
-            />
-          </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Question
+              </label>
+              <input
+                type="text"
+                required
+                value={faqForm.question}
+                onChange={(e) => setFaqForm((prev) => ({ ...prev, question: e.target.value }))}
+                placeholder="e.g. What formats does Ash offer for corporate keynotes?"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:border-[#FF781D]"
+              />
+            </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Answer
-            </label>
-            <textarea
-              rows={4}
-              required
-              value={faqForm.answer}
-              onChange={(e) => setFaqForm((prev) => ({ ...prev, answer: e.target.value }))}
-              placeholder="Detailed answer text..."
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-            />
-          </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Answer
+              </label>
+              <textarea
+                rows={4}
+                required
+                value={faqForm.answer}
+                onChange={(e) => setFaqForm((prev) => ({ ...prev, answer: e.target.value }))}
+                placeholder="Detailed answer text..."
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#FF781D]"
+              />
+            </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              onClick={() => setIsFaqModalOpen(false)}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md"
-            >
-              Save FAQ
-            </button>
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => setIsFaqModalOpen(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md cursor-pointer hover:opacity-95"
+              >
+                Save FAQ
+              </button>
+            </div>
+          </form>
+
+          {/* Right: Live Preview */}
+          <div className="lg:col-span-5 bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-5 text-white shadow-xl space-y-4 sticky top-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                <Eye size={13} className="text-[#FF781D]" />
+                <span>Live Accordion Preview</span>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono">FAQ Accordion</span>
+            </div>
+
+            <div className="bg-[#141414] rounded-xl border border-neutral-800 p-4 space-y-3 shadow-2xl">
+              <div className="flex items-center justify-between gap-2 text-xs font-bold text-white pb-2 border-b border-neutral-800/80">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded text-[9px] font-bold uppercase">
+                    {faqForm.category || "General"}
+                  </span>
+                  <span className="text-xs">{faqForm.question || "Your FAQ Question Here?"}</span>
+                </div>
+                <ChevronDown size={14} className="text-orange-400 shrink-0 transform rotate-180" />
+              </div>
+
+              <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                {faqForm.answer || "Your detailed answer will appear when the participant expands this FAQ question on the website."}
+              </p>
+            </div>
+
+            <p className="text-[10px] text-gray-500 text-center pt-1">
+              Preview updates live as you type
+            </p>
           </div>
-        </form>
+        </div>
       </CMSModal>
     </div>
   );

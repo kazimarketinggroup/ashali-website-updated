@@ -30,6 +30,7 @@ export const CMSUpdatesManager: React.FC = () => {
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<UpdateItem | null>(null);
+  const [quickPreviewItem, setQuickPreviewItem] = useState<UpdateItem | null>(null);
   const [previewTab, setPreviewTab] = useState<"card" | "article">("card");
 
   // Form State
@@ -251,15 +252,27 @@ export const CMSUpdatesManager: React.FC = () => {
 
             {/* Card Footer Actions */}
             <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-              <a
-                href={`/updates/${item.slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-1 transition-colors"
-              >
-                <span>Live View</span>
-                <ExternalLink size={12} />
-              </a>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setQuickPreviewItem(item)}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#FF781D] hover:text-[#E33C3C] transition-colors cursor-pointer"
+                  title="Open live reading preview"
+                >
+                  <Eye size={13} />
+                  <span>Preview</span>
+                </button>
+                <span className="text-slate-300">&bull;</span>
+                <a
+                  href={`/updates/${item.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 transition-colors"
+                >
+                  <span>Live URL</span>
+                  <ExternalLink size={11} />
+                </a>
+              </div>
 
               <div className="flex items-center gap-1.5">
                 <button
@@ -619,6 +632,80 @@ export const CMSUpdatesManager: React.FC = () => {
           </div>
         </div>
       </CMSModal>
+
+      {/* Standalone Quick Reading Live Preview Modal */}
+      {quickPreviewItem && (
+        <CMSModal
+          isOpen={!!quickPreviewItem}
+          onClose={() => setQuickPreviewItem(null)}
+          title={`Live Article Preview: ${quickPreviewItem.title}`}
+          subtitle={`Exact replica of /updates/${quickPreviewItem.slug} layout`}
+          maxWidth="max-w-4xl"
+        >
+          <div className="bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-6 sm:p-8 text-white space-y-6">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-neutral-800 text-xs text-neutral-400">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 bg-white/10 rounded-full font-semibold text-white uppercase text-[10px]">
+                  {quickPreviewItem.category}
+                </span>
+                <span>&bull;</span>
+                <span>{quickPreviewItem.date}</span>
+                <span>&bull;</span>
+                <span>{quickPreviewItem.readTime || "5 min read"}</span>
+                {quickPreviewItem.podcastUi && (
+                  <>
+                    <span>&bull;</span>
+                    <span className="px-2 py-0.5 bg-orange-500/80 text-white rounded text-[10px] font-bold">
+                      🎙️ Podcast Edition
+                    </span>
+                  </>
+                )}
+              </div>
+              <button
+                onClick={() => {
+                  const itemToEdit = quickPreviewItem;
+                  setQuickPreviewItem(null);
+                  handleOpenEdit(itemToEdit);
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-[#FF781D] to-[#E33C3C] text-white text-xs font-semibold rounded-xl hover:opacity-95 transition-all cursor-pointer"
+              >
+                <Edit2 size={12} />
+                <span>Edit This Article</span>
+              </button>
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+              {quickPreviewItem.title}
+            </h1>
+
+            <div className="flex items-center gap-2 text-xs text-neutral-400">
+              <User size={13} className="text-[#FF781D]" />
+              <span>By {quickPreviewItem.author || "Ash Ali"}</span>
+            </div>
+
+            {quickPreviewItem.cover && (
+              <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-neutral-800 shadow-2xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={quickPreviewItem.cover}
+                  alt={quickPreviewItem.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+
+            {quickPreviewItem.excerpt && (
+              <div className="p-4 bg-white/5 border-l-2 border-[#FF781D] text-sm italic text-neutral-300 leading-relaxed rounded-r-xl">
+                {quickPreviewItem.excerpt}
+              </div>
+            )}
+
+            <div className="text-sm text-neutral-300 leading-relaxed space-y-4 whitespace-pre-line font-light">
+              {quickPreviewItem.content}
+            </div>
+          </div>
+        </CMSModal>
+      )}
     </div>
   );
 };

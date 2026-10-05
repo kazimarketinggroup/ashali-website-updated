@@ -15,6 +15,7 @@ import {
   Award,
   Globe,
   TrendingUp,
+  Eye,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 import { MetricItem } from "../../types/cms";
@@ -254,117 +255,163 @@ export const CMSMetricsManager: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal with Real-time Live Preview */}
       <CMSModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title={editingItem ? "Edit Highlight Card" : "Add Highlight Card"}
-        subtitle="Configure icon, category label, title and homepage row"
-        maxWidth="max-w-lg"
+        subtitle="Changes in the form reflect immediately in the live metric card preview on the right"
+        maxWidth="max-w-4xl"
       >
-        <form onSubmit={handleSave} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Icon
-              </label>
-              <select
-                value={formData.icon}
-                onChange={(e) => setFormData((prev) => ({ ...prev, icon: e.target.value }))}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-              >
-                {Object.keys(ICON_MAP).map((iconKey) => (
-                  <option key={iconKey} value={iconKey}>
-                    {iconKey}
-                  </option>
-                ))}
-              </select>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Form Controls */}
+          <form onSubmit={handleSave} className="lg:col-span-7 space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Icon
+                </label>
+                <select
+                  value={formData.icon}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, icon: e.target.value }))}
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                >
+                  {Object.keys(ICON_MAP).map((iconKey) => (
+                    <option key={iconKey} value={iconKey}>
+                      {iconKey}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Display Row
+                </label>
+                <select
+                  value={formData.row}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, row: Number(e.target.value) as 1 | 2 }))}
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                >
+                  <option value={1}>Row 1 (3 items across)</option>
+                  <option value={2}>Row 2 (4 items across)</option>
+                </select>
+              </div>
             </div>
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Display Row
+                Top Small Label (Optional)
               </label>
-              <select
-                value={formData.row}
-                onChange={(e) => setFormData((prev) => ({ ...prev, row: Number(e.target.value) as 1 | 2 }))}
+              <input
+                type="text"
+                value={formData.label || ""}
+                onChange={(e) => setFormData((prev) => ({ ...prev, label: e.target.value }))}
+                placeholder="e.g. Co-author of or Winner"
                 className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-              >
-                <option value={1}>Row 1 (3 items across)</option>
-                <option value={2}>Row 2 (4 items across)</option>
-              </select>
+              />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Top Small Label (Optional)
-            </label>
-            <input
-              type="text"
-              value={formData.label || ""}
-              onChange={(e) => setFormData((prev) => ({ ...prev, label: e.target.value }))}
-              placeholder="e.g. Co-author of or Winner"
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-            />
-          </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Main Bold Title
+              </label>
+              <input
+                type="text"
+                required
+                value={formData.title}
+                onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
+                placeholder="e.g. The Unfair Advantage or Just Eat"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:border-[#FF781D]"
+              />
+            </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Main Bold Title
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.title}
-              onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
-              placeholder="e.g. The Unfair Advantage or Just Eat"
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:border-[#FF781D]"
-            />
-          </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Subtitle (Optional)
+              </label>
+              <input
+                type="text"
+                value={formData.sub || ""}
+                onChange={(e) => setFormData((prev) => ({ ...prev, sub: e.target.value }))}
+                placeholder="e.g. Scaled from seed stage to IPO"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+              />
+            </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Subtitle (Optional)
-            </label>
-            <input
-              type="text"
-              value={formData.sub || ""}
-              onChange={(e) => setFormData((prev) => ({ ...prev, sub: e.target.value }))}
-              placeholder="e.g. Scaled from seed stage to IPO"
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-            />
-          </div>
+            <div className="flex items-center gap-2 pt-2">
+              <input
+                type="checkbox"
+                id="metric-pub"
+                checked={formData.published}
+                onChange={(e) => setFormData((prev) => ({ ...prev, published: e.target.checked }))}
+                className="w-4 h-4 rounded text-orange-500"
+              />
+              <label htmlFor="metric-pub" className="text-xs font-semibold text-slate-700 cursor-pointer">
+                Visible on Homepage
+              </label>
+            </div>
 
-          <div className="flex items-center gap-2 pt-2">
-            <input
-              type="checkbox"
-              id="metric-pub"
-              checked={formData.published}
-              onChange={(e) => setFormData((prev) => ({ ...prev, published: e.target.checked }))}
-              className="w-4 h-4 rounded text-orange-500"
-            />
-            <label htmlFor="metric-pub" className="text-xs font-semibold text-slate-700 cursor-pointer">
-              Visible on Homepage
-            </label>
-          </div>
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md cursor-pointer hover:opacity-95"
+              >
+                Save Metric Card
+              </button>
+            </div>
+          </form>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md"
-            >
-              Save Metric Card
-            </button>
+          {/* Right Column: Live Real-Time Metric Card Preview */}
+          <div className="lg:col-span-5 bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-5 text-white shadow-xl space-y-4 sticky top-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                <Eye size={13} className="text-[#FF781D]" />
+                <span>Live Card Preview</span>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono">Row {formData.row}</span>
+            </div>
+
+            {/* Metric Card Replica */}
+            {(() => {
+              const IconComp = ICON_MAP[formData.icon || "Award"] || Award;
+              return (
+                <div className="bg-[#141414] rounded-xl border border-neutral-800 p-5 space-y-3 shadow-2xl relative group">
+                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-[#FF781D] flex items-center justify-center">
+                    <IconComp size={20} />
+                  </div>
+
+                  {formData.label && (
+                    <p className="text-[10px] uppercase font-bold text-orange-400/90 tracking-wider">
+                      {formData.label}
+                    </p>
+                  )}
+
+                  <h4 className="text-lg font-bold text-white leading-tight">
+                    {formData.title || "Your Achievement"}
+                  </h4>
+
+                  {formData.sub && (
+                    <p className="text-xs text-neutral-400 leading-snug font-light">
+                      {formData.sub}
+                    </p>
+                  )}
+                </div>
+              );
+            })()}
+
+            <p className="text-[10px] text-gray-500 text-center pt-1">
+              Reflects live styling in Homepage Metrics section
+            </p>
           </div>
-        </form>
+        </div>
       </CMSModal>
     </div>
   );

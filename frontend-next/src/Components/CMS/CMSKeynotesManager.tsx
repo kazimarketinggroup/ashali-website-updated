@@ -11,6 +11,7 @@ export const CMSKeynotesManager: React.FC = () => {
   const { cmsData, saveItem, deleteItem, toggleItem } = useCMS();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<KeynoteItem | null>(null);
+  const [quickPreviewItem, setQuickPreviewItem] = useState<KeynoteItem | null>(null);
 
   const [formData, setFormData] = useState<Partial<KeynoteItem>>({
     title: "",
@@ -178,8 +179,17 @@ export const CMSKeynotesManager: React.FC = () => {
               </button>
 
               <button
+                type="button"
+                onClick={() => setQuickPreviewItem(item)}
+                className="p-2 text-[#FF781D] hover:text-[#E33C3C] hover:bg-orange-50 rounded-lg transition-colors cursor-pointer"
+                title="Preview Keynote Card"
+              >
+                <Eye size={16} />
+              </button>
+
+              <button
                 onClick={() => handleOpenEdit(item)}
-                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
                 title="Edit Keynote"
               >
                 <Edit2 size={16} />
@@ -187,7 +197,7 @@ export const CMSKeynotesManager: React.FC = () => {
 
               <button
                 onClick={() => handleDelete(item.id, item.title)}
-                className="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors"
+                className="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
                 title="Delete Keynote"
               >
                 <Trash2 size={16} />
@@ -197,167 +207,315 @@ export const CMSKeynotesManager: React.FC = () => {
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Add / Edit Modal with Real-Time Live Preview */}
       <CMSModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title={editingItem ? "Edit Keynote Speech" : "Add Keynote Speech"}
-        subtitle="Manage talk messaging, duration, and participant takeaways"
-        maxWidth="max-w-2xl"
+        subtitle="Changes in the form reflect immediately in the live card preview on the right"
+        maxWidth="max-w-6xl"
       >
-        <form onSubmit={handleSave} className="space-y-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Keynote Title
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.title}
-              onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
-              placeholder="e.g. The Unfair Advantage: Winning in an AI-Disrupted Economy"
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Form Controls */}
+          <form onSubmit={handleSave} className="lg:col-span-7 space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Subtitle / Angle
+                Keynote Title
               </label>
               <input
                 type="text"
-                value={formData.subtitle}
-                onChange={(e) => setFormData((prev) => ({ ...prev, subtitle: e.target.value }))}
-                placeholder="Tactical playbook for executives"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                required
+                value={formData.title}
+                onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
+                placeholder="e.g. The Unfair Advantage: Winning in an AI-Disrupted Economy"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
               />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Subtitle / Angle
+                </label>
+                <input
+                  type="text"
+                  value={formData.subtitle}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, subtitle: e.target.value }))}
+                  placeholder="Tactical playbook for executives"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Badge Tag
+                </label>
+                <input
+                  type="text"
+                  value={formData.badge}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, badge: e.target.value }))}
+                  placeholder="Flagship Keynote / New for 2026"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Duration
+                </label>
+                <input
+                  type="text"
+                  value={formData.duration}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, duration: e.target.value }))}
+                  placeholder="45–60 mins"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Target Audience
+                </label>
+                <input
+                  type="text"
+                  value={formData.targetAudience}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, targetAudience: e.target.value }))}
+                  placeholder="Enterprise Leaders, C-Suite, Founders"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+                />
+              </div>
             </div>
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Badge Tag
+                Description
               </label>
-              <input
-                type="text"
-                value={formData.badge}
-                onChange={(e) => setFormData((prev) => ({ ...prev, badge: e.target.value }))}
-                placeholder="Flagship Keynote / New for 2026"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Duration
-              </label>
-              <input
-                type="text"
-                value={formData.duration}
-                onChange={(e) => setFormData((prev) => ({ ...prev, duration: e.target.value }))}
-                placeholder="45–60 mins"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
+              <textarea
+                rows={3}
+                required
+                value={formData.description}
+                onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+                placeholder="What this keynote delivers to the audience..."
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Target Audience
-              </label>
-              <input
-                type="text"
-                value={formData.targetAudience}
-                onChange={(e) => setFormData((prev) => ({ ...prev, targetAudience: e.target.value }))}
-                placeholder="Enterprise Leaders, C-Suite, Founders"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none"
-              />
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Audience Key Takeaways
+                </label>
+                <button
+                  type="button"
+                  onClick={handleAddTakeaway}
+                  className="text-[11px] font-bold text-[#FF781D] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <Plus size={12} />
+                  <span>Add Bullet Point</span>
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                {formData.takeaways?.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => handleTakeawayChange(idx, e.target.value)}
+                      placeholder={`Takeaway point #${idx + 1}`}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveTakeaway(idx)}
+                      className="p-2 text-rose-500 hover:bg-rose-50 rounded-lg shrink-0 cursor-pointer"
+                      title="Remove point"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Description
-            </label>
-            <textarea
-              rows={3}
-              required
-              value={formData.description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-              placeholder="What this keynote delivers to the audience..."
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                Audience Key Takeaways
+            <div className="flex items-center gap-2 pt-2">
+              <input
+                type="checkbox"
+                id="kn-published"
+                checked={formData.published}
+                onChange={(e) => setFormData((prev) => ({ ...prev, published: e.target.checked }))}
+                className="w-4 h-4 rounded text-orange-500"
+              />
+              <label htmlFor="kn-published" className="text-xs font-semibold text-slate-700 cursor-pointer">
+                Visible on /speaking page
               </label>
+            </div>
+
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
               <button
                 type="button"
-                onClick={handleAddTakeaway}
-                className="text-[11px] font-bold text-[#FF781D] hover:underline flex items-center gap-1"
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl cursor-pointer"
               >
-                <Plus size={12} />
-                <span>Add Bullet Point</span>
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md cursor-pointer hover:opacity-95"
+              >
+                Save Keynote
               </button>
             </div>
+          </form>
 
-            <div className="space-y-2">
-              {formData.takeaways?.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={item}
-                    onChange={(e) => handleTakeawayChange(idx, e.target.value)}
-                    placeholder={`Takeaway point #${idx + 1}`}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveTakeaway(idx)}
-                    className="p-2 text-rose-500 hover:bg-rose-50 rounded-lg shrink-0"
-                    title="Remove point"
-                  >
-                    <Trash2 size={14} />
-                  </button>
+          {/* Right Column: Real-Time Live Preview */}
+          <div className="lg:col-span-5 bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-5 text-white shadow-xl space-y-4 sticky top-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                <Eye size={13} className="text-[#FF781D]" />
+                <span>Live Card Preview</span>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono">/speaking page</span>
+            </div>
+
+            {/* Keynote Card Replica */}
+            <div className="bg-[#141414] rounded-xl border border-neutral-800 p-5 space-y-3.5 shadow-2xl relative overflow-hidden">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                  {formData.badge || "Keynote Topic"}
+                </span>
+
+                <div className="flex items-center gap-3 text-[11px] text-neutral-400">
+                  <span className="flex items-center gap-1">
+                    <Clock size={11} className="text-[#FF781D]" />
+                    <span>{formData.duration || "45–60 mins"}</span>
+                  </span>
                 </div>
-              ))}
+              </div>
+
+              <div>
+                <h3 className="text-base font-bold text-white leading-snug">
+                  {formData.title || "Your Keynote Title"}
+                </h3>
+                {formData.subtitle && (
+                  <p className="text-xs font-semibold text-orange-400/90 mt-1">
+                    {formData.subtitle}
+                  </p>
+                )}
+              </div>
+
+              <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                {formData.description || "The keynote description will appear here..."}
+              </p>
+
+              {formData.targetAudience && (
+                <div className="flex items-center gap-1.5 text-[11px] text-neutral-400 bg-white/5 px-2.5 py-1.5 rounded-lg border border-white/5">
+                  <Users size={12} className="text-[#FF781D]" />
+                  <span>Audience: {formData.targetAudience}</span>
+                </div>
+              )}
+
+              {/* Takeaways list */}
+              {formData.takeaways && formData.takeaways.filter((t) => t?.trim()).length > 0 && (
+                <div className="pt-2 border-t border-neutral-800/80 space-y-1.5">
+                  <p className="text-[10px] uppercase font-bold text-neutral-400 tracking-wider">
+                    Key Participant Takeaways:
+                  </p>
+                  <ul className="space-y-1 text-xs text-neutral-300">
+                    {formData.takeaways
+                      .filter((t) => t?.trim())
+                      .map((point, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-1.5 text-[11px]">
+                          <CheckCircle size={12} className="text-emerald-400 shrink-0 mt-0.5" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="pt-2">
+                <div className="w-full py-2 bg-gradient-to-r from-[#FF781D] to-[#E33C3C] text-white text-xs font-semibold rounded-lg text-center shadow-md">
+                  Inquire For Keynote &rarr;
+                </div>
+              </div>
+            </div>
+
+            <p className="text-[10px] text-gray-500 text-center pt-2">
+              Preview updates live keystroke-by-keystroke
+            </p>
+          </div>
+        </div>
+      </CMSModal>
+
+      {/* Standalone Quick Preview Modal for Any Keynote */}
+      {quickPreviewItem && (
+        <CMSModal
+          isOpen={!!quickPreviewItem}
+          onClose={() => setQuickPreviewItem(null)}
+          title={`Keynote Preview: ${quickPreviewItem.title}`}
+          subtitle="Displaying full speaking session specifications"
+          maxWidth="max-w-2xl"
+        >
+          <div className="bg-[#0e0e0e] rounded-2xl border border-neutral-800 p-6 sm:p-7 text-white space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/30 rounded-full text-xs font-bold uppercase">
+                {quickPreviewItem.badge}
+              </span>
+              <div className="flex items-center gap-3 text-xs text-neutral-400">
+                <span className="flex items-center gap-1">
+                  <Clock size={12} className="text-[#FF781D]" />
+                  <span>{quickPreviewItem.duration}</span>
+                </span>
+                <span className="flex items-center gap-1">
+                  <Users size={12} className="text-[#FF781D]" />
+                  <span>{quickPreviewItem.targetAudience}</span>
+                </span>
+              </div>
+            </div>
+
+            <h2 className="text-xl font-bold text-white">{quickPreviewItem.title}</h2>
+            {quickPreviewItem.subtitle && (
+              <p className="text-sm font-semibold text-orange-400">{quickPreviewItem.subtitle}</p>
+            )}
+
+            <p className="text-sm text-neutral-300 font-light leading-relaxed">
+              {quickPreviewItem.description}
+            </p>
+
+            {quickPreviewItem.takeaways && quickPreviewItem.takeaways.length > 0 && (
+              <div className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
+                  Key Session Takeaways
+                </p>
+                <ul className="space-y-1.5">
+                  {quickPreviewItem.takeaways.map((takeaway, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-xs text-neutral-300">
+                      <CheckCircle size={14} className="text-emerald-400 shrink-0 mt-0.5" />
+                      <span>{takeaway}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="pt-4 flex justify-end gap-2 border-t border-neutral-800">
+              <button
+                onClick={() => {
+                  const itm = quickPreviewItem;
+                  setQuickPreviewItem(null);
+                  handleOpenEdit(itm);
+                }}
+                className="px-4 py-2 bg-gradient-to-r from-[#FF781D] to-[#E33C3C] text-white text-xs font-semibold rounded-xl"
+              >
+                Edit Keynote
+              </button>
             </div>
           </div>
-
-          <div className="flex items-center gap-2 pt-2">
-            <input
-              type="checkbox"
-              id="kn-published"
-              checked={formData.published}
-              onChange={(e) => setFormData((prev) => ({ ...prev, published: e.target.checked }))}
-              className="w-4 h-4 rounded text-orange-500"
-            />
-            <label htmlFor="kn-published" className="text-xs font-semibold text-slate-700 cursor-pointer">
-              Visible on /speaking page
-            </label>
-          </div>
-
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#FF781D] to-[#E33C3C] rounded-xl shadow-md"
-            >
-              Save Keynote
-            </button>
-          </div>
-        </form>
-      </CMSModal>
+        </CMSModal>
+      )}
     </div>
   );
 };
