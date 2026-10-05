@@ -70,6 +70,30 @@ export interface FinalCtaContent {
   ctaTo: string;
 }
 
+export interface FooterLinkItem {
+  label: string;
+  to: string;
+  external?: boolean;
+}
+
+export interface FooterColumnItem {
+  heading: string;
+  links: FooterLinkItem[];
+}
+
+export interface FooterContent {
+  brandName: string;
+  bio: string;
+  locations: string;
+  newsletterHeading: string;
+  newsletterSubtitle: string;
+  linkedinUrl: string;
+  twitterUrl: string;
+  instagramUrl?: string;
+  columns: FooterColumnItem[];
+  copyright: string;
+}
+
 export interface UpdateItem {
   id: string;
   slug: string;
@@ -213,6 +237,7 @@ export interface CMSData {
   signatureIdeas: SignatureIdeasContent;
   bookShowcase: BookShowcaseContent;
   finalCta: FinalCtaContent;
+  footer: FooterContent;
   updates: UpdateItem[];
   keynotes: KeynoteItem[];
   workshops: WorkshopItem[];

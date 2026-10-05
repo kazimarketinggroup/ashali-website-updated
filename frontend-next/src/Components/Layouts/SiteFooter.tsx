@@ -3,25 +3,24 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {  Linkedin } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 import { toast } from "sonner";
 
 import { BRAND_GRADIENT_LR } from "../../constants/brandGradient";
 import { api, getApiErrorMessage } from "../../utils/api";
+import { useCMS } from "../../context/CMSContext";
 
 type FooterLink = { label: string; to: string; external?: boolean };
 type FooterColumn = { heading: string; links: FooterLink[] };
 
-const columns: FooterColumn[] = [
+const defaultColumns: FooterColumn[] = [
   {
     heading: "Pages",
     links: [
       { label: "About", to: "/about" },
       { label: "Keynotes", to: "/speaking" },
       { label: "Workshops", to: "/workshops" },
-      // { label: "Results & Media", to: "/results-media" },
       { label: "Book", to: "/unfair-advantage" },
-      // { label: "Check availability", to: "/contact" },
     ],
   },
   {
@@ -66,17 +65,27 @@ function IconX({ className }: { className?: string }) {
   );
 }
 
-// function IconTikTok({ className }: { className?: string }) {
-//   return (
-//     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-//       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-//     </svg>
-//   );
-// }
-
 const SiteFooter: React.FC = () => {
   const pathname = usePathname() ?? "/";
   const year = new Date().getFullYear();
+  const { cmsData } = useCMS();
+  const footer = cmsData?.footer;
+
+  const brandName = footer?.brandName || "ASH ALI";
+  const bio =
+    footer?.bio ||
+    "Ash Ali is a British tech entrepreneur, investor, international keynote speaker and co-author of the award winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an AI shaped world. Based between London and Kuala Lumpur; working globally.";
+  const locations = footer?.locations || "London • Kuala Lumpur • Global";
+  const newsletterHeading = footer?.newsletterHeading || "Let's keep connected";
+  const newsletterSubtitle =
+    footer?.newsletterSubtitle ||
+    "Ash's thinking on advantage, AI and growth, straight to your inbox.";
+  const linkedinUrl = footer?.linkedinUrl || "https://uk.linkedin.com/in/ashali";
+  const twitterUrl = footer?.twitterUrl || "https://x.com/Ash_Ali";
+  const instagramUrl = footer?.instagramUrl;
+  const columns = footer?.columns && footer.columns.length > 0 ? footer.columns : defaultColumns;
+  const copyright = footer?.copyright || "Ash Ali. All rights reserved.";
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
@@ -117,37 +126,42 @@ const SiteFooter: React.FC = () => {
       <div className="mx-auto max-w-fluid px-5 pt-12 pb-6 sm:px-6 sm:pt-14 sm:pb-6 lg:px-8 lg:pt-16 lg:pb-6">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
           <div className="max-w-[410px]">
-            <p className="text-[clamp(1.7rem,3vw,2.1rem)] font-semibold leading-none tracking-normal">ASH ALI</p>
+            <p className="text-[clamp(1.7rem,3vw,2.1rem)] font-semibold leading-none tracking-normal">
+              {brandName}
+            </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <GradientRingIcon href="https://uk.linkedin.com/in/ashali" label="Ash Ali on LinkedIn">
-                <Linkedin className="h-4 w-4" strokeWidth={1.75} />
-              </GradientRingIcon>
-              <GradientRingIcon href="https://x.com/Ash_Ali" label="Ash Ali on X">
-                <IconX className="h-[15px] w-[15px]" />
-              </GradientRingIcon>
-              {/* <GradientRingIcon href="https://www.tiktok.com/@ashali" label="TikTok">
-                <IconTikTok className="h-[15px] w-[15px]" />
-              </GradientRingIcon> */}
-              {/* <GradientRingIcon href="https://www.instagram.com/ashali" label="Instagram">
-                <Instagram className="h-4 w-4" strokeWidth={1.75} />
-              </GradientRingIcon> */}
+              {linkedinUrl && (
+                <GradientRingIcon href={linkedinUrl} label="Ash Ali on LinkedIn">
+                  <Linkedin className="h-4 w-4" strokeWidth={1.75} />
+                </GradientRingIcon>
+              )}
+              {twitterUrl && (
+                <GradientRingIcon href={twitterUrl} label="Ash Ali on X">
+                  <IconX className="h-[15px] w-[15px]" />
+                </GradientRingIcon>
+              )}
+              {instagramUrl && (
+                <GradientRingIcon href={instagramUrl} label="Ash Ali on Instagram">
+                  <Instagram className="h-4 w-4" strokeWidth={1.75} />
+                </GradientRingIcon>
+              )}
             </div>
 
             <p className="mt-6 text-[14px] sm:text-[15px] font-normal leading-[2] text-white/86">
-              Ash Ali is a British tech entrepreneur, investor, international keynote speaker and co-author of the
-              award winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an
-              AI shaped world. Based between London and Kuala Lumpur; working globally.
+              {bio}
             </p>
 
             <p className="mt-5 text-[13px] font-normal tracking-wide text-white/55">
-              London • Kuala Lumpur • Global
+              {locations}
             </p>
           </div>
 
           <div className="min-w-0">
-            <p className="text-[clamp(1.25rem,2vw,1.55rem)] font-semibold leading-tight">Let&apos;s keep connected</p>
+            <p className="text-[clamp(1.25rem,2vw,1.55rem)] font-semibold leading-tight">
+              {newsletterHeading}
+            </p>
             <p className="mt-2 text-[13px] font-normal text-white/75">
-              Ash&apos;s thinking on advantage, AI and growth, straight to your inbox.
+              {newsletterSubtitle}
             </p>
 
             <form className="mt-5 grid gap-3 sm:grid-cols-[1fr_1fr_auto]" onSubmit={handleSubscribe}>
@@ -218,7 +232,7 @@ const SiteFooter: React.FC = () => {
         <div className="my-6 h-[3px] w-full sm:my-7" style={{ background: BRAND_GRADIENT_LR }} aria-hidden />
 
         <p className="text-left text-[12px] font-normal text-white/80">
-          © {year} Ash Ali. All rights reserved.
+          © {year} {copyright}
         </p>
       </div>
     </footer>

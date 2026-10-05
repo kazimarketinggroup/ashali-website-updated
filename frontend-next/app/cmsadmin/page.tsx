@@ -9,6 +9,7 @@ import { CMSHelpingLeadersEditor } from "@/src/Components/CMS/CMSHelpingLeadersE
 import { CMSSignatureIdeasEditor } from "@/src/Components/CMS/CMSSignatureIdeasEditor";
 import { CMSBookShowcaseEditor } from "@/src/Components/CMS/CMSBookShowcaseEditor";
 import { CMSFinalCtaEditor } from "@/src/Components/CMS/CMSFinalCtaEditor";
+import { CMSFooterEditor } from "@/src/Components/CMS/CMSFooterEditor";
 import { CMSUpdatesManager } from "@/src/Components/CMS/CMSUpdatesManager";
 import { CMSKeynotesManager } from "@/src/Components/CMS/CMSKeynotesManager";
 import { CMSWorkshopsFaqManager } from "@/src/Components/CMS/CMSWorkshopsFaqManager";
@@ -94,6 +95,8 @@ export default function CMSAdminPage() {
         return <CMSBookShowcaseEditor />;
       case "final-cta":
         return <CMSFinalCtaEditor />;
+      case "footer":
+        return <CMSFooterEditor />;
       case "updates":
         return <CMSUpdatesManager />;
       case "keynotes":

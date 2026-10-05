@@ -18,6 +18,7 @@ import {
   BookOpen,
   Home,
   Megaphone,
+  Layers,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 
@@ -179,11 +180,11 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </p>
           </div>
           <span className="text-[11px] font-semibold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full self-start sm:self-auto">
-            5 Interactive Sections
+            6 Interactive Sections
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
           <div
             onClick={() => onNavigateTab("hero")}
             className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
@@ -280,6 +281,26 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
                 Event inquiry banner & booking action
+              </p>
+            </div>
+          </div>
+
+          <div
+            onClick={() => onNavigateTab("footer")}
+            className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="w-7 h-7 rounded-lg bg-indigo-100/70 text-indigo-600 flex items-center justify-center">
+                <Layers size={14} />
+              </div>
+              <ArrowUpRight size={14} className="text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                6. Footer & Links
+              </h3>
+              <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                Bio, socials, newsletter & columns
               </p>
             </div>
           </div>

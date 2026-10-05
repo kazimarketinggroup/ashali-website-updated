@@ -44,6 +44,7 @@ function mergeWithDefaults(partial: Partial<CMSData>): CMSData {
     signatureIdeas: { ...defaultCmsData.signatureIdeas, ...(partial.signatureIdeas || {}) },
     bookShowcase: { ...defaultCmsData.bookShowcase, ...(partial.bookShowcase || {}) },
     finalCta: { ...defaultCmsData.finalCta, ...(partial.finalCta || {}) },
+    footer: { ...defaultCmsData.footer, ...(partial.footer || {}) },
   };
 }
 

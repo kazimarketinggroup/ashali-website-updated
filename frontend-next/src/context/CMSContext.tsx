@@ -42,6 +42,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           signatureIdeas: { ...defaultCmsData.signatureIdeas, ...(parsed.signatureIdeas || {}) },
           bookShowcase: { ...defaultCmsData.bookShowcase, ...(parsed.bookShowcase || {}) },
           finalCta: { ...defaultCmsData.finalCta, ...(parsed.finalCta || {}) },
+          footer: { ...defaultCmsData.footer, ...(parsed.footer || {}) },
         });
       }
     } catch {
@@ -66,6 +67,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             signatureIdeas: { ...defaultCmsData.signatureIdeas, ...(serverData.signatureIdeas || {}) },
             bookShowcase: { ...defaultCmsData.bookShowcase, ...(serverData.bookShowcase || {}) },
             finalCta: { ...defaultCmsData.finalCta, ...(serverData.finalCta || {}) },
+            footer: { ...defaultCmsData.footer, ...(serverData.footer || {}) },
           };
           setCmsData(merged);
           try {

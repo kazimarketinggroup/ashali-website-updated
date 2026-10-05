@@ -25,6 +25,7 @@ import {
   Lightbulb,
   BookOpen,
   Megaphone,
+  Layers,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 
@@ -75,6 +76,7 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
         { id: "signature-ideas", label: "Three Signature Ideas", icon: Lightbulb },
         { id: "book-showcase", label: "Book Showcase", icon: BookOpen },
         { id: "final-cta", label: "Closing CTA Banner", icon: Megaphone },
+        { id: "footer", label: "Footer & Global Links", icon: Layers },
       ],
     },
     {

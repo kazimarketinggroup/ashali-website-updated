@@ -106,6 +106,46 @@ export const defaultCmsData: CMSData = {
     ctaTo: "/contact",
   },
 
+  footer: {
+    brandName: "ASH ALI",
+    bio: "Ash Ali is a British tech entrepreneur, investor, international keynote speaker and co-author of the award winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an AI shaped world. Based between London and Kuala Lumpur; working globally.",
+    locations: "London • Kuala Lumpur • Global",
+    newsletterHeading: "Let's keep connected",
+    newsletterSubtitle: "Ash's thinking on advantage, AI and growth, straight to your inbox.",
+    linkedinUrl: "https://uk.linkedin.com/in/ashali",
+    twitterUrl: "https://x.com/Ash_Ali",
+    instagramUrl: "https://www.instagram.com/ashali",
+    columns: [
+      {
+        heading: "Pages",
+        links: [
+          { label: "About", to: "/about" },
+          { label: "Keynotes", to: "/speaking" },
+          { label: "Workshops", to: "/workshops" },
+          { label: "Book", to: "/unfair-advantage" },
+        ],
+      },
+      {
+        heading: "More",
+        links: [
+          { label: "Advisory", to: "/advisory" },
+          { label: "Malaysia & Southeast Asia", to: "/malaysia-sea" },
+          { label: "Impact", to: "/impact" },
+        ],
+      },
+      {
+        heading: "Elsewhere",
+        links: [
+          { label: "Uhubs.ai", to: "https://www.uhubs.ai/", external: true },
+          { label: "The Unfair Academy", to: "https://www.theunfairacademy.com/", external: true },
+          { label: "Privacy Policy", to: "/privacy" },
+          { label: "Terms & Conditions", to: "/terms" },
+        ],
+      },
+    ],
+    copyright: "Ash Ali. All rights reserved.",
+  },
+
   updates: [
     {
       id: "up-1",
