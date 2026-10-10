@@ -38,22 +38,6 @@ const DEFAULT_LOGOS: Record<string, StaticImageData> = {
   t3: techItaliaLogo,
 };
 
-const getStaticAvatar = (item: { fullName?: string; id?: string }): StaticImageData | undefined => {
-  const name = item.fullName?.toLowerCase() || "";
-  if (name.includes("freddie") || item.id === "t1") return freddieAvatar;
-  if (name.includes("cyrus") || item.id === "t2") return cyrusAvatar;
-  if (name.includes("andrea") || name.includes("angella") || item.id === "t3") return angellaAvatar;
-  return item.id ? DEFAULT_AVATARS[item.id] : undefined;
-};
-
-const getStaticLogo = (item: { organisation?: string; id?: string }): StaticImageData | undefined => {
-  const org = item.organisation?.toLowerCase() || "";
-  if (org.includes("ey") || item.id === "t1") return eyLogo;
-  if (org.includes("salesforce") || item.id === "t2") return salesforceLogo;
-  if (org.includes("techitalia") || item.id === "t3") return techItaliaLogo;
-  return item.id ? DEFAULT_LOGOS[item.id] : undefined;
-};
-
 const Testimonials: React.FC = () => {
   const { cmsData } = useCMS();
 
@@ -73,8 +57,8 @@ const Testimonials: React.FC = () => {
         <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
           {activeTestimonials.map((item, i) => {
             const hasQuote = Boolean(item.quote?.trim() && item.fullName?.trim());
-            const staticAvatar = getStaticAvatar(item);
-            const staticLogo = getStaticLogo(item);
+            const staticAvatar = DEFAULT_AVATARS[item.id];
+            const staticLogo = DEFAULT_LOGOS[item.id];
 
             return (
               <Reveal key={item.id} delay={i * 0.08} className="h-full">
@@ -88,7 +72,7 @@ const Testimonials: React.FC = () => {
                         {staticAvatar ? (
                           <Image
                             src={staticAvatar}
-                            alt={`Portrait of ${item.fullName ?? "speaker"}`}
+                            alt={item.fullName ?? ""}
                             width={48}
                             height={48}
                             loading="lazy"
@@ -98,7 +82,7 @@ const Testimonials: React.FC = () => {
                         ) : item.avatarUrl ? (
                           <img
                             src={item.avatarUrl}
-                            alt={`Portrait of ${item.fullName ?? "speaker"}`}
+                            alt={item.fullName ?? ""}
                             className="h-12 w-12 shrink-0 rounded-full border border-white/20 object-cover"
                           />
                         ) : (
@@ -113,7 +97,7 @@ const Testimonials: React.FC = () => {
                           {staticLogo ? (
                             <Image
                               src={staticLogo}
-                              alt={`${item.organisation ?? "Organisation"} logo`}
+                              alt={item.organisation ?? ""}
                               loading="lazy"
                               width={100}
                               height={24}
@@ -123,7 +107,7 @@ const Testimonials: React.FC = () => {
                           ) : item.logoUrl ? (
                             <img
                               src={item.logoUrl}
-                              alt={`${item.organisation ?? "Organisation"} logo`}
+                              alt={item.organisation ?? ""}
                               className="mt-1.5 h-6 w-auto max-w-[100px] object-contain object-left"
                             />
                           ) : (

@@ -27,27 +27,27 @@ const thoughts: Thought[] = [
       "Ash delivered an outstanding keynote at our Innova event, sharing valuable insights from Just Eat. Professional, insightful, and a pleasure to work with, many thanks!",
     person: "Freddie Monk",
     logoSrc: eyLogo.src,
-    logoAlt: "EY logo",
+    logoAlt: "EY",
     avatarSrc: freddieAvatar.src,
-    avatarAlt: "Portrait of Freddie Monk",
+    avatarAlt: "Freddie Monk",
   },
   {
     quote:
       "Ash Ali's talk at Salesforce Tower was exceptional, sharing his experience as an entrepreneur and marketing director at Just Eat. His insights on the Unfair Advantage made it one of our best events.",
     person: "Cyrus Hessabi",
     logoSrc: salesforceLogo.src,
-    logoAlt: "Salesforce logo",
+    logoAlt: "Salesforce",
     avatarSrc: cyrusAvatar.src,
-    avatarAlt: "Portrait of Cyrus Hessabi",
+    avatarAlt: "Cyrus Hessabi",
   },
   {
     quote:
       "I've attended many entrepreneur events, but Ash's talk at TechItalia was by far one of the most authentic, inspiring, and engaging.",
     person: "Andrea Angella",
     logoSrc: techItaliaLogo.src,
-    logoAlt: "TechItalia logo",
+    logoAlt: "TechItalia",
     avatarSrc: angellaAvatar.src,
-    avatarAlt: "Portrait of Andrea Angella",
+    avatarAlt: "Andrea Angella",
   },
 ];
 

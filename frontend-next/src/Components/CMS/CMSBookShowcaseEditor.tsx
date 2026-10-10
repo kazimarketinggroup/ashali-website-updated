@@ -157,7 +157,7 @@ export const CMSBookShowcaseEditor: React.FC = () => {
               )}
             </div>
             <p className="mt-3 text-center text-xs italic text-gray-400">
-              Translated into 8 languages worldwide
+              Translated into 10+ languages worldwide
             </p>
           </div>
         </div>
