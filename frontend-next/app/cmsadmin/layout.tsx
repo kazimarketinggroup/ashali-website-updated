@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   robots: {
     index: false,
     follow: false,
+    nocache: true,
+    noarchive: true,
+    nosnippet: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -15,8 +26,14 @@ export default function CMSAdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full min-h-screen bg-[#F8FAFC] text-slate-800">
-      {children}
-    </div>
+    <>
+      <head>
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+        <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet" />
+      </head>
+      <div className="w-full min-h-screen bg-[#F8FAFC] text-slate-800">
+        {children}
+      </div>
+    </>
   );
 }
