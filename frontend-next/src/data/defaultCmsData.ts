@@ -558,7 +558,76 @@ export const defaultCmsData: CMSData = {
     },
   },
 
-  inquiries: [],
+  inquiries: [
+    {
+      id: "inq-101",
+      name: "Marcus Vance",
+      email: "m.vance@techsummit.org",
+      type: "Keynotes",
+      message:
+        "We are organizing our annual Tech Global Summit in Singapore for November 2026 (approx 1,800 delegates). We would love to check Ash's availability for the opening morning keynote on AI & Unfair Advantage.",
+      date: "2026-10-04 14:22",
+      status: "New",
+      details: {
+        Organization: "Tech Global Summit",
+        "Event Date": "November 18, 2026",
+        Location: "Singapore",
+      },
+    },
+    {
+      id: "inq-102",
+      name: "Sarah Jenkins",
+      email: "sarah.j@vertexventures.com",
+      type: "Advisory",
+      message:
+        "Interested in discussing an advisory engagement for our portfolio companies preparing for Series B scale in Southeast Asia.",
+      date: "2026-10-02 09:45",
+      status: "In Review",
+      details: {
+        Company: "Vertex Ventures",
+        Focus: "Scaleup Go-To-Market",
+      },
+    },
+    {
+      id: "inq-103",
+      name: "David Chen",
+      email: "david@innovatecorp.com",
+      type: "Workshops",
+      message:
+        "We want to book a half-day Unfair Advantage Strategic Workshop for our top 25 senior executives.",
+      date: "2026-09-28 17:10",
+      status: "Replied",
+      details: {
+        Company: "InnovateCorp UK",
+        Delegates: "25 C-Suite / VPs",
+      },
+    },
+  ],
 
-  subscribers: [],
+  subscribers: [
+    {
+      id: "sub-1",
+      email: "j.miller@fintechgroup.co.uk",
+      name: "James Miller",
+      date: "2026-10-04",
+      source: "Homepage Footer",
+      status: "Active",
+    },
+    {
+      id: "sub-2",
+      email: "elena.rostova@venture.de",
+      name: "Elena Rostova",
+      date: "2026-10-03",
+      source: "Book Page",
+      status: "Active",
+    },
+    {
+      id: "sub-3",
+      email: "tariq.almansoor@dubai-tech.ae",
+      name: "Tariq Al Mansoor",
+      date: "2026-10-01",
+      source: "Updates Page",
+      status: "Active",
+    },
+  ],
 };
