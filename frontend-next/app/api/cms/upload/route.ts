@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { verifyAdminSession } from "@/src/utils/cmsAuth";
 
 export async function POST(req: NextRequest) {
   try {
+    // Enforce active CMS admin session
+    const session = verifyAdminSession(req);
+    if (!session.valid) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized: Active CMS Admin session required" },
+        { status: 401 }
+      );
+    }
+
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
 

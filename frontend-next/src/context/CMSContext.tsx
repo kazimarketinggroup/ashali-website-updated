@@ -13,8 +13,13 @@ interface CMSContextType {
   saveItem: (collection: keyof CMSData, item: Record<string, unknown>) => Promise<boolean>;
   deleteItem: (collection: keyof CMSData, id: string) => Promise<boolean>;
   toggleItem: (collection: keyof CMSData, id: string, field?: string) => Promise<boolean>;
-  updateInquiryStatus: (id: string, status: "New" | "In Review" | "Replied" | "Archived", notes?: string) => Promise<boolean>;
+  updateInquiryStatus: (
+    id: string,
+    status: "New" | "In Review" | "Replied" | "Archived",
+    notes?: string
+  ) => Promise<boolean>;
   deleteInquiry: (id: string) => Promise<boolean>;
+  clearDemoInquiries: () => Promise<boolean>;
   deleteSubscriber: (id: string) => Promise<boolean>;
   resetDefaults: () => Promise<boolean>;
   importBackup: (backup: CMSData) => Promise<boolean>;
@@ -91,6 +96,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "update_section", payload: { section, data } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -101,7 +112,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         }
       }
     } catch {
-      // Fallback to local cache
+      // Fallback
     }
 
     // Local state fallback update
@@ -118,17 +129,26 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
       return updated;
     });
-    toast.success(`Updated ${String(section)} successfully!`);
+    toast.success(`Updated ${String(section)} locally`);
     return true;
   };
 
-  const saveItem = async (collection: keyof CMSData, item: Record<string, unknown>): Promise<boolean> => {
+  const saveItem = async (
+    collection: keyof CMSData,
+    item: Record<string, unknown>
+  ): Promise<boolean> => {
     try {
       const res = await fetch("/api/cms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "save_item", payload: { collection, item } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -144,7 +164,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     // Local state fallback
     setCmsData((prev) => {
-      const list = ([...((prev as any)[collection] || [])]) as Array<Record<string, unknown>>;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const list = ([...(((prev as any)[collection] || []) as any[])]) as Array<Record<string, unknown>>;
       const existingIdx = list.findIndex((i) => i.id === item.id);
       if (existingIdx >= 0) {
         list[existingIdx] = { ...list[existingIdx], ...item };
@@ -164,7 +185,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
       return updated;
     });
-    toast.success("Item saved successfully!");
+    toast.success("Item saved locally");
     return true;
   };
 
@@ -175,6 +196,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "delete_item", payload: { collection, id } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -190,7 +217,10 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     // Local state fallback
     setCmsData((prev) => {
-      const list = (((prev as any)[collection] || []) as Array<{ id: string }>).filter((i) => i.id !== id);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const list = (((prev as any)[collection] || []) as Array<{ id: string }>).filter(
+        (i) => i.id !== id
+      );
       const updated = {
         ...prev,
         [collection]: list,
@@ -203,17 +233,27 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
       return updated;
     });
-    toast.success("Item deleted successfully!");
+    toast.success("Item deleted locally");
     return true;
   };
 
-  const toggleItem = async (collection: keyof CMSData, id: string, field = "published"): Promise<boolean> => {
+  const toggleItem = async (
+    collection: keyof CMSData,
+    id: string,
+    field = "published"
+  ): Promise<boolean> => {
     try {
       const res = await fetch("/api/cms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "toggle_item", payload: { collection, id, field } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -228,7 +268,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
 
     setCmsData((prev) => {
-      const list = ([...((prev as any)[collection] || [])]) as Array<Record<string, unknown>>;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const list = ([...(((prev as any)[collection] || []) as any[])]) as Array<Record<string, unknown>>;
       const target = list.find((i) => i.id === id);
       if (target) {
         target[field] = !target[field];
@@ -260,6 +301,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "update_inquiry_status", payload: { id, status, notes } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -299,6 +346,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "delete_inquiry", payload: { id } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -326,6 +379,47 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return true;
   };
 
+  const clearDemoInquiries = async (): Promise<boolean> => {
+    try {
+      const res = await fetch("/api/cms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "clear_demo_inquiries" }),
+      });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
+      if (res.ok) {
+        const result = await res.json().catch(() => null);
+        if (result && result.success && result.data) {
+          setCmsData(result.data);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(result.data));
+          toast.success("Demo sample inquiries removed!");
+          return true;
+        }
+      }
+    } catch {
+      // Fallback
+    }
+
+    const demoIds = new Set(["inq-101", "inq-102", "inq-103"]);
+    setCmsData((prev) => {
+      const inqs = prev.inquiries.filter((i) => !demoIds.has(i.id));
+      const updated = { ...prev, inquiries: inqs, lastUpdated: new Date().toISOString() };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // ignore
+      }
+      return updated;
+    });
+    toast.success("Demo sample inquiries removed!");
+    return true;
+  };
+
   const deleteSubscriber = async (id: string): Promise<boolean> => {
     try {
       const res = await fetch("/api/cms", {
@@ -333,6 +427,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "delete_subscriber", payload: { id } }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -367,6 +467,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "reset_defaults" }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -397,6 +503,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "import_backup", payload: backup }),
       });
+
+      if (res.status === 401) {
+        toast.error("Admin session expired. Please sign in again.");
+        return false;
+      }
+
       if (res.ok) {
         const result = await res.json().catch(() => null);
         if (result && result.success && result.data) {
@@ -432,6 +544,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         toggleItem,
         updateInquiryStatus,
         deleteInquiry,
+        clearDemoInquiries,
         deleteSubscriber,
         resetDefaults,
         importBackup,
@@ -455,6 +568,7 @@ export const useCMS = (): CMSContextType => {
       toggleItem: async () => false,
       updateInquiryStatus: async () => false,
       deleteInquiry: async () => false,
+      clearDemoInquiries: async () => false,
       deleteSubscriber: async () => false,
       resetDefaults: async () => false,
       importBackup: async () => false,

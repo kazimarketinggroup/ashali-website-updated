@@ -25,31 +25,40 @@ export default function CMSAdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [activeTab, setActiveTab] = useState<string>("overview");
 
-  // Check authentication on mount
+  // Server-verified authentication on mount
   useEffect(() => {
+    let isMounted = true;
+
     const checkAuth = async () => {
       try {
-        const localAuth = localStorage.getItem("ashali_cms_auth");
-        if (localAuth === "true") {
-          setIsAuthenticated(true);
-          return;
-        }
+        const res = await fetch("/api/cms/auth", {
+          method: "GET",
+          cache: "no-store",
+          headers: { "Cache-Control": "no-cache" },
+        });
 
-        const res = await fetch("/api/cms/auth");
         if (res.ok) {
-          const data = await res.json();
-          if (data.authenticated) {
-            setIsAuthenticated(true);
+          const data = await res.json().catch(() => null);
+          if (data && data.authenticated) {
+            if (isMounted) setIsAuthenticated(true);
             return;
           }
         }
       } catch (err) {
-        // Fallback
+        console.warn("Auth check failed:", err);
       }
-      setIsAuthenticated(false);
+
+      if (isMounted) {
+        localStorage.removeItem("ashali_cms_auth");
+        setIsAuthenticated(false);
+      }
     };
 
     checkAuth();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleLogout = async () => {
@@ -69,8 +78,11 @@ export default function CMSAdminPage() {
   // Loading state
   if (isAuthenticated === null) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
-        <div className="w-8 h-8 border-3 border-orange-500/20 border-t-[#FF781D] rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center gap-3">
+        <div className="w-9 h-9 border-3 border-orange-500/20 border-t-[#FF781D] rounded-full animate-spin" />
+        <span className="text-xs font-semibold text-slate-500 tracking-wide">
+          Verifying security session...
+        </span>
       </div>
     );
   }

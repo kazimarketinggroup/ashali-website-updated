@@ -558,6 +558,9 @@ export const defaultCmsData: CMSData = {
     },
   },
 
+  // Seed / Mock inquiries used for demonstration and UI layout preview in the CMS Studio.
+  // These are NOT real client leads. Real leads from /contact form arrive dynamically
+  // and are stored with timestamp IDs and delivered directly to the notification email.
   inquiries: [
     {
       id: "inq-101",

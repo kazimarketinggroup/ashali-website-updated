@@ -1,43 +1,80 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const VALID_USER = "admin";
-const VALID_PASS = "admin";
-const AUTH_COOKIE = "cms_admin_session";
-const SESSION_TOKEN = "ashali_cms_authenticated_session_token_2026";
+import {
+  CMS_COOKIE_NAME,
+  CMS_ADMIN_USER,
+  checkLoginRateLimit,
+  recordFailedLogin,
+  recordSuccessfulLogin,
+  validateAdminCredentials,
+  createSessionToken,
+  verifyAdminSession,
+} from "@/src/utils/cmsAuth";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "127.0.0.1";
+
+    const body = await req.json().catch(() => ({}));
     const { action, username, password } = body;
 
+    // Logout request
     if (action === "logout") {
       const response = NextResponse.json({ success: true, message: "Logged out" });
-      response.cookies.delete(AUTH_COOKIE);
+      response.cookies.delete(CMS_COOKIE_NAME);
       return response;
     }
 
-    // Login attempt
-    const trimUser = (username || "").trim();
-    const trimPass = (password || "").trim();
+    // Brute-force rate limit check
+    const rateCheck = checkLoginRateLimit(ip);
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Too many failed login attempts. Account temporarily shielded. Please try again in ${rateCheck.retryAfterSeconds} seconds.`,
+        },
+        { status: 429 }
+      );
+    }
 
-    if (trimUser === VALID_USER && trimPass === VALID_PASS) {
+    // Login attempt
+    const trimUser = typeof username === "string" ? username.trim() : "";
+    const trimPass = typeof password === "string" ? password.trim() : "";
+
+    if (!trimUser || !trimPass) {
+      return NextResponse.json(
+        { success: false, error: "Username and password are required" },
+        { status: 400 }
+      );
+    }
+
+    const isValid = validateAdminCredentials(trimUser, trimPass);
+
+    if (isValid) {
+      recordSuccessfulLogin(ip);
+
+      const sessionToken = createSessionToken(trimUser);
+      const isProduction = process.env.NODE_ENV === "production";
+
       const response = NextResponse.json({
         success: true,
         message: "Authentication successful",
         user: {
-          username: "admin",
+          username: trimUser,
           name: "Ash Ali Admin",
           role: "Super Admin",
           avatar: "/press/ash-press-1.jpg",
         },
       });
 
-      // Set cookie for 7 days
+      // Set hardened HttpOnly cookie (7 days)
       response.cookies.set({
-        name: AUTH_COOKIE,
-        value: SESSION_TOKEN,
+        name: CMS_COOKIE_NAME,
+        value: sessionToken,
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: isProduction,
         sameSite: "lax",
         maxAge: 60 * 60 * 24 * 7, // 7 days
         path: "/",
@@ -46,8 +83,14 @@ export async function POST(req: NextRequest) {
       return response;
     }
 
+    // Failed login: record attempt
+    const failStatus = recordFailedLogin(ip);
+    const errorMsg = failStatus.locked
+      ? `Too many failed attempts. Temporary lockout activated for ${failStatus.retryAfterSeconds} seconds.`
+      : `Invalid username or password. (${failStatus.remainingAttempts} attempts remaining before temporary lockout)`;
+
     return NextResponse.json(
-      { success: false, error: "Invalid username or password" },
+      { success: false, error: errorMsg },
       { status: 401 }
     );
   } catch (error) {
@@ -58,14 +101,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const cookie = req.cookies.get(AUTH_COOKIE);
-    const isAuthenticated = cookie?.value === SESSION_TOKEN;
+    const session = verifyAdminSession(req);
 
-    if (isAuthenticated) {
+    if (session.valid) {
       return NextResponse.json({
         authenticated: true,
         user: {
-          username: "admin",
+          username: session.user || CMS_ADMIN_USER,
           name: "Ash Ali Admin",
           role: "Super Admin",
         },

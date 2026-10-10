@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCmsDataAsync, saveCmsData } from "@/src/utils/cmsStorage";
 import { CMSData } from "@/src/types/cms";
 import { defaultCmsData } from "@/src/data/defaultCmsData";
+import { verifyAdminSession } from "@/src/utils/cmsAuth";
 
 export async function GET() {
   try {
@@ -15,6 +16,15 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    // Enforce cryptographic session authentication for all write actions
+    const session = verifyAdminSession(req);
+    if (!session.valid) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized: Active CMS Admin session required" },
+        { status: 401 }
+      );
+    }
+
     const body = await req.json();
     const { action, payload } = body;
     const currentData = await getCmsDataAsync();
@@ -94,6 +104,17 @@ export async function POST(req: NextRequest) {
         currentData.inquiries = currentData.inquiries.filter((i) => i.id !== id);
         await saveCmsData(currentData);
         return NextResponse.json({ success: true, message: "Inquiry deleted", data: currentData });
+      }
+
+      case "clear_demo_inquiries": {
+        const demoIds = new Set(["inq-101", "inq-102", "inq-103"]);
+        currentData.inquiries = (currentData.inquiries || []).filter((i) => !demoIds.has(i.id));
+        await saveCmsData(currentData);
+        return NextResponse.json({
+          success: true,
+          message: "Demo sample inquiries cleared",
+          data: currentData,
+        });
       }
 
       case "delete_subscriber": {

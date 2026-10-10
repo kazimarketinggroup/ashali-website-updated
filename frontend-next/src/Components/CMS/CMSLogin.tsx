@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Lock, User, ArrowRight, ShieldCheck, Sparkles, AlertCircle } from "lucide-react";
+import { Lock, User, ArrowRight, ShieldCheck, Sparkles, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 
 interface CMSLoginProps {
@@ -9,8 +9,9 @@ interface CMSLoginProps {
 }
 
 export const CMSLogin: React.FC<CMSLoginProps> = ({ onLoginSuccess }) => {
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("admin");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,6 +23,12 @@ export const CMSLogin: React.FC<CMSLoginProps> = ({ onLoginSuccess }) => {
     const trimUser = (username || "").trim();
     const trimPass = (password || "").trim();
 
+    if (!trimUser || !trimPass) {
+      setError("Please enter both username and password.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/cms/auth", {
         method: "POST",
@@ -29,29 +36,24 @@ export const CMSLogin: React.FC<CMSLoginProps> = ({ onLoginSuccess }) => {
         body: JSON.stringify({ username: trimUser, password: trimPass }),
       });
 
-      if (res.ok) {
-        const data = await res.json().catch(() => null);
-        if (data && data.success) {
-          toast.success("Welcome back, Ash Ali Admin!");
-          localStorage.setItem("ashali_cms_auth", "true");
-          onLoginSuccess();
-          return;
-        }
-      }
-    } catch {
-      // Continue to client-side credential verification
-    }
+      const data = await res.json().catch(() => null);
 
-    // Direct fallback validation for admin / admin
-    if (trimUser === "admin" && trimPass === "admin") {
-      toast.success("Welcome back, Ash Ali Admin!");
-      localStorage.setItem("ashali_cms_auth", "true");
-      onLoginSuccess();
-    } else {
-      setError("Invalid username or password. Default is admin / admin.");
-      toast.error("Authentication failed");
+      if (res.ok && data && data.success) {
+        toast.success("Welcome back, Ash Ali Admin!");
+        localStorage.setItem("ashali_cms_auth", "true");
+        onLoginSuccess();
+        return;
+      }
+
+      const errorMessage = data?.error || "Authentication failed. Invalid username or password.";
+      setError(errorMessage);
+      toast.error(errorMessage);
+    } catch {
+      setError("Network or server connection error. Please try again.");
+      toast.error("Unable to authenticate with CMS server");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -73,25 +75,22 @@ export const CMSLogin: React.FC<CMSLoginProps> = ({ onLoginSuccess }) => {
             Ash Ali CMS Studio
           </h1>
           <p className="text-sm text-slate-500 mt-1 max-w-xs">
-            Sign in to edit, add, or remove content across the entire website in real time.
+            Sign in to securely manage content, publish keynotes, and review client inquiries.
           </p>
         </div>
 
-        {/* Credentials Tip Callout */}
-        <div className="mb-6 p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/70 text-amber-900 text-xs flex items-start gap-2.5">
-          <ShieldCheck size={18} className="text-amber-600 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-semibold text-amber-950">Default Credentials Set:</span>
-            <p className="text-amber-800/90 mt-0.5">
-              Username: <code className="bg-amber-100/80 px-1.5 py-0.5 rounded font-mono text-amber-900 font-bold">admin</code> &bull; Password: <code className="bg-amber-100/80 px-1.5 py-0.5 rounded font-mono text-amber-900 font-bold">admin</code>
-            </p>
-          </div>
+        {/* Security Shield Callout */}
+        <div className="mb-6 p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-xs flex items-center gap-2.5">
+          <ShieldCheck size={18} className="text-emerald-600 shrink-0" />
+          <span className="font-medium text-slate-700">
+            Encrypted session authentication & brute-force defense active.
+          </span>
         </div>
 
         {error && (
-          <div className="mb-6 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-            <AlertCircle size={16} className="shrink-0 text-red-500" />
-            <span>{error}</span>
+          <div className="mb-6 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2">
+            <AlertCircle size={16} className="shrink-0 text-red-500 mt-0.5" />
+            <span className="leading-snug">{error}</span>
           </div>
         )}
 
@@ -108,9 +107,10 @@ export const CMSLogin: React.FC<CMSLoginProps> = ({ onLoginSuccess }) => {
               <input
                 type="text"
                 required
+                autoComplete="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter username"
+                placeholder="Enter admin username"
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FF781D]/30 focus:border-[#FF781D] transition-all"
               />
             </div>
@@ -125,13 +125,22 @@ export const CMSLogin: React.FC<CMSLoginProps> = ({ onLoginSuccess }) => {
                 <Lock size={18} />
               </span>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FF781D]/30 focus:border-[#FF781D] transition-all"
+                className="w-full pl-10 pr-11 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#FF781D]/30 focus:border-[#FF781D] transition-all"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
           </div>
 

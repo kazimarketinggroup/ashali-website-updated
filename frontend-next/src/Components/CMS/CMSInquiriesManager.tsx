@@ -6,18 +6,24 @@ import {
   Mail,
   Trash2,
   ChevronRight,
+  Info,
+  Sparkles,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 import { InquiryItem } from "../../types/cms";
 import { CMSModal } from "./CMSModal";
 
+const DEMO_LEAD_IDS = new Set(["inq-101", "inq-102", "inq-103"]);
+
 export const CMSInquiriesManager: React.FC = () => {
-  const { cmsData, updateInquiryStatus, deleteInquiry } = useCMS();
+  const { cmsData, updateInquiryStatus, deleteInquiry, clearDemoInquiries } = useCMS();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [selectedInquiry, setSelectedInquiry] = useState<InquiryItem | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [internalNotes, setInternalNotes] = useState("");
+
+  const hasDemoLeads = cmsData.inquiries.some((item) => DEMO_LEAD_IDS.has(item.id));
 
   const filteredInquiries = cmsData.inquiries.filter((item) => {
     const matchesSearch =
@@ -50,6 +56,19 @@ export const CMSInquiriesManager: React.FC = () => {
     }
   };
 
+  const handleClearDemoLeads = async () => {
+    if (
+      confirm(
+        "Are you sure you want to clear the 3 sample demonstration leads? This will leave your inbox completely clean for real client submissions."
+      )
+    ) {
+      await clearDemoInquiries();
+      if (selectedInquiry && DEMO_LEAD_IDS.has(selectedInquiry.id)) {
+        setIsDetailOpen(false);
+      }
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -66,8 +85,41 @@ export const CMSInquiriesManager: React.FC = () => {
           <span className="text-xs font-bold text-slate-500 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
             Total Leads: {cmsData.inquiries.length}
           </span>
+          {hasDemoLeads && (
+            <button
+              onClick={handleClearDemoLeads}
+              className="text-xs font-bold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-3 py-1.5 rounded-xl shadow-sm transition-all cursor-pointer"
+            >
+              Clear Sample Leads
+            </button>
+          )}
         </div>
       </div>
+
+      {/* Demo Leads Notice Banner */}
+      {hasDemoLeads && (
+        <div className="p-4 rounded-2xl bg-amber-50/90 border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-start gap-2.5">
+            <Info size={18} className="text-amber-600 shrink-0 mt-0.5" />
+            <div>
+              <span className="font-bold text-amber-950">Notice Regarding Existing Leads:</span>
+              <p className="text-amber-900/90 mt-0.5 leading-relaxed">
+                The leads shown below (Marcus Vance, Sarah Jenkins, David Chen) are{" "}
+                <strong>sample mock test data</strong> created during development to test the CMS
+                table, status workflow, and email reply layout. They are NOT real client requests.
+                Real customer submissions from <code>/contact</code> arrive here automatically and
+                are delivered directly to your inbox.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={handleClearDemoLeads}
+            className="shrink-0 px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl text-xs shadow-sm transition-all cursor-pointer whitespace-nowrap"
+          >
+            Clear Sample Leads
+          </button>
+        </div>
+      )}
 
       {/* Filter and Search Bar */}
       <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
@@ -114,63 +166,77 @@ export const CMSInquiriesManager: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-xs text-slate-700">
-              {filteredInquiries.map((inq) => (
-                <tr
-                  key={inq.id}
-                  onClick={() => handleOpenDetail(inq)}
-                  className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
-                >
-                  <td className="py-4 pl-6 text-slate-400 font-medium whitespace-nowrap">
-                    {inq.date}
-                  </td>
-                  <td className="py-4 px-4 font-semibold text-slate-900 whitespace-nowrap">
-                    <div>{inq.name}</div>
-                    <span className="text-[11px] font-normal text-slate-400">{inq.email}</span>
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-50 text-[#FF781D] border border-orange-200 uppercase">
-                      {inq.type}
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 max-w-xs">
-                    <p className="line-clamp-1 text-slate-600">{inq.message || "No message body"}</p>
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                        inq.status === "New"
-                          ? "bg-amber-100 text-amber-800 animate-pulse"
-                          : inq.status === "Replied"
-                          ? "bg-emerald-100 text-emerald-800"
-                          : inq.status === "In Review"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-slate-100 text-slate-600"
-                      }`}
-                    >
-                      {inq.status}
-                    </span>
-                  </td>
-                  <td className="py-4 pr-6 text-right whitespace-nowrap">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOpenDetail(inq);
-                      }}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-slate-600 group-hover:text-[#FF781D] transition-colors"
-                    >
-                      <span>Review</span>
-                      <ChevronRight size={14} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {filteredInquiries.map((inq) => {
+                const isDemo = DEMO_LEAD_IDS.has(inq.id);
+                return (
+                  <tr
+                    key={inq.id}
+                    onClick={() => handleOpenDetail(inq)}
+                    className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
+                  >
+                    <td className="py-4 pl-6 text-slate-400 font-medium whitespace-nowrap">
+                      {inq.date}
+                    </td>
+                    <td className="py-4 px-4 font-semibold text-slate-900 whitespace-nowrap">
+                      <div className="flex items-center gap-1.5">
+                        <span>{inq.name}</span>
+                        {isDemo && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                            Sample Demo
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[11px] font-normal text-slate-400">{inq.email}</span>
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-50 text-[#FF781D] border border-orange-200 uppercase">
+                        {inq.type}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 max-w-xs">
+                      <p className="line-clamp-1 text-slate-600">{inq.message || "No message body"}</p>
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap">
+                      <span
+                        className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold ${
+                          inq.status === "New"
+                            ? "bg-amber-100 text-amber-800 animate-pulse"
+                            : inq.status === "Replied"
+                            ? "bg-emerald-100 text-emerald-800"
+                            : inq.status === "In Review"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-slate-100 text-slate-600"
+                        }`}
+                      >
+                        {inq.status}
+                      </span>
+                    </td>
+                    <td className="py-4 pr-6 text-right whitespace-nowrap">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenDetail(inq);
+                        }}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-slate-600 group-hover:text-[#FF781D] transition-colors"
+                      >
+                        <span>Review</span>
+                        <ChevronRight size={14} />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
 
         {filteredInquiries.length === 0 && (
           <div className="p-12 text-center text-slate-400 text-xs">
-            No inquiries found matching your filters.
+            <Sparkles size={24} className="mx-auto mb-2 text-slate-300" />
+            <p className="font-semibold text-slate-600">No inquiries found.</p>
+            <p className="text-slate-400 mt-1">
+              New client inquiries submitted through the website will appear here in real time.
+            </p>
           </div>
         )}
       </div>
@@ -185,6 +251,16 @@ export const CMSInquiriesManager: React.FC = () => {
       >
         {selectedInquiry && (
           <div className="space-y-5 text-xs">
+            {/* Notice if sample */}
+            {DEMO_LEAD_IDS.has(selectedInquiry.id) && (
+              <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center gap-2">
+                <Info size={15} className="shrink-0 text-amber-600" />
+                <span>
+                  <strong>Note:</strong> This entry is mock test data created for CMS layout preview.
+                </span>
+              </div>
+            )}
+
             {/* Contact Box */}
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
               <div>
