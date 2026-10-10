@@ -73,8 +73,8 @@ export async function POST(req: NextRequest) {
 
     // 7. Record subscriber in CMS subscribers store
     try {
-      const { getCmsData, saveCmsData } = await import("@/src/utils/cmsStorage");
-      const cms = getCmsData();
+      const { getCmsDataAsync, saveCmsData } = await import("@/src/utils/cmsStorage");
+      const cms = await getCmsDataAsync();
       cms.subscribers = cms.subscribers || [];
       const exists = cms.subscribers.some((s) => s.email.toLowerCase() === email.toLowerCase());
       if (!exists) {
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
           source: "Newsletter Form",
           status: "Active",
         });
-        saveCmsData(cms);
+        await saveCmsData(cms);
       }
     } catch (cmsErr) {
       console.warn("Failed to record subscriber into CMS store:", cmsErr);

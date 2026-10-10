@@ -89,8 +89,8 @@ export async function POST(req: NextRequest) {
 
     // 7. Record inquiry in CMS inquiries store
     try {
-      const { getCmsData, saveCmsData } = await import("@/src/utils/cmsStorage");
-      const cms = getCmsData();
+      const { getCmsDataAsync, saveCmsData } = await import("@/src/utils/cmsStorage");
+      const cms = await getCmsDataAsync();
       cms.inquiries = cms.inquiries || [];
       cms.inquiries.unshift({
         id: `inq-${Date.now()}`,
@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
         date: new Date().toISOString().replace("T", " ").slice(0, 16),
         status: "New",
       });
-      saveCmsData(cms);
+      await saveCmsData(cms);
     } catch (cmsErr) {
       console.warn("Failed to record inquiry into CMS store:", cmsErr);
     }
