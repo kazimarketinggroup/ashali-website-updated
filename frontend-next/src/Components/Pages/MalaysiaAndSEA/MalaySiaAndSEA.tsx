@@ -18,6 +18,7 @@ const MalaySiaAndSEA = () => {
         heading="Planning an event, workshop or advisory conversation in Southeast Asia?"
         body="Share your location, date and what you want to achieve. We'll recommend the right format and confirm Ash's availability across the region."
         ctaLabel="Enquire now"
+        ctaTo="/contact?type=sea"
       />
         </div>
     );

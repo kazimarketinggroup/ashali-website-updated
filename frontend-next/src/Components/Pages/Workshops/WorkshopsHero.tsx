@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import workshopFacilitation from "../../../assets/workshops/ash-workshop-session.jpg";
+import workshopHeroImg from "../../../assets/workshops/ash-workshop-hero.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
 import { ANALYTICS_EVENTS } from "../../../utils/analytics";
 import { Body, CtaRow, PrimaryLink, SecondaryLink } from "../../Shared/SectionKit";
@@ -37,7 +37,7 @@ const WorkshopsHero: React.FC = () => (
           </Body>
 
           <CtaRow className="mt-8">
-            <PrimaryLink to="/contact" event={ANALYTICS_EVENTS.workshopEnquiryClick}>
+            <PrimaryLink to="/contact?type=workshop" event={ANALYTICS_EVENTS.workshopEnquiryClick}>
               Discuss a workshop
             </PrimaryLink>
             <SecondaryLink to="#workshops">Explore the workshops</SecondaryLink>
@@ -53,7 +53,7 @@ const WorkshopsHero: React.FC = () => (
         >
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl max-h-[380px]">
             <img
-              src={workshopFacilitation.src}
+              src={workshopHeroImg.src}
               alt="Ash facilitating an executive AI workshop session"
               className="h-full w-full object-cover object-center aspect-[16/10] lg:aspect-[4/3]"
               loading="eager"

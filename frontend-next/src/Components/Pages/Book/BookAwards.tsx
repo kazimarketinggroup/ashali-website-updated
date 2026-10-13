@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { Award, Trophy } from "lucide-react";
 
 import awardsLogo from "../../../assets/book/businessbookAwardLogo.png";
-import YouTubeFacade from "../../Shared/YouTubeFacade";
-// import bookImage from "../../../assets/book/bookimage.png";
+import stageImage from "../../../assets/book/business-book-awards-stage.png";
 
 export const BookAwards: React.FC = () => {
   // Common smooth easing preset
@@ -20,26 +19,26 @@ export const BookAwards: React.FC = () => {
 
   const talkTopics = [
     {
-      title: "The Unfair Advantage in the age of AI",
+      title: "The Unfair Advantage in the Age of AI",
       desc: "How the book's core ideas apply now that AI is rewriting the rules of advantage."
     },
     {
-      title: "Using your story as an advantage",
+      title: "Using Your Story as an Advantage",
       desc: "Turning your background, journey and identity into a genuine edge."
     },
     {
-      title: "Social mobility, entrepreneurship and opportunity",
+      title: "Social Mobility, Entrepreneurship and Opportunity",
       desc: "Why talent is everywhere but access isn't and what to do about it."
     },
     {
-      title: "Hidden forces behind success",
+      title: "Hidden Forces Behind Success",
       desc: "The unseen factors that shape who wins, and how to use them deliberately."
     }
   ];
 
   return (
-    <section className="bg-black px-6  text-white select-none">
-      <div className="mx-auto max-w-5xl flex flex-col gap-16 md:gap-20">
+    <section className="bg-black px-6 text-white select-none">
+      <div className="mx-auto max-w-6xl flex flex-col gap-16 md:gap-20">
 
         {/* ================= ── TOP AWARDS BANNER ── ================= */}
         <motion.div
@@ -81,8 +80,8 @@ export const BookAwards: React.FC = () => {
         </motion.div>
 
 
-        {/* ================= ── BOTTOM TALKS & VIDEO VIEW MATRIX ── ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-stretch w-full">
+        {/* ================= ── BOTTOM TALKS & STAGE PHOTO MATRIX ── ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center w-full">
           
           {/* Left Block: Structured Headline & Core Talk Focus Groups */}
           <motion.div
@@ -90,23 +89,23 @@ export const BookAwards: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={easeOutTransition}
-            className="md:col-span-6 flex flex-col items-start text-left select-text"
+            className="md:col-span-6 lg:col-span-5 flex flex-col items-start text-left select-text"
           >
-            {/* Minimalist Header Accent Ribbon */}
-            <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-500 uppercase">
+            {/* Header Accent Ribbon */}
+            <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
               <span>Talks based on the book</span>
             </div>
 
-            {/* Micro-Tone Highlight Sub-Title */}
+            {/* Headline */}
             <h2 className="text-fluid-32 font-bold tracking-tight text-white mb-8 leading-tight">
-              Bring <span className="text-[#14b8a6]">the ideas</span> <span className="text-[#65735b]">to your stage.</span>
+              <span className="text-[#3ecfb2]">Bring the ideas</span> <span className="text-white">to your stage.</span>
             </h2>
 
             {/* Generated Topics Hierarchy */}
             <div className="space-y-6 w-full max-w-lg">
               {talkTopics.map((topic, i) => (
                 <div key={i} className="flex flex-col items-start group">
-                  <h3 className="text-[14px] sm:text-[15px] font-bold tracking-wide text-gray-100 group-hover:text-[#14b8a6] transition-colors duration-150 mb-1 leading-snug">
+                  <h3 className="text-[14px] sm:text-[15.5px] font-bold tracking-wide text-white group-hover:text-[#3ecfb2] transition-colors duration-150 mb-1 leading-snug">
                     {topic.title}
                   </h3>
                   <p className="text-gray-400 font-light text-[12.5px] sm:text-[13px] leading-relaxed tracking-wide antialiased">
@@ -117,23 +116,24 @@ export const BookAwards: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Block: Pure Video Display Window */}
-         <motion.div
-  initial={{ opacity: 0, x: 20 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true, amount: 0.2 }}
-  transition={easeOutTransition}
-  whileHover={{ y: -4 }}
-  className="md:col-span-6 w-full"
->
-  <div className="relative overflow-hidden rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] bg-black aspect-video">
-    <YouTubeFacade
-      videoId="RGbCR_pq4_A"
-      title="Ash Ali Speaking at Business Book Awards"
-      aspectRatio="16/9"
-    />
-  </div>
-</motion.div>
+          {/* Right Block: Stage Photograph */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={easeOutTransition}
+            className="md:col-span-6 lg:col-span-7 w-full flex items-center justify-center"
+          >
+            <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <img
+                src={stageImage.src}
+                alt="Ash Ali speaking on stage at The Business Book Awards with Hasan Kubba"
+                className="w-full h-auto object-cover block"
+                loading="lazy"
+                draggable={false}
+              />
+            </div>
+          </motion.div>
 
         </div>
 

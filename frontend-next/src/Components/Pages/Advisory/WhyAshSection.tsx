@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Trophy, Briefcase, MapPin, Users, Mic, Sparkles } from "lucide-react";
+import { BookOpen, Trophy, Briefcase, MapPin, Users, BarChart3, DollarSign } from "lucide-react";
 
 type CardDef = {
   icon: React.ElementType;
@@ -16,19 +16,19 @@ type CardDef = {
 const row1Cards: CardDef[] = [
   {
     icon: BookOpen,
-    label: "Co-author of",
-    title: "*The Unfair Advantage*",
+    label: "CO-AUTHOR",
+    title: "The Unfair Advantage",
     w: "w-full sm:flex-1 sm:basis-0",
   },
   {
     icon: Trophy,
-    label: "Winner",
-    title: "Business Book of the Year 2021, The Business Book Awards",
+    label: "WINNER, 2021",
+    title: "Business Book of the Year",
     w: "w-full sm:flex-1 sm:basis-0",
   },
   {
     icon: Briefcase,
-    label: "Former First Marketing Director at",
+    label: "FIRST MARKETING DIRECTOR",
     title: "Just Eat",
     w: "w-full sm:flex-1 sm:basis-0",
   },
@@ -36,27 +36,27 @@ const row1Cards: CardDef[] = [
 
 const row2Cards: CardDef[] = [
   {
+    icon: DollarSign,
+    label: "FOUNDER & CHAIR",
+    title: "Fare Exchange",
+    w: "w-full sm:grow sm:basis-[220px]",
+  },
+  {
     icon: MapPin,
-    label: "International Bases",
-    title: "London & Kuala Lumpur",
-    w: "w-full sm:grow sm:basis-[270px]",
+    label: "NON-EXECUTIVE DIRECTOR",
+    title: "WashPlus",
+    w: "w-full sm:grow sm:basis-[180px]",
   },
   {
     icon: Users,
-    label: "Co-founder of",
+    label: "CO-FOUNDER",
     title: "Uhubs",
-    w: "w-full sm:grow sm:basis-[185px]",
+    w: "w-full sm:grow sm:basis-[220px]",
   },
   {
-    icon: Mic,
-    label: "Global",
-    title: "Keynote Speaker",
-    w: "w-full sm:grow sm:basis-[215px]",
-  },
-  {
-    icon: Sparkles,
-    label: "Spoken at",
-    title: "TEDx, Salesforce, EY",
+    icon: BarChart3,
+    label: "CO-CREATOR",
+    title: "Global Sales Capability Index",
     w: "w-full sm:grow sm:basis-[240px]",
   },
 ];
@@ -71,7 +71,7 @@ const InfoCard: React.FC<{
     className={`
       bg-[#151515] border border-white/[0.06] p-4 sm:p-5 rounded-xl
       flex items-center gap-3 sm:gap-4
-      text-left min-h-[92px] shadow-md
+      text-left min-h-[92px] shadow-md hover:border-white/10 transition-colors
       ${wClass}
     `}
   >
@@ -80,11 +80,11 @@ const InfoCard: React.FC<{
     </span>
     <div className="min-w-0 flex flex-col justify-center">
       {label && (
-        <span className="text-[12px] text-gray-400 font-medium leading-tight mb-1">
+        <span className="text-[11px] uppercase tracking-wider text-gray-400 font-semibold leading-tight mb-1">
           {label}
         </span>
       )}
-      <strong className="text-[15px] font-bold tracking-tight text-white leading-tight">
+      <strong className="text-[14px] sm:text-[15px] font-bold tracking-tight text-white leading-tight">
         {title}
       </strong>
     </div>
@@ -97,8 +97,8 @@ const WhyAshSection: React.FC = () => {
       <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Eyebrow */}
-        <div className="flex items-center mb-3 text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
-          <span>Why Ash</span>
+        <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+          <span>CREDENTIALS</span>
         </div>
 
         {/* Heading */}
@@ -107,11 +107,13 @@ const WhyAshSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
-          className="mb-10 text-white text-fluid-30 font-semibold tracking-tight"
+          className="mb-4 text-white text-fluid-28 font-medium tracking-tight"
         >
-          Built through experience, not theory.
+          Built through experience, not theory
         </motion.h2>
-        <p className="text-xs mb-8 mt-2 max-w-4xl text-gray-300">Ash brings the pattern recognition of 25+ years spent building, operating, advising and investing. The value is not another framework deck. It is an external perspective that can challenge assumptions, sharpen the story and help leaders see the decision more clearly.</p>
+        <p className="text-[13px] sm:text-[14px] mb-8 font-light max-w-4xl text-gray-300 leading-relaxed">
+          Every advisory engagement draws on firsthand experience building, scaling, investing in and advising high-growth companies across the UK, Europe and GCC.
+        </p>
 
         {/* Cards */}
         <motion.div

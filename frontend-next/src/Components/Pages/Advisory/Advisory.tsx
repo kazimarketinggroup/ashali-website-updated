@@ -1,27 +1,26 @@
 
 // import AdvisesOnSection from "./AdvisesOnSection";
 import FinalCta from "../Home/FinalCta";
+import AdvisoryDataSection from "./AdvisoryDataSection";
 import AdvisesSection from "./AdvisesSection";
 import AdvisoryHero from "./AdvisoryHero";
 import HowAshWorks from "./HowAshWorks";
-// import UnlockNewsletterSection from "./UnlockNewsLetterSection";
-// import StartConversation from "./StartConversation";
 import WhyAshSection from "./WhyAshSection";
 
 const Advisory = () => {
     return (
         <div>
             <AdvisoryHero/>
+            <AdvisoryDataSection/>
             <AdvisesSection/>
-            {/* <AdvisesOnSection/> */}
             <WhyAshSection/>
             <HowAshWorks/>
-            {/* <StartConversation/> */}
-           <FinalCta
-        heading="Looking for a sounding board, strategic advisor or board member?"
-        body="Let's discuss where you are and where you need to get to. We'll recommend the most suitable engagement format and confirm Ash's availability."
-        ctaLabel="Start a conversation"
-      />
+            <FinalCta
+                heading="Have a consequential growth or capability decision to make?"
+                body="Share the decision, the context and your timeframe. We'll confirm whether Ash's experience is a good fit."
+                ctaLabel="Discuss advisory"
+                ctaTo="/contact?type=advisory"
+            />
         </div>
     );
 };

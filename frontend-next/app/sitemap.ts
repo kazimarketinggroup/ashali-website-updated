@@ -42,8 +42,8 @@ const CONTENT_ROUTES = [
   { path: "/unfair-advantage", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/contact", priority: 0.8, changeFrequency: "yearly" as const },
 
-  // Impact / portfolio.
-  { path: "/impact", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/sales-kickoff", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/giving-back", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/portfolio", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/portfolio/uhubs", priority: 0.6, changeFrequency: "yearly" as const },
   { path: "/portfolio/just-eat", priority: 0.6, changeFrequency: "yearly" as const },

@@ -38,6 +38,7 @@ export const CapabilityIndexSection = () => {
   const [mounted, setMounted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [newsletterOptIn, setNewsletterOptIn] = useState<boolean>(false);
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -45,6 +46,12 @@ export const CapabilityIndexSection = () => {
     document.body.style.overflow = isModalOpen ? "hidden" : "unset";
     return () => { document.body.style.overflow = "unset"; };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    const handleOpen = () => setIsModalOpen(true);
+    window.addEventListener("open-index-modal", handleOpen);
+    return () => window.removeEventListener("open-index-modal", handleOpen);
+  }, []);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +61,7 @@ export const CapabilityIndexSection = () => {
     try {
       if (formData.email) {
         const response = await api.post("/contact/submit", {
-          type: "advisory",
+          type: "report",
           name: formData.name || "Uhubs Report Requester",
           email: formData.email,
           message: "Downloaded Global Sales Capability Index 2026 Report",
@@ -62,6 +69,7 @@ export const CapabilityIndexSection = () => {
             Company: formData.company,
             "Job Title": formData.jobTitle,
             "Revenue Org Size": formData.orgSize,
+            newsletter_opt_in: newsletterOptIn,
             enquiry_source: "Uhubs Report Download",
           },
           website_hp: honeypot,
@@ -258,7 +266,7 @@ export const CapabilityIndexSection = () => {
                       <span className="text-[#14b8a6]">benchmark of sales execution quality</span>
                     </h4>
                     <p className="text-neutral-500 text-[12px] font-light mb-7 tracking-wide">
-                      Fill in your details and we'll unlock the full 40-page report immediately.
+                      Fill in your details and we&apos;ll unlock the full report immediately.
                     </p>
 
                     <form onSubmit={handleFormSubmit} className="space-y-6">
@@ -274,27 +282,24 @@ export const CapabilityIndexSection = () => {
                       />
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
                         <ModalInput
-                          label="Full name"
-                          required
-                          value={formData.name}
-                          onChange={(name) => setFormData((prev) => ({ ...prev, name }))}
-                        />
-                        <ModalInput
-                          label="Email"
+                          label="Work Email"
                           required
                           type="email"
                           value={formData.email}
                           onChange={(email) => setFormData((prev) => ({ ...prev, email }))}
                         />
                         <ModalInput
-                          label="Company"
-                          required
+                          label="Full name (optional)"
+                          value={formData.name}
+                          onChange={(name) => setFormData((prev) => ({ ...prev, name }))}
+                        />
+                        <ModalInput
+                          label="Company (optional)"
                           value={formData.company}
                           onChange={(company) => setFormData((prev) => ({ ...prev, company }))}
                         />
                         <ModalInput
-                          label="Job Title"
-                          required
+                          label="Job Title (optional)"
                           value={formData.jobTitle}
                           onChange={(jobTitle) => setFormData((prev) => ({ ...prev, jobTitle }))}
                         />
@@ -303,17 +308,16 @@ export const CapabilityIndexSection = () => {
                       {/* Select */}
                       <div className="flex flex-col w-full relative">
                         <label htmlFor="modal-org-size" className="text-white font-normal text-[12px] mb-1">
-                          Revenue org size<span className="text-red-500 ml-0.5">*</span>
+                          Revenue org size (optional)
                         </label>
                         <div className="relative w-full border-b border-neutral-700 focus-within:border-white transition-colors duration-200">
                           <select
                             id="modal-org-size"
                             value={formData.orgSize}
                             onChange={(e) => setFormData((prev) => ({ ...prev, orgSize: e.target.value }))}
-                            required
                             className="w-full bg-transparent text-neutral-300 py-2.5 pr-8 text-[12px] outline-none appearance-none cursor-pointer font-light focus:text-white"
                           >
-                            <option value="" disabled className="bg-[#0F0F0F]">Select One</option>
+                            <option value="" className="bg-[#0F0F0F]">Select One (optional)</option>
                             <option value="1-20" className="bg-[#0F0F0F]">1 - 20 employees</option>
                             <option value="21-99" className="bg-[#0F0F0F]">21 - 99 employees</option>
                             <option value="100-499" className="bg-[#0F0F0F]">100 - 499 employees</option>
@@ -323,15 +327,26 @@ export const CapabilityIndexSection = () => {
                         </div>
                       </div>
 
+                      {/* Newsletter opt-in checkbox */}
+                      <label className="flex items-start gap-2.5 text-[12px] text-gray-400 cursor-pointer pt-1">
+                        <input
+                          type="checkbox"
+                          checked={newsletterOptIn}
+                          onChange={(e) => setNewsletterOptIn(e.target.checked)}
+                          className="mt-0.5 rounded border-neutral-700 bg-neutral-900 text-[#FF781D] focus:ring-0"
+                        />
+                        <span>Keep me updated with future research and Ash&apos;s thinking on advantage.</span>
+                      </label>
+
                       {/* Footer row */}
-                      <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <p className="text-neutral-500 font-light text-[11px] leading-relaxed text-left max-w-xs">
-                          No spam. No unsolicited calls. Used only to send you this report and future editions.
+                          No spam. No unsolicited calls. Download link is generated immediately.
                         </p>
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-200 hover:bg-neutral-200 shrink-0 text-center disabled:opacity-50"
+                          className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-200 hover:bg-neutral-200 shrink-0 text-center disabled:opacity-50 cursor-pointer"
                         >
                           {isSubmitting ? "Unlocking..." : "Get instant access →"}
                         </button>

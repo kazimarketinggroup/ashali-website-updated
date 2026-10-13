@@ -234,7 +234,7 @@ function IntroTimeline() {
                   FIRST MARKETING DIRECTOR
                 </h3>
                 <Location>London</Location>
-                <p>Joined Just Eat as the first marketing director, pioneering growth strategies that led to a GBP 1.5 billion IPO, the UK's biggest tech IPO of the decade.</p>
+                <p>Joined Just Eat as its first marketing director, pioneering growth strategies. The company later went on to a £1.5 billion IPO, the UK’s biggest tech IPO of the decade.</p>
               </CopyBlock>
             </div>
           </div>
@@ -268,7 +268,7 @@ function MiddleTimeline() {
                   FAIR EXCHANGE
                 </h3>
                 <Location align="right">London</Location>
-                <p>Founded and launched a mobile performance based lead generation service for phone call tracking in the taxi and private minicab sector. At the end of his journey, he successfully scaled the business and sold Fare Exchange for a seven-figure sum.</p>
+                <p>Founded and launched a mobile performance based lead generation service for phone call tracking in the £9 billion taxi and private minicab sector. At the end of his journey, he successfully scaled the business and sold Fare Exchange for a seven-figure sum.</p>
               </CopyBlock>
             </div>
             <div className="flex justify-start pl-[clamp(12px,3.6vw,30px)]">
@@ -294,7 +294,7 @@ function MiddleTimeline() {
                   </h3>
                   <img src={logoWash.src} alt="WashPlus" className="h-[clamp(9px,2.2vw,18px)] w-auto object-contain" />
                 </div>
-                <Location>UAE, Dubai</Location>
+                <Location>London</Location>
                 <p>Co-founded WashPlus, an on-demand eco-friendly laundry and dry cleaning startup, bringing innovation to the industry with a tech-driven approach. Scaled the business and completed a successful exit in the GCC region.</p>
               </CopyBlock>
             </div>

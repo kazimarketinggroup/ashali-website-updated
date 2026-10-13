@@ -20,7 +20,15 @@ export const BRAND_GRADIENT_LR =
 //   { icon: Instagram, link: "#" },
 // ];
 
-type EnquiryType = "speaking" | "advisory" | "impact" | "media" | "sea";
+type EnquiryType =
+  | "speaking"
+  | "sales-kickoff"
+  | "workshop"
+  | "advisory"
+  | "media"
+  | "sea"
+  | "giving-back"
+  | "bulk-book";
 
 type FieldConfig = { name: string; placeholder: string; type?: string; isDate?: boolean };
 
@@ -29,61 +37,94 @@ const FIELD_CONFIG: Record<EnquiryType, FieldConfig[]> = {
     { name: "Name", placeholder: "Name" },
     { name: "Email", placeholder: "Email", type: "email" },
     { name: "Organisation", placeholder: "Organisation" },
-    { name: "Event Name", placeholder: "Event Name" },
+    { name: "Event Name", placeholder: "Event name" },
     { name: "Date", placeholder: "Date", isDate: true },
     { name: "Location", placeholder: "Location" },
-    { name: "Audience Size", placeholder: "Audience Size" },
+    { name: "Audience Size", placeholder: "Audience size" },
     { name: "Topic", placeholder: "Topic" },
-    { name: "Budget Range", placeholder: "Budget Range" },
+    { name: "Budget", placeholder: "Indicative budget (optional)" },
+  ],
+  "sales-kickoff": [
+    { name: "Name", placeholder: "Name" },
+    { name: "Email", placeholder: "Email", type: "email" },
+    { name: "Organisation", placeholder: "Organisation" },
+    { name: "Event Name", placeholder: "Event name / Kickoff theme" },
+    { name: "Date", placeholder: "Date", isDate: true },
+    { name: "Location", placeholder: "Location" },
+    { name: "Audience Size", placeholder: "Audience size (e.g. 150 sales reps)" },
+    { name: "Topic", placeholder: "Focus / Key takeaway" },
+    { name: "Budget", placeholder: "Indicative budget (optional)" },
+  ],
+  workshop: [
+    { name: "Name", placeholder: "Name" },
+    { name: "Email", placeholder: "Email", type: "email" },
+    { name: "Organisation", placeholder: "Organisation" },
+    { name: "Team Size", placeholder: "Team size (e.g. 15 leaders)" },
+    { name: "Date", placeholder: "Preferred date", isDate: true },
+    { name: "Location", placeholder: "Location (e.g. London / Virtual)" },
+    { name: "Focus Area", placeholder: "Workshop focus (e.g. Unfair Advantage, Sales Sprint)" },
+    { name: "Budget", placeholder: "Indicative budget (optional)" },
   ],
   advisory: [
     { name: "Name", placeholder: "Name" },
     { name: "Email", placeholder: "Email", type: "email" },
     { name: "Organisation", placeholder: "Organisation" },
-    { name: "Role", placeholder: "Role" },
-    { name: "Challenge", placeholder: "Challenge" },
-    { name: "Type of Support", placeholder: "Type of Support" },
-    { name: "Preferred Timeline", placeholder: "Preferred Timeline" },
-    { name: "Budget / Engagement Type", placeholder: "Budget / Engagement Type" },
+    { name: "Role", placeholder: "Role / Title (e.g. Founder, CEO, CRO)" },
+    { name: "Challenge", placeholder: "Key challenge or strategic objective" },
+    { name: "Support Type", placeholder: "Type of support (Advisory, Board, Sprint)" },
+    { name: "Timeline", placeholder: "Preferred timeline (e.g. Q1 2026)" },
+    { name: "Budget", placeholder: "Indicative budget (optional)" },
   ],
   media: [
     { name: "Name", placeholder: "Name" },
     { name: "Email", placeholder: "Email", type: "email" },
     { name: "Show / Publication", placeholder: "Show / Publication" },
-    { name: "Host", placeholder: "Host" },
-    { name: "Topic", placeholder: "Topic" },
-    { name: "Format", placeholder: "Format" },
-    { name: "Audience", placeholder: "Audience" },
-    { name: "Recording Date", placeholder: "Recording Date", isDate: true },
-    { name: "Links to Previous Episodes", placeholder: "Links to Previous Episodes" },
+    { name: "Host", placeholder: "Host name" },
+    { name: "Topic", placeholder: "Topic / Angle" },
+    { name: "Format", placeholder: "Format (Audio / Video / Written)" },
+    { name: "Audience", placeholder: "Audience reach / Listenership" },
+    { name: "Date", placeholder: "Recording date", isDate: true },
+    { name: "Deadline", placeholder: "Release deadline" },
   ],
   sea: [
     { name: "Name", placeholder: "Name" },
     { name: "Email", placeholder: "Email", type: "email" },
-    { name: "Country / City", placeholder: "Country / City" },
     { name: "Organisation", placeholder: "Organisation" },
-    { name: "Opportunity Type", placeholder: "Speaking / Advisory / Partnership / University / Other" },
-    { name: "Timeline", placeholder: "Timeline" },
+    { name: "Country / City", placeholder: "Country / City (e.g. KL, Singapore)" },
+    { name: "Opportunity Type", placeholder: "Opportunity type (Speaking / Advisory / Partnership)" },
+    { name: "Date", placeholder: "Preferred date / Timeline", isDate: true },
+    { name: "Budget", placeholder: "Indicative budget (optional)" },
   ],
-  impact: [
+  "giving-back": [
     { name: "Name", placeholder: "Name" },
     { name: "Email", placeholder: "Email", type: "email" },
-    { name: "Institution", placeholder: "Institution" },
-    { name: "Location", placeholder: "Location" },
-    { name: "Age Group", placeholder: "Age Group" },
-    { name: "Audience Size", placeholder: "Audience Size" },
-    { name: "Preferred Date", placeholder: "Preferred Date", isDate: true },
-    { name: "Why this audience?", placeholder: "Why this audience?" },
-    { name: "Format", placeholder: "Format" },
+    { name: "Institution", placeholder: "School / Institution / Charity" },
+    { name: "Location", placeholder: "Location (City / Town)" },
+    { name: "Age Group", placeholder: "Audience & age group (e.g. Sixth-form, Underrepresented founders)" },
+    { name: "Audience Size", placeholder: "Audience size (e.g. 100 students)" },
+    { name: "Date", placeholder: "Preferred date", isDate: true },
+    { name: "Format", placeholder: "Preferred format (Assembly, Workshop, Q&A)" },
+    { name: "Why this audience?", placeholder: "Why this audience? (Background & context)" },
+  ],
+  "bulk-book": [
+    { name: "Name", placeholder: "Name" },
+    { name: "Email", placeholder: "Email", type: "email" },
+    { name: "Organisation", placeholder: "Organisation" },
+    { name: "Estimated Quantity", placeholder: "Estimated copies (e.g. 50, 100, 500+)" },
+    { name: "Delivery Destination", placeholder: "Delivery destination (Country / City)" },
+    { name: "Date", placeholder: "Required by date", isDate: true },
+    { name: "Event / Initiative", placeholder: "Event / Initiative (e.g. Company kickoff, Leadership retreat)" },
   ],
 };
 
 const WIDE_FIELDS = new Set([
-  "Budget / Engagement Type",
-  "Opportunity Type",
-  "Timeline",
+  "Budget",
+  "Focus Area",
   "Why this audience?",
-  "Format",
+  "Event / Initiative",
+  "Timeline",
+  "Opportunity Type",
+  "Deadline",
 ]);
 
 /**
@@ -124,6 +165,8 @@ export const ContactSection: React.FC = () => {
   const [selectedType, setSelectedType] = useState<EnquiryType>("speaking");
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [dateValues, setDateValues] = useState<Record<string, Date | null>>({});
+  const [isInPerson, setIsInPerson] = useState(false);
+  const [isVirtual, setIsVirtual] = useState(false);
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -131,19 +174,29 @@ export const ContactSection: React.FC = () => {
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const t = params.get("type");
-      if (t && ["speaking", "advisory", "impact", "media", "sea"].includes(t)) {
-        setSelectedType(t as EnquiryType);
+      const t = params.get("type")?.toLowerCase().trim();
+      if (t) {
+        if (t === "keynote" || t === "speaking") setSelectedType("speaking");
+        else if (t === "sales-kickoff" || t === "saleskickoff" || t === "sko") setSelectedType("sales-kickoff");
+        else if (t === "workshop" || t === "executive-workshop") setSelectedType("workshop");
+        else if (t === "advisory") setSelectedType("advisory");
+        else if (t === "media" || t === "podcast") setSelectedType("media");
+        else if (t === "sea" || t === "malaysia-sea" || t === "malaysia") setSelectedType("sea");
+        else if (t === "giving-back" || t === "givingback" || t === "impact" || t === "pro-bono") setSelectedType("giving-back");
+        else if (t === "bulk-book" || t === "bulkbook" || t === "book" || t === "books") setSelectedType("bulk-book");
       }
     }
   }, []);
 
-  const categories = [
+  const categories: { id: EnquiryType; label: string }[] = [
     { id: "speaking", label: "Speaking / Keynote" },
+    { id: "sales-kickoff", label: "Sales Kickoff" },
+    { id: "workshop", label: "Executive Workshop" },
     { id: "advisory", label: "Advisory" },
-    { id: "impact", label: "Impact" },
     { id: "media", label: "Media / Podcast" },
     { id: "sea", label: "Malaysia & SEA" },
+    { id: "giving-back", label: "Giving Back" },
+    { id: "bulk-book", label: "Bulk Book" },
   ];
 
   const handleFieldChange = (fieldName: string, value: string) => {
@@ -161,6 +214,8 @@ export const ContactSection: React.FC = () => {
   const resetForm = () => {
     setFormValues({});
     setDateValues({});
+    setIsInPerson(false);
+    setIsVirtual(false);
     setMessage("");
     setHoneypot("");
   };
@@ -181,6 +236,11 @@ export const ContactSection: React.FC = () => {
         ([key, value]) => key !== "Name" && key !== "Email" && value?.trim(),
       ),
     );
+
+    const deliveryFormat = [isInPerson && "In-person", isVirtual && "Virtual"].filter(Boolean).join(", ");
+    if (deliveryFormat) {
+      details["Format"] = deliveryFormat;
+    }
 
     setIsSubmitting(true);
     try {
@@ -204,6 +264,14 @@ export const ContactSection: React.FC = () => {
     }
   };
 
+  const showDeliveryCheckboxes = [
+    "speaking",
+    "sales-kickoff",
+    "workshop",
+    "sea",
+    "giving-back",
+  ].includes(selectedType);
+
   return (
     <section className="w-full bg-black py-16 md:py-20 px-4 sm:px-6 md:px-10 lg:px-20 select-none">
       <div className="max-w-fluid mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
@@ -214,7 +282,7 @@ export const ContactSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#0c0c0c] border border-white/[0.02] p-8 md:p-10 flex flex-col justify-between rounded-[4px] lg:col-span-4 min-h-[400px]"
+          className="bg-[#0c0c0c] border border-white/[0.04] p-8 md:p-10 flex flex-col justify-between rounded-[4px] lg:col-span-5 min-h-[440px]"
         >
           <div>
             <h2 className="text-white text-fluid-28 font-normal tracking-tight mb-6">
@@ -225,7 +293,7 @@ export const ContactSection: React.FC = () => {
               Select enquiry type
             </p>
 
-            {/* Dynamic Interactive Pill Selection Matrix */}
+            {/* Dynamic Interactive Pill Selection Matrix (8 Categories matching Image 1) */}
             <div className="flex flex-wrap gap-2.5">
               {categories.map((cat) => {
                 const isSelected = selectedType === cat.id;
@@ -233,14 +301,14 @@ export const ContactSection: React.FC = () => {
                   <button
                     key={cat.id}
                     onClick={() => {
-                      setSelectedType(cat.id as EnquiryType);
+                      setSelectedType(cat.id);
                       resetForm();
                     }}
                     type="button"
-                    className={`px-4 py-2.5 rounded-[4px] text-[13px] font-medium tracking-wide transition-all duration-200 ${
+                    className={`px-3.5 py-2.5 rounded-[4px] text-[13px] font-medium tracking-wide transition-all duration-200 cursor-pointer ${
                       isSelected
-                        ? "bg-[#222222] text-white border border-white/20 shadow-md"
-                        : "bg-[#161616] text-gray-400 border border-transparent hover:bg-[#1c1c1c] hover:text-white"
+                        ? "bg-[#222222] text-white border border-white/40 shadow-md ring-1 ring-white/20"
+                        : "bg-[#161616] text-gray-400 border border-white/[0.04] hover:bg-[#1c1c1c] hover:text-white hover:border-white/20"
                     }`}
                   >
                     {cat.label}
@@ -267,32 +335,6 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Precise Circular Linear Gradient Brand Social Block */}
-          {/* <div className="flex gap-3.5 mt-10">
-            {socials.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <a
-                  key={i}
-                  href={item.link}
-                  className="group relative w-9 h-9 transition-transform duration-200 transform hover:scale-105"
-                >
-                  <div
-                    className="absolute inset-0 rounded-full p-[1px] opacity-80 group-hover:opacity-100 transition-opacity"
-                    style={{ background: BRAND_GRADIENT_LR }}
-                  >
-                    <div className="w-full h-full rounded-full bg-[#0c0c0c] flex items-center justify-center">
-                      <Icon
-                        size={14}
-                        className="text-white opacity-85 group-hover:opacity-100 transition-opacity"
-                      />
-                    </div>
-                  </div>
-                </a>
-              );
-            })}
-          </div> */}
         </motion.div>
 
         {/* ───────── RIGHT SIDE: DYNAMIC CONDITIONAL INPUT GENERATOR ───────── */}
@@ -300,8 +342,17 @@ export const ContactSection: React.FC = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="bg-[#0c0c0c] border border-white/[0.04] p-8 md:p-10 rounded-[4px] lg:col-span-8 flex flex-col justify-center"
+          className="bg-[#0c0c0c] border border-white/[0.04] p-8 md:p-10 rounded-[4px] lg:col-span-7 flex flex-col justify-center"
         >
+          <div className="mb-4 pb-3 border-b border-white/[0.06] flex items-center justify-between">
+            <span className="text-xs uppercase tracking-wider text-gray-400 font-medium">
+              Enquiring for
+            </span>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded bg-white/10 text-white tracking-wide border border-white/10">
+              {categories.find((c) => c.id === selectedType)?.label}
+            </span>
+          </div>
+
           <form className="space-y-4 w-full" onSubmit={handleSubmit}>
             <AnimatePresence mode="wait">
               <motion.div
@@ -316,37 +367,47 @@ export const ContactSection: React.FC = () => {
                   const fields = FIELD_CONFIG[selectedType];
                   const wideSet = computeWideFields(fields);
                   return fields.map((field) => (
-                  <div
-                    key={field.name}
-                    className={wideSet.has(field.name) ? "sm:col-span-2" : undefined}
-                  >
-                    {field.isDate ? (
-                      <DateField
-                        placeholder={field.placeholder}
-                        value={dateValues[field.name] ?? null}
-                        onChange={(date) => handleDateChange(field.name, date)}
-                      />
-                    ) : (
-                      <Input
-                        placeholder={field.placeholder}
-                        type={field.type}
-                        value={formValues[field.name] || ""}
-                        onChange={(value) => handleFieldChange(field.name, value)}
-                        required={field.name === "Name" || field.name === "Email"}
-                      />
-                    )}
-                  </div>
+                    <div
+                      key={field.name}
+                      className={wideSet.has(field.name) ? "sm:col-span-2" : undefined}
+                    >
+                      {field.isDate ? (
+                        <DateField
+                          placeholder={field.placeholder}
+                          value={dateValues[field.name] ?? null}
+                          onChange={(date) => handleDateChange(field.name, date)}
+                        />
+                      ) : (
+                        <Input
+                          placeholder={field.placeholder}
+                          type={field.type}
+                          value={formValues[field.name] || ""}
+                          onChange={(value) => handleFieldChange(field.name, value)}
+                          required={field.name === "Name" || field.name === "Email"}
+                        />
+                      )}
+                    </div>
                   ));
                 })()}
 
-                {selectedType === "speaking" && (
-                  <div className="sm:col-span-2 flex items-center gap-6 py-2 text-gray-300 text-[13px]">
+                {showDeliveryCheckboxes && (
+                  <div className="sm:col-span-2 flex items-center gap-6 py-2 text-gray-300 text-[13px] select-none">
                     <label className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" className="accent-[#FF781D] rounded bg-[#2a2a2a] border-white/20 focus:ring-0 w-4 h-4" />
+                      <input
+                        type="checkbox"
+                        checked={isInPerson}
+                        onChange={(e) => setIsInPerson(e.target.checked)}
+                        className="accent-[#FF781D] rounded bg-[#2a2a2a] border-white/20 focus:ring-0 w-4 h-4 cursor-pointer"
+                      />
                       <span className="group-hover:text-white transition-colors">In-person</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" className="accent-[#FF781D] rounded bg-[#2a2a2a] border-white/20 focus:ring-0 w-4 h-4" />
+                      <input
+                        type="checkbox"
+                        checked={isVirtual}
+                        onChange={(e) => setIsVirtual(e.target.checked)}
+                        className="accent-[#FF781D] rounded bg-[#2a2a2a] border-white/20 focus:ring-0 w-4 h-4 cursor-pointer"
+                      />
                       <span className="group-hover:text-white transition-colors">Virtual</span>
                     </label>
                   </div>
@@ -369,7 +430,7 @@ export const ContactSection: React.FC = () => {
             {/* Global Styled Textarea */}
             <div className="w-full pt-2">
               <textarea
-                placeholder="Message"
+                placeholder="Write something"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full h-[120px] rounded-[4px] bg-[#141414] text-white px-4 py-3 text-[13px] font-normal placeholder-gray-400 outline-none border border-white/25 hover:border-white/45 focus:border-white focus:bg-[#1a1a1a] transition-all duration-200 resize-none"
@@ -388,8 +449,8 @@ export const ContactSection: React.FC = () => {
                 </div>
               )}
 
-            {/* Action Frame Submission Trigger */}
-            <div className="pt-2 flex justify-start">
+            {/* Action Frame Submission Trigger & Privacy Policy Link */}
+            <div className="pt-2 flex flex-wrap items-center gap-5">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -397,7 +458,19 @@ export const ContactSection: React.FC = () => {
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
+              <a
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FF781D] hover:underline text-[13px] font-medium transition-colors"
+              >
+                Privacy Policy
+              </a>
             </div>
+
+            <p className="text-gray-400 text-[12px] pt-1">
+              Typically responds within 24 to 48 hours
+            </p>
           </form>
         </motion.div>
 

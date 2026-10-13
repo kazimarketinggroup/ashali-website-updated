@@ -25,14 +25,17 @@ const highlights = [
   },
 ];
 
-const audiences = [
+const audienceRow1 = [
   "Corporates",
-  "Universities & Business Schools",
+  "Universities & business schools",
   "Accelerators",
-  "Founder Communities",
-  "Innovation Programmes",
-  "Muslim Business Networks",
-  "Private CEO Groups",
+  "Founder communities",
+];
+
+const audienceRow2 = [
+  "Innovation programmes",
+  "Muslim business networks",
+  "Private CEO groups",
 ];
 
 const MalaysiaRegionSection: React.FC = () => {
@@ -75,7 +78,7 @@ const MalaysiaRegionSection: React.FC = () => {
             </p>
 
             {/* BUTTON */}
-           <Link  href="/contact" className="inline-block mt-10">
+           <Link href="/contact?type=sea" className="inline-block mt-10">
               <button
                 type="button"
                 className="px-8 py-3 bg-white text-black font-semibold text-[13px] tracking-wide rounded-[2px] shadow-lg transition-colors duration-150"
@@ -113,36 +116,40 @@ const MalaysiaRegionSection: React.FC = () => {
         </div>
 
         {/* BOTTOM SECTION */}
-        <div className="mt-24">
+        <div className="mt-20 sm:mt-24">
 
           {/* LABEL */}
-          <div className="flex items-center gap-3 mb-8">
-          
-            <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
-              Who Ash works with
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-white/50 font-medium">
+              WHO ASH WORKS WITH
             </span>
           </div>
 
-          {/* TAGS — ~2 balanced lines up to xl, single line on 2xl+ */}
-          <div className="flex flex-wrap gap-4 lg:max-w-[900px] 2xl:max-w-none 2xl:flex-nowrap">
-            {audiences.map((item) => (
-              <div
-                key={item}
-                className="
-                  bg-[#1c1c1c]
-                  text-white
-                  whitespace-nowrap
-                  px-6 py-4
-                  rounded
-                  text-[15px]
-                  font-medium
-                 
-                  transition-all
-                "
-              >
-                {item}
-              </div>
-            ))}
+          {/* TAGS — 2 balanced rows matching design */}
+          <div className="flex flex-col gap-3 sm:gap-3.5">
+            {/* Row 1 */}
+            <div className="flex flex-wrap gap-2.5 sm:gap-3">
+              {audienceRow1.map((item) => (
+                <div
+                  key={item}
+                  className="bg-[#181818] border border-white/[0.06] text-white px-5 py-3 rounded-md text-[13.5px] sm:text-[14.5px] font-normal tracking-wide shadow-sm hover:border-white/10 transition-colors"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            {/* Row 2 */}
+            <div className="flex flex-wrap gap-2.5 sm:gap-3">
+              {audienceRow2.map((item) => (
+                <div
+                  key={item}
+                  className="bg-[#181818] border border-white/[0.06] text-white px-5 py-3 rounded-md text-[13.5px] sm:text-[14.5px] font-normal tracking-wide shadow-sm hover:border-white/10 transition-colors"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>

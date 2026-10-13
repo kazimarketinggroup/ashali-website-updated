@@ -4,14 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
-// import introBg from "../../../assets/about/intro-story.png";
-/*
-  Candid portrait, replacing portrait-ash.png. The previous image was a
-  background cut-out with visible halo artefacts around the hair and shoulders;
-  this is an unedited photograph, and its reflective tone suits the personal
-  register of this section better than a formal headshot.
-*/
-import portrait from "../../../assets/about/ash-portrait-thinking.jpeg";
+import portrait from "../../../assets/about/ash-tech-nation-winner.png";
 
 import { BRAND_GRADIENT_LR, brandGradientTextStyle } from "../../../constants/brandGradient";
 
@@ -30,17 +23,17 @@ const blocks = [
   {
     title: "Bestselling Author",
     body:
-      "Bestselling author of 'The Unfair Advantage', winner of Business Book of the Year 2021, The Business Book Awards and the 2021 Best Startup / Scale Up Book Award. The book helps entrepreneurs unlock their unique strengths to succeed in business.",
+      "Bestselling author of 'The Unfair Advantage', won the UK Business Book of the Year Award and the 2021 Best Startup/Scale Up Book Award. His book helps entrepreneurs unlock their unique strengths to succeed in business.",
   },
   {
-    title: "Co-Founder of Uhubs",
+    title: "Co-Founder Of Uhubs",
     body:
-      "Uhubs has been recognised as a pioneering sales performance platform: revenue leaders assess, benchmark, and elevate sales teams with data-driven insights and real-time performance tracking, trusted by ambitious organisations globally.",
+      "Ash co-founded Uhubs to measure what actually drives sales performance as AI changes the work. Its capability data powers the Global Sales Capability Index, the research behind his keynotes and workshops.",
   },
   {
     title: "Global Keynote Speaker",
     body:
-      "Ash speaks internationally across the UK, USA, UAE, Southeast Asia, and China, covering entrepreneurship, startup growth, unfair advantages, and what it takes to scale in the digital age.",
+      "Ash speaks to leadership teams, revenue leaders and AI events across the UK, Southeast Asia and beyond, on what AI changes, what stays human and where lasting advantage now comes from.",
   },
 ];
 
@@ -89,34 +82,20 @@ const AboutStory: React.FC = () => {
         {/* Profile + pillars */}
         <div className="mt-10 grid gap-8 border-t border-white/10 pt-10 lg:mt-14 lg:grid-cols-2 lg:gap-12 lg:pt-14">
 
-          {/* Portrait — capped smaller */}
+          {/* Stage Photo — London Tech Week Grand Final Winner */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65 }}
-            className="relative mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-[320px]"
+            className="relative mx-auto w-full max-w-[340px] lg:mx-0 lg:max-w-[400px]"
           >
-            <div className="relative overflow-hidden rounded-2xl">
-              {/*
-                `object-top` because the frame (roughly 320x404) is shorter than
-                the source photograph (1266x1600), so object-cover has to crop.
-                Anchoring to the top keeps the face fully in frame; the default
-                centre crop cut across the top of his head.
-              */}
+            <div className="relative overflow-hidden rounded-xl border border-white/[0.08] shadow-2xl">
               <img
                 src={portrait.src}
-                alt="Ash Ali, entrepreneur and keynote speaker"
-                className="block w-full object-cover object-top"
+                alt="Ash Ali at London Tech Week, Tech Nation Grand Final Winner"
+                className="block w-full h-auto object-cover"
               />
-              {/* <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black"
-                aria-hidden
-              /> */}
             </div>
           </motion.div>
 

@@ -50,8 +50,22 @@ export async function POST(req: NextRequest) {
 
     if (isReportDownload) {
       enquiryLabel = "uhubs report download";
-    } else if (enquiryLabel === "impact") {
-      enquiryLabel = "pro-bono";
+    } else if (enquiryLabel === "speaking" || enquiryLabel === "keynote") {
+      enquiryLabel = "speaking / keynote";
+    } else if (enquiryLabel === "sales-kickoff" || enquiryLabel === "saleskickoff") {
+      enquiryLabel = "sales kickoff";
+    } else if (enquiryLabel === "workshop" || enquiryLabel === "executive-workshop") {
+      enquiryLabel = "executive workshop";
+    } else if (enquiryLabel === "advisory") {
+      enquiryLabel = "advisory";
+    } else if (enquiryLabel === "media" || enquiryLabel === "podcast") {
+      enquiryLabel = "media / podcast";
+    } else if (enquiryLabel === "sea" || enquiryLabel === "malaysia-sea") {
+      enquiryLabel = "malaysia & sea";
+    } else if (enquiryLabel === "impact" || enquiryLabel === "giving-back" || enquiryLabel === "givingback") {
+      enquiryLabel = "giving back (pro-bono)";
+    } else if (enquiryLabel === "bulk-book" || enquiryLabel === "bulkbook" || enquiryLabel === "book") {
+      enquiryLabel = "bulk book order";
     }
 
     const emailSubject = `ashali.com enquiry: ${enquiryLabel}`;

@@ -29,7 +29,7 @@ const navItems: NavItem[] = [
   { to: "/workshops", label: "Workshops" },
   { to: "/advisory", label: "Advisory" },
   // { to: "/results-media", label: "Results & Media" },
-  { to: "/impact", label: "Impact" },
+  { to: "/giving-back", label: "Giving Back" },
   { to: "/unfair-advantage", label: "Book" },
 ];
 
@@ -82,7 +82,7 @@ const SiteHeader: React.FC = () => {
             href="/contact"
             className="inline-block rounded-sm border border-white px-5 py-2 text-[13px] font-bold tracking-wide text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
-            Enquire now
+            Work with Ash
           </Link>
         </div>
 

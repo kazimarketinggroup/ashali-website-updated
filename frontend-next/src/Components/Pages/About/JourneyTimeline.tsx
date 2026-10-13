@@ -41,14 +41,14 @@ export const JourneyTimeline: React.FC = () => {
       year: "2008–2011",
       title: "BECOMING JUST EAT'S FIRST MARKETING DIRECTOR",
       location: "London",
-      description: "Joined Just Eat as the first marketing director, pioneering growth strategies that led to a £1.5 billion IPO, the UK's biggest tech IPO of the decade.",
+      description: "Joined Just Eat as its first marketing director, pioneering growth strategies. The company later went on to a £1.5 billion IPO, the UK’s biggest tech IPO of the decade.",
       logoSrc: justEatLogo.src,
       logoAlt: "Just Eat Logo",
       logoStyles: "h-5 sm:h-6 w-auto object-contain"
     },
     {
       year: "2012–2016",
-      title: "FOUNDED FARE EXCHANGE",
+      title: "FOUNDED FAIR EXCHANGE",
       location: "London",
       description: "Founded and launched a mobile performance based lead generation service for phone call tracking in the £9 billion taxi and private minicab sector. At the end of his journey, he successfully scaled the business and sold Fare Exchange for a seven-figure sum.",
       logoSrc: fareExchangeLogo.src,
@@ -68,11 +68,11 @@ export const JourneyTimeline: React.FC = () => {
       year: "2019–2020",
       title: "CO-AUTHOR OF THE BEST SELLING BOOK THE UNFAIR ADVANTAGE",
       location: "London",
-      description: "Co-authored \"The Unfair Advantage\", a powerful book helping entrepreneurs discover and leverage their unique strengths."
+      description: "Co-authored 'The Unfair Advantage', a powerful book helping entrepreneurs discover and leverage their unique strengths."
     },
     {
       year: "2021",
-      title: "AWARDED BUSINESS BOOK OF THE YEAR 2021",
+      title: "AWARDED BUSINESS BOOK OF THE YEAR – 2021",
       location: "London",
       description: "'The Unfair Advantage' was picked from a shortlist of over 250 books and was chosen over the course of an intensive six-month judging process and was awarded Business Book of the Year 2021, The Business Book Awards."
     },

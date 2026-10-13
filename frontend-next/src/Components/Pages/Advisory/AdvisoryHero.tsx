@@ -69,8 +69,8 @@ export const AdvisoryHero: React.FC = () => {
         >
           {/* Eyebrow */}
           <motion.div variants={elementVariants} className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] tracking-[0.22em] uppercase text-gray-400 font-medium">
-              Selective strategic advisory
+            <span className="text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gray-400 font-medium">
+              STRATEGIC ADVISORY
             </span>
           </motion.div>
 
@@ -78,14 +78,15 @@ export const AdvisoryHero: React.FC = () => {
           <motion.h1
             variants={elementVariants}
             className="
-              text-white font-normal leading-[1.3] tracking-tight mb-5
-              text-fluid-32
+              text-white font-normal leading-[1.25] tracking-tight mb-5
+              text-fluid-32 sm:text-[34px] md:text-[38px] lg:text-[42px]
             "
           >
             <span className="text-[#3ecfb2]">A trusted operator's </span>
-            <span className="text-white">
-              perspective on consequential decisions.
-            </span>
+            <span className="text-[#d97736]">perspective on</span>
+            <br className="hidden sm:inline" />
+            <span className="text-[#3ecfb2]"> consequential </span>
+            <span className="text-[#d97736]">decisions.</span>
           </motion.h1>
 
           {/* Body */}
@@ -93,15 +94,15 @@ export const AdvisoryHero: React.FC = () => {
             variants={elementVariants}
             className="
               text-[#9ca3af] font-light leading-[1.75] tracking-wide antialiased mb-8
-              text-[12px] sm:text-[13px] max-w-[440px]
+              text-[12px] sm:text-[13px] max-w-[460px]
             "
           >
-            Advising high-growth tech founders, CEOs and executives across the UK, Europe, MENA and Southeast Asia. Ash advises a small number of leadership teams navigating growth, positioning, AI driven change and the decisions that are difficult to make from inside the business.
+            Guiding high-growth tech founders, CEOs and executives across the UK, Europe and GCC through scaling bottlenecks, market entry, founder-to-CEO transitions and commercial capability architecture. Grounded in 20+ years of operational reality.
           </motion.p>
 
           {/* CTA */}
           <motion.div variants={elementVariants}>
-            <Link href="/contact" className="inline-block">
+            <Link href="/contact?type=advisory" className="inline-block">
               <motion.button
                 type="button"
                 whileHover={{ scale: 1.02, backgroundColor: '#f3f4f6' }}

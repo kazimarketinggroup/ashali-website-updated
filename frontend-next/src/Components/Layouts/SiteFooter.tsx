@@ -27,8 +27,9 @@ const defaultColumns: FooterColumn[] = [
     heading: "More",
     links: [
       { label: "Advisory", to: "/advisory" },
-      { label: "Malaysia & Southeast Asia", to: "/malaysia-sea" },
-      { label: "Impact", to: "/impact" },
+      { label: "Malaysia & SEA", to: "/malaysia-sea" },
+      { label: "Giving Back", to: "/giving-back" },
+      { label: "Sales Kickoff", to: "/sales-kickoff" },
     ],
   },
   {
@@ -65,9 +66,16 @@ function IconX({ className }: { className?: string }) {
   );
 }
 
+function IconTikTok({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-.85-.05A6.34 6.34 0 0 0 3.1 15.69a6.34 6.34 0 0 0 10.82 4.48c1.68-1.68 2.22-3.8 2.22-6.5V8.14a8.27 8.27 0 0 0 4.85 1.56V6.25a4.85 4.85 0 0 1-1.4-.44z" />
+    </svg>
+  );
+}
+
 const SiteFooter: React.FC = () => {
   const pathname = usePathname() ?? "/";
-  const year = new Date().getFullYear();
   const { cmsData } = useCMS();
   const footer = cmsData?.footer;
 
@@ -84,7 +92,7 @@ const SiteFooter: React.FC = () => {
   const twitterUrl = footer?.twitterUrl || "https://x.com/Ash_Ali";
   const instagramUrl = footer?.instagramUrl;
   const columns = footer?.columns && footer.columns.length > 0 ? footer.columns : defaultColumns;
-  const copyright = footer?.copyright || "Ash Ali. All rights reserved.";
+  const copyright = footer?.copyright || "2026 © — Ash Ali | All Rights Reserved";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -140,6 +148,9 @@ const SiteFooter: React.FC = () => {
                   <IconX className="h-[15px] w-[15px]" />
                 </GradientRingIcon>
               )}
+              <GradientRingIcon href="https://www.tiktok.com/@ash_ali" label="Ash Ali on TikTok">
+                <IconTikTok className="h-4 w-4" />
+              </GradientRingIcon>
               {instagramUrl && (
                 <GradientRingIcon href={instagramUrl} label="Ash Ali on Instagram">
                   <Instagram className="h-4 w-4" strokeWidth={1.75} />
@@ -232,7 +243,7 @@ const SiteFooter: React.FC = () => {
         <div className="my-6 h-[3px] w-full sm:my-7" style={{ background: BRAND_GRADIENT_LR }} aria-hidden />
 
         <p className="text-left text-[12px] font-normal text-white/80">
-          © {year} {copyright}
+          {copyright}
         </p>
       </div>
     </footer>

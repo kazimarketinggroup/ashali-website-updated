@@ -1,17 +1,21 @@
 import React from 'react';
-import { Users, BrainCircuit, BookOpen, UserCheck } from 'lucide-react';
+import Link from 'next/link';
+import { Users, BrainCircuit, TrendingUp, UserCheck } from 'lucide-react';
 
 interface KeynoteCardProps {
   icon: React.ReactNode;
   text: string;
+  href?: string;
 }
 
 // Reusable matte dark card component
-const KeynoteCard: React.FC<KeynoteCardProps> = ({ icon, text }) => {
-  return (
-    <div className="bg-[#1a1a1a] rounded-[8px] p-5 lg:p-4 flex flex-col items-center justify-center text-center aspect-[1.15/1] border border-white/[0.02] shadow-[0_4px_20px_rgba(0,0,0,0.3)] group select-none">
+const KeynoteCard: React.FC<KeynoteCardProps> = ({ icon, text, href }) => {
+  const cardBody = (
+    <div className={`bg-[#1a1a1a] rounded-[8px] p-5 lg:p-4 flex flex-col items-center justify-center text-center aspect-[1.15/1] border border-white/[0.04] shadow-[0_4px_20px_rgba(0,0,0,0.3)] group select-none transition-all duration-200 h-full ${
+      href ? "hover:border-[#FF781D]/40 hover:bg-[#202020] cursor-pointer" : ""
+    }`}>
       {/* Icon Wrapper with a slight fade to match the subtle grey-white line-art style */}
-      <div className="text-gray-300 mb-4 lg:mb-3">
+      <div className="text-gray-300 mb-3 group-hover:text-white transition-colors">
         {icon}
       </div>
 
@@ -19,8 +23,16 @@ const KeynoteCard: React.FC<KeynoteCardProps> = ({ icon, text }) => {
       <p className="text-white text-[13px] sm:text-[14px] lg:text-[12.5px] font-normal leading-[1.4] tracking-wide max-w-[180px] whitespace-pre-line">
         {text}
       </p>
+
+      {href && (
+        <span className="mt-2 text-[11px] text-[#FF781D] font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+          Sales Kickoff →
+        </span>
+      )}
     </div>
   );
+
+  return href ? <Link href={href} className="block h-full">{cardBody}</Link> : cardBody;
 };
 
 export const KeynotesSection: React.FC = () => {
@@ -34,8 +46,9 @@ export const KeynotesSection: React.FC = () => {
       text: "AI & future-of-\nwork events"
     },
     {
-      icon: <BookOpen size={32} strokeWidth={1.2} />,
-      text: "Universities &\nbusiness schools"
+      icon: <TrendingUp size={32} strokeWidth={1.2} />,
+      text: "Sales and revenue\nleadership",
+      href: "/sales-kickoff"
     },
     {
       icon: <UserCheck size={32} strokeWidth={1.2} />,
