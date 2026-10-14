@@ -24,8 +24,8 @@ const topics = [
 
 const RegionalFocusSection: React.FC = () => {
   return (
-    <section className="bg-black text-white px-5 py-16 md:py-20 md:px-24 select-none">
-      <div className="mx-auto w-full max-w-fluid">
+    <section className="bg-black text-white py-16 md:py-24 select-none">
+      <div className="mx-auto w-full max-w-fluid px-4 sm:px-6 lg:px-8">
 
         {/* ================= TOP: IMAGE + REGIONAL TOPICS ================= */}
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -54,12 +54,12 @@ const RegionalFocusSection: React.FC = () => {
             transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1], delay: 0.05 }}
           >
             {/* Eyebrow */}
-            <div className="mb-3 flex items-center text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-white/50">
-              <span>Regional Topics</span>
+            <div className="mb-3 flex items-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+              <span>Regional topics</span>
             </div>
 
             {/* Heading */}
-            <h2 className="mb-8 text-fluid-22 tracking-tight text-white">
+            <h2 className="mb-8 text-fluid-34 font-normal tracking-tight text-white">
               Talks tuned to the region.
             </h2>
 
@@ -67,10 +67,10 @@ const RegionalFocusSection: React.FC = () => {
             <div className="flex flex-col gap-6">
               {topics.map((t) => (
                 <div key={t.title}>
-                  <h3 className="text-[15px] sm:text-[16px] text-white">
+                  <h3 className="text-[16px] sm:text-[17px] font-semibold text-white">
                     {t.title}
                   </h3>
-                  <p className="mt-1 text-[13px] sm:text-[14px] font-light leading-relaxed text-white/60">
+                  <p className="mt-1 text-[13.5px] sm:text-[14.5px] font-light leading-relaxed text-gray-300">
                     {t.desc}
                   </p>
                 </div>
@@ -89,17 +89,17 @@ const RegionalFocusSection: React.FC = () => {
           className="mt-20 flex flex-col items-center text-center"
         >
           {/* Eyebrow */}
-          <div className="mb-3 flex items-center text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-white/50">
-            <span>London &amp; Kuala Lumpur</span>
+          <div className="mb-3 flex items-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+            <span>Regional perspective</span>
           </div>
 
           {/* Quote */}
-          <p className="max-w-4xl text-fluid-30  text-white">
-            "Based Between London And Kuala Lumpur, Ash Brings <br /> A{" "}
-            <span className="bg-gradient-to-r from-[#008080] to-[#FF781D] bg-clip-text text-transparent">
-              Global Founder/Operator Perspective
+          <p className="max-w-4xl text-fluid-26 sm:text-fluid-28 text-white/90 font-normal leading-relaxed">
+            &ldquo;Southeast Asia is at a pivotal inflection point. The combination of hungry talent, rapid AI adoption and cross-border ambition means the{" "}
+            <span className="bg-gradient-to-r from-[#008080] to-[#FF781D] bg-clip-text text-transparent font-medium">
+              next generation of global market leaders
             </span>{" "}
-            To Organisations And Communities Across The UK, Malaysia And Southeast Asia."
+            will be built right here.&rdquo;
           </p>
         </motion.div>
 

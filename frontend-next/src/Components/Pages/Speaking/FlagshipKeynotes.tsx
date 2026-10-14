@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import keynoteStage from "../../../assets/speaking/int5Dubai.png";
 import keynoteTeam from "../../../assets/speaking/inspiringInsight.png";
@@ -22,6 +23,10 @@ type Keynote = {
   description: string;
   outcomes: string[];
   bestFor: string;
+  note?: {
+    text: string;
+    href: string;
+  };
   image: string;
   imageAlt: string;
 };
@@ -78,7 +83,11 @@ const keynotes: Keynote[] = [
       "Build a more honest definition of success and resilience",
     ],
     bestFor:
-      "Company-wide events, founder communities, business schools, talent programmes, diversity and social-mobility events.",
+      "Company-wide events, talent and inclusion programmes, and leadership development cohorts",
+    note: {
+      text: "Limited availability for Universities and education programmes.",
+      href: "/giving-back",
+    },
     image: keynoteCandid.src,
     imageAlt:
       "Ash Ali working through ideas at a whiteboard with a small group of founders",
@@ -87,7 +96,7 @@ const keynotes: Keynote[] = [
 
 /** §2 — Three flagship keynotes. */
 const FlagshipKeynotes: React.FC = () => (
-  <Section id="keynotes" className="lg:px-14">
+  <Section id="keynotes">
     <div className="flex flex-col gap-12">
       <Reveal className="mx-auto max-w-3xl text-center">
         <SectionHeading>
@@ -117,6 +126,16 @@ const FlagshipKeynotes: React.FC = () => (
                       Best for
                     </p>
                     <Body className="mt-2">{keynote.bestFor}</Body>
+                    {keynote.note && (
+                      <p className="mt-2.5 text-[13px] sm:text-[14px]">
+                        <Link
+                          href={keynote.note.href}
+                          className="text-[#FF781D] hover:text-[#ff9245] underline underline-offset-4 transition-colors font-medium inline-block"
+                        >
+                          {keynote.note.text}
+                        </Link>
+                      </p>
+                    )}
                   </div>
 
                   <div className="mt-7">

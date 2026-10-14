@@ -42,18 +42,19 @@ import Link from "next/link";
 
 const BookRetailers: React.FC = () => {
   return (
-    <section id="retailers" className="bg-black px-4 py-16 md:py-20 text-white sm:px-6 lg:px-8">
-      <motion.h2
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.45, ease: easeOut }}
-        className="text-center text-xl font-semibold tracking-tight sm:text-2xl"
-      >
-        Get your copy of &apos;The Unfair Advantage&apos;
-      </motion.h2>
+    <section id="retailers" className="bg-black py-16 md:py-24 text-white">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.45, ease: easeOut }}
+          className="text-center text-fluid-28 font-semibold tracking-tight"
+        >
+          Get your copy of &apos;The Unfair Advantage&apos;
+        </motion.h2>
 
-      <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
         {retailers.map((r) => (
           <a
             key={r.alt}
@@ -68,13 +69,14 @@ const BookRetailers: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-8 text-center">
-        <Link
-          href="/contact?type=bulk-book"
-          className="text-[#d97736] hover:text-[#f97316] text-[13px] sm:text-[14px] font-medium transition-colors hover:underline tracking-wide"
-        >
-          Bulk book enquiry
-        </Link>
+        <div className="mt-8 text-center">
+          <Link
+            href="/contact?type=bulk-book"
+            className="text-[#d97736] hover:text-[#f97316] text-[13px] sm:text-[14px] font-medium transition-colors hover:underline tracking-wide"
+          >
+            Bulk book enquiry
+          </Link>
+        </div>
       </div>
     </section>
   );

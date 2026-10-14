@@ -24,10 +24,10 @@ export const KeynotesBanner: React.FC = () => {
 
   return (
    <section className="w-full min-h-[min(100vh,760px)] bg-[#0F0F0F] overflow-hidden select-none">
-  <div className="max-w-fluid mx-auto min-h-[min(100vh,760px)] flex flex-col md:flex-row items-center justify-between px-6 sm:px-10">
+  <div className="max-w-fluid mx-auto min-h-[min(100vh,760px)] flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 gap-8 lg:gap-14">
 
-    {/* IMAGE — nudged slightly right for balance */}
-    <div className="flex-shrink-0 flex items-end self-end justify-center w-full md:w-auto md:pl-8 lg:pl-14">
+    {/* IMAGE */}
+    <div className="flex-shrink-0 flex items-end self-end justify-center w-full md:w-auto">
       <img
         src={ashImage}
         alt="Ash"
@@ -36,15 +36,15 @@ export const KeynotesBanner: React.FC = () => {
       />
     </div>
 
-    {/* CONTENT — pushed further right */}
+    {/* CONTENT */}
     <motion.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="flex flex-col items-start justify-center flex-1 py-12 md:py-0 md:pl-28 lg:pl-40 xl:pl-52"
+      className="flex flex-col items-start justify-center flex-1 py-12 md:py-0"
     >
-        <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+        <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-gray-400 uppercase">
               {/*
  */}
               <span>KEYNOTES FOR LEADERS, FOUNDERS AND ORGANISATIONS</span>

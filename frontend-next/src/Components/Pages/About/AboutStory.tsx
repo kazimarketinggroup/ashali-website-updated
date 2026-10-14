@@ -50,7 +50,7 @@ const AboutStory: React.FC = () => {
         aria-hidden
       /> */}
 
-      <div className="relative mx-auto max-w-fluid px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+      <div className="relative mx-auto max-w-fluid px-4 py-16 sm:px-6 md:py-24 lg:px-8">
         {/* Intro grid */}
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           <motion.div
@@ -58,7 +58,7 @@ const AboutStory: React.FC = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             variants={{ show: { transition: { staggerChildren: 0.08 } } }}
-            className="flex flex-col text-3xl font-bold leading-none tracking-tight"
+            className="flex flex-col text-fluid-34 font-bold leading-tight tracking-tight"
           >
             <motion.span variants={fadeUp} style={brandGradientTextStyle}>
               Entrepreneur · Author · Innovator
@@ -70,7 +70,7 @@ const AboutStory: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.55 }}
-            className="max-w-xl text-sm leading-relaxed text-white/95 sm:text-base"
+            className="max-w-xl text-[14px] leading-relaxed text-white/90 sm:text-[15px]"
           >
             Ash Ali is an entrepreneur, investor, speaker, and author. As Just Eat&apos;s first marketing director, he
             helped drive its £1.5 billion IPO. He co-authored the bestseller{" "}
@@ -121,7 +121,7 @@ const AboutStory: React.FC = () => {
                   {b.title}
                 </h3>
                 <div className="my-3 w-full max-w-md" style={gradientRuleStyle} />
-                <p className="text-xs leading-relaxed text-white/90 sm:text-sm">{b.body}</p>
+                <p className="text-[13.5px] leading-relaxed text-white/80 sm:text-[14.5px]">{b.body}</p>
               </motion.article>
             ))}
           </motion.div>

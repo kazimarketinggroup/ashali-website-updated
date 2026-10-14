@@ -9,19 +9,8 @@ import Link from "next/link";
 
 const BuildingBridges: React.FC = () => {
   return (
-    <section className="overflow-hidden bg-[#101010] px-5 py-16 md:py-20 text-white md:px-10">
-      <div
-        className="
-          mx-auto
-          flex
-          max-w-7xl
-          flex-col
-          items-center
-          gap-12
-          lg:flex-row
-          lg:gap-16
-        "
-      >
+    <section className="overflow-hidden bg-[#101010] py-16 md:py-24 text-white">
+      <div className="mx-auto flex max-w-fluid px-4 sm:px-6 lg:px-8 flex-col items-center gap-12 lg:flex-row lg:gap-16">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}

@@ -31,7 +31,7 @@ const ideas = [
 
 /** §1 — "Three ideas built for this moment." */
 const SignatureIdeas: React.FC = () => (
-  <Section className="lg:px-14">
+  <Section>
     <div className="flex flex-col items-center gap-12">
       <Reveal className="text-center">
         <SectionHeading>Three ideas built for this moment.</SectionHeading>

@@ -42,8 +42,7 @@ const SpeakingLogoStrip: React.FC = () => (
       
       {/* 1. Header Added to match image_357f83.png */}
       <h2 className="text-center text-fluid-24 font-normal tracking-wide mb-10 sm:mb-12">
-        <span style={brandGradientTextStyle}>A
-        Keynote Speaker</span>
+        <span style={brandGradientTextStyle}>A Keynote Speaker</span>
       </h2>
 
       {/* 2. Responsive Flex Row with Dynamic Sizing Layout */}

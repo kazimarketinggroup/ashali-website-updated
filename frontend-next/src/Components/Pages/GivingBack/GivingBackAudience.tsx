@@ -18,15 +18,15 @@ export const GivingBackAudience: React.FC = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 text-center select-text">
-      <div className="mx-auto max-w-4xl flex flex-col items-center">
+    <section className="bg-black text-white py-16 md:py-24 border-b border-white/10 text-center select-text">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Eyebrow */}
-        <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase mb-4">
+        <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] text-gray-400 uppercase mb-4">
           WHO IT&apos;S FOR
         </span>
 
         {/* Heading */}
-        <h2 className="text-white text-fluid-26 font-semibold tracking-tight leading-tight mb-10">
+        <h2 className="text-white text-fluid-34 font-normal tracking-tight leading-tight mb-10">
           Communities and organisations Ash supports
         </h2>
 
@@ -36,7 +36,7 @@ export const GivingBackAudience: React.FC = () => {
             {row1.map((tag) => (
               <span
                 key={tag}
-                className="px-4 py-2 rounded-[2px] border border-white/20 bg-white/[0.03] text-gray-200 text-[12.5px] sm:text-[13px] font-normal tracking-wide shadow-sm"
+                className="px-4 py-2.5 rounded-[2px] border border-white/20 bg-white/[0.03] text-gray-200 text-[13px] sm:text-[13.5px] font-normal tracking-wide shadow-sm"
               >
                 {tag}
               </span>

@@ -38,37 +38,27 @@ const MalaysiaHero: React.FC = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-fluid mx-auto px-6 lg:px-10 h-full">
+      <div className="relative z-10 max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center min-h-[600px] ">
 
           <div className="max-w-[620px]">
 
             {/* Label */}
             <div className="flex items-center gap-3 mb-8">
-              
-
               <span className="text-[11px] uppercase tracking-[0.18em] text-white/55">
                 Malaysia & Southeast Asia
               </span>
             </div>
 
             {/* Heading */}
-            <h1 className="text-white font-medium leading-[1.18] text-fluid-30 max-w-[760px]">
-
+            <h1 className="text-white font-normal leading-[1.2] text-fluid-34 max-w-[760px]">
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                Speaking, Advisory And Impact <br /> Work  {}
-              </span>
-
-          
-
-               Across Malaysia And
-
-              <br />
-
-              Southeast Asia.
+                Speaking, advisory and impact work
+              </span>{" "}
+              across Malaysia and Southeast Asia.
             </h1>
 
             {/* Description */}

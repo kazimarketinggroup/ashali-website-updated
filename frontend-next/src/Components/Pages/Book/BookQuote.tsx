@@ -10,8 +10,8 @@ const ORANGE = "#FF781D";
 
 const BookQuote: React.FC = () => {
   return (
-    <section className="bg-black px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-white select-none">
-      <div className="mx-auto flex flex-col md:flex-row items-center gap-10 lg:gap-16 max-w-fluid">
+    <section className="bg-black py-16 md:py-24 text-white select-none">
+      <div className="mx-auto flex flex-col md:flex-row items-center gap-10 lg:gap-16 max-w-fluid px-4 sm:px-6 lg:px-8">
 
         {/* IMAGE — wide landscape crop, compact height */}
         <motion.div
@@ -41,17 +41,17 @@ const BookQuote: React.FC = () => {
           className="text-left flex flex-col justify-center items-start flex-1 select-text"
         >
           {/* Minimalist Top Eyebrow Track */}
-          <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+          <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-gray-400 uppercase">
             <span>The Core Idea</span>
           </div>
 
           {/* Main Accurate Headline */}
-          <h2 className="text-fluid-30  tracking-tight text-white leading-tight mb-6">
+          <h2 className="text-fluid-34 font-semibold tracking-tight text-white leading-[1.25] mb-6">
             <span style={{ color: ORANGE }}>Success</span> was never just about hard work.
           </h2>
 
           {/* Core Long Form Description Copy Block */}
-          <p className="text-gray-400 font-light text-[13px] sm:text-[14px] leading-[1.8] tracking-wide antialiased">
+          <p className="text-gray-300 font-light text-[14px] sm:text-[15px] leading-[1.8] tracking-wide antialiased max-w-xl">
             It's shaped by context, timing, access, skills, mindset and networks and by knowing how 
             to use what you already have. Everyone holds advantages they've never recognised. The 
             skill isn't working harder. It's seeing your real edge clearly, and using it.

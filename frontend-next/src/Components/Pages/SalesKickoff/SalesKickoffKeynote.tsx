@@ -11,23 +11,23 @@ export const SalesKickoffKeynote: React.FC = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-white/10 select-text">
-      <div className="mx-auto max-w-fluid">
+    <section className="bg-black text-white py-16 md:py-24 border-b border-white/10 select-text">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
         {/* Eyebrow */}
         <div className="flex items-center gap-2 mb-4">
           <span className="w-2 h-2 bg-[#d97736] shrink-0" />
-          <span className="text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+          <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] text-gray-400 uppercase">
             Keynote
           </span>
         </div>
 
         {/* Title */}
-        <h2 className="text-white text-fluid-28 font-semibold tracking-tight leading-[1.25] mb-5 max-w-2xl">
+        <h2 className="text-white text-fluid-34 font-normal tracking-tight leading-[1.25] mb-5 max-w-2xl">
           The Unfair Advantage in the Age of AI
         </h2>
 
         {/* Description */}
-        <p className="text-gray-300 font-light leading-[1.75] tracking-wide text-[13.5px] sm:text-[14.5px] max-w-3xl mb-12">
+        <p className="text-gray-300 font-light leading-[1.75] tracking-wide text-[14px] sm:text-[15px] max-w-3xl mb-12">
           A keynote for revenue teams asking where their advantage comes from as AI changes selling. Ash connects the MILES framework with sales capability research to help teams question assumptions, identify strengths and focus on the work that matters.
         </p>
 

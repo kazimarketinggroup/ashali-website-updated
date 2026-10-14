@@ -62,25 +62,25 @@ export const HelpingLeadersSection: React.FC = () => {
   const cards = hl?.cards && hl.cards.length > 0 ? hl.cards : defaultCards;
 
   return (
-    <section className="w-full bg-black py-16 md:py-20 px-6 sm:px-10 font-sans select-none">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-16">
+    <section className="w-full bg-black py-16 md:py-24 font-sans select-none">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-16">
         {/* Eyebrow + Headline Block */}
         <div className="text-center flex flex-col items-center gap-5 select-text">
-          <div className="flex items-center -mb-2 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-500 uppercase">
+          <div className="flex items-center -mb-2 text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-gray-400 uppercase">
             <span>{eyebrow}</span>
           </div>
 
-          <h2 className="text-white text-fluid-32 font-semibold leading-tight tracking-tight">
+          <h2 className="text-white text-fluid-34 font-semibold leading-tight tracking-tight">
             <span className="text-[#d97736]">{highlightWord}</span> {titlePart2}
           </h2>
-          <p className="text-gray-400 text-[13px] sm:text-[14px] leading-[1.85] tracking-wide max-w-2xl text-center font-light antialiased">
+          <p className="text-gray-300 text-[14px] sm:text-[15px] leading-[1.8] tracking-wide max-w-2xl text-center font-light antialiased">
             {description}
           </p>
         </div>
 
         {/* Cards Grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-5xl"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

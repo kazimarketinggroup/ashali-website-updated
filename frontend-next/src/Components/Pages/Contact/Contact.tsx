@@ -1,13 +1,14 @@
-import ContactSection from "./ContactSection";
-import CTAHero from "./CTAHero";
+"use client";
 
-const Contact = () => {
-    return (
-        <div>
-            <CTAHero/>
-            <ContactSection/>
-        </div>
-    );
+import React from "react";
+import ContactSection from "./ContactSection";
+
+const Contact: React.FC = () => {
+  return (
+    <main className="w-full bg-black min-h-screen">
+      <ContactSection />
+    </main>
+  );
 };
 
 export default Contact;

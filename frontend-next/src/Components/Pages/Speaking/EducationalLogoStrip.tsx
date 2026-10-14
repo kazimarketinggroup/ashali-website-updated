@@ -36,7 +36,7 @@ export const EducationalLogoStrip: React.FC = () => {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="bg-black pt-12 pb-14 w-full select-none"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         
         {/* Centered Three-Tone Multi-Color Headline Asset Sync */}
         <h2 className="text-center text-fluid-24 font-normal tracking-wide mb-10 sm:mb-12">

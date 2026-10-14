@@ -31,14 +31,14 @@ export const SECTION_GUTTER = "px-4 sm:px-6 lg:px-8";
 export const Container: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className = "",
-}) => <div className={`mx-auto w-full max-w-fluid ${className}`}>{children}</div>;
+}) => <div className={`mx-auto w-full max-w-fluid ${SECTION_GUTTER} ${className}`}>{children}</div>;
 
 export const Section: React.FC<{
   children: React.ReactNode;
   className?: string;
   id?: string;
 }> = ({ children, className = "", id }) => (
-  <section id={id} className={`w-full bg-black py-16 md:py-20 ${SECTION_GUTTER} ${className}`}>
+  <section id={id} className={`w-full bg-black py-16 md:py-20 ${className}`}>
     <Container>{children}</Container>
   </section>
 );

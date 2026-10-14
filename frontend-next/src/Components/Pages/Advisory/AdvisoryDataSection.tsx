@@ -29,21 +29,21 @@ const dataCards: DataCard[] = [
 
 export const AdvisoryDataSection: React.FC = () => {
   return (
-    <section className="w-full bg-black py-16 md:py-20 px-4 sm:px-6 md:px-10 lg:px-20 select-text">
-      <div className="w-full max-w-fluid mx-auto flex flex-col items-center">
+    <section className="w-full bg-black py-16 md:py-24 select-text">
+      <div className="w-full max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-14">
-          <h2 className="text-white text-fluid-28 font-medium tracking-tight">
+          <h2 className="text-white text-fluid-34 font-normal tracking-tight">
             What the data is telling leaders right now
           </h2>
-          <p className="mt-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] text-gray-500 uppercase">
+          <p className="mt-2.5 text-[11px] sm:text-[12px] font-semibold tracking-[0.22em] text-gray-400 uppercase">
             Data from the Global Sales Capability Index 2026
           </p>
         </div>
 
         {/* 3 Stat Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
           {dataCards.map((card, idx) => (
             <motion.div
               key={idx}
@@ -57,12 +57,12 @@ export const AdvisoryDataSection: React.FC = () => {
                 <span className="block text-[#FF781D] text-3xl sm:text-4xl md:text-[42px] font-bold leading-none mb-4 tracking-tight">
                   {card.stat}
                 </span>
-                <p className="text-white text-[13px] sm:text-[13.5px] font-bold leading-[1.5] mb-5 tracking-wide">
+                <p className="text-white text-[14px] sm:text-[15px] font-semibold leading-snug mb-5 tracking-wide">
                   {card.headline}
                 </p>
               </div>
 
-              <p className="text-gray-400 text-[12px] sm:text-[12.5px] font-light leading-[1.65] border-t border-white/[0.06] pt-4">
+              <p className="text-gray-300 text-[13px] sm:text-[13.5px] font-light leading-relaxed border-t border-white/[0.06] pt-4">
                 {card.insight}
               </p>
             </motion.div>

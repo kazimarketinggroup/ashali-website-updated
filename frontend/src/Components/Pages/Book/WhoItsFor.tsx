@@ -75,11 +75,11 @@ export const WhoItsFor: React.FC = () => {
   ];
 
   return (
-    <section className="w-full bg-black px-4 sm:px-6 md:px-12 py-16 md:py-20 flex flex-col items-center justify-center select-text">
-      <div className="w-full max-w-fluid mx-auto flex flex-col items-center">
+    <section className="w-full bg-black py-16 md:py-24 flex flex-col items-center justify-center select-text">
+      <div className="w-full max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         
         {/* Section Header displaying exact brand-colored headline split tracking */}
-        <h2 className="text-white text-fluid-24 font-normal tracking-tight text-center mb-12 sm:mb-16">
+        <h2 className="text-white text-fluid-34 font-semibold tracking-tight text-center mb-12 sm:mb-16">
           <span className="text-[#d97736]">Who</span> it's for
         </h2>
 
@@ -89,7 +89,7 @@ export const WhoItsFor: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 w-full max-w-5xl"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 w-full"
         >
           {cardsData.map((card, index) => (
             <TargetCard 

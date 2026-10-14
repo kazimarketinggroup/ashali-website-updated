@@ -24,7 +24,7 @@ const formats = [
 
 /** §2 — Other ways Ash works with an audience. */
 const AdditionalFormats: React.FC = () => (
-  <Section className="lg:px-14 py-0">
+  <Section className="py-0">
     <div className="flex flex-col items-center gap-12">
       <Reveal className="text-center">
         <SectionHeading>Other ways Ash works with an audience.</SectionHeading>

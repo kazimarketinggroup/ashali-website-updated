@@ -96,8 +96,8 @@ export const CapabilityIndexSection = () => {
 
   return (
     <>
-      <section className="bg-black text-white py-16 md:py-20 px-6 lg:px-20 select-text">
-        <div className="max-w-fluid mx-auto">
+      <section className="bg-black text-white py-16 md:py-24 select-text">
+        <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_auto_420px] gap-10 items-center">
 
             {/* LEFT CONTENT */}

@@ -50,17 +50,17 @@ const thoughts: Thought[] = [
 ];
 
 const SpeakingThoughts: React.FC = () => (
-  <section className="border-t border-white/10 bg-black px-4 sm:px-6 md:px-10 lg:px-20 py-16 md:py-20">
-    <div className="mx-auto max-w-fluid">
+  <section className="border-t border-white/10 bg-black py-16 md:py-24">
+    <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
       <motion.h2
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.45, ease: easeOut }}
-        className="mb-4 text-xl font-bold leading-tight sm:text-2xl"
+        className="mb-8 text-fluid-28 font-semibold tracking-tight"
         style={brandGradientTextStyle}
       >
-        Feedback...
+        What organisers say
       </motion.h2>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">

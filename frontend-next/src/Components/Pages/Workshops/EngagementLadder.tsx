@@ -27,7 +27,7 @@ const steps = [
 
 /** §3 — "From a shift in thinking to a measured programme." */
 const EngagementLadder: React.FC = () => (
-  <Section className="lg:px-14">
+  <Section>
     <div className="flex flex-col gap-12">
       <Reveal className="mx-auto max-w-3xl text-center">
         <SectionHeading>From a shift in thinking to a measured programme.</SectionHeading>

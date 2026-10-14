@@ -10,8 +10,8 @@ import { Body, CtaRow, PrimaryLink, SecondaryLink } from "../../Shared/SectionKi
 
 /** §3 — Workshops hero. */
 const WorkshopsHero: React.FC = () => (
-  <section className="w-full bg-black px-4 py-16 sm:px-6 md:py-20 lg:px-14">
-    <div className="mx-auto w-full max-w-fluid">
+  <section className="w-full bg-black py-16 md:py-24">
+    <div className="mx-auto w-full max-w-fluid px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
         
         {/* Left Column: Text & CTAs */}

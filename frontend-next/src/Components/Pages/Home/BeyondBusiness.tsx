@@ -13,8 +13,8 @@ import Link from "next/link";
 
 const BeyondBusiness: React.FC = () => {
   return (
-    <section className="bg-black py-16 md:py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-black py-16 md:py-24 overflow-hidden">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <motion.div 
@@ -24,7 +24,7 @@ const BeyondBusiness: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 space-y-6"
         >
-          <h2 className="text-3xl md:text-4xl font-normal tracking-tight">
+          <h2 className="text-fluid-34 font-normal tracking-tight">
             <span className="text-[#d98324]">Beyond</span>{" "}
             <span className="text-[#4a6b4a]">Business</span>
           </h2>

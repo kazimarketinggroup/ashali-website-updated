@@ -43,7 +43,7 @@ const HeroWithIcon: React.FC<HeroWithIconProps> = ({
     <section
       className={`w-full bg-[#0a0a0a] text-white py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 ${className}`}
     >
-      <div className="max-w-fluid xl:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="max-w-fluid mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
         {/* LEFT — Icon image */}
         <motion.div

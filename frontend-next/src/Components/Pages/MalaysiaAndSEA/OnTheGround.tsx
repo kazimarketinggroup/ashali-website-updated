@@ -36,12 +36,12 @@ const photos: PhotoItem[] = [
 
 const OnTheGround: React.FC = () => {
   return (
-    <section className="overflow-hidden bg-[#0d0d0d] px-6 py-16 md:py-20 sm:px-10 lg:px-20">
-      <div className="mx-auto max-w-fluid">
+    <section className="overflow-hidden bg-[#0d0d0d] py-16 md:py-24">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
 
         {/* TOP META */}
         <div className="mb-6 flex items-center gap-2">
-          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500">
+          <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.2em] text-gray-400">
             Regional proof
           </span>
         </div>
@@ -49,12 +49,12 @@ const OnTheGround: React.FC = () => {
         {/* HEADER */}
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <h2 className="text-fluid-32 font-medium leading-[1.2] tracking-tight text-white">
+            <h2 className="text-fluid-34 font-normal leading-[1.22] tracking-tight text-white">
               On the ground <span style={brandGradientTextStyle}>across the region.</span>
             </h2>
           </div>
 
-          <p className="max-w-xs text-[13.5px] font-light leading-[1.65] text-gray-400 lg:max-w-[260px] lg:pt-1">
+          <p className="max-w-xs text-[14px] sm:text-[15px] font-light leading-relaxed text-gray-300 lg:max-w-[280px] lg:pt-1">
             Kuala Lumpur and Malaysia events, university talks,
             community sessions and local partnerships.
           </p>

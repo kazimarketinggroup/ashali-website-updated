@@ -131,7 +131,7 @@ const SiteFooter: React.FC = () => {
 
   return (
     <footer className="bg-black text-white">
-      <div className="mx-auto max-w-fluid px-5 pt-12 pb-6 sm:px-6 sm:pt-14 sm:pb-6 lg:px-8 lg:pt-16 lg:pb-6">
+      <div className="mx-auto max-w-fluid px-4 pt-12 pb-6 sm:px-6 sm:pt-14 sm:pb-6 lg:px-8 lg:pt-16 lg:pb-6">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
           <div className="max-w-[410px]">
             <p className="text-[clamp(1.7rem,3vw,2.1rem)] font-semibold leading-none tracking-normal">

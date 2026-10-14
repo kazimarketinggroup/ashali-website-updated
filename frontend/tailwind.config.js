@@ -42,7 +42,7 @@ export default {
         1440px. Pair with `mx-auto` and the fluid gutter padding below.
       */
       maxWidth: {
-        'fluid': 'min(94vw, 1600px)',
+        'fluid': 'min(100%, 1280px)',
       },
       spacing: {
         'gutter': 'clamp(1rem, 0.5rem + 2.5vw, 3.5rem)',

@@ -59,7 +59,7 @@ const GridCard: React.FC<{
 const ImpactGrid: React.FC = () => {
   return (
     <section className="w-full bg-[#0d0d0d] text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
 
         {/* GRID */}
         <div className="grid grid-cols-2 md:grid-cols-4 border border-white/[0.06]">

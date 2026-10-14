@@ -107,12 +107,12 @@ const TheNextLevel: React.FC = () => {
 
   return (
     <div className="bg-black font-sans text-white">
-      <section className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center px-6 py-16 md:py-20 lg:grid-cols-[460px_1fr] lg:px-8">
+      <section className="mx-auto grid w-full max-w-fluid grid-cols-1 items-center px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:grid-cols-[460px_1fr]">
         <div className="flex justify-center lg:justify-start">
           <img src={heroImg.src} alt="Ash Ali" className="h-auto w-full max-w-[460px] object-contain object-left" />
         </div>
         <div className="mt-6 lg:mt-0">
-          <h1 className="text-2xl font-semibold leading-snug sm:text-3xl md:text-[1.85rem] lg:text-4xl">
+          <h1 className="text-fluid-34 font-normal leading-tight tracking-tight">
             <span className="text-white">It&apos;s Time For An </span>
             <span style={brandGradientTextStyle}>Upgrade...</span>
           </h1>
@@ -126,7 +126,7 @@ const TheNextLevel: React.FC = () => {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1400px] space-y-7 px-6 pb-10 lg:px-8">
+      <section className="mx-auto max-w-fluid space-y-7 px-4 sm:px-6 pb-12 lg:px-8">
         {levelCards.map((card) => (
           <article
             key={card.id}
@@ -172,7 +172,7 @@ const TheNextLevel: React.FC = () => {
         ))}
       </section>
 
-      <section className="mx-auto max-w-[1400px] px-6 pb-10 lg:px-8">
+      <section className="mx-auto max-w-fluid px-4 sm:px-6 pb-12 lg:px-8">
         <div className="rounded-sm border border-white/10 bg-[#101010] px-5 py-6 text-center sm:px-8 sm:py-8 md:px-10">
           <p className="text-lg font-bold leading-none sm:text-xl md:text-2xl" style={brandGradientTextStyle}>
             Secret Level
@@ -201,7 +201,7 @@ const TheNextLevel: React.FC = () => {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1400px] px-6 pb-10 lg:px-8">
+      <section className="mx-auto max-w-fluid px-4 sm:px-6 pb-12 lg:px-8">
         <div className="rounded-sm border border-white/10 bg-[#101010] px-5 py-6 sm:px-8 sm:py-8 md:px-10">
           <h3 className="text-xl font-bold sm:text-2xl" style={brandGradientTextStyle}>
             Thoughts...
@@ -223,7 +223,7 @@ const TheNextLevel: React.FC = () => {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1400px] px-6 pb-14 lg:px-8">
+      <section className="mx-auto max-w-fluid px-4 sm:px-6 pb-16 lg:px-8">
         <div className="rounded-sm border border-white/10 bg-[#101010] px-5 py-8 sm:px-8 md:px-10">
           <h3 className="text-center text-2xl font-semibold sm:text-3xl">Start your journey</h3>
           <form className="mx-auto mt-6 max-w-4xl">

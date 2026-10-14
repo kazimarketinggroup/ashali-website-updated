@@ -11,7 +11,7 @@ import YouTubeFacade from "../../Shared/YouTubeFacade";
  * above-the-fold slots. Embeds are recovered from the pre-rebuild codebase.
  */
 const SupportingVideos: React.FC<{ id?: string }> = ({ id }) => (
-  <Section id={id} className="lg:px-14">
+  <Section id={id}>
     <div className="flex flex-col items-center gap-10">
       <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
         <SectionHeading>Podcasts, panels and longer talks.</SectionHeading>

@@ -69,7 +69,7 @@ const Testimonials: React.FC = () => {
   });
 
   return (
-    <Section className="lg:px-14">
+    <Section>
       <div className="flex flex-col items-center gap-12">
         <Reveal className="text-center">
           <SectionHeading>

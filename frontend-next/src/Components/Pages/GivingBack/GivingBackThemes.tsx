@@ -39,31 +39,31 @@ export const GivingBackThemes: React.FC = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 text-center select-text">
-      <div className="mx-auto max-w-fluid">
+    <section className="bg-black text-white py-16 md:py-24 border-b border-white/10 text-center select-text">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
         {/* Eyebrow */}
-        <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase mb-4 block">
+        <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] text-gray-400 uppercase mb-4 block">
           TALK THEMES
         </span>
 
         {/* Heading */}
-        <h2 className="text-white text-fluid-28 font-semibold tracking-tight leading-tight mb-12 max-w-2xl mx-auto">
+        <h2 className="text-white text-fluid-34 font-normal tracking-tight leading-tight mb-12 max-w-2xl mx-auto">
           Concrete, hopeful and{" "}
           <span style={brandGradientTextStyle}>genuinely useful.</span>
         </h2>
 
         {/* 6 Cards Grid matching Image 2 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto text-left mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full text-left mb-12">
           {themes.map((theme, i) => (
             <div
               key={i}
               className="rounded-[6px] bg-[#141414] border border-white/[0.08] p-6 sm:p-7 flex flex-col justify-between min-h-[170px] relative overflow-hidden transition-all duration-200 hover:border-white/20"
             >
               <div>
-                <h3 className="text-white text-[15px] sm:text-[16px] font-semibold tracking-tight leading-snug mb-3">
+                <h3 className="text-white text-[16px] sm:text-[17px] font-semibold tracking-tight leading-snug mb-3">
                   {theme.title}
                 </h3>
-                <p className="text-gray-400 font-light text-[12.5px] sm:text-[13.5px] leading-relaxed">
+                <p className="text-gray-300 font-light text-[13.5px] sm:text-[14px] leading-relaxed">
                   {theme.description}
                 </p>
               </div>

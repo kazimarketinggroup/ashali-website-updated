@@ -89,22 +89,22 @@ export const MilesFramework: React.FC = () => {
 //   };
 
   return (
-    <section className="w-full bg-black mt-10 py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-28 text-white select-text">
-      <div className="max-w-fluid mx-auto flex flex-col items-start text-left">
+    <section className="w-full bg-black py-16 md:py-24 text-white select-text">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start text-left">
         
         {/* ================= TOP BRAND HEADLINES ================= */}
         {/* Minimalist Header Accent Ribbon */}
-        <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-500 uppercase">
+        <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-gray-400 uppercase">
           <span>The MILES Framework</span>
         </div>
 
         {/* Section Main Title */}
-        <h2 className="text-fluid-38 font-normal tracking-tight text-white leading-tight mb-6">
+        <h2 className="text-fluid-34 font-semibold tracking-tight text-white leading-[1.25] mb-6">
           Five forces that shape every advantage.
         </h2>
 
         {/* Section Description Copy */}
-        <p className="text-gray-400 font-light text-[12.5px] sm:text-[13.5px] tracking-wide mb-14 max-w-2xl antialiased">
+        <p className="text-gray-300 font-light text-[14px] sm:text-[15px] tracking-wide mb-12 max-w-2xl antialiased">
           The book gives you a practical way to spot your own advantages, across five areas:
         </p>
 

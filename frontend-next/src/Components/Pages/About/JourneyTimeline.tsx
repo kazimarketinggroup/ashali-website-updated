@@ -97,11 +97,11 @@ export const JourneyTimeline: React.FC = () => {
   });
 
   return (
-    <section className="w-full bg-black py-16 md:py-20 px-4 sm:px-6 md:px-10 lg:px-20 select-text text-white">
-      <div className="w-full max-w-fluid mx-auto">
+    <section className="w-full bg-black py-16 md:py-24 select-text text-white">
+      <div className="w-full max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Three-Tone Color Code Header Track matching image_34ec45.png exactly */}
-        <h2 className="text-left text-fluid-28 font-normal tracking-wide mb-10 sm:mb-16 sm:px-2">
+        <h2 className="text-left text-fluid-34 font-normal tracking-wide mb-10 sm:mb-16">
           <span className="text-white">From practitioner to</span>{' '}
           <span style={brandGradientTextStyle}>thought leader</span>
         </h2>

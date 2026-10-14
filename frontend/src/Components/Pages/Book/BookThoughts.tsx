@@ -64,43 +64,44 @@ const thoughts: Thought[] = [
 
 const BookThoughts: React.FC = () => {
   return (
-    <section className="bg-black px-4 sm:px-6 md:px-12 lg:px-24 py-16 md:py-20 text-white">
-      <div className="mx-auto max-w-fluid rounded-md border border-white/10 bg-[#0f0f0f] p-6 sm:p-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.45, ease: easeOut }}
-          className="text-xl font-bold sm:text-2xl"
-          style={brandGradientTextStyle}
-        >
-          Thoughts...
-        </motion.h2>
+    <section className="bg-black py-16 md:py-24 text-white">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
+        <div className="rounded-md border border-white/10 bg-[#0f0f0f] p-6 sm:p-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.45, ease: easeOut }}
+            className="text-xl font-bold sm:text-2xl"
+            style={brandGradientTextStyle}
+          >
+            What readers say
+          </motion.h2>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {thoughts.map((t, idx) => (
-            <motion.article
-              key={t.name}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, ease: easeOut, delay: idx * 0.04 }}
-              className="rounded-2xl border border-white/10 bg-[#0B0B0B] p-5 shadow-[0_18px_38px_rgba(0,0,0,0.4)]"
-            >
-              <p className="min-h-[78px] text-sm leading-relaxed text-white/90">“{t.quote}”</p>
-              <div className="mt-5 flex items-center gap-3">
-                <img src={t.avatar} alt={t.name} className="h-12 w-12 rounded-full border border-white/15 object-cover" />
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-white">{t.name}</p>
-                  <p className="text-xs text-white/60">{t.role}</p>
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {thoughts.map((t, idx) => (
+              <motion.article
+                key={t.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, ease: easeOut, delay: idx * 0.04 }}
+                className="rounded-2xl border border-white/10 bg-[#0B0B0B] p-5 shadow-[0_18px_38px_rgba(0,0,0,0.4)]"
+              >
+                <p className="min-h-[78px] text-sm leading-relaxed text-white/90">“{t.quote}”</p>
+                <div className="mt-5 flex items-center gap-3">
+                  <img src={t.avatar} alt={t.name} className="h-12 w-12 rounded-full border border-white/15 object-cover" />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-white">{t.name}</p>
+                    <p className="text-xs text-white/60">{t.role}</p>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            ))}
+          </div>
+         
         </div>
-       
       </div>
-       
     </section>
   );
 };

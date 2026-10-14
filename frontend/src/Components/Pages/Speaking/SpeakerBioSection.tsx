@@ -22,8 +22,8 @@ export const SpeakerBioSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-black py-16 md:py-10 px-4 sm:px-6 md:px-10 lg:px-20 select-text">
-      <div className="w-full max-w-fluid mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
+    <section className="w-full bg-black py-16 md:py-24 select-text">
+      <div className="w-full max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
         
         {/* ================= LEFT COLUMN: NARRATIVE COPY ================= */}
         <motion.div 

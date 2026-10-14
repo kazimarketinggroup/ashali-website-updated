@@ -27,7 +27,7 @@ export const AdvisoryHero: React.FC = () => {
 
   return (
     <section className="relative w-full min-h-[min(100vh,800px)] bg-[#0d0d0d] overflow-hidden">
-      <div className="relative w-full max-w-fluid mx-auto min-h-[min(100vh,800px)] flex items-center">
+      <div className="relative w-full max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 min-h-[min(100vh,800px)] flex items-center">
 
         {/* ── Person image — left column ── */}
         <div
@@ -61,15 +61,14 @@ export const AdvisoryHero: React.FC = () => {
           animate="visible"
           className="
             relative z-30 w-full flex flex-col justify-center
-            px-6 py-12
-            sm:px-10 sm:py-14
-            md:ml-auto md:w-[56%] md:pl-8 md:pr-12 md:py-16
-            lg:w-[54%] lg:pl-10 lg:pr-16 xl:pr-20
+            py-12 sm:py-16 md:py-20
+            md:ml-auto md:w-[56%] md:pl-8
+            lg:w-[54%] lg:pl-10
           "
         >
           {/* Eyebrow */}
           <motion.div variants={elementVariants} className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gray-400 font-medium">
+            <span className="text-[11px] sm:text-[12px] tracking-[0.22em] uppercase text-gray-400 font-medium">
               STRATEGIC ADVISORY
             </span>
           </motion.div>
@@ -78,8 +77,8 @@ export const AdvisoryHero: React.FC = () => {
           <motion.h1
             variants={elementVariants}
             className="
-              text-white font-normal leading-[1.25] tracking-tight mb-5
-              text-fluid-32 sm:text-[34px] md:text-[38px] lg:text-[42px]
+              text-white font-normal leading-[1.22] tracking-tight mb-5
+              text-fluid-34 sm:text-[36px] md:text-[40px] lg:text-[44px]
             "
           >
             <span className="text-[#3ecfb2]">A trusted operator's </span>
@@ -93,8 +92,8 @@ export const AdvisoryHero: React.FC = () => {
           <motion.p
             variants={elementVariants}
             className="
-              text-[#9ca3af] font-light leading-[1.75] tracking-wide antialiased mb-8
-              text-[12px] sm:text-[13px] max-w-[460px]
+              text-gray-300 font-light leading-[1.75] tracking-wide antialiased mb-8
+              text-[14px] sm:text-[15px] max-w-[520px]
             "
           >
             Guiding high-growth tech founders, CEOs and executives across the UK, Europe and GCC through scaling bottlenecks, market entry, founder-to-CEO transitions and commercial capability architecture. Grounded in 20+ years of operational reality.
@@ -108,8 +107,8 @@ export const AdvisoryHero: React.FC = () => {
                 whileHover={{ scale: 1.02, backgroundColor: '#f3f4f6' }}
                 whileTap={{ scale: 0.98 }}
                 className="
-                  px-5 py-2.5 bg-white text-black
-                  font-semibold text-[12px] tracking-wide
+                  px-6 py-3 bg-white text-black
+                  font-semibold text-[13.5px] tracking-wide
                   rounded-[2px] shadow-lg transition-colors duration-150
                 "
               >

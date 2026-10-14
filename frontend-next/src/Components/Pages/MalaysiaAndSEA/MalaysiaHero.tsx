@@ -38,7 +38,7 @@ const MalaysiaHero: React.FC = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-fluid mx-auto px-6 lg:px-10 h-full">
+      <div className="relative z-10 max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center min-h-[600px] ">
 
           <div className="max-w-[620px]">
@@ -51,7 +51,7 @@ const MalaysiaHero: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h1 className="text-white font-medium leading-[1.18] text-fluid-30 max-w-[760px]">
+            <h1 className="text-white font-normal leading-[1.2] text-fluid-34 max-w-[760px]">
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}

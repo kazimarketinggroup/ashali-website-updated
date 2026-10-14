@@ -16,7 +16,7 @@ const credentials = [
 
 /** §4 — About hero + credential strip. */
 const AboutIntro: React.FC = () => (
-  <section className="relative w-full overflow-hidden bg-black px-4 py-16 sm:px-6 md:py-24 lg:px-14">
+  <section className="relative w-full overflow-hidden bg-black pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
     {/*
       Stage photograph as the hero background. It is already dark on the left,
       and the two overlays keep the copy legible: a flat scrim for baseline
@@ -37,7 +37,7 @@ const AboutIntro: React.FC = () => (
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
     </div>
 
-    <div className="relative z-10 mx-auto w-full max-w-fluid">
+    <div className="relative z-10 mx-auto w-full max-w-fluid px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ const AboutIntro: React.FC = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="mt-12 rounded-[4px] border border-white/[0.08] bg-[#0c0c0c]/85 p-6 backdrop-blur-sm sm:p-8"
+        className="mt-20 rounded-[4px] border border-white/[0.08] bg-[#0c0c0c]/85 p-6 backdrop-blur-sm sm:mt-28 sm:p-8 md:mt-36 lg:mt-48"
       >
         <ProofStrip items={credentials} />
       </motion.div>

@@ -8,13 +8,11 @@ import Image from "next/image";
 import { useCMS } from "../../../context/CMSContext";
 
 // Assets
-import bgBooks from "../../../assets/home/books-bg.png";
 import allCovers from "../../../assets/home/updatedImage.webp";
 
 const defaultTags = [
-  { icon: Award, label: "Business Book of the Year 2021, The Business Book Awards" },
-  { icon: Globe, label: "Translated worldwide" },
-  { icon: Award, label: "150,000+ copies sold" },
+  { icon: Award, label: "Business Book of the Year" },
+  { icon: Globe, label: "Translated Worldwide" },
   { icon: GraduationCap, label: "Used in MBA & university courses" },
   { icon: LayoutGrid, label: "The MILES framework" },
 ];
@@ -24,10 +22,10 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
   const { cmsData } = useCMS();
   const bs = cmsData?.bookShowcase;
 
-  const headline = bs?.headline || "The Unfair Advantage:";
+  const headline = bs?.headline || "The award-winning book";
   const highlightWord =
     bs?.highlightWord ||
-    "the award winning book challenging the myth that success is only about hard work.";
+    "challenging the myth that success is only about hard work.";
   const description =
     bs?.description ||
     "Success is shaped by context, timing, access, skills, mindset, networks and knowing how to use what you already have. The book has become core IP behind Ash's talks, frameworks and global work.";
@@ -43,20 +41,8 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
       : defaultTags;
 
   return (
-    <section className="relative overflow-hidden bg-black px-4 py-16 sm:px-6 md:py-20 md:px-24">
-      {/* Optimized Background Image */}
-      <Image
-        src={bgBooks}
-        alt=""
-        fill
-        className="object-cover object-center opacity-15 pointer-events-none -z-0"
-        sizes="100vw"
-        loading="lazy"
-      />
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/80 -z-0 pointer-events-none" />
-
-      <div className="relative z-10 mx-auto flex max-w-fluid flex-col items-center gap-12 lg:flex-row lg:gap-16">
+    <section className="relative overflow-hidden bg-black py-16 md:py-24">
+      <div className="relative z-10 mx-auto flex max-w-fluid px-4 sm:px-6 lg:px-8 flex-col items-center gap-12 lg:flex-row lg:gap-16">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -66,12 +52,12 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           className="w-full lg:w-1/2"
         >
           {/* Eyebrow */}
-          <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
-            <span>Bestselling Book by Ash Ali &amp; Hasan Kubba</span>
+          <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+            <span>The Unfair Advantage</span>
           </div>
 
           {/* Headline */}
-          <Heading className="text-fluid-30 font-semibold tracking-tight text-white leading-[1.2]">
+          <Heading className="text-fluid-34 font-semibold tracking-tight text-white leading-[1.25]">
             <span className="bg-gradient-to-r from-[#2dd4bf] to-[#0e9aa8] bg-clip-text text-transparent">
               {headline}
             </span>{" "}
@@ -79,18 +65,18 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           </Heading>
 
           {/* Body */}
-          <p className="mt-6 max-w-[560px] text-[13px] leading-[1.9] text-white/75 sm:text-sm">
+          <p className="mt-6 max-w-[560px] text-[14px] sm:text-[15px] leading-[1.8] text-white/80">
             {description}
           </p>
 
           {/* Tags */}
-          <div className="mt-8 flex flex-col items-start gap-3 max-w-[540px]">
+          <div className="mt-8 flex flex-col items-start gap-2.5 max-w-[540px]">
             {tags.map(({ icon: Icon, label }) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/[0.05] border border-white/10 text-white/85 text-[12px] rounded-[2px]"
+                className="inline-flex items-center gap-3 px-4 py-2.5 bg-white/[0.04] border border-white/10 text-white/90 text-[13px] sm:text-[13.5px] rounded-[3px] transition-colors hover:border-white/20"
               >
-                <Icon size={15} strokeWidth={1.8} className="shrink-0 text-white/80" />
+                <Icon size={16} strokeWidth={1.8} className="shrink-0 text-white/80" />
                 {label}
               </span>
             ))}
@@ -100,15 +86,15 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <Link
               href={as === "h1" ? "#retailers" : "/unfair-advantage"}
-              className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-white text-black font-semibold text-[12px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md text-center"
+              className="min-h-[46px] inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold text-[13px] sm:text-[13.5px] rounded-[3px] transition-colors duration-150 hover:bg-gray-100 shadow-md text-center"
             >
-              {as === "h1" ? "Get your copy" : "Explore the book"}
+              Explore the book
             </Link>
             <a
               target="_blank"
               rel="noopener noreferrer"
               href={bs?.amazonLink || "https://www.theunfairacademy.com/"}
-              className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[12px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 text-center"
+              className="min-h-[46px] inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/25 text-white font-medium text-[13px] sm:text-[13.5px] rounded-[3px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 text-center"
             >
               The Unfair Academy
             </a>
@@ -127,19 +113,17 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
             <Image
               src={bookImgSrc}
               alt="International editions of The Unfair Advantage"
-              width={500}
-              height={400}
+              width={520}
+              height={420}
               unoptimized={isCustomImg}
-              sizes="(max-width: 768px) 100vw, 500px"
+              sizes="(max-width: 768px) 100vw, 520px"
               loading="lazy"
-              className="w-full max-w-[500px] object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.02]"
+              className="w-full max-w-[520px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:scale-[1.02]"
             />
 
             {/* Caption below the book covers */}
-            <p className="mt-6 max-w-[440px] text-center text-[15px] italic leading-snug text-white/85">
-              The Unfair Advantage has now been translated
-              <br className="hidden sm:block" />
-              into 8 languages worldwide
+            <p className="mt-6 max-w-[460px] text-center text-[14px] sm:text-[15px] italic leading-snug text-white/80">
+              The Unfair Advantage has now been translated into 8 languages worldwide
             </p>
           </div>
         </motion.div>

@@ -41,27 +41,27 @@ export const HowAshWorks: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-black py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-24 text-white select-text">
-      <div className="max-w-fluid mx-auto flex flex-col items-center text-center">
+    <section className="w-full bg-black py-16 md:py-24 text-white select-text">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         
         {/* ================= TOP TEXT HEADER BLOCK ================= */}
         {/* Eyebrow Accent Line */}
-        <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+        <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] text-gray-400 uppercase">
           <span>ENGAGEMENT FORMATS</span>
         </div>
 
         {/* Main Section Headline */}
-        <h2 className="text-fluid-28 font-medium tracking-tight text-white max-w-xl leading-tight mb-3">
+        <h2 className="text-fluid-34 font-normal tracking-tight text-white max-w-xl leading-tight mb-3">
           How advisory engagements work
         </h2>
 
         {/* Informative Sub-Headline Description */}
-        <p className="text-gray-400 font-light text-[13px] sm:text-[14px] tracking-wide mb-14 max-w-2xl antialiased">
+        <p className="text-gray-300 font-light text-[14px] sm:text-[15px] tracking-wide mb-14 max-w-2xl antialiased">
           Engagements are tailored to the decision, stage and resources of your business
         </p>
 
         {/* ================= 3-CARD FLOW GRID WITH INTEGRATED TIMELINE ================= */}
-        <div className="relative w-full max-w-5xl pb-10">
+        <div className="relative w-full pb-10">
           
           {/* Main Horizontal Timeline Wire */}
           <div className="absolute bottom-[4px] left-[16%] right-[16%] h-[2px] bg-white/10 z-0 pointer-events-none hidden md:block" />
@@ -97,7 +97,7 @@ export const HowAshWorks: React.FC = () => {
                     <h3 className="text-white text-[15px] sm:text-[16px] font-bold leading-snug tracking-tight mb-2.5">
                       {card.title}
                     </h3>
-                    <p className="text-gray-400 text-[12.5px] sm:text-[13px] font-light leading-relaxed">
+                    <p className="text-gray-300 text-[13.5px] sm:text-[14px] font-light leading-relaxed">
                       {card.description}
                     </p>
                   </div>

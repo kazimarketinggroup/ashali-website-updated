@@ -37,32 +37,32 @@ const retailers = [
 
 const BookRetailers: React.FC = () => {
   return (
-    <section className="bg-black px-4 py-16 md:py-20 text-white sm:px-6 lg:px-8">
-      <motion.h2
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.45, ease: easeOut }}
-        className="text-center text-xl font-semibold tracking-tight sm:text-2xl"
-      >
-        Get Your Copy Of
-        <br />
-        ‘The Unfair Advantage’
-      </motion.h2>
+    <section id="retailers" className="bg-black py-16 md:py-24 text-white">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.45, ease: easeOut }}
+          className="text-center text-fluid-28 font-semibold tracking-tight"
+        >
+          Get your copy of &apos;The Unfair Advantage&apos;
+        </motion.h2>
 
-      <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
-        {retailers.map((r) => (
-          <a
-            key={r.alt}
-            href={r.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Buy The Unfair Advantage on ${r.alt}`}
-            className="flex h-[64px] items-center justify-center rounded-md border border-white/10 bg-[#121212] px-4 transition-colors duration-200 hover:border-white/30 hover:bg-[#181818]"
-          >
-            <img src={r.src} alt={r.alt} className="max-h-8 w-auto max-w-[130px] object-contain opacity-95" />
-          </a>
-        ))}
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+          {retailers.map((r) => (
+            <a
+              key={r.alt}
+              href={r.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Buy The Unfair Advantage on ${r.alt}`}
+              className="flex h-[64px] items-center justify-center rounded-md border border-white/10 bg-[#121212] px-4 transition-colors duration-200 hover:border-white/30 hover:bg-[#181818]"
+            >
+              <img src={r.src} alt={r.alt} className="max-h-8 w-auto max-w-[130px] object-contain opacity-95" />
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

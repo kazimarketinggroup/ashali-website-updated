@@ -37,8 +37,8 @@ export const BookAwards: React.FC = () => {
   ];
 
   return (
-    <section className="bg-black px-6 text-white select-none">
-      <div className="mx-auto max-w-6xl flex flex-col gap-16 md:gap-20">
+    <section className="bg-black py-16 md:py-24 text-white select-none">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8 flex flex-col gap-16 md:gap-20">
 
         {/* ================= ── TOP AWARDS BANNER ── ================= */}
         <motion.div

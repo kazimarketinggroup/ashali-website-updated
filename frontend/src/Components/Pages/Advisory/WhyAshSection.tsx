@@ -91,12 +91,12 @@ const InfoCard: React.FC<{
 
 const WhyAshSection: React.FC = () => {
   return (
-    <section className="bg-black py-16 md:py-20">
+    <section className="bg-black py-16 md:py-24">
       <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Eyebrow */}
-        <div className="flex items-center mb-3 text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
-          <span>Why Ash</span>
+        <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] text-gray-400 uppercase">
+          <span>CREDENTIALS</span>
         </div>
 
         {/* Heading */}
@@ -105,11 +105,13 @@ const WhyAshSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
-          className="mb-10 text-white text-fluid-30 font-semibold tracking-tight"
+          className="mb-4 text-white text-fluid-34 font-normal tracking-tight"
         >
-          Built Through Experience, Not Theory.
+          Built through experience, not theory
         </motion.h2>
-        <p className="text-xs mb-8 mt-2 max-w-4xl text-gray-300">Ash brings the pattern recognition of 25+ years spent building, operating, advising and investing. The value is not another framework deck. It is an external perspective that can challenge assumptions, sharpen the story and help leaders see the decision more clearly.</p>
+        <p className="text-[14px] sm:text-[15px] mb-8 font-light max-w-4xl text-gray-300 leading-relaxed">
+          Every advisory engagement draws on firsthand experience building, scaling, investing in and advising high-growth companies across the UK, Europe and GCC.
+        </p>
 
         {/* Cards */}
         <motion.div

@@ -93,7 +93,7 @@ const workshops: Workshop[] = [
 
 /** §3 — Three labs, one practical outcome each. */
 const WorkshopLabs: React.FC = () => (
-  <Section id="workshops" className="lg:px-14">
+  <Section id="workshops">
     <div className="flex flex-col gap-12">
       <Reveal className="mx-auto max-w-3xl text-center">
         <SectionHeading>Three labs. One practical outcome each.</SectionHeading>
@@ -105,26 +105,26 @@ const WorkshopLabs: React.FC = () => (
             <Card>
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
                 <div className="lg:col-span-6">
-                  <span className="text-[11px] font-medium tracking-[0.2em] text-[#d97736]">
+                  <span className="text-[11.5px] font-semibold tracking-[0.2em] text-[#d97736]">
                     {workshop.number}
                   </span>
-                  <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-white sm:text-[19px]">
+                  <h3 className="mt-4 text-[19px] font-semibold leading-snug tracking-tight text-white sm:text-[22px]">
                     {workshop.title}
                   </h3>
-                  <p className="mt-4 text-[13px] font-normal leading-[1.75] tracking-wide text-gray-300 antialiased sm:text-[14px]">
+                  <p className="mt-4 text-[14px] font-normal leading-[1.75] tracking-wide text-gray-300 antialiased sm:text-[15px]">
                     {workshop.promise}
                   </p>
                   {workshop.description && <Body className="mt-4">{workshop.description}</Body>}
 
                   <div className="mt-6">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                       Best for
                     </p>
                     <Body className="mt-2">{workshop.bestFor}</Body>
                   </div>
 
                   <div className="mt-6">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                       Helps the team
                     </p>
                     <CheckList className="mt-4" items={workshop.helps} />
@@ -139,13 +139,13 @@ const WorkshopLabs: React.FC = () => (
 
                 <div className="lg:col-span-6">
                   <div className="rounded-[4px] border border-white/[0.06] bg-[#141414] p-5 sm:p-6">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                       Tangible outputs
                     </p>
                     <CheckList className="mt-4" items={workshop.outputs} />
 
                     <div className="mt-6 border-t border-white/[0.06] pt-5">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                         Formats
                       </p>
                       <Body className="mt-2">{workshop.formats}</Body>

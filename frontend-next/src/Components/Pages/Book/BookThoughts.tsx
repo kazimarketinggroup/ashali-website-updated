@@ -67,8 +67,9 @@ const thoughts: Thought[] = [
 
 const BookThoughts: React.FC = () => {
   return (
-    <section className="bg-black px-4 sm:px-6 md:px-12 lg:px-24 py-16 md:py-20 text-white">
-      <div className="mx-auto max-w-fluid rounded-md border border-white/10 bg-[#0f0f0f] p-6 sm:p-8">
+    <section className="bg-black py-16 md:py-24 text-white">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
+        <div className="rounded-md border border-white/10 bg-[#0f0f0f] p-6 sm:p-8">
         <motion.h2
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,7 +104,7 @@ const BookThoughts: React.FC = () => {
         </div>
        
       </div>
-       
+      </div>
     </section>
   );
 };

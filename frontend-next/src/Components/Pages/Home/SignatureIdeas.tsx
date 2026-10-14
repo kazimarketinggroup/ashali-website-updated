@@ -42,7 +42,7 @@ const SignatureIdeas: React.FC = () => {
   const ideas = si?.ideas && si.ideas.length > 0 ? si.ideas : defaultIdeas;
 
   return (
-    <Section className="lg:px-14">
+    <Section>
       <div className="flex flex-col items-center gap-12">
         <Reveal className="text-center">
           <SectionHeading>{heading}</SectionHeading>

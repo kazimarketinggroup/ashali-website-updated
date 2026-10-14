@@ -57,21 +57,22 @@ export const KeynotesSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full bg-black py-16 md:py-20 px-6 sm:px-12 flex flex-col items-center justify-center select-text">
-      <div className="w-full max-w-fluid mx-auto flex flex-col items-center">
+    <section className="w-full bg-black py-16 md:py-24 flex flex-col items-center justify-center select-text">
+      <div className="w-full max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         
         {/* Main Title Header with contrasting orange focus color */}
-        <h2 className="text-white text-fluid-26 font-medium tracking-tight text-center mb-12 sm:mb-16">
+        <h2 className="text-white text-fluid-34 font-semibold tracking-tight text-center mb-12 sm:mb-16">
           Who Ash <span className="text-[#d97736]">speaks to</span>
         </h2>
 
         {/* Dense Matte-Grid System */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-5 w-full max-w-4xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-6 w-full">
           {items.map((item, index) => (
             <KeynoteCard 
               key={index}
               icon={item.icon}
               text={item.text}
+              href={item.href}
             />
           ))}
         </div>

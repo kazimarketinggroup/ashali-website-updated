@@ -93,11 +93,11 @@ const InfoCard: React.FC<{
 
 const WhyAshSection: React.FC = () => {
   return (
-    <section className="bg-black py-16 md:py-20">
+    <section className="bg-black py-16 md:py-24">
       <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Eyebrow */}
-        <div className="flex items-center mb-3 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+        <div className="flex items-center mb-3 text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] text-gray-400 uppercase">
           <span>CREDENTIALS</span>
         </div>
 
@@ -107,11 +107,11 @@ const WhyAshSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
-          className="mb-4 text-white text-fluid-28 font-medium tracking-tight"
+          className="mb-4 text-white text-fluid-34 font-normal tracking-tight"
         >
           Built through experience, not theory
         </motion.h2>
-        <p className="text-[13px] sm:text-[14px] mb-8 font-light max-w-4xl text-gray-300 leading-relaxed">
+        <p className="text-[14px] sm:text-[15px] mb-8 font-light max-w-4xl text-gray-300 leading-relaxed">
           Every advisory engagement draws on firsthand experience building, scaling, investing in and advising high-growth companies across the UK, Europe and GCC.
         </p>
 

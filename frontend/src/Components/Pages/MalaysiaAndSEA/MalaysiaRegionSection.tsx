@@ -37,8 +37,8 @@ const audiences = [
 
 const MalaysiaRegionSection: React.FC = () => {
   return (
-    <section className="bg-black py-16 md:py-20">
-      <div className="max-w-fluid mx-auto px-6">
+    <section className="bg-black py-16 md:py-24">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* TOP SECTION */}
         <div className="grid lg:grid-cols-[1fr_1fr] gap-16 items-start">
@@ -48,21 +48,21 @@ const MalaysiaRegionSection: React.FC = () => {
             {/* LABEL */}
             <div className="flex items-center gap-3 mb-8">
              
-              <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
+              <span className="text-[11px] sm:text-[12px] uppercase tracking-[0.2em] font-semibold text-gray-400">
                 Why Malaysia & SEA
               </span>
             </div>
 
             {/* HEADING */}
-            <h2 className="text-fluid-30 font-medium leading-[1.35] text-white">
+            <h2 className="text-fluid-34 font-normal leading-[1.25] text-white">
               <span
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                A Region At
+                A region at
               </span>
               <br />
-              An Important Moment.
+              an important moment.
             </h2>
 
             {/* TEXT */}

@@ -21,7 +21,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ title, description }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="relative rounded-lg mb-10 p-[1px] h-[145px] sm:h-[155px] md:h-[165px] transition-transform duration-200 hover:scale-[1.015]"
+      className="relative rounded-lg mb-10 p-[1px] min-h-[145px] sm:min-h-[155px] md:min-h-[165px] transition-transform duration-200 hover:scale-[1.015]"
       style={{ background: BRAND_GRADIENT_BORDER }}
     >
       {/* Inner card structural background fill masking */}
@@ -29,7 +29,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ title, description }) => {
         <h3 className="text-white text-[15px] sm:text-[16px] md:text-[17px] font-bold tracking-tight mb-3">
           {title}
         </h3>
-        <p className="text-gray-400 font-light text-[12.5px] sm:text-[13px] md:text-[13.5px] leading-relaxed tracking-wide antialiased">
+        <p className="text-gray-300 font-light text-[13.5px] sm:text-[14px] leading-relaxed tracking-wide antialiased">
           {description}
         </p>
       </div>
@@ -49,8 +49,8 @@ export const WhatAshIsDoing: React.FC = () => {
 
   return (
     // Bottom spacing comes from each card's own `mb-10`, so only the top is padded here.
-    <section className="w-full bg-black pt-16 md:pt-20 px-4 sm:px-6 md:px-12 lg:px-28 text-white select-text">
-      <div className="max-w-fluid mx-auto gap-12 lg:gap-16 items-center">
+    <section className="w-full bg-black pt-12 md:pt-16 pb-6 text-white select-text">
+      <div className="max-w-fluid mx-auto px-4 sm:px-6 lg:px-8 gap-12 lg:gap-16 items-center">
         
         {/* ================= LEFT SIDE: HEADLINE & CTAs ================= */}
         <motion.div
