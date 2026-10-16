@@ -11,6 +11,7 @@ import SalesKickoffPulse from "../SalesKickoff/SalesKickoffPulse";
 import AdditionalFormats from "./AdditionalFormat";
 import SupportingVideos from "./SupportingVideos";
 import SpeakingThoughts from "./SpeakingThoughts";
+import BookingKeynoteSection from "./BookingKeynoteSection";
 import FinalCta from "../Home/FinalCta";
 
 const Speaking: React.FC = () => {
@@ -46,7 +47,10 @@ const Speaking: React.FC = () => {
       {/* 10. Verified Organiser Testimonials */}
       <SpeakingThoughts />
 
-      {/* 11. Final Action CTA */}
+      {/* 11. Booking a Keynote Formats & Press Downloads */}
+      <BookingKeynoteSection />
+
+      {/* 12. Final Action CTA */}
       <FinalCta
         heading="Planning a keynote, leadership offsite or executive workshop?"
         body="Share the audience, date and outcome you want to create. We'll recommend the most suitable format and confirm availability."
