@@ -2,8 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
 import { BRAND_ORANGE } from "../../../constants/brandGradient";
+import { PrimaryLink } from "../../Shared/SectionKit";
+import { ANALYTICS_EVENTS } from "../../../utils/analytics";
 
 const deliveryFormats = [
   "Keynote",
@@ -23,21 +24,30 @@ const BookingKeynoteSection: React.FC = () => {
   return (
     <section className="w-full border-t border-white/10 bg-black py-16 md:py-24 select-text">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
+        {/* Section Heading & Enquire CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mb-10 text-center md:mb-14"
+          className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between md:mb-12"
         >
           <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
             Booking a <span style={{ color: BRAND_ORANGE }}>keynote</span>
           </h2>
+
+          <div>
+            <PrimaryLink
+              to="/contact"
+              event={ANALYTICS_EVENTS.keynoteEnquiryClick}
+            >
+              Enquire about a keynote
+            </PrimaryLink>
+          </div>
         </motion.div>
 
         {/* 3 Information Cards Grid */}
-        <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Card 1: Delivery formats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -113,56 +123,7 @@ const BookingKeynoteSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Banner: Press and event organisers */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          className="flex flex-col justify-between gap-5 rounded-[4px] border border-white/10 bg-[#0d0d0f] p-6 shadow-lg sm:px-8 sm:py-6 md:flex-row md:items-center"
-        >
-          <h4
-            className="text-base font-semibold tracking-wide sm:text-[18px]"
-            style={{ color: BRAND_ORANGE }}
-          >
-            Press and event organisers
-          </h4>
-
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8">
-            <a
-              href="/press/ash-ali-press-headshots.zip"
-              download="ash-ali-press-headshots.zip"
-              className="group inline-flex items-center gap-2 text-sm font-medium transition-colors hover:brightness-110 sm:text-[15px]"
-              style={{ color: BRAND_ORANGE }}
-              title="Download high-resolution press headshots (ZIP)"
-            >
-              <Download className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5" />
-              <span>Headshots (ZIP)</span>
-            </a>
-
-            <a
-              href="/press/ash-ali-short-bio.txt"
-              download="ash-ali-short-bio.txt"
-              className="group inline-flex items-center gap-2 text-sm font-medium transition-colors hover:brightness-110 sm:text-[15px]"
-              style={{ color: BRAND_ORANGE }}
-              title="Download Ash Ali short speaker bio (TXT)"
-            >
-              <Download className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5" />
-              <span>Short bio</span>
-            </a>
-
-            <a
-              href="/press/ash-ali-long-bio.txt"
-              download="ash-ali-long-bio.txt"
-              className="group inline-flex items-center gap-2 text-sm font-medium transition-colors hover:brightness-110 sm:text-[15px]"
-              style={{ color: BRAND_ORANGE }}
-              title="Download Ash Ali comprehensive speaker bio (TXT)"
-            >
-              <Download className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5" />
-              <span>Long bio</span>
-            </a>
-          </div>
-        </motion.div>
+        {/* Note: 3-item press download banner hidden for now per request */}
       </div>
     </section>
   );

@@ -47,7 +47,7 @@ const Speaking: React.FC = () => {
       {/* 10. Verified Organiser Testimonials */}
       <SpeakingThoughts />
 
-      {/* 11. Booking a Keynote Formats & Press Downloads */}
+      {/* 11. Booking a Keynote Formats */}
       <BookingKeynoteSection />
 
       {/* 12. Final Action CTA */}
