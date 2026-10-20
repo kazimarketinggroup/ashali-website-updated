@@ -4,8 +4,29 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
+import { useCMS } from "../../../context/CMSContext";
 
 export const SalesKickoffSection: React.FC = () => {
+  const { cmsData } = useCMS();
+  const data = cmsData?.salesKickoff;
+
+  const eyebrow = data?.eyebrow || "SALES KICKOFF";
+  const headline = data?.headline || "Give your sales kickoff a";
+  const highlightText = data?.highlightText || "clear direction";
+  const afterHighlight = data?.afterHighlight || "for better execution.";
+  const description =
+    data?.description ||
+    "Ash Ali brings founder experience and findings from the Global Sales Capability Index to help your team examine its blindspots, understand where AI can support the work and agree what to improve next.";
+  const ctaPrimaryLabel = data?.ctaPrimaryLabel || "Discuss your sales kickoff";
+  const ctaPrimaryLink = data?.ctaPrimaryLink || "/contact?type=sales-kickoff";
+  const ctaSecondaryLabel = data?.ctaSecondaryLabel || "Get the Index";
+  const statValue = data?.statValue || "76%";
+  const statCaption =
+    data?.statCaption ||
+    "of sales professionals in the Index dataset rated their capability higher than their manager did.";
+  const statSource = data?.statSource || "Uhubs Global Sales Capability Index 2026";
+  const statEdition = data?.statEdition || "first edition • April 2026";
+
   const handleOpenIndexModal = (e: React.MouseEvent) => {
     e.preventDefault();
     if (typeof window !== "undefined") {
@@ -21,28 +42,28 @@ export const SalesKickoffSection: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             {/* Eyebrow */}
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase mb-4">
-              SALES KICKOFF
+              {eyebrow}
             </span>
 
             {/* Heading */}
             <h2 className="text-white text-fluid-30 font-semibold tracking-tight leading-[1.2] mb-6">
-              Give your sales kickoff a{" "}
-              <span style={brandGradientTextStyle}>clear direction</span>{" "}
-              for better execution.
+              {headline}{" "}
+              <span style={brandGradientTextStyle}>{highlightText}</span>{" "}
+              {afterHighlight}
             </h2>
 
             {/* Subline */}
             <p className="text-gray-300 font-light leading-[1.75] tracking-wide text-[13px] sm:text-[14px] lg:text-[15px] max-w-xl mb-8">
-              Ash Ali brings founder experience and findings from the Global Sales Capability Index to help your team examine its blindspots, understand where AI can support the work and agree what to improve next.
+              {description}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href="/contact?type=sales-kickoff"
+                href={ctaPrimaryLink}
                 className="min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-white text-black font-semibold text-[13px] rounded-[2px] transition-colors duration-150 hover:bg-gray-100 shadow-md"
               >
-                <span>Discuss your sales kickoff</span>
+                <span>{ctaPrimaryLabel}</span>
                 <ArrowUpRight size={16} strokeWidth={2.2} />
               </Link>
 
@@ -51,7 +72,7 @@ export const SalesKickoffSection: React.FC = () => {
                 onClick={handleOpenIndexModal}
                 className="min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-transparent border border-white/20 text-white font-medium text-[13px] rounded-[2px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 cursor-pointer"
               >
-                <span>Get the Index</span>
+                <span>{ctaSecondaryLabel}</span>
                 <ArrowRight size={15} strokeWidth={1.8} />
               </button>
             </div>
@@ -68,17 +89,17 @@ export const SalesKickoffSection: React.FC = () => {
                 </span>
               </div>
 
-              {/* Large 76% stat */}
+              {/* Large stat */}
               <div
                 className="text-6xl sm:text-7xl font-bold tracking-tight mb-4 select-none"
                 style={brandGradientTextStyle}
               >
-                76%
+                {statValue}
               </div>
 
               {/* Caption */}
               <p className="text-[14px] sm:text-[15px] text-white font-normal leading-relaxed">
-                of sales professionals in the Index dataset rated their capability higher than their manager did.
+                {statCaption}
               </p>
 
               {/* Divider */}
@@ -86,8 +107,8 @@ export const SalesKickoffSection: React.FC = () => {
 
               {/* Source */}
               <div className="text-[11px] sm:text-[12px] text-gray-400 font-light tracking-wide leading-relaxed">
-                <p>Uhubs Global Sales Capability Index 2026</p>
-                <p className="text-gray-500">first edition • April 2026</p>
+                <p>{statSource}</p>
+                <p className="text-gray-500">{statEdition}</p>
               </div>
             </div>
           </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 
@@ -5,6 +7,7 @@ import keynoteStage from "../../../assets/speaking/int5Dubai.png";
 import keynoteTeam from "../../../assets/speaking/inspiringInsight.png";
 import keynoteCandid from "../../../assets/speaking/eventinpakistan.png";
 import { ANALYTICS_EVENTS } from "../../../utils/analytics";
+import { useCMS } from "../../../context/CMSContext";
 import {
   Body,
   Card,
@@ -95,24 +98,54 @@ const keynotes: Keynote[] = [
 ];
 
 /** §2 — Three flagship keynotes. */
-const FlagshipKeynotes: React.FC = () => (
-  <Section id="keynotes">
-    <div className="flex flex-col gap-12">
-      <Reveal className="mx-auto max-w-3xl text-center">
-        <SectionHeading>
-          Three keynotes, each built around a decision the room needs to make.
-        </SectionHeading>
-      </Reveal>
+const FlagshipKeynotes: React.FC = () => {
+  const { cmsData } = useCMS();
+  const fallbackImages = [keynoteStage.src, keynoteTeam.src, keynoteCandid.src];
+  const fallbackAlts = [
+    "Ash Ali presenting the MILES framework to a seated audience at in5 Dubai",
+    "Ash Ali speaking to a team at Salesforce with The Unfair Advantage on screen behind him",
+    "Ash Ali working through ideas at a whiteboard with a small group of founders",
+  ];
 
-      <div className="flex flex-col gap-5">
-        {keynotes.map((keynote, i) => (
-          <Reveal key={keynote.number} delay={i * 0.06}>
-            <Card>
-              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-                <div className="lg:col-span-7">
-                  <span className="text-[11px] font-medium tracking-[0.2em] text-[#d97736]">
-                    {keynote.number}
-                  </span>
+  const cmsList = (cmsData?.keynotes || []).filter((k) => k.published !== false);
+  const items: Keynote[] =
+    cmsList.length > 0
+      ? cmsList.map((k, idx) => ({
+          number: k.number || (k.order ? `0${k.order}` : `0${idx + 1}`),
+          title: k.title,
+          promise: k.promise || k.subtitle || "",
+          description: k.description,
+          outcomes:
+            k.outcomes && k.outcomes.length > 0
+              ? k.outcomes
+              : k.takeaways && k.takeaways.length > 0
+              ? k.takeaways
+              : keynotes[idx]?.outcomes || [],
+          bestFor: k.bestFor || k.targetAudience || keynotes[idx]?.bestFor || "",
+          note: k.note || keynotes[idx]?.note,
+          image: k.image || fallbackImages[idx % fallbackImages.length],
+          imageAlt: k.imageAlt || fallbackAlts[idx % fallbackAlts.length],
+        }))
+      : keynotes;
+
+  return (
+    <Section id="keynotes">
+      <div className="flex flex-col gap-12">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <SectionHeading>
+            Three keynotes, each built around a decision the room needs to make.
+          </SectionHeading>
+        </Reveal>
+
+        <div className="flex flex-col gap-5">
+          {items.map((keynote, i) => (
+            <Reveal key={keynote.number || i} delay={i * 0.06}>
+              <Card>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+                  <div className="lg:col-span-7">
+                    <span className="text-[11px] font-medium tracking-[0.2em] text-[#d97736]">
+                      {keynote.number}
+                    </span>
                   <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-white sm:text-[19px]">
                     {keynote.title}
                   </h3>
@@ -161,7 +194,8 @@ const FlagshipKeynotes: React.FC = () => (
         ))}
       </div>
     </div>
-  </Section>
-);
+    </Section>
+  );
+};
 
 export default FlagshipKeynotes;

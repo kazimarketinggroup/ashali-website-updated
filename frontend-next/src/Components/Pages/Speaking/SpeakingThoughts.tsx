@@ -4,6 +4,7 @@ import React from "react";
 import { motion, easeOut } from "framer-motion";
 
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
+import { useCMS } from "../../../context/CMSContext";
 
 import angellaAvatar from "../../../assets/speaking/angella.png";
 import cyrusAvatar from "../../../assets/speaking/husabi.png";
@@ -51,22 +52,36 @@ const thoughts: Thought[] = [
   },
 ];
 
-const SpeakingThoughts: React.FC = () => (
-  <section className="border-t border-white/10 bg-black py-16 md:py-24">
-    <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
-      <motion.h2
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.45, ease: easeOut }}
-        className="mb-8 text-fluid-28 font-semibold tracking-tight"
-        style={brandGradientTextStyle}
-      >
-        What organisers say
-      </motion.h2>
+const SpeakingThoughts: React.FC = () => {
+  const { cmsData } = useCMS();
+  const items = thoughts.map((t) => {
+    const cmsItem = cmsData?.testimonials?.find(
+      (item) => item.fullName?.toLowerCase().includes(t.person.toLowerCase().split(" ")[0])
+    );
+    return {
+      ...t,
+      quote: cmsItem?.quote || t.quote,
+      person: cmsItem?.fullName || t.person,
+      logoAlt: cmsItem?.organisation || t.logoAlt,
+    };
+  });
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
-        {thoughts.map((item, idx) => (
+  return (
+    <section className="border-t border-white/10 bg-black py-16 md:py-24">
+      <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.45, ease: easeOut }}
+          className="mb-8 text-fluid-28 font-semibold tracking-tight"
+          style={brandGradientTextStyle}
+        >
+          What organisers say
+        </motion.h2>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+          {items.map((item, idx) => (
           <motion.article
             key={item.person}
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +106,8 @@ const SpeakingThoughts: React.FC = () => (
         ))}
       </div>
     </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default SpeakingThoughts;

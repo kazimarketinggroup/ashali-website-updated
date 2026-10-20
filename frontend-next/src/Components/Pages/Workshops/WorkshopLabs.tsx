@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 
 import { ANALYTICS_EVENTS } from "../../../utils/analytics";
+import { useCMS } from "../../../context/CMSContext";
 import {
   Body,
   Card,
@@ -92,73 +95,101 @@ const workshops: Workshop[] = [
 ];
 
 /** §3 — Three labs, one practical outcome each. */
-const WorkshopLabs: React.FC = () => (
-  <Section id="workshops">
-    <div className="flex flex-col gap-12">
-      <Reveal className="mx-auto max-w-3xl text-center">
-        <SectionHeading>Three labs. One practical outcome each.</SectionHeading>
-      </Reveal>
+const WorkshopLabs: React.FC = () => {
+  const { cmsData } = useCMS();
+  const cmsList = (cmsData?.workshops || []).filter((w) => w.published !== false);
+  const items: Workshop[] =
+    cmsList.length > 0
+      ? cmsList.map((w, idx) => ({
+          number: w.number || `0${idx + 1}`,
+          title: w.title,
+          promise: w.promise || w.tagline || "",
+          description: w.description,
+          bestFor: w.bestFor || workshops[idx]?.bestFor || "Executive teams, transformation leaders and strategy offsites.",
+          helps:
+            w.helps && w.helps.length > 0
+              ? w.helps
+              : w.keyOutcomes && w.keyOutcomes.length > 0
+              ? w.keyOutcomes
+              : workshops[idx]?.helps || [],
+          outputs:
+            w.outputs && w.outputs.length > 0
+              ? w.outputs
+              : w.keyOutcomes && w.keyOutcomes.length > 0
+              ? w.keyOutcomes
+              : workshops[idx]?.outputs || [],
+          formats: w.formats || w.format || w.duration || workshops[idx]?.formats || "Half-day lab · Full-day strategy workshop",
+        }))
+      : workshops;
 
-      <div className="flex flex-col gap-5">
-        {workshops.map((workshop, i) => (
-          <Reveal key={workshop.number} delay={i * 0.06}>
-            <Card>
-              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-                <div className="lg:col-span-6">
-                  <span className="text-[11.5px] font-semibold tracking-[0.2em] text-[#d97736]">
-                    {workshop.number}
-                  </span>
-                  <h3 className="mt-4 text-[19px] font-semibold leading-snug tracking-tight text-white sm:text-[22px]">
-                    {workshop.title}
-                  </h3>
-                  <p className="mt-4 text-[14px] font-normal leading-[1.75] tracking-wide text-gray-300 antialiased sm:text-[15px]">
-                    {workshop.promise}
-                  </p>
-                  {workshop.description && <Body className="mt-4">{workshop.description}</Body>}
+  return (
+    <Section id="workshops">
+      <div className="flex flex-col gap-12">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <SectionHeading>Three labs. One practical outcome each.</SectionHeading>
+        </Reveal>
 
-                  <div className="mt-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
-                      Best for
+        <div className="flex flex-col gap-5">
+          {items.map((workshop, i) => (
+            <Reveal key={workshop.number || i} delay={i * 0.06}>
+              <Card>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+                  <div className="lg:col-span-6">
+                    <span className="text-[11.5px] font-semibold tracking-[0.2em] text-[#d97736]">
+                      {workshop.number}
+                    </span>
+                    <h3 className="mt-4 text-[19px] font-semibold leading-snug tracking-tight text-white sm:text-[22px]">
+                      {workshop.title}
+                    </h3>
+                    <p className="mt-4 text-[14px] font-normal leading-[1.75] tracking-wide text-gray-300 antialiased sm:text-[15px]">
+                      {workshop.promise}
                     </p>
-                    <Body className="mt-2">{workshop.bestFor}</Body>
-                  </div>
+                    {workshop.description && <Body className="mt-4">{workshop.description}</Body>}
 
-                  <div className="mt-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
-                      Helps the team
-                    </p>
-                    <CheckList className="mt-4" items={workshop.helps} />
-                  </div>
-
-                  <div className="mt-7">
-                    <PrimaryLink to="/contact" event={ANALYTICS_EVENTS.workshopEnquiryClick}>
-                      Discuss a workshop
-                    </PrimaryLink>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-6">
-                  <div className="rounded-[4px] border border-white/[0.06] bg-[#141414] p-5 sm:p-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
-                      Tangible outputs
-                    </p>
-                    <CheckList className="mt-4" items={workshop.outputs} />
-
-                    <div className="mt-6 border-t border-white/[0.06] pt-5">
+                    <div className="mt-6">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
-                        Formats
+                        Best for
                       </p>
-                      <Body className="mt-2">{workshop.formats}</Body>
+                      <Body className="mt-2">{workshop.bestFor}</Body>
+                    </div>
+
+                    <div className="mt-6">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                        Helps the team
+                      </p>
+                      <CheckList className="mt-4" items={workshop.helps} />
+                    </div>
+
+                    <div className="mt-7">
+                      <PrimaryLink to="/contact" event={ANALYTICS_EVENTS.workshopEnquiryClick}>
+                        Discuss a workshop
+                      </PrimaryLink>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-6">
+                    <div className="rounded-[4px] border border-white/[0.06] bg-[#141414] p-5 sm:p-6">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                        Tangible outputs
+                      </p>
+                      <CheckList className="mt-4" items={workshop.outputs} />
+
+                      <div className="mt-6 border-t border-white/[0.06] pt-5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                          Formats
+                        </p>
+                        <Body className="mt-2">{workshop.formats}</Body>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Card>
-          </Reveal>
-        ))}
+              </Card>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </div>
-  </Section>
-);
+    </Section>
+  );
+};
 
 export default WorkshopLabs;

@@ -5,11 +5,23 @@ import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
 import { Body, Card, Reveal, Section, SectionHeading } from "../../Shared/SectionKit";
+import { useCMS } from "../../../context/CMSContext";
 import { faqs } from "./faqData";
 
 /** §3 — "Practical questions, answered." */
 const WorkshopFaq: React.FC = () => {
-  const [openId, setOpenId] = useState<string | null>(faqs[0].id);
+  const { cmsData } = useCMS();
+  const cmsList = (cmsData?.faqs || []).filter((f) => f.published !== false);
+  const items =
+    cmsList.length > 0
+      ? cmsList.map((f, idx) => ({
+          id: f.id || `faq-${idx}`,
+          question: f.question,
+          answer: f.answer,
+        }))
+      : faqs;
+
+  const [openId, setOpenId] = useState<string | null>(items[0]?.id || null);
 
   return (
     <Section>
@@ -21,7 +33,7 @@ const WorkshopFaq: React.FC = () => {
         <Reveal delay={0.06} className="mx-auto w-full max-w-3xl">
           <Card className="p-0 sm:p-0">
             <ul className="divide-y divide-white/[0.06]">
-              {faqs.map((faq) => {
+              {items.map((faq) => {
                 const isOpen = openId === faq.id;
                 return (
                   <li key={faq.id}>

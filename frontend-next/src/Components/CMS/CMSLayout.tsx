@@ -27,6 +27,11 @@ import {
   Megaphone,
   Layers,
   Eye,
+  Play,
+  BarChart3,
+  Target,
+  Map,
+  RefreshCw,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 import { CMSGlobalLivePreview } from "./CMSGlobalLivePreview";
@@ -57,10 +62,22 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
   onLogout,
   children,
 }) => {
-  const { cmsData } = useCMS();
+  const { cmsData, resetDefaults } = useCMS();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [liveSitePreviewOpen, setLiveSitePreviewOpen] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSyncToLiveDefaults = async () => {
+    if (window.confirm("Sync all CMS sections with live website content? This pulls and resets all default fields to match the published live site.")) {
+      setIsSyncing(true);
+      try {
+        await resetDefaults();
+      } finally {
+        setIsSyncing(false);
+      }
+    }
+  };
 
   const newInquiriesCount = cmsData.inquiries.filter((i) => i.status === "New").length;
 
@@ -75,9 +92,13 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
       group: "HOMEPAGE SECTIONS",
       items: [
         { id: "hero", label: "Hero & Introduction", icon: Home },
+        { id: "watch-ash-speak", label: "Watch Ash Speak", icon: Play },
         { id: "helping-leaders", label: "What Ash Helps With", icon: Sparkles },
         { id: "signature-ideas", label: "Three Signature Ideas", icon: Lightbulb },
         { id: "book-showcase", label: "Book Showcase", icon: BookOpen },
+        { id: "capability-index", label: "Capability Index / Uhubs", icon: BarChart3 },
+        { id: "sales-kickoff", label: "Sales Kickoff", icon: Target },
+        { id: "building-bridges", label: "Malaysia & SEA", icon: Map },
         { id: "final-cta", label: "Closing CTA Banner", icon: Megaphone },
         { id: "footer", label: "Footer & Global Links", icon: Layers },
       ],
@@ -185,6 +206,17 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
 
         {/* Right Topbar Icons & Profile Pill (Matching Reference Image) */}
         <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={handleSyncToLiveDefaults}
+            disabled={isSyncing}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/80 shadow-xs transition-all cursor-pointer disabled:opacity-60"
+            title="Synchronize all CMS sections with live website defaults and MongoDB Atlas"
+          >
+            <RefreshCw size={12} className={`text-emerald-600 ${isSyncing ? "animate-spin" : ""}`} />
+            <span className="hidden md:inline">{isSyncing ? "Syncing..." : "Sync Live Site"}</span>
+          </button>
+
           <button
             type="button"
             onClick={() => setLiveSitePreviewOpen(true)}

@@ -6,17 +6,86 @@ export type CMSCategory =
   | "Keynotes"
   | "Case Study";
 
+export interface HeroStatCard {
+  stat: string;
+  text: string;
+  source: string;
+}
+
+export interface HeroCredibilityCard {
+  id?: string;
+  label: string;
+  title: string;
+  icon?: "book" | "trophy" | "trending";
+}
+
 export interface HeroContent {
   eyebrow: string;
-  headline: string;
-  highlightWord: string;
-  headlinePart2: string;
+  // Live website headline structure
+  headlineLine1Prefix?: string;
+  headlineLine1Highlight?: string;
+  headlineLine2Prefix?: string;
+  headlineLine2Highlight1?: string;
+  headlineLine2Middle?: string;
+  headlineLine2Highlight2?: string;
+  // Backwards compatibility
+  headline?: string;
+  highlightWord?: string;
+  headlinePart2?: string;
   bio: string;
   location: string;
   ctaText: string;
   ctaLink: string;
+  ctaSecondaryText?: string;
   heroImage?: string;
-  secondaryButtons: Array<{ label: string; to: string }>;
+  statCard?: HeroStatCard;
+  credibilityCards?: HeroCredibilityCard[];
+  secondaryButtons?: Array<{ label: string; to: string }>;
+}
+
+export interface WatchAshSpeakContent {
+  title: string;
+  youtubeUrl: string;
+  videoTitle: string;
+}
+
+export interface CapabilityIndexContent {
+  eyebrow: string;
+  headline: string;
+  highlightText: string;
+  description: string;
+  ctaStat: string;
+  reportYear: string;
+  visitButtonLabel: string;
+  visitButtonUrl: string;
+  downloadButtonLabel: string;
+}
+
+export interface SalesKickoffContent {
+  eyebrow: string;
+  headline: string;
+  highlightText: string;
+  afterHighlight: string;
+  description: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryLink: string;
+  ctaSecondaryLabel: string;
+  statValue: string;
+  statCaption: string;
+  statSource: string;
+  statEdition: string;
+}
+
+export interface BuildingBridgesContent {
+  regionLabel: string;
+  headlinePart1: string;
+  headlineHighlight: string;
+  paragraphs: string[];
+  primaryButtonLabel: string;
+  primaryButtonLink: string;
+  secondaryButtonLabel: string;
+  secondaryButtonLink: string;
+  imageAlt: string;
 }
 
 export interface ServiceCardItem {
@@ -110,26 +179,44 @@ export interface UpdateItem {
   author?: string;
 }
 
+export interface KeynoteNote {
+  text: string;
+  href: string;
+}
+
 export interface KeynoteItem {
   id: string;
+  number?: string;
   title: string;
   subtitle: string;
+  promise?: string;
   badge: string;
   duration: string;
   targetAudience: string;
+  bestFor?: string;
   description: string;
   takeaways: string[];
+  outcomes?: string[];
+  note?: KeynoteNote;
+  image?: string;
+  imageAlt?: string;
   published: boolean;
   order: number;
 }
 
 export interface WorkshopItem {
   id: string;
+  number?: string;
   title: string;
   tagline: string;
+  promise?: string;
   duration: string;
   format: string;
+  formats?: string;
   description: string;
+  bestFor?: string;
+  helps?: string[];
+  outputs?: string[];
   keyOutcomes: string[];
   published: boolean;
 }
@@ -233,9 +320,13 @@ export interface CMSData {
   version: string;
   lastUpdated: string;
   hero: HeroContent;
+  watchAshSpeak?: WatchAshSpeakContent;
   helpingLeaders: HelpingLeadersContent;
   signatureIdeas: SignatureIdeasContent;
   bookShowcase: BookShowcaseContent;
+  capabilityIndex?: CapabilityIndexContent;
+  salesKickoff?: SalesKickoffContent;
+  buildingBridges?: BuildingBridgesContent;
   finalCta: FinalCtaContent;
   footer: FooterContent;
   updates: UpdateItem[];

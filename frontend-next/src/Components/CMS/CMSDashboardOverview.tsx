@@ -22,6 +22,11 @@ import {
   Mail,
   Briefcase,
   Video,
+  Play,
+  BarChart3,
+  Target,
+  Map,
+  RefreshCw,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 
@@ -33,7 +38,19 @@ interface CMSDashboardOverviewProps {
 export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
   onNavigateTab,
 }) => {
-  const { cmsData } = useCMS();
+  const { cmsData, resetDefaults } = useCMS();
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSyncToLiveDefaults = async () => {
+    if (window.confirm("Sync all CMS sections with live website defaults? This ensures your CMS and MongoDB Atlas match the latest published live site content.")) {
+      setIsSyncing(true);
+      try {
+        await resetDefaults();
+      } finally {
+        setIsSyncing(false);
+      }
+    }
+  };
 
   // Real Dynamic Counts directly from CMS Data
   const totalUpdates = cmsData.updates?.length || 0;
@@ -117,6 +134,15 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
         </div>
 
         <div className="flex items-center gap-2.5">
+          <button
+            onClick={handleSyncToLiveDefaults}
+            disabled={isSyncing}
+            className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200/80 rounded-xl hover:bg-slate-50 hover:border-slate-300 shadow-sm transition-all cursor-pointer disabled:opacity-60"
+            title="Pull and apply the latest published live website content"
+          >
+            <RefreshCw size={14} className={`text-emerald-600 ${isSyncing ? "animate-spin" : ""}`} />
+            <span>{isSyncing ? "Syncing..." : "Sync Live Website"}</span>
+          </button>
           <button
             onClick={() => onNavigateTab("updates")}
             className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200/80 rounded-xl hover:bg-slate-50 hover:border-slate-300 shadow-sm transition-all cursor-pointer"
@@ -246,11 +272,11 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </p>
           </div>
           <span className="text-[11px] font-semibold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full self-start sm:self-auto">
-            6 Interactive Sections
+            10 Interactive Sections
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           <div
             onClick={() => onNavigateTab("hero")}
             className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
@@ -266,7 +292,27 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
                 1. Hero & Intro
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                Photo, headline, brand gradient & bio
+                Photo, headline, gradient & bio
+              </p>
+            </div>
+          </div>
+
+          <div
+            onClick={() => onNavigateTab("watch-ash-speak")}
+            className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="w-7 h-7 rounded-lg bg-rose-100/70 text-rose-600 flex items-center justify-center">
+                <Play size={14} />
+              </div>
+              <ArrowUpRight size={14} className="text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                2. Watch Ash Speak
+              </h3>
+              <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                Featured TEDx video embed
               </p>
             </div>
           </div>
@@ -283,10 +329,10 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
-                2. What Ash Helps
+                3. What Ash Helps
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                3 cards, images, hover flip & links
+                3 cards, images & links
               </p>
             </div>
           </div>
@@ -303,10 +349,10 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
-                3. Three Ideas
+                4. Three Ideas
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                01, 02, 03 core thesis & keynote CTA
+                01, 02, 03 core thesis
               </p>
             </div>
           </div>
@@ -323,10 +369,70 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
-                4. Book Showcase
+                5. Book Showcase
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                Covers graphic, badges & Amazon link
+                Covers, badges & Amazon link
+              </p>
+            </div>
+          </div>
+
+          <div
+            onClick={() => onNavigateTab("capability-index")}
+            className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="w-7 h-7 rounded-lg bg-cyan-100/70 text-cyan-700 flex items-center justify-center">
+                <BarChart3 size={14} />
+              </div>
+              <ArrowUpRight size={14} className="text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                6. Capability Index
+              </h3>
+              <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                Uhubs report & download
+              </p>
+            </div>
+          </div>
+
+          <div
+            onClick={() => onNavigateTab("sales-kickoff")}
+            className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="w-7 h-7 rounded-lg bg-violet-100/70 text-violet-700 flex items-center justify-center">
+                <Target size={14} />
+              </div>
+              <ArrowUpRight size={14} className="text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                7. Sales Kickoff
+              </h3>
+              <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                SKO CTA & 76% stat card
+              </p>
+            </div>
+          </div>
+
+          <div
+            onClick={() => onNavigateTab("building-bridges")}
+            className="p-3.5 bg-slate-50 hover:bg-orange-50/40 border border-slate-200/80 hover:border-orange-300 rounded-xl transition-all cursor-pointer group flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="w-7 h-7 rounded-lg bg-emerald-100/70 text-emerald-700 flex items-center justify-center">
+                <Map size={14} />
+              </div>
+              <ArrowUpRight size={14} className="text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                8. Malaysia & SEA
+              </h3>
+              <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                Building Bridges section
               </p>
             </div>
           </div>
@@ -343,10 +449,10 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
-                5. Closing CTA
+                9. Closing CTA
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                Event inquiry banner & booking action
+                Inquiry banner & booking
               </p>
             </div>
           </div>
@@ -363,10 +469,10 @@ export const CMSDashboardOverview: React.FC<CMSDashboardOverviewProps> = ({
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
-                6. Footer & Links
+                10. Footer & Links
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                Bio, socials, newsletter & columns
+                Bio, socials & columns
               </p>
             </div>
           </div>

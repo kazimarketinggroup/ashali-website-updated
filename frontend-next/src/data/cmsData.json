@@ -2,28 +2,97 @@
   "version": "1.0.0",
   "lastUpdated": "2026-10-05T08:07:22.870Z",
   "hero": {
-    "eyebrow": "International keynote speaker • Founder • Operator • Author",
-    "headline": "Find Your",
-    "highlightWord": "Unfair Advantage",
-    "headlinePart2": "In An AI Shaped World.",
-    "bio": "Ash Ali helps leaders and organisations turn AI disruption into sharper strategy, stronger human capability and practical competitive advantage. He brings 25+ years of experience building technology businesses, including serving as Just Eat UK's first Marketing Director, co-authoring The Unfair Advantage and co-founding Uhubs.ai.",
+    "eyebrow": "INTERNATIONAL KEYNOTE SPEAKER • FOUNDER • OPERATOR • AUTHOR",
+    "headlineLine1Prefix": "I co-wrote the book on ",
+    "headlineLine1Highlight": "unfair advantage.",
+    "headlineLine2Prefix": "Now I'm using ",
+    "headlineLine2Highlight1": "sales capability data",
+    "headlineLine2Middle": " to explore ",
+    "headlineLine2Highlight2": "what AI changes.",
+    "headline": "I co-wrote the book on",
+    "highlightWord": "unfair advantage.",
+    "headlinePart2": "Now I'm using sales capability data to explore what AI changes.",
+    "bio": "Ash Ali co-authored the award-winning The Unfair Advantage, was Just Eat UK's first Marketing Director and is co-founder of Uhubs.ai. He brings founder experience and sales capability research to keynotes, workshops and advisory on advantage in an AI-shaped world.",
     "location": "Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops.",
     "ctaText": "Work with Ash",
     "ctaLink": "/contact",
+    "ctaSecondaryText": "Get the Index",
+    "heroImage": "",
+    "statCard": {
+      "stat": "76%",
+      "text": "of sales professionals in the Index dataset rated their capability higher than their manager did.",
+      "source": "Uhubs Global Sales Capability Index 2026 • first edition • April 2026"
+    },
+    "credibilityCards": [
+      {
+        "id": "cred-1",
+        "label": "Co-author of",
+        "title": "The Unfair Advantage",
+        "icon": "book"
+      },
+      {
+        "id": "cred-2",
+        "label": "Winner, 2021",
+        "title": "Business Book of the Year",
+        "icon": "trophy"
+      },
+      {
+        "id": "cred-3",
+        "label": "First Marketing Director at",
+        "title": "Just Eat",
+        "icon": "trending"
+      }
+    ],
     "secondaryButtons": [
       {
-        "label": "Keynotes",
-        "to": "/speaking"
-      },
-      {
-        "label": "Advisory",
-        "to": "/advisory"
-      },
-      {
-        "label": "Workshops",
-        "to": "/workshops"
+        "label": "Get the Index",
+        "to": "#index"
       }
     ]
+  },
+  "watchAshSpeak": {
+    "title": "Watch Ash speak",
+    "youtubeUrl": "https://www.youtube.com/watch?v=rMB2lFUMXpY",
+    "videoTitle": "What is your unfair advantage? | Ash Ali | TEDxRoyalHolloway"
+  },
+  "capabilityIndex": {
+    "eyebrow": "Operating now",
+    "headline": "Building the data layer behind sales",
+    "highlightText": "performance in an AI era.",
+    "description": "Co-founder of Uhubs.ai, where capability data helps revenue leaders understand the people side of sales transformation: where teams are strong, where performance is constrained and which human and AI capabilities matter next. This current operating work keeps Ash's talks grounded in what companies are facing now.",
+    "ctaStat": "The Global Sales Capability Index 2026 is out.",
+    "reportYear": "2026",
+    "visitButtonLabel": "Visit Uhubs",
+    "visitButtonUrl": "https://www.uhubs.ai",
+    "downloadButtonLabel": "Download the full report →"
+  },
+  "salesKickoff": {
+    "eyebrow": "SALES KICKOFF",
+    "headline": "Give your sales kickoff a",
+    "highlightText": "clear direction",
+    "afterHighlight": "for better execution.",
+    "description": "Ash Ali brings founder experience and findings from the Global Sales Capability Index to help your team examine its blindspots, understand where AI can support the work and agree what to improve next.",
+    "ctaPrimaryLabel": "Discuss your sales kickoff",
+    "ctaPrimaryLink": "/contact?type=sales-kickoff",
+    "ctaSecondaryLabel": "Get the Index",
+    "statValue": "76%",
+    "statCaption": "of sales professionals in the Index dataset rated their capability higher than their manager did.",
+    "statSource": "Uhubs Global Sales Capability Index 2026",
+    "statEdition": "first edition • April 2026"
+  },
+  "buildingBridges": {
+    "regionLabel": "• Malaysia & Southeast Asia",
+    "headlinePart1": "A global founder's perspective, on the ground in",
+    "headlineHighlight": "Malaysia and SEA.",
+    "paragraphs": [
+      "A region at an inflection point: young talent, fast AI adoption and rising regional ambition.",
+      "Based between London and Kuala Lumpur, Ash brings a global founder/operator perspective to organisations and communities across the UK, Malaysia and Southeast Asia: speaking, advising and supporting the region's next generation of founders and leaders."
+    ],
+    "primaryButtonLabel": "Read More",
+    "primaryButtonLink": "/malaysia-sea",
+    "secondaryButtonLabel": "Work with Ash",
+    "secondaryButtonLink": "/contact",
+    "imageAlt": "Ash Ali speaking on stage in Southeast Asia"
   },
   "updates": [
     {
@@ -90,50 +159,83 @@
   "keynotes": [
     {
       "id": "kn-1",
-      "title": "The Unfair Advantage: Winning in an AI-Disrupted Economy",
-      "subtitle": "Navigating technological transformation with human-centric competitive moats",
-      "badge": "Flagship Keynote",
+      "number": "01",
+      "title": "The Unfair Advantage in the age of AI",
+      "subtitle": "How leaders identify the advantages they already possess, and use AI to amplify rather than erase them.",
+      "promise": "How leaders identify the advantages they already possess, and use AI to amplify rather than erase them.",
+      "badge": "Flagship Keynote 01",
       "duration": "45–60 mins",
-      "targetAudience": "Enterprise Leaders, C-Suite, Global Summits, Founders",
-      "description": "In an era where AI tools are commoditised and accessible to everyone, standard best practices no longer provide an edge. Ash Ali demonstrates how organisations and individuals uncover their bespoke, defensible Unfair Advantage to out-innovate competitors.",
+      "targetAudience": "Executive audiences, innovation events, founder conferences, strategy days and organisations navigating AI driven change.",
+      "bestFor": "Executive audiences, innovation events, founder conferences, strategy days and organisations navigating AI driven change.",
+      "description": "AI is changing how advantage is created, but not every organisation needs the same tools or strategy. In this keynote, Ash shows leaders how to identify the assets, context, relationships, judgement and capabilities that competitors cannot easily copy, and how to use AI to multiply their value.",
       "takeaways": [
-        "Unpack the MILES framework applied specifically to AI-augmented teams",
-        "Differentiate between table-stakes AI adoption and true proprietary competitive moat",
-        "Cultivate a Reality Growth Mindset across executive teams",
-        "Actionable blueprint for continuous capability upgrades in rapid change"
+        "Distinguish genuine competitive advantage from AI theatre",
+        "Apply the MILES framework to an individual, team or organisation",
+        "Identify where AI creates leverage and where it risks eroding differentiation",
+        "Choose practical next steps rather than accumulating more tools"
+      ],
+      "outcomes": [
+        "Distinguish genuine competitive advantage from AI theatre",
+        "Apply the MILES framework to an individual, team or organisation",
+        "Identify where AI creates leverage and where it risks eroding differentiation",
+        "Choose practical next steps rather than accumulating more tools"
       ],
       "published": true,
       "order": 1
     },
     {
       "id": "kn-2",
-      "title": "From Seed to Scale: Lessons from Just Eat & Beyond",
-      "subtitle": "Zero-to-IPO tactical growth playbook and hyper-growth scaling",
-      "badge": "Entrepreneurship & Growth",
+      "number": "02",
+      "title": "The human advantage: leading when AI changes the work",
+      "subtitle": "What must stay human when machines become faster, cheaper and more capable.",
+      "promise": "What must stay human when machines become faster, cheaper and more capable.",
+      "badge": "Flagship Keynote 02",
       "duration": "45–60 mins",
-      "targetAudience": "Tech Startups, Growth Teams, Investors, Accelerators",
-      "description": "Drawing on his front-line journey as Just Eat UK's first Marketing Director, Ash shares the unvarnished truth of taking an early-stage startup from turbulent early days into a multi-billion dollar publicly listed giant.",
+      "targetAudience": "Leadership conferences, people and talent programmes, future-of-work events, transformation teams and management offsites.",
+      "bestFor": "Leadership conferences, people and talent programmes, future-of-work events, transformation teams and management offsites.",
+      "description": "AI can increase output while quietly weakening judgement, curiosity and ownership. Ash explores the capabilities leaders must protect and strengthen, and how to build teams that use AI confidently without outsourcing their thinking.",
       "takeaways": [
-        "Guerrilla growth tactics that beat massive incumbent competitors",
-        "How to build high-velocity experimentation loops in marketing and product",
-        "Maintaining founder mentality and agility during aggressive scale-up"
+        "Recognise the human capabilities that become more valuable as AI spreads",
+        "Separate productive augmentation from passive dependence",
+        "Create an environment that rewards curiosity, judgement and experimentation",
+        "Translate AI anxiety into practical leadership choices"
+      ],
+      "outcomes": [
+        "Recognise the human capabilities that become more valuable as AI spreads",
+        "Separate productive augmentation from passive dependence",
+        "Create an environment that rewards curiosity, judgement and experimentation",
+        "Translate AI anxiety into practical leadership choices"
       ],
       "published": true,
       "order": 2
     },
     {
       "id": "kn-3",
-      "title": "Building AI-Ready Organisations and Upskilling Talent",
-      "subtitle": "Transforming workforce capabilities into future-proof intelligence",
-      "badge": "Future of Work",
-      "duration": "40–50 mins",
-      "targetAudience": "HR Executives, People Leaders, Corporate Innovation Summits",
-      "description": "How leading companies are combining human judgment with autonomous workflows to multiply team productivity without burning out talent.",
+      "number": "03",
+      "title": "From outsider to operator: building advantage without the usual access",
+      "subtitle": "A candid founder story about background, reinvention, judgement and creating opportunity before anyone gives permission.",
+      "promise": "A candid founder story about background, reinvention, judgement and creating opportunity before anyone gives permission.",
+      "badge": "Flagship Keynote 03",
+      "duration": "45–60 mins",
+      "targetAudience": "Company-wide events, talent and inclusion programmes, and leadership development cohorts",
+      "bestFor": "Company-wide events, talent and inclusion programmes, and leadership development cohorts",
+      "description": "Raised in inner-city Birmingham, Ash left college twice, taught himself digital skills and went on to help build one of the UK's defining technology growth stories. This is not an overnight-success tale. It is a practical account of curiosity, constraint, access, mistakes and learning how to turn difference into momentum.",
       "takeaways": [
-        "Frameworks for identifying high-impact AI leverage points in knowledge work",
-        "Overcoming organisational inertia and fear around technological displacement",
-        "Modern upskilling architectures that stick and deliver immediate ROI"
+        "See background and identity as potential sources of advantage",
+        "Understand the role of access, timing, networks and self-belief",
+        "Take action before certainty or permission arrives",
+        "Build a more honest definition of success and resilience"
       ],
+      "outcomes": [
+        "See background and identity as potential sources of advantage",
+        "Understand the role of access, timing, networks and self-belief",
+        "Take action before certainty or permission arrives",
+        "Build a more honest definition of success and resilience"
+      ],
+      "note": {
+        "text": "Limited availability for Universities and education programmes.",
+        "href": "/giving-back"
+      },
       "published": true,
       "order": 3
     }
@@ -141,60 +243,127 @@
   "workshops": [
     {
       "id": "ws-1",
-      "title": "Executive Masterclass: Unfair Advantage Strategy Lab",
-      "tagline": "High-impact, hands-on strategic workshop for leadership teams",
-      "duration": "Half-Day or Full-Day",
-      "format": "In-Person or Interactive Virtual",
-      "description": "A rigorous, highly collaborative session where executive teams audit their organisation's core assets, identify hidden vulnerabilities, and build a concrete 12-month competitive moat.",
+      "number": "01",
+      "title": "The AI Advantage Lab",
+      "tagline": "Identify where your organisation can use AI to create leverage without becoming indistinguishable from everyone else.",
+      "promise": "Identify where your organisation can use AI to create leverage without becoming indistinguishable from everyone else.",
+      "duration": "90-minute executive session · Half-day lab · Full-day strategy workshop",
+      "format": "Executive Strategy Lab",
+      "formats": "90-minute executive session · Half-day lab · Full-day strategy workshop",
+      "bestFor": "Executive teams, innovation leaders, transformation teams and strategy offsites.",
+      "description": "Separate genuine business advantage from generic AI adoption. Map the organisation's existing assets using the MILES framework, prioritise AI opportunities by value, differentiation and feasibility, and agree what should remain human-led.",
+      "helps": [
+        "Separate genuine business advantage from generic AI adoption",
+        "Map the organisation's existing assets using the MILES framework",
+        "Prioritise AI opportunities by value, differentiation and feasibility",
+        "Agree what should remain human-led and where AI should augment the work"
+      ],
+      "outputs": [
+        "Organisational Advantage Map",
+        "AI opportunity and risk matrix",
+        "Three to five priority experiments",
+        "Draft 90-day action direction"
+      ],
       "keyOutcomes": [
-        "Complete enterprise-level MILES audit",
-        "Prioritised roadmap of strategic advantages to protect and exploit",
-        "Alignment on AI adoption vs. human differentiator strategy"
+        "Organisational Advantage Map",
+        "AI opportunity and risk matrix",
+        "Three to five priority experiments",
+        "Draft 90-day action direction"
       ],
       "published": true
     },
     {
       "id": "ws-2",
-      "title": "Growth Acceleration & Rapid Scaling Lab",
-      "tagline": "For scaleup founders, product leaders, and marketing directors",
-      "duration": "Full-Day Intensive",
-      "format": "Executive Offsite",
-      "description": "Directly diagnose customer acquisition bottlenecks, unlock retention levers, and develop scalable distribution engines.",
+      "number": "02",
+      "title": "The Human Advantage Leadership Lab",
+      "tagline": "Build the leadership habits and team capabilities that become more valuable as AI changes the work.",
+      "promise": "Build the leadership habits and team capabilities that become more valuable as AI changes the work.",
+      "duration": "90-minute leadership session · Half-day lab · Full-day offsite",
+      "format": "Leadership Lab",
+      "formats": "90-minute leadership session · Half-day lab · Full-day offsite",
+      "bestFor": "Leadership teams, people leaders, functional heads and organisations redesigning roles or capability.",
+      "description": "Build the leadership habits and team capabilities that become more valuable as AI changes the work. Recognise where AI is strengthening output but weakening judgement or ownership, define leadership principles for responsible augmentation, and design practical team experiments.",
+      "helps": [
+        "Identify the human capabilities AI makes more, not less, valuable",
+        "Recognise where AI is strengthening output but weakening judgement or ownership",
+        "Define leadership principles for responsible augmentation",
+        "Design practical team experiments that build confidence and capability"
+      ],
+      "outputs": [
+        "Human Capability Priority Map",
+        "Leadership principles for AI enabled work",
+        "Team experiment backlog",
+        "30/60/90-day leadership actions"
+      ],
       "keyOutcomes": [
-        "Deep-dive growth audits using Just Eat's playbook",
-        "Acquisition channel prioritisation matrix",
-        "Actionable 90-day execution sprints"
+        "Human Capability Priority Map",
+        "Leadership principles for AI enabled work",
+        "Team experiment backlog",
+        "30/60/90-day leadership actions"
+      ],
+      "published": true
+    },
+    {
+      "id": "ws-3",
+      "number": "03",
+      "title": "The AI Era Sales Transformation Lab",
+      "tagline": "Redesign the people, capability and AI layer of sales performance, not just the tech stack.",
+      "promise": "Redesign the people, capability and AI layer of sales performance, not just the tech stack.",
+      "duration": "Half-day leadership lab · Full-day transformation workshop · Diagnostic-led programme",
+      "format": "Sales Transformation Lab",
+      "formats": "Half-day leadership lab · Full-day transformation workshop · Diagnostic-led programme",
+      "bestFor": "CROs, sales leadership teams, enablement leaders, revenue operations and transformation sponsors.",
+      "description": "Many companies are adding AI tools without a shared view of the sales capabilities, behaviours and workflows that need to change. This workshop helps revenue leaders identify the human and AI capabilities that matter next, using the Uhubs Pulse and Global Sales Capability Index where appropriate.",
+      "helps": [
+        "Diagnose the capability constraints behind current sales performance",
+        "Map which work should be human-led, AI assisted or increasingly agentic",
+        "Prioritise the use cases that create value in the sales workflow",
+        "Align leadership, enablement and technology priorities around one roadmap"
+      ],
+      "outputs": [
+        "Capability baseline or Pulse diagnostic readout",
+        "Human/AI sales-work map",
+        "Priority capability and use-case matrix",
+        "90-day transformation roadmap",
+        "Optional executive debrief and follow-on programme design"
+      ],
+      "keyOutcomes": [
+        "Capability baseline or Pulse diagnostic readout",
+        "Human/AI sales-work map",
+        "Priority capability and use-case matrix",
+        "90-day transformation roadmap",
+        "Optional executive debrief and follow-on programme design"
       ],
       "published": true
     }
   ],
   "faqs": [
     {
-      "id": "faq-1",
-      "question": "What formats does Ash offer for corporate keynotes?",
-      "answer": "Ash delivers in-person keynote speeches, virtual livestreams, interactive fireside chats, and executive panel discussions. Durations typically range from 45 to 60 minutes with an optional 15-30 minute audience Q&A.",
+      "id": "tailored",
+      "question": "How tailored is the session?",
+      "answer": "Every workshop is adapted to the organisation, audience and decisions that need to be made. Preparation may include stakeholder interviews, a short pre-session questionnaire or an Uhubs capability diagnostic.",
+      "category": "Workshops",
+      "published": true
+    },
+    {
+      "id": "virtual",
+      "question": "Can the workshop be delivered virtually?",
+      "answer": "Yes. Workshops can be delivered in person or virtually, although leadership labs involving complex decisions generally work best in person.",
+      "category": "Format",
+      "published": true
+    },
+    {
+      "id": "combined",
+      "question": "Can a keynote and workshop be combined?",
+      "answer": "Yes. The Keynote-to-Action format gives a wider audience the big idea and then takes a smaller leadership group into facilitated application.",
       "category": "Speaking",
       "published": true
     },
     {
-      "id": "faq-2",
-      "question": "How far in advance should we book Ash Ali?",
-      "answer": "We recommend reaching out 3 to 6 months in advance, especially for international conferences and peak conference seasons (Q2 and Q4). However, short-notice requests can sometimes be accommodated depending on Ash's travel schedule between London and Kuala Lumpur.",
-      "category": "Booking",
-      "published": true
-    },
-    {
-      "id": "faq-3",
-      "question": "Can keynote presentations be tailored to our specific industry?",
-      "answer": "Yes, absolutely. Ash conducts an initial briefing call with event organisers to understand your audience profile, key event themes, and organisational goals, tailoring case studies, examples, and language to match.",
-      "category": "Customisation",
-      "published": true
-    },
-    {
-      "id": "faq-4",
-      "question": "Are workshops available for executive teams?",
-      "answer": "Yes. Ash frequently facilitates half-day and full-day strategic workshops and offsites for boards, C-suite executives, and scaleup leadership teams on AI strategy and the Unfair Advantage framework.",
-      "category": "Workshops",
+      "id": "fees",
+      "question": "How are fees determined?",
+      "answer": "Fees depend on the format, preparation, audience, location and level of follow-on support. Share your date, objectives and indicative budget and we will recommend the most suitable option.",
+      "category": "Pricing",
       "published": true
     }
   ],

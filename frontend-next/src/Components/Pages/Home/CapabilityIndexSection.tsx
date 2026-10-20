@@ -8,8 +8,23 @@ import { X, ChevronDown } from "lucide-react";
 import reportCover from "../../../assets/home/indexreport.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
 import { api } from "../../../utils/api";
+import { useCMS } from "../../../context/CMSContext";
 
 export const CapabilityIndexSection = () => {
+  const { cmsData } = useCMS();
+  const data = cmsData?.capabilityIndex;
+
+  const eyebrow = data?.eyebrow || "Operating now";
+  const headline = data?.headline || "Building the data layer behind sales";
+  const highlightText = data?.highlightText || "performance in an AI era.";
+  const description =
+    data?.description ||
+    "Co-founder of Uhubs.ai, where capability data helps revenue leaders understand the people side of sales transformation: where teams are strong, where performance is constrained and which human and AI capabilities matter next. This current operating work keeps Ash's talks grounded in what companies are facing now.";
+  const ctaStat = data?.ctaStat || "The Global Sales Capability Index 2026 is out.";
+  const visitButtonLabel = data?.visitButtonLabel || "Visit Uhubs";
+  const visitButtonUrl = data?.visitButtonUrl || "https://www.uhubs.ai";
+  const downloadButtonLabel = data?.downloadButtonLabel || "Download the full report →";
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -108,7 +123,7 @@ export const CapabilityIndexSection = () => {
                 viewport={{ once: true }}
                 className="flex items-center mb-3 text-[11px] uppercase tracking-[0.2em] text-white/70 font-medium"
               >
-                <span>Operating now</span>
+                <span>{eyebrow}</span>
               </motion.div>
 
               <motion.h2
@@ -117,8 +132,8 @@ export const CapabilityIndexSection = () => {
                 viewport={{ once: true }}
                 className="text-fluid-30 font-medium leading-[1.25] max-w-[650px] tracking-tight text-white/95"
               >
-                <span style={brandGradientTextStyle}>Building the data layer behind sales </span>
-                performance in an AI era.
+                <span style={brandGradientTextStyle}>{headline} </span>
+                {highlightText}
               </motion.h2>
 
               <motion.p
@@ -128,7 +143,7 @@ export const CapabilityIndexSection = () => {
                 transition={{ delay: 0.1 }}
                 className="mt-10 text-[15px] leading-[1.9] text-white/75 max-w-[560px] font-light"
               >
-                Co-founder of Uhubs.ai, where capability data helps revenue leaders understand the people side of sales transformation: where teams are strong, where performance is constrained and which human and AI capabilities matter next. This current operating work keeps Ash's talks grounded in what companies are facing now.
+                {description}
               </motion.p>
 
               <motion.p
@@ -138,7 +153,7 @@ export const CapabilityIndexSection = () => {
                 transition={{ delay: 0.2 }}
                 className="mt-8 text-[15px] text-white/85 font-medium"
               >
-                The Global Sales Capability Index 2026 is out.
+                {ctaStat}
               </motion.p>
 
               <motion.div
@@ -149,12 +164,12 @@ export const CapabilityIndexSection = () => {
                 className="mt-14 flex flex-wrap items-center gap-3"
               >
                 <a
-                  href="https://www.uhubs.ai"
+                  href={visitButtonUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-white text-black px-6 py-3 text-sm font-semibold rounded-[2px] transition-colors duration-300 hover:bg-gray-100 shadow-md text-center"
                 >
-                  Visit Uhubs
+                  {visitButtonLabel}
                 </a>
                 <a
                   href="#download-report"
@@ -164,7 +179,7 @@ export const CapabilityIndexSection = () => {
                   }}
                   className="inline-flex min-h-[44px] items-center justify-center border border-white/40 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black shadow-md rounded-[2px] cursor-pointer"
                 >
-                  Download the full report →
+                  {downloadButtonLabel}
                 </a>
               </motion.div>
             </div>

@@ -10,6 +10,10 @@ import { CMSSignatureIdeasEditor } from "@/src/Components/CMS/CMSSignatureIdeasE
 import { CMSBookShowcaseEditor } from "@/src/Components/CMS/CMSBookShowcaseEditor";
 import { CMSFinalCtaEditor } from "@/src/Components/CMS/CMSFinalCtaEditor";
 import { CMSFooterEditor } from "@/src/Components/CMS/CMSFooterEditor";
+import { CMSWatchAshSpeakEditor } from "@/src/Components/CMS/CMSWatchAshSpeakEditor";
+import { CMSCapabilityIndexEditor } from "@/src/Components/CMS/CMSCapabilityIndexEditor";
+import { CMSSalesKickoffEditor } from "@/src/Components/CMS/CMSSalesKickoffEditor";
+import { CMSBuildingBridgesEditor } from "@/src/Components/CMS/CMSBuildingBridgesEditor";
 import { CMSUpdatesManager } from "@/src/Components/CMS/CMSUpdatesManager";
 import { CMSKeynotesManager } from "@/src/Components/CMS/CMSKeynotesManager";
 import { CMSWorkshopsFaqManager } from "@/src/Components/CMS/CMSWorkshopsFaqManager";
@@ -109,6 +113,14 @@ export default function CMSAdminPage() {
         return <CMSFinalCtaEditor />;
       case "footer":
         return <CMSFooterEditor />;
+      case "watch-ash-speak":
+        return <CMSWatchAshSpeakEditor />;
+      case "capability-index":
+        return <CMSCapabilityIndexEditor />;
+      case "sales-kickoff":
+        return <CMSSalesKickoffEditor />;
+      case "building-bridges":
+        return <CMSBuildingBridgesEditor />;
       case "updates":
         return <CMSUpdatesManager />;
       case "keynotes":

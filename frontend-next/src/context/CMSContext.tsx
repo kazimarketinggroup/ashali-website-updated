@@ -27,7 +27,7 @@ interface CMSContextType {
 
 const CMSContext = createContext<CMSContextType | null>(null);
 
-const STORAGE_KEY = "ashali_cms_client_cache_v1";
+const STORAGE_KEY = "ashali_cms_client_cache_v3";
 
 export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cmsData, setCmsData] = useState<CMSData>(defaultCmsData);
@@ -43,11 +43,18 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           ...defaultCmsData,
           ...parsed,
           hero: { ...defaultCmsData.hero, ...(parsed.hero || {}) },
+          watchAshSpeak: { ...defaultCmsData.watchAshSpeak, ...(parsed.watchAshSpeak || {}) },
           helpingLeaders: { ...defaultCmsData.helpingLeaders, ...(parsed.helpingLeaders || {}) },
           signatureIdeas: { ...defaultCmsData.signatureIdeas, ...(parsed.signatureIdeas || {}) },
           bookShowcase: { ...defaultCmsData.bookShowcase, ...(parsed.bookShowcase || {}) },
+          capabilityIndex: { ...defaultCmsData.capabilityIndex, ...(parsed.capabilityIndex || {}) },
+          salesKickoff: { ...defaultCmsData.salesKickoff, ...(parsed.salesKickoff || {}) },
+          buildingBridges: { ...defaultCmsData.buildingBridges, ...(parsed.buildingBridges || {}) },
           finalCta: { ...defaultCmsData.finalCta, ...(parsed.finalCta || {}) },
           footer: { ...defaultCmsData.footer, ...(parsed.footer || {}) },
+          keynotes: parsed.keynotes && parsed.keynotes.length > 0 ? parsed.keynotes : defaultCmsData.keynotes,
+          workshops: parsed.workshops && parsed.workshops.length > 0 ? parsed.workshops : defaultCmsData.workshops,
+          faqs: parsed.faqs && parsed.faqs.length > 0 ? parsed.faqs : defaultCmsData.faqs,
         });
       }
     } catch {
@@ -68,11 +75,18 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             ...defaultCmsData,
             ...serverData,
             hero: { ...defaultCmsData.hero, ...(serverData.hero || {}) },
+            watchAshSpeak: { ...defaultCmsData.watchAshSpeak, ...(serverData.watchAshSpeak || {}) },
             helpingLeaders: { ...defaultCmsData.helpingLeaders, ...(serverData.helpingLeaders || {}) },
             signatureIdeas: { ...defaultCmsData.signatureIdeas, ...(serverData.signatureIdeas || {}) },
             bookShowcase: { ...defaultCmsData.bookShowcase, ...(serverData.bookShowcase || {}) },
+            capabilityIndex: { ...defaultCmsData.capabilityIndex, ...(serverData.capabilityIndex || {}) },
+            salesKickoff: { ...defaultCmsData.salesKickoff, ...(serverData.salesKickoff || {}) },
+            buildingBridges: { ...defaultCmsData.buildingBridges, ...(serverData.buildingBridges || {}) },
             finalCta: { ...defaultCmsData.finalCta, ...(serverData.finalCta || {}) },
             footer: { ...defaultCmsData.footer, ...(serverData.footer || {}) },
+            keynotes: serverData.keynotes && serverData.keynotes.length > 0 ? serverData.keynotes : defaultCmsData.keynotes,
+            workshops: serverData.workshops && serverData.workshops.length > 0 ? serverData.workshops : defaultCmsData.workshops,
+            faqs: serverData.faqs && serverData.faqs.length > 0 ? serverData.faqs : defaultCmsData.faqs,
           };
           setCmsData(merged);
           try {
