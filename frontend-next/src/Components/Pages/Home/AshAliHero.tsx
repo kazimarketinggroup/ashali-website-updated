@@ -90,11 +90,13 @@ export const AshAliHero: React.FC = () => {
   );
 
   const bio =
-    hero?.bio ||
-    "Ash Ali co-authored the award-winning The Unfair Advantage, was Just Eat UK's first Marketing Director and is co-founder of Uhubs.ai. He brings founder experience and sales capability research to keynotes, workshops and advisory on advantage in an AI-shaped world.";
+    hero?.bio !== undefined
+      ? hero.bio
+      : "Ash Ali co-authored the award-winning The Unfair Advantage, was Just Eat UK's first Marketing Director and is co-founder of Uhubs.ai. He brings founder experience and sales capability research to keynotes, workshops and advisory on advantage in an AI-shaped world.";
   const location =
-    hero?.location ||
-    "Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops.";
+    hero?.location !== undefined
+      ? hero.location
+      : "Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops.";
   const ctaText = hero?.ctaText || "Work with Ash";
   const ctaLink = hero?.ctaLink || "/contact";
   const ctaSecondaryText = hero?.ctaSecondaryText || "Get the Index";
@@ -182,10 +184,12 @@ export const AshAliHero: React.FC = () => {
               )}
             </h1>
 
-            {/* Subline / Bio */}
-            <p className="text-gray-300 font-light leading-[1.7] tracking-wide antialiased mb-7 text-[13px] sm:text-[14px] lg:text-[15px] max-w-[580px]">
-              {bio}
-            </p>
+            {/* Subline / Bio — Only render if bio is not empty */}
+            {bio?.trim() ? (
+              <p className="text-gray-300 font-light leading-[1.7] tracking-wide antialiased mb-7 text-[13px] sm:text-[14px] lg:text-[15px] max-w-[580px]">
+                {bio}
+              </p>
+            ) : null}
 
             {/* Buttons: Work with Ash & Get the Index */}
             <div className="flex flex-wrap items-center gap-3 w-full">
@@ -205,10 +209,12 @@ export const AshAliHero: React.FC = () => {
               </button>
             </div>
 
-            {/* Location Line */}
-            <p className="text-xs mt-4 text-gray-400 tracking-wide font-light">
-              {location}
-            </p>
+            {/* Location Line — Only render if location is not empty */}
+            {location?.trim() ? (
+              <p className="text-xs mt-4 text-gray-400 tracking-wide font-light">
+                {location}
+              </p>
+            ) : null}
           </div>
         </div>
 

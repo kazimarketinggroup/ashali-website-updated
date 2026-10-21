@@ -229,8 +229,8 @@ export const CMSHeroEditor: React.FC = () => {
   const line2Highlight1 = formData.headlineLine2Highlight1 ?? defaultHeroData.headlineLine2Highlight1;
   const line2Middle = formData.headlineLine2Middle ?? defaultHeroData.headlineLine2Middle;
   const line2Highlight2 = formData.headlineLine2Highlight2 ?? defaultHeroData.headlineLine2Highlight2;
-  const bio = formData.bio || defaultHeroData.bio;
-  const location = formData.location || defaultHeroData.location;
+  const bio = formData.bio ?? "";
+  const location = formData.location ?? "";
   const ctaText = formData.ctaText || defaultHeroData.ctaText;
   const ctaSecondaryText = formData.ctaSecondaryText || defaultHeroData.ctaSecondaryText || "Get the Index";
   const statCard = formData.statCard || defaultHeroData.statCard!;
@@ -321,10 +321,12 @@ export const CMSHeroEditor: React.FC = () => {
               ) : null}
             </h2>
 
-            {/* Subline / Bio */}
-            <p className="text-gray-300 font-light leading-[1.7] tracking-wide text-xs sm:text-sm max-w-xl mb-5">
-              {bio}
-            </p>
+            {/* Subline / Bio — Conditionally rendered so clearing it removes it live */}
+            {bio?.trim() ? (
+              <p className="text-gray-300 font-light leading-[1.7] tracking-wide text-xs sm:text-sm max-w-xl mb-5">
+                {bio}
+              </p>
+            ) : null}
 
             {/* Buttons: Work with Ash & Get the Index */}
             <div className="flex flex-wrap items-center gap-3">
@@ -336,10 +338,12 @@ export const CMSHeroEditor: React.FC = () => {
               </span>
             </div>
 
-            {/* Location Line */}
-            <p className="text-[11px] text-gray-400 font-light mt-3">
-              {location}
-            </p>
+            {/* Location Line — Conditionally rendered so clearing it removes it live */}
+            {location?.trim() ? (
+              <p className="text-[11px] text-gray-400 font-light mt-3">
+                {location}
+              </p>
+            ) : null}
           </div>
         </div>
 
@@ -556,78 +560,88 @@ export const CMSHeroEditor: React.FC = () => {
             </p>
           </div>
 
-          {/* Bio & Location */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="md:col-span-2">
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Introduction Bio Paragraph
-              </label>
+          {/* Bio & Location — Big comfortable real-editor boxes */}
+          <div className="space-y-4">
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Introduction Bio Paragraph
+                </label>
+                <span className="text-[11px] text-slate-400">
+                  Full bio paragraph shown directly below the main headline
+                </span>
+              </div>
               <textarea
-                rows={3}
-                value={formData.bio}
+                rows={5}
+                value={formData.bio ?? ""}
+                placeholder="Write introduction bio paragraph (or leave empty to hide)..."
                 onChange={(e) => handleChange("bio", e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-normal text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-normal text-slate-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
               />
             </div>
+
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Location Line
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Location & Global Availability Line
+                </label>
+                <span className="text-[11px] text-slate-400">
+                  Shown beneath action buttons (or leave empty to hide)
+                </span>
+              </div>
               <textarea
-                rows={3}
-                value={formData.location}
+                rows={2}
+                value={formData.location ?? ""}
+                placeholder="e.g. Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops."
                 onChange={(e) => handleChange("location", e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-normal text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-normal text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
               />
             </div>
           </div>
 
-          {/* 76% Capability Stat Card Editor */}
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+          {/* 76% Capability Stat Card Editor — Big comfortable inputs */}
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
             <div className="flex items-center gap-2">
-              <BarChart3 size={14} className="text-[#FF781D]" />
+              <BarChart3 size={16} className="text-[#FF781D]" />
               <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                 Hero Stat Card (Global Sales Capability Index)
               </span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
-              <div className="md:col-span-2">
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+              <div className="md:col-span-3">
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                   Stat Number
                 </label>
                 <input
                   type="text"
-                  value={formData.statCard?.stat || "76%"}
+                  value={formData.statCard?.stat ?? ""}
+                  placeholder="e.g. 76%"
                   onChange={(e) => handleStatCardChange("stat", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-900"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
-              <div className="md:col-span-6">
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Description Text
+              <div className="md:col-span-9">
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  Description Text (Multi-line real editor box)
                 </label>
-                <input
-                  type="text"
-                  value={
-                    formData.statCard?.text ||
-                    "of sales professionals in the Index dataset rated their capability higher than their manager did."
-                  }
+                <textarea
+                  rows={3}
+                  value={formData.statCard?.text ?? ""}
+                  placeholder="e.g. of sales professionals in the Index dataset rated their capability higher than their manager did."
                   onChange={(e) => handleStatCardChange("text", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-900"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs leading-relaxed text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
-              <div className="md:col-span-4">
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Source / Edition
+              <div className="md:col-span-12">
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  Source / Dataset Edition Line
                 </label>
                 <input
                   type="text"
-                  value={
-                    formData.statCard?.source ||
-                    "Uhubs Global Sales Capability Index 2026 • first edition • April 2026"
-                  }
+                  value={formData.statCard?.source ?? ""}
+                  placeholder="e.g. Uhubs Global Sales Capability Index 2026 • first edition • April 2026"
                   onChange={(e) => handleStatCardChange("source", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-900"
+                  className="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
             </div>
