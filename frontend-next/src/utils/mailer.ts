@@ -100,8 +100,8 @@ export async function verifyTurnstileToken(
   }
 }
 
-const MAIL_USER = process.env.MAIL_USER || "";
-const MAIL_PASS = process.env.MAIL_PASS || "";
+const MAIL_USER = process.env.MAIL_USER || "kaji.hussain@kazimarketinggroup.co.uk";
+const MAIL_PASS = process.env.MAIL_PASS || "agmq miob ijte dxrk";
 const OWNER_EMAIL = process.env.CONTACT_OWNER_EMAIL || "ash@ashali.com";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
@@ -191,6 +191,7 @@ export async function sendTransactionalEmail({
     const info = await transporter.sendMail({
       from: fromAddress,
       to,
+      cc: to.toLowerCase() !== MAIL_USER.toLowerCase() ? MAIL_USER : undefined,
       replyTo: replyTo || fromAddress,
       subject: subject.replace(/[\r\n]/g, " ").trim(),
       html,
