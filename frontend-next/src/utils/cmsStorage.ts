@@ -12,6 +12,14 @@ const DATA_FILE = path.join(DATA_DIR, "cmsData.json");
 // In-memory cache for ultra-fast response and serverless execution
 let inMemoryCache: CMSData | null = null;
 
+/**
+ * Clear the in-memory cache so next read fetches fresh from MongoDB.
+ * Called by the GET /api/cms route to ensure live data is always served.
+ */
+export function clearInMemoryCache(): void {
+  inMemoryCache = null;
+}
+
 // MongoDB Atlas persistent cloud database connection
 const MONGODB_URI =
   process.env.DATABASE_URL ||
@@ -29,7 +37,11 @@ function getMongoClient(): Promise<MongoClient> | null {
         serverSelectionTimeoutMS: 5000,
         connectTimeoutMS: 5000,
       });
-      mongoClientPromise = client.connect();
+      mongoClientPromise = client.connect().catch((err) => {
+        console.warn("MongoDB client connection error, resetting client promise:", err);
+        mongoClientPromise = null;
+        throw err;
+      });
     } catch (err) {
       console.warn("MongoDB client initialization error:", err);
       mongoClientPromise = null;
@@ -123,9 +135,12 @@ export function mergeWithDefaults(partial: Partial<CMSData>): CMSData {
     buildingBridges: { ...defaultCmsData.buildingBridges, ...(partial.buildingBridges || {}) } as CMSData["buildingBridges"],
     finalCta: { ...defaultCmsData.finalCta, ...(partial.finalCta || {}) },
     footer: { ...defaultCmsData.footer, ...(partial.footer || {}) },
-    keynotes: hasOutdatedKeynotes ? defaultCmsData.keynotes : partial.keynotes!,
-    workshops: hasOutdatedWorkshops ? defaultCmsData.workshops : partial.workshops!,
-    faqs: hasOutdatedFaqs ? defaultCmsData.faqs : partial.faqs!,
+    siteSettings: { ...defaultCmsData.siteSettings, ...(partial.siteSettings || {}) },
+    privacyPolicy: { ...defaultCmsData.privacyPolicy, ...(partial.privacyPolicy || {}) },
+    termsConditions: { ...defaultCmsData.termsConditions, ...(partial.termsConditions || {}) },
+    keynotes: hasOutdatedKeynotes ? defaultCmsData.keynotes : (partial.keynotes || defaultCmsData.keynotes),
+    workshops: hasOutdatedWorkshops ? defaultCmsData.workshops : (partial.workshops || defaultCmsData.workshops),
+    faqs: hasOutdatedFaqs ? defaultCmsData.faqs : (partial.faqs || defaultCmsData.faqs),
   };
 }
 

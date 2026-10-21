@@ -24,6 +24,7 @@ import { CMSMediaManager } from "@/src/Components/CMS/CMSMediaManager";
 import { CMSInquiriesManager } from "@/src/Components/CMS/CMSInquiriesManager";
 import { CMSSubscribersManager } from "@/src/Components/CMS/CMSSubscribersManager";
 import { CMSSettingsManager } from "@/src/Components/CMS/CMSSettingsManager";
+import { CMSLegalPagesEditor } from "@/src/Components/CMS/CMSLegalPagesEditor";
 
 export default function CMSAdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -141,6 +142,8 @@ export default function CMSAdminPage() {
         return <CMSSubscribersManager />;
       case "settings":
         return <CMSSettingsManager />;
+      case "legal-pages":
+        return <CMSLegalPagesEditor />;
       default:
         return <CMSDashboardOverview onNavigateTab={setActiveTab} />;
     }

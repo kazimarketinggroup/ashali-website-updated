@@ -4,9 +4,12 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/src/Components/Shared/JsonLd";
 import UpdateDetail from "@/src/Components/Pages/LatestUpdates/UpdateDetail";
 import { UPDATE_POSTS } from "@/src/Components/Pages/LatestUpdates/updatesData";
-import { getCmsData } from "@/src/utils/cmsStorage";
+import { getCmsDataAsync } from "@/src/utils/cmsStorage";
 import { pageMetadata } from "@/src/constants/metadata";
 import { breadcrumbSchema } from "@/src/constants/structuredData";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 /*
   /updates/:slug -> /updates/[slug]
@@ -82,7 +85,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const cms = getCmsData();
+  const cms = await getCmsDataAsync();
   const post = cms.updates.find((p) => p.slug === slug && p.published !== false) || UPDATE_POSTS.find((p) => p.slug === slug);
 
   if (!post) {
@@ -107,7 +110,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const cms = getCmsData();
+  const cms = await getCmsDataAsync();
   const post = cms.updates.find((p) => p.slug === slug && p.published !== false) || UPDATE_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 

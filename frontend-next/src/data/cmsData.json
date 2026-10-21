@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "lastUpdated": "2026-10-05T08:07:22.870Z",
+  "version": "2.1.0",
+  "lastUpdated": "2026-10-21T14:02:09.556Z",
   "hero": {
     "eyebrow": "INTERNATIONAL KEYNOTE SPEAKER • FOUNDER • OPERATOR • AUTHOR",
     "headlineLine1Prefix": "I co-wrote the book on ",
@@ -17,7 +17,7 @@
     "ctaText": "Work with Ash",
     "ctaLink": "/contact",
     "ctaSecondaryText": "Get the Index",
-    "heroImage": "",
+    "heroImage": "/assets/home/updatedHeroImage.png",
     "statCard": {
       "stat": "76%",
       "text": "of sales professionals in the Index dataset rated their capability higher than their manager did.",
@@ -54,6 +54,84 @@
     "title": "Watch Ash speak",
     "youtubeUrl": "https://www.youtube.com/watch?v=rMB2lFUMXpY",
     "videoTitle": "What is your unfair advantage? | Ash Ali | TEDxRoyalHolloway"
+  },
+  "helpingLeaders": {
+    "eyebrow": "What Ash Helps With",
+    "highlightWord": "Helping leaders",
+    "titlePart2": "build for the AI era",
+    "description": "Technology is becoming more accessible. Judgement, context, capability, relationships and execution are not. Ash helps leaders understand what AI changes, what remains deeply human and where their organisation can build an advantage that competitors cannot simply copy.",
+    "cards": [
+      {
+        "id": "hl-1",
+        "title": "KEYNOTES",
+        "description": "Shift how people see advantage, leadership and opportunity in an AI shaped world. Story led, practical and tailored to the room.",
+        "buttonLabel": "Explore Keynotes",
+        "bgImage": "",
+        "to": "/speaking"
+      },
+      {
+        "id": "hl-2",
+        "title": "EXECUTIVE WORKSHOPS",
+        "description": "Turn the ideas into decisions, priorities and a practical 90 day direction for your leadership team.",
+        "buttonLabel": "Explore Workshops",
+        "bgImage": "",
+        "to": "/workshops"
+      },
+      {
+        "id": "hl-3",
+        "title": "ADVISORY",
+        "description": "Direct strategic advisory for founders, boards and executive leadership teams navigating the AI shift.",
+        "buttonLabel": "Explore Advisory",
+        "bgImage": "",
+        "to": "/advisory"
+      }
+    ]
+  },
+  "signatureIdeas": {
+    "heading": "Three ideas built for this moment.",
+    "buttonText": "See the full keynotes",
+    "buttonLink": "/speaking",
+    "ideas": [
+      {
+        "number": "01",
+        "title": "The Unfair Advantage in the Age of AI",
+        "description": "Find the assets and capabilities AI can amplify, not erase."
+      },
+      {
+        "number": "02",
+        "title": "The Human Advantage",
+        "description": "Build teams that retain judgement, curiosity and adaptability as machines get smarter."
+      },
+      {
+        "number": "03",
+        "title": "From Outsider to Operator",
+        "description": "Turn background, constraint and difference into momentum and commercial advantage."
+      }
+    ]
+  },
+  "bookShowcase": {
+    "headline": "The Unfair Advantage",
+    "highlightWord": "Business Book of the Year 2021",
+    "description": "Co-authored with Hasan Kubba, The Unfair Advantage won Business Book of the Year 2021 and became an international bestseller translated into 10+ languages. It introduces the MILES framework to identify and leverage your hidden competitive strengths.",
+    "bookCoverImage": "",
+    "amazonLink": "https://www.amazon.co.uk/Unfair-Advantage-Startup-Success-Predict/dp/1788163311",
+    "tags": [
+      {
+        "label": "Business Book of the Year 2021, The Business Book Awards"
+      },
+      {
+        "label": "Translated worldwide"
+      },
+      {
+        "label": "150,000+ copies sold"
+      },
+      {
+        "label": "Used in MBA & university courses"
+      },
+      {
+        "label": "The MILES framework"
+      }
+    ]
   },
   "capabilityIndex": {
     "eyebrow": "Operating now",
@@ -93,6 +171,90 @@
     "secondaryButtonLabel": "Work with Ash",
     "secondaryButtonLink": "/contact",
     "imageAlt": "Ash Ali speaking on stage in Southeast Asia"
+  },
+  "finalCta": {
+    "heading": "Planning a keynote, leadership offsite or executive workshop?",
+    "body": "Share the audience, date and outcome you want to create. We'll recommend the most suitable format and confirm availability.",
+    "ctaLabel": "Enquire now",
+    "ctaTo": "/contact"
+  },
+  "footer": {
+    "brandName": "ASH ALI",
+    "bio": "Ash Ali is a British tech entrepreneur, investor, international keynote speaker and co-author of the award winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an AI shaped world. Based between London and Kuala Lumpur; working globally.",
+    "locations": "London • Kuala Lumpur • Global",
+    "newsletterHeading": "Let's keep connected",
+    "newsletterSubtitle": "Ash's thinking on advantage, AI and growth, straight to your inbox.",
+    "linkedinUrl": "https://uk.linkedin.com/in/ashali",
+    "twitterUrl": "https://x.com/Ash_Ali",
+    "instagramUrl": "https://www.instagram.com/ashali",
+    "columns": [
+      {
+        "heading": "Pages",
+        "links": [
+          {
+            "label": "About",
+            "to": "/about"
+          },
+          {
+            "label": "Keynotes",
+            "to": "/speaking"
+          },
+          {
+            "label": "Workshops",
+            "to": "/workshops"
+          },
+          {
+            "label": "Book",
+            "to": "/unfair-advantage"
+          }
+        ]
+      },
+      {
+        "heading": "More",
+        "links": [
+          {
+            "label": "Advisory",
+            "to": "/advisory"
+          },
+          {
+            "label": "Malaysia & SEA",
+            "to": "/malaysia-sea"
+          },
+          {
+            "label": "Giving Back",
+            "to": "/giving-back"
+          },
+          {
+            "label": "Sales Kickoff",
+            "to": "/sales-kickoff"
+          }
+        ]
+      },
+      {
+        "heading": "Elsewhere",
+        "links": [
+          {
+            "label": "Uhubs.ai",
+            "to": "https://www.uhubs.ai/",
+            "external": true
+          },
+          {
+            "label": "The Unfair Academy",
+            "to": "https://www.theunfairacademy.com/",
+            "external": true
+          },
+          {
+            "label": "Privacy Policy",
+            "to": "/privacy"
+          },
+          {
+            "label": "Terms & Conditions",
+            "to": "/terms"
+          }
+        ]
+      }
+    ],
+    "copyright": "2026 © — Ash Ali | All Rights Reserved"
   },
   "updates": [
     {
@@ -638,5 +800,17 @@
       "source": "Updates Page",
       "status": "Active"
     }
-  ]
+  ],
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "April 2026",
+    "intro": "This Privacy Policy explains how Ash Ali ('we', 'us', or 'our') collects, uses, and protects your personal information when you visit ashali.com or interact with our services.",
+    "content": "## 1. Information We Collect\nWe collect information that you voluntarily provide to us when you fill out contact forms, book a keynote speech, enquire about executive workshops, subscribe to our newsletter, or request the Global Sales Capability Index. This may include your full name, business email address, company or organisation name, job title, and event requirements.\n\n## 2. How We Use Your Information\nWe use the information we collect solely to:\n- Respond to your inquiries, keynote booking requests, and workshop proposals\n- Deliver our research insights, newsletter updates, and articles you have subscribed to\n- Provide resources you have requested, including the Global Sales Capability Index dataset\n- Improve our website content, user experience, and digital services\n\n## 3. Data Protection and Security\nWe implement strict technical and organisational measures to ensure your personal data is stored securely and protected against unauthorised access, alteration, disclosure, or destruction. We do not sell, rent, or trade your personal data to any third party for marketing or advertising purposes.\n\n## 4. Third-Party Service Providers\nWe may share limited data with trusted third-party service providers who assist us in operating our website, processing newsletter subscriptions, and delivering analytics. All third-party providers are subject to strict confidentiality and data protection obligations in compliance with applicable privacy regulations.\n\n## 5. Cookies and Privacy\nOur website uses essential and privacy-focused performance cookies to ensure proper site navigation and understand how visitors interact with our content. You may configure your browser settings to reject cookies if you prefer.\n\n## 6. Your Rights Under GDPR and UK Data Protection Laws\nIf you are located in the UK or EEA, you have the right to access, rectify, or request the deletion of your personal data held by us. You may also withdraw your consent to receive communications at any time. To exercise any of these rights, please contact us directly at contact@ashali.com.\n\n## 7. Updates to This Policy\nWe may periodically update this Privacy Policy to reflect changes in our operational or legal practices. Any updates will be posted directly to this page with an updated revision date.\n\n## 8. Contact Information\nIf you have any questions, concerns, or requests regarding this Privacy Policy, please email contact@ashali.com."
+  },
+  "termsConditions": {
+    "title": "Terms & Conditions",
+    "lastUpdated": "April 2026",
+    "intro": "Please review these Terms & Conditions carefully before using ashali.com or engaging Ash Ali for keynotes, workshops, or advisory services.",
+    "content": "## 1. Agreement to Terms\nBy accessing, browsing, or using ashali.com, you confirm that you have read, understood, and agreed to be bound by these Terms & Conditions. If you do not agree, please discontinue using this website.\n\n## 2. Intellectual Property Rights\nAll content published on this website—including but not limited to written articles, keynote outlines, frameworks (including the MILES Framework), proprietary sales capability index metrics, photographs, graphics, and branding—is the exclusive intellectual property of Ash Ali and protected by international copyright and trademark laws. No content may be reproduced, redistributed, or repurposed without express prior written consent.\n\n## 3. Keynote and Workshop Bookings\nInquiries submitted through this website do not constitute a confirmed speaking or workshop engagement. Keynotes, advisory sessions, and executive workshops are formally confirmed only upon execution of a written agreement detailing dates, deliverables, commercial fees, cancellation policies, and logistical requirements.\n\n## 4. Permitted Website Use\nYou agree to use this site strictly for legitimate, lawful purposes. You shall not attempt to breach security, transmit harmful code, interfere with system performance, or extract data via automated scrapers without written permission.\n\n## 5. Accuracy of Information & Disclaimer\nWhile we strive to ensure that all information on ashali.com is accurate and up to date, the content is provided for general informational and educational purposes only. It does not constitute formal legal, financial, or investment advice.\n\n## 6. Limitation of Liability\nTo the fullest extent permitted under applicable law, Ash Ali and affiliated entities shall not be held liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your access to or reliance on any materials on this website.\n\n## 7. Governing Law and Jurisdiction\nThese Terms & Conditions are governed by and construed in accordance with the laws of England and Wales. Any disputes arising in connection with these terms shall be subject to the exclusive jurisdiction of the English courts.\n\n## 8. Modifications to Terms\nWe reserve the right to revise these Terms & Conditions at our discretion. Any modifications become effective immediately upon being published on this page."
+  }
 }

@@ -241,6 +241,57 @@ export const CMSSettingsManager: React.FC = () => {
         </div>
       </div>
 
+      {/* Legal & Compliance Quick Links */}
+      <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div className="flex items-center gap-2">
+            <Shield size={18} className="text-[#FF781D]" />
+            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+              Legal Pages & Compliance
+            </h2>
+          </div>
+          <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+            Live Synchronized
+          </span>
+        </div>
+
+        <p className="text-xs text-slate-500">
+          Privacy Policy and Terms & Conditions are managed in the CMS and updated live on the website. Use the dedicated <strong>Privacy & Terms</strong> tab in the sidebar to edit full text, headings, and revision dates.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+          <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div>
+              <h3 className="text-xs font-bold text-slate-900">Privacy Policy</h3>
+              <p className="text-[11px] text-slate-500">URL: /privacy • Live in CMS</p>
+            </div>
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-100 rounded-lg shadow-2xs transition-colors"
+            >
+              View Page
+            </a>
+          </div>
+
+          <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div>
+              <h3 className="text-xs font-bold text-slate-900">Terms & Conditions</h3>
+              <p className="text-[11px] text-slate-500">URL: /terms • Live in CMS</p>
+            </div>
+            <a
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-100 rounded-lg shadow-2xs transition-colors"
+            >
+              View Page
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Backup, Restore & Reset */}
       <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
         <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">

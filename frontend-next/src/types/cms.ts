@@ -316,6 +316,13 @@ export interface SubscriberItem {
   status: "Active" | "Unsubscribed";
 }
 
+export interface LegalPageContent {
+  title: string;
+  lastUpdated: string;
+  intro?: string;
+  content: string;
+}
+
 export interface CMSData {
   version: string;
   lastUpdated: string;
@@ -338,6 +345,8 @@ export interface CMSData {
   portfolio: PortfolioItem[];
   media: MediaItem[];
   siteSettings: SiteSettings;
+  privacyPolicy: LegalPageContent;
+  termsConditions: LegalPageContent;
   inquiries: InquiryItem[];
   subscribers: SubscriberItem[];
 }

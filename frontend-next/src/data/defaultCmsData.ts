@@ -811,4 +811,68 @@ export const defaultCmsData: CMSData = {
       status: "Active",
     },
   ],
+
+  privacyPolicy: {
+    title: "Privacy Policy",
+    lastUpdated: "April 2026",
+    intro:
+      "This Privacy Policy explains how Ash Ali ('we', 'us', or 'our') collects, uses, and protects your personal information when you visit ashali.com or interact with our services.",
+    content: `## 1. Information We Collect
+We collect information that you voluntarily provide to us when you fill out contact forms, book a keynote speech, enquire about executive workshops, subscribe to our newsletter, or request the Global Sales Capability Index. This may include your full name, business email address, company or organisation name, job title, and event requirements.
+
+## 2. How We Use Your Information
+We use the information we collect solely to:
+- Respond to your inquiries, keynote booking requests, and workshop proposals
+- Deliver our research insights, newsletter updates, and articles you have subscribed to
+- Provide resources you have requested, including the Global Sales Capability Index dataset
+- Improve our website content, user experience, and digital services
+
+## 3. Data Protection and Security
+We implement strict technical and organisational measures to ensure your personal data is stored securely and protected against unauthorised access, alteration, disclosure, or destruction. We do not sell, rent, or trade your personal data to any third party for marketing or advertising purposes.
+
+## 4. Third-Party Service Providers
+We may share limited data with trusted third-party service providers who assist us in operating our website, processing newsletter subscriptions, and delivering analytics. All third-party providers are subject to strict confidentiality and data protection obligations in compliance with applicable privacy regulations.
+
+## 5. Cookies and Privacy
+Our website uses essential and privacy-focused performance cookies to ensure proper site navigation and understand how visitors interact with our content. You may configure your browser settings to reject cookies if you prefer.
+
+## 6. Your Rights Under GDPR and UK Data Protection Laws
+If you are located in the UK or EEA, you have the right to access, rectify, or request the deletion of your personal data held by us. You may also withdraw your consent to receive communications at any time. To exercise any of these rights, please contact us directly at contact@ashali.com.
+
+## 7. Updates to This Policy
+We may periodically update this Privacy Policy to reflect changes in our operational or legal practices. Any updates will be posted directly to this page with an updated revision date.
+
+## 8. Contact Information
+If you have any questions, concerns, or requests regarding this Privacy Policy, please email contact@ashali.com.`,
+  },
+
+  termsConditions: {
+    title: "Terms & Conditions",
+    lastUpdated: "April 2026",
+    intro:
+      "Please review these Terms & Conditions carefully before using ashali.com or engaging Ash Ali for keynotes, workshops, or advisory services.",
+    content: `## 1. Agreement to Terms
+By accessing, browsing, or using ashali.com, you confirm that you have read, understood, and agreed to be bound by these Terms & Conditions. If you do not agree, please discontinue using this website.
+
+## 2. Intellectual Property Rights
+All content published on this website—including but not limited to written articles, keynote outlines, frameworks (including the MILES Framework), proprietary sales capability index metrics, photographs, graphics, and branding—is the exclusive intellectual property of Ash Ali and protected by international copyright and trademark laws. No content may be reproduced, redistributed, or repurposed without express prior written consent.
+
+## 3. Keynote and Workshop Bookings
+Inquiries submitted through this website do not constitute a confirmed speaking or workshop engagement. Keynotes, advisory sessions, and executive workshops are formally confirmed only upon execution of a written agreement detailing dates, deliverables, commercial fees, cancellation policies, and logistical requirements.
+
+## 4. Permitted Website Use
+You agree to use this site strictly for legitimate, lawful purposes. You shall not attempt to breach security, transmit harmful code, interfere with system performance, or extract data via automated scrapers without written permission.
+
+## 5. Accuracy of Information & Disclaimer
+While we strive to ensure that all information on ashali.com is accurate and up to date, the content is provided for general informational and educational purposes only. It does not constitute formal legal, financial, or investment advice.
+
+## 6. Limitation of Liability
+To the fullest extent permitted under applicable law, Ash Ali and affiliated entities shall not be held liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your access to or reliance on any materials on this website.
+
+## 7. Governing Law and Jurisdiction
+These Terms & Conditions are governed by and construed in accordance with the laws of England and Wales. Any disputes arising in connection with these terms shall be subject to the exclusive jurisdiction of the English courts.
+
+## 8. Modifications to Terms
+We reserve the right to revise these Terms & Conditions at our discretion. Any modifications become effective immediately upon being published on this page.`,
+  },
 };

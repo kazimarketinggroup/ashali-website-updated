@@ -1,25 +1,14 @@
 import type { Metadata } from "next";
+import LegalPage from "@/src/Components/Pages/LegalPage";
+import { pageMetadata } from "@/src/constants/metadata";
 
-import PlaceholderPage from "@/src/Components/Pages/PlaceholderPage";
-
-/*
-  /privacy — PLACEHOLDER. Renders only "This page is coming soon" over the shared
-  header/footer chrome (~256 words, none of it about privacy).
-
-  noindex until real content exists. The page still returns 200 and stays
-  crawlable on purpose: blocking it in robots.txt instead would stop Google
-  reading this very directive, leaving a bare URL indexable from any inbound
-  link. It is also excluded from app/sitemap.ts — listing a noindexed URL there
-  would be a contradictory signal.
-
-  WHEN REAL CONTENT LANDS: delete this metadata export AND add the path to
-  CONTENT_ROUTES in app/sitemap.ts. Doing only one of the two silently keeps the
-  page out of search.
-*/
-export const metadata: Metadata = {
-  robots: { index: false, follow: true },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy | Ash Ali",
+  description:
+    "Privacy Policy for ashali.com. Learn how Ash Ali collects, uses, and protects your personal information.",
+  path: "/privacy",
+});
 
 export default function Page() {
-  return <PlaceholderPage title="Privacy" />;
+  return <LegalPage type="privacy" />;
 }

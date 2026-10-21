@@ -70,6 +70,10 @@ const CONTENT_ROUTES = [
 
   // Updates index. Individual posts are appended below.
   { path: "/updates", priority: 0.7, changeFrequency: "weekly" as const },
+
+  // Legal & compliance pages
+  { path: "/privacy", priority: 0.5, changeFrequency: "yearly" as const },
+  { path: "/terms", priority: 0.5, changeFrequency: "yearly" as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

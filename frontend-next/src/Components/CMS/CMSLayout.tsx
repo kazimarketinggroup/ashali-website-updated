@@ -32,6 +32,7 @@ import {
   Target,
   Map,
   RefreshCw,
+  Shield,
 } from "lucide-react";
 import { useCMS } from "../../context/CMSContext";
 import { CMSGlobalLivePreview } from "./CMSGlobalLivePreview";
@@ -150,6 +151,7 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
       group: "SETTINGS",
       items: [
         { id: "settings", label: "Site, SEO & Backups", icon: Settings },
+        { id: "legal-pages", label: "Privacy & Terms", icon: Shield },
       ],
     },
   ];

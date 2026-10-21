@@ -52,6 +52,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           buildingBridges: { ...defaultCmsData.buildingBridges, ...(parsed.buildingBridges || {}) },
           finalCta: { ...defaultCmsData.finalCta, ...(parsed.finalCta || {}) },
           footer: { ...defaultCmsData.footer, ...(parsed.footer || {}) },
+          privacyPolicy: { ...defaultCmsData.privacyPolicy, ...(parsed.privacyPolicy || {}) },
+          termsConditions: { ...defaultCmsData.termsConditions, ...(parsed.termsConditions || {}) },
           keynotes: parsed.keynotes && parsed.keynotes.length > 0 ? parsed.keynotes : defaultCmsData.keynotes,
           workshops: parsed.workshops && parsed.workshops.length > 0 ? parsed.workshops : defaultCmsData.workshops,
           faqs: parsed.faqs && parsed.faqs.length > 0 ? parsed.faqs : defaultCmsData.faqs,
@@ -66,7 +68,10 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const refreshCMS = useCallback(async () => {
     try {
-      const res = await fetch("/api/cms");
+      const res = await fetch(`/api/cms?_t=${Date.now()}`, {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache", "Pragma": "no-cache" },
+      });
       if (res.ok) {
         const json = await res.json().catch(() => null);
         if (json && json.success && json.data) {
@@ -84,6 +89,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             buildingBridges: { ...defaultCmsData.buildingBridges, ...(serverData.buildingBridges || {}) },
             finalCta: { ...defaultCmsData.finalCta, ...(serverData.finalCta || {}) },
             footer: { ...defaultCmsData.footer, ...(serverData.footer || {}) },
+            privacyPolicy: { ...defaultCmsData.privacyPolicy, ...(serverData.privacyPolicy || {}) },
+            termsConditions: { ...defaultCmsData.termsConditions, ...(serverData.termsConditions || {}) },
             keynotes: serverData.keynotes && serverData.keynotes.length > 0 ? serverData.keynotes : defaultCmsData.keynotes,
             workshops: serverData.workshops && serverData.workshops.length > 0 ? serverData.workshops : defaultCmsData.workshops,
             faqs: serverData.faqs && serverData.faqs.length > 0 ? serverData.faqs : defaultCmsData.faqs,

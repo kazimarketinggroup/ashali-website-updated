@@ -1,13 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCmsDataAsync, saveCmsData } from "@/src/utils/cmsStorage";
+import { getCmsDataAsync, saveCmsData, clearInMemoryCache } from "@/src/utils/cmsStorage";
 import { CMSData } from "@/src/types/cms";
 import { defaultCmsData } from "@/src/data/defaultCmsData";
 import { verifyAdminSession } from "@/src/utils/cmsAuth";
 
+// Force dynamic rendering — never cache this route
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   try {
+    // Always clear in-memory cache to get fresh data from MongoDB
+    clearInMemoryCache();
     const data = await getCmsDataAsync();
-    return NextResponse.json({ success: true, data });
+    const response = NextResponse.json({ success: true, data });
+    // Prevent any caching of CMS data
+    response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    response.headers.set("Pragma", "no-cache");
+    return response;
   } catch (error) {
     console.error("GET /api/cms error:", error);
     return NextResponse.json({ success: false, error: "Failed to load CMS data" }, { status: 500 });
