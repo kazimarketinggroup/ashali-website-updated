@@ -65,17 +65,77 @@ const defaultHeroData: HeroContent = {
   secondaryButtons: [{ label: "Get the Index", to: "#index" }],
 };
 
+// Helpers for auto-spacing and responsive headline rendering
+const renderHeadlineLine1 = (prefix?: string, highlight?: string) => {
+  const p = prefix?.trim();
+  const h = highlight?.trim();
+
+  if (!p && !h) return null;
+
+  return (
+    <span className="inline">
+      {p && <span>{p}</span>}
+      {p && h && " "}
+      {h && <span style={brandGradientTextStyle}>{h}</span>}
+    </span>
+  );
+};
+
+const renderHeadlineLine2 = (
+  prefix?: string,
+  h1?: string,
+  middle?: string,
+  h2?: string
+) => {
+  const p = prefix?.trim();
+  const highlight1 = h1?.trim();
+  const m = middle?.trim();
+  const highlight2 = h2?.trim();
+
+  const segments: React.ReactNode[] = [];
+
+  if (p) segments.push(<span key="p">{p}</span>);
+  if (highlight1) {
+    segments.push(
+      <span key="h1" style={brandGradientTextStyle}>
+        {highlight1}
+      </span>
+    );
+  }
+  if (m) segments.push(<span key="m">{m}</span>);
+  if (highlight2) {
+    segments.push(
+      <span key="h2" style={brandGradientTextStyle}>
+        {highlight2}
+      </span>
+    );
+  }
+
+  if (segments.length === 0) return null;
+
+  return (
+    <span className="inline">
+      {segments.map((seg, idx) => (
+        <React.Fragment key={idx}>
+          {idx > 0 && " "}
+          {seg}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+};
+
 export const CMSHeroEditor: React.FC = () => {
   const { cmsData, updateSection } = useCMS();
   const [formData, setFormData] = useState<HeroContent>(() => ({
     ...defaultHeroData,
     ...cmsData.hero,
-    headlineLine1Prefix: cmsData.hero?.headlineLine1Prefix || defaultHeroData.headlineLine1Prefix,
-    headlineLine1Highlight: cmsData.hero?.headlineLine1Highlight || defaultHeroData.headlineLine1Highlight,
-    headlineLine2Prefix: cmsData.hero?.headlineLine2Prefix || defaultHeroData.headlineLine2Prefix,
-    headlineLine2Highlight1: cmsData.hero?.headlineLine2Highlight1 || defaultHeroData.headlineLine2Highlight1,
-    headlineLine2Middle: cmsData.hero?.headlineLine2Middle || defaultHeroData.headlineLine2Middle,
-    headlineLine2Highlight2: cmsData.hero?.headlineLine2Highlight2 || defaultHeroData.headlineLine2Highlight2,
+    headlineLine1Prefix: cmsData.hero?.headlineLine1Prefix ?? defaultHeroData.headlineLine1Prefix ?? "",
+    headlineLine1Highlight: cmsData.hero?.headlineLine1Highlight ?? defaultHeroData.headlineLine1Highlight ?? "",
+    headlineLine2Prefix: cmsData.hero?.headlineLine2Prefix ?? defaultHeroData.headlineLine2Prefix ?? "",
+    headlineLine2Highlight1: cmsData.hero?.headlineLine2Highlight1 ?? defaultHeroData.headlineLine2Highlight1 ?? "",
+    headlineLine2Middle: cmsData.hero?.headlineLine2Middle ?? defaultHeroData.headlineLine2Middle ?? "",
+    headlineLine2Highlight2: cmsData.hero?.headlineLine2Highlight2 ?? defaultHeroData.headlineLine2Highlight2 ?? "",
     statCard: {
       ...defaultHeroData.statCard!,
       ...(cmsData.hero?.statCard || {}),
@@ -91,12 +151,12 @@ export const CMSHeroEditor: React.FC = () => {
       setFormData({
         ...defaultHeroData,
         ...cmsData.hero,
-        headlineLine1Prefix: cmsData.hero.headlineLine1Prefix || defaultHeroData.headlineLine1Prefix,
-        headlineLine1Highlight: cmsData.hero.headlineLine1Highlight || defaultHeroData.headlineLine1Highlight,
-        headlineLine2Prefix: cmsData.hero.headlineLine2Prefix || defaultHeroData.headlineLine2Prefix,
-        headlineLine2Highlight1: cmsData.hero.headlineLine2Highlight1 || defaultHeroData.headlineLine2Highlight1,
-        headlineLine2Middle: cmsData.hero.headlineLine2Middle || defaultHeroData.headlineLine2Middle,
-        headlineLine2Highlight2: cmsData.hero.headlineLine2Highlight2 || defaultHeroData.headlineLine2Highlight2,
+        headlineLine1Prefix: cmsData.hero.headlineLine1Prefix ?? defaultHeroData.headlineLine1Prefix ?? "",
+        headlineLine1Highlight: cmsData.hero.headlineLine1Highlight ?? defaultHeroData.headlineLine1Highlight ?? "",
+        headlineLine2Prefix: cmsData.hero.headlineLine2Prefix ?? defaultHeroData.headlineLine2Prefix ?? "",
+        headlineLine2Highlight1: cmsData.hero.headlineLine2Highlight1 ?? defaultHeroData.headlineLine2Highlight1 ?? "",
+        headlineLine2Middle: cmsData.hero.headlineLine2Middle ?? defaultHeroData.headlineLine2Middle ?? "",
+        headlineLine2Highlight2: cmsData.hero.headlineLine2Highlight2 ?? defaultHeroData.headlineLine2Highlight2 ?? "",
         statCard: {
           ...defaultHeroData.statCard!,
           ...(cmsData.hero.statCard || {}),
@@ -250,15 +310,15 @@ export const CMSHeroEditor: React.FC = () => {
               {eyebrow}
             </div>
 
-            {/* Headline with 3 live gradient highlights */}
-            <h2 className="font-semibold leading-[1.25] tracking-tight text-white mb-4 text-xl sm:text-2xl lg:text-3xl">
-              {line1Prefix}
-              <span style={brandGradientTextStyle}>{line1Highlight}</span>
-              <br />
-              {line2Prefix}
-              <span style={brandGradientTextStyle}>{line2Highlight1}</span>
-              {line2Middle}
-              <span style={brandGradientTextStyle}>{line2Highlight2}</span>
+            {/* Headline with auto-spacing, responsive wrapping and clean gradient spans */}
+            <h2 className="font-semibold leading-[1.25] tracking-tight text-white mb-4 text-xl sm:text-2xl lg:text-3xl break-words [overflow-wrap:anywhere]">
+              {renderHeadlineLine1(line1Prefix, line1Highlight)}
+              {(line2Prefix?.trim() || line2Highlight1?.trim() || line2Middle?.trim() || line2Highlight2?.trim()) ? (
+                <>
+                  <br />
+                  {renderHeadlineLine2(line2Prefix, line2Highlight1, line2Middle, line2Highlight2)}
+                </>
+              ) : null}
             </h2>
 
             {/* Subline / Bio */}
@@ -417,9 +477,10 @@ export const CMSHeroEditor: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={formData.headlineLine1Prefix ?? "I co-wrote the book on "}
+                  value={formData.headlineLine1Prefix ?? ""}
+                  placeholder="e.g. Find your"
                   onChange={(e) => handleChange("headlineLine1Prefix", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900"
+                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
@@ -429,9 +490,10 @@ export const CMSHeroEditor: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={formData.headlineLine1Highlight ?? "unfair advantage."}
+                  value={formData.headlineLine1Highlight ?? ""}
+                  placeholder="e.g. unfair advantage"
                   onChange={(e) => handleChange("headlineLine1Highlight", e.target.value)}
-                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900"
+                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
             </div>
@@ -444,9 +506,10 @@ export const CMSHeroEditor: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={formData.headlineLine2Prefix ?? "Now I'm using "}
+                  value={formData.headlineLine2Prefix ?? ""}
+                  placeholder="e.g. in an"
                   onChange={(e) => handleChange("headlineLine2Prefix", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900"
+                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
@@ -456,35 +519,41 @@ export const CMSHeroEditor: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={formData.headlineLine2Highlight1 ?? "sales capability data"}
+                  value={formData.headlineLine2Highlight1 ?? ""}
+                  placeholder="e.g. AI-shaped world."
                   onChange={(e) => handleChange("headlineLine2Highlight1", e.target.value)}
-                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900"
+                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Middle Text
+                  Middle Text (Optional)
                 </label>
                 <input
                   type="text"
-                  value={formData.headlineLine2Middle ?? " to explore "}
+                  value={formData.headlineLine2Middle ?? ""}
+                  placeholder="Optional middle text"
                   onChange={(e) => handleChange("headlineLine2Middle", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900"
+                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-orange-600 mb-1 flex items-center gap-1">
                   <Sparkles size={11} />
-                  <span>Highlight 2 (Gradient)</span>
+                  <span>Highlight 2 (Optional Gradient)</span>
                 </label>
                 <input
                   type="text"
-                  value={formData.headlineLine2Highlight2 ?? "what AI changes."}
+                  value={formData.headlineLine2Highlight2 ?? ""}
+                  placeholder="Optional highlight 2"
                   onChange={(e) => handleChange("headlineLine2Highlight2", e.target.value)}
-                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900"
+                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
             </div>
+            <p className="text-[11px] text-slate-400 mt-1 italic">
+              Spaces between words and highlights are automatically formatted — no need to type manual spaces at start or end.
+            </p>
           </div>
 
           {/* Bio & Location */}

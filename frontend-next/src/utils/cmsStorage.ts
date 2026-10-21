@@ -77,25 +77,19 @@ const STORAGE_KEY = "ashali_cms_live_data";
 export function mergeWithDefaults(partial: Partial<CMSData>): CMSData {
   if (!partial) return defaultCmsData;
 
-  // Detect outdated hero that had old "Find Your" title and missing line prefixes
-  const isOutdatedHero =
-    partial.hero?.headline === "Find Your" && !partial.hero?.headlineLine1Prefix;
-
-  const mergedHero: HeroContent = isOutdatedHero
-    ? defaultCmsData.hero
-    : {
-        ...defaultCmsData.hero,
-        ...(partial.hero || {}),
-        statCard: {
-          stat: partial.hero?.statCard?.stat || defaultCmsData.hero.statCard?.stat || "76%",
-          text: partial.hero?.statCard?.text || defaultCmsData.hero.statCard?.text || "",
-          source: partial.hero?.statCard?.source || defaultCmsData.hero.statCard?.source || "",
-        },
-        credibilityCards:
-          partial.hero?.credibilityCards && partial.hero.credibilityCards.length > 0
-            ? partial.hero.credibilityCards
-            : defaultCmsData.hero.credibilityCards,
-      };
+  const mergedHero: HeroContent = {
+    ...defaultCmsData.hero,
+    ...(partial.hero || {}),
+    statCard: {
+      stat: partial.hero?.statCard?.stat || defaultCmsData.hero.statCard?.stat || "76%",
+      text: partial.hero?.statCard?.text || defaultCmsData.hero.statCard?.text || "",
+      source: partial.hero?.statCard?.source || defaultCmsData.hero.statCard?.source || "",
+    },
+    credibilityCards:
+      partial.hero?.credibilityCards && partial.hero.credibilityCards.length > 0
+        ? partial.hero.credibilityCards
+        : defaultCmsData.hero.credibilityCards,
+  };
 
   // Detect outdated keynotes from old seed
   const hasOutdatedKeynotes =

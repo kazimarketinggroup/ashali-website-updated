@@ -9,6 +9,66 @@ import ashAliImg from "../../../assets/home/updatedHeroImage.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
 import { useCMS } from "../../../context/CMSContext";
 
+// Auto-spacing and responsive headline renderer helpers
+const renderHeadlineLine1 = (prefix?: string, highlight?: string) => {
+  const p = prefix?.trim();
+  const h = highlight?.trim();
+
+  if (!p && !h) return null;
+
+  return (
+    <span className="inline">
+      {p && <span>{p}</span>}
+      {p && h && " "}
+      {h && <span style={brandGradientTextStyle}>{h}</span>}
+    </span>
+  );
+};
+
+const renderHeadlineLine2 = (
+  prefix?: string,
+  h1?: string,
+  middle?: string,
+  h2?: string
+) => {
+  const p = prefix?.trim();
+  const highlight1 = h1?.trim();
+  const m = middle?.trim();
+  const highlight2 = h2?.trim();
+
+  const segments: React.ReactNode[] = [];
+
+  if (p) segments.push(<span key="p">{p}</span>);
+  if (highlight1) {
+    segments.push(
+      <span key="h1" style={brandGradientTextStyle}>
+        {highlight1}
+      </span>
+    );
+  }
+  if (m) segments.push(<span key="m">{m}</span>);
+  if (highlight2) {
+    segments.push(
+      <span key="h2" style={brandGradientTextStyle}>
+        {highlight2}
+      </span>
+    );
+  }
+
+  if (segments.length === 0) return null;
+
+  return (
+    <span className="inline">
+      {segments.map((seg, idx) => (
+        <React.Fragment key={idx}>
+          {idx > 0 && " "}
+          {seg}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+};
+
 export const AshAliHero: React.FC = () => {
   const { cmsData } = useCMS();
   const hero = cmsData?.hero;
@@ -21,6 +81,13 @@ export const AshAliHero: React.FC = () => {
   const line2Highlight1 = hero?.headlineLine2Highlight1 ?? "sales capability data";
   const line2Middle = hero?.headlineLine2Middle ?? " to explore ";
   const line2Highlight2 = hero?.headlineLine2Highlight2 ?? "what AI changes.";
+
+  const hasLine2 = Boolean(
+    line2Prefix?.trim() ||
+    line2Highlight1?.trim() ||
+    line2Middle?.trim() ||
+    line2Highlight2?.trim()
+  );
 
   const bio =
     hero?.bio ||
@@ -104,15 +171,15 @@ export const AshAliHero: React.FC = () => {
               <span>{eyebrow}</span>
             </div>
 
-            {/* Headline matching Image 2 */}
-            <h1 className="font-semibold leading-[1.2] tracking-tight text-white mb-5 text-fluid-32">
-              {line1Prefix}
-              <span style={brandGradientTextStyle}>{line1Highlight}</span>
-              <br />
-              {line2Prefix}
-              <span style={brandGradientTextStyle}>{line2Highlight1}</span>
-              {line2Middle}
-              <span style={brandGradientTextStyle}>{line2Highlight2}</span>
+            {/* Headline with auto-spacing and responsive wrapping */}
+            <h1 className="font-semibold leading-[1.2] tracking-tight text-white mb-5 text-fluid-32 break-words [overflow-wrap:anywhere]">
+              {renderHeadlineLine1(line1Prefix, line1Highlight)}
+              {hasLine2 && (
+                <>
+                  <br />
+                  {renderHeadlineLine2(line2Prefix, line2Highlight1, line2Middle, line2Highlight2)}
+                </>
+              )}
             </h1>
 
             {/* Subline / Bio */}

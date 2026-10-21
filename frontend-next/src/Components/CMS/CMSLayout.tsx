@@ -34,6 +34,7 @@ import {
   RefreshCw,
   Shield,
 } from "lucide-react";
+import { toast } from "sonner";
 import { useCMS } from "../../context/CMSContext";
 import { CMSGlobalLivePreview } from "./CMSGlobalLivePreview";
 
@@ -63,20 +64,21 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
   onLogout,
   children,
 }) => {
-  const { cmsData, resetDefaults } = useCMS();
+  const { cmsData, refreshCMS } = useCMS();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [liveSitePreviewOpen, setLiveSitePreviewOpen] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
 
-  const handleSyncToLiveDefaults = async () => {
-    if (window.confirm("Sync all CMS sections with live website content? This pulls and resets all default fields to match the published live site.")) {
-      setIsSyncing(true);
-      try {
-        await resetDefaults();
-      } finally {
-        setIsSyncing(false);
-      }
+  const handleSyncLive = async () => {
+    setIsSyncing(true);
+    try {
+      await refreshCMS();
+      toast.success("Live CMS content fetched and synchronized!");
+    } catch {
+      toast.error("Could not sync live CMS data.");
+    } finally {
+      setIsSyncing(false);
     }
   };
 
@@ -210,10 +212,10 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
         <div className="flex items-center gap-2.5">
           <button
             type="button"
-            onClick={handleSyncToLiveDefaults}
+            onClick={handleSyncLive}
             disabled={isSyncing}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/80 shadow-xs transition-all cursor-pointer disabled:opacity-60"
-            title="Synchronize all CMS sections with live website defaults and MongoDB Atlas"
+            title="Fetch fresh data from live website and MongoDB Atlas"
           >
             <RefreshCw size={12} className={`text-emerald-600 ${isSyncing ? "animate-spin" : ""}`} />
             <span className="hidden md:inline">{isSyncing ? "Syncing..." : "Sync Live Site"}</span>
