@@ -81,9 +81,9 @@ export function mergeWithDefaults(partial: Partial<CMSData>): CMSData {
     ...defaultCmsData.hero,
     ...(partial.hero || {}),
     statCard: {
-      stat: partial.hero?.statCard?.stat || defaultCmsData.hero.statCard?.stat || "76%",
-      text: partial.hero?.statCard?.text || defaultCmsData.hero.statCard?.text || "",
-      source: partial.hero?.statCard?.source || defaultCmsData.hero.statCard?.source || "",
+      stat: partial.hero?.statCard?.stat ?? defaultCmsData.hero.statCard?.stat ?? "76%",
+      text: partial.hero?.statCard?.text ?? defaultCmsData.hero.statCard?.text ?? "",
+      source: partial.hero?.statCard?.source ?? defaultCmsData.hero.statCard?.source ?? "",
     },
     credibilityCards:
       partial.hero?.credibilityCards && partial.hero.credibilityCards.length > 0

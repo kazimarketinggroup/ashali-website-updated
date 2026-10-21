@@ -221,18 +221,18 @@ export const CMSHeroEditor: React.FC = () => {
     });
   };
 
-  // Safe fallback values matching live website
-  const eyebrow = formData.eyebrow || defaultHeroData.eyebrow;
-  const line1Prefix = formData.headlineLine1Prefix ?? defaultHeroData.headlineLine1Prefix;
-  const line1Highlight = formData.headlineLine1Highlight ?? defaultHeroData.headlineLine1Highlight;
-  const line2Prefix = formData.headlineLine2Prefix ?? defaultHeroData.headlineLine2Prefix;
-  const line2Highlight1 = formData.headlineLine2Highlight1 ?? defaultHeroData.headlineLine2Highlight1;
-  const line2Middle = formData.headlineLine2Middle ?? defaultHeroData.headlineLine2Middle;
-  const line2Highlight2 = formData.headlineLine2Highlight2 ?? defaultHeroData.headlineLine2Highlight2;
+  // Safe fallback values matching live website — using nullish coalescing to prevent fallback traps
+  const eyebrow = formData.eyebrow ?? "";
+  const line1Prefix = formData.headlineLine1Prefix ?? "";
+  const line1Highlight = formData.headlineLine1Highlight ?? "";
+  const line2Prefix = formData.headlineLine2Prefix ?? "";
+  const line2Highlight1 = formData.headlineLine2Highlight1 ?? "";
+  const line2Middle = formData.headlineLine2Middle ?? "";
+  const line2Highlight2 = formData.headlineLine2Highlight2 ?? "";
   const bio = formData.bio ?? "";
   const location = formData.location ?? "";
-  const ctaText = formData.ctaText || defaultHeroData.ctaText;
-  const ctaSecondaryText = formData.ctaSecondaryText || defaultHeroData.ctaSecondaryText || "Get the Index";
+  const ctaText = formData.ctaText ?? "";
+  const ctaSecondaryText = formData.ctaSecondaryText ?? "";
   const statCard = formData.statCard || defaultHeroData.statCard!;
   const credibilityCards = formData.credibilityCards || defaultHeroData.credibilityCards!;
 
@@ -258,7 +258,7 @@ export const CMSHeroEditor: React.FC = () => {
           <button
             type="button"
             onClick={handleReset}
-            className="px-3.5 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-1.5"
+            className="px-3.5 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <RefreshCw size={14} />
             <span>Discard Changes</span>
@@ -306,9 +306,11 @@ export const CMSHeroEditor: React.FC = () => {
           {/* COPY — right */}
           <div className="lg:col-span-7 flex flex-col justify-center items-start text-left">
             {/* Eyebrow */}
-            <div className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase mb-3">
-              {eyebrow}
-            </div>
+            {eyebrow?.trim() ? (
+              <div className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] text-gray-400 uppercase mb-3">
+                {eyebrow}
+              </div>
+            ) : null}
 
             {/* Headline with auto-spacing, responsive wrapping and clean gradient spans */}
             <h2 className="font-semibold leading-[1.25] tracking-tight text-white mb-4 text-xl sm:text-2xl lg:text-3xl break-words [overflow-wrap:anywhere]">
@@ -329,14 +331,20 @@ export const CMSHeroEditor: React.FC = () => {
             ) : null}
 
             {/* Buttons: Work with Ash & Get the Index */}
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="px-5 py-2.5 bg-white text-black font-semibold text-xs rounded-xs shadow-md">
-                {ctaText}
-              </span>
-              <span className="px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-xs rounded-xs">
-                {ctaSecondaryText}
-              </span>
-            </div>
+            {(ctaText?.trim() || ctaSecondaryText?.trim()) ? (
+              <div className="flex flex-wrap items-center gap-3">
+                {ctaText?.trim() ? (
+                  <span className="px-5 py-2.5 bg-white text-black font-semibold text-xs rounded-xs shadow-md">
+                    {ctaText}
+                  </span>
+                ) : null}
+                {ctaSecondaryText?.trim() ? (
+                  <span className="px-5 py-2.5 bg-transparent border border-white/20 text-white font-medium text-xs rounded-xs">
+                    {ctaSecondaryText}
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
 
             {/* Location Line — Conditionally rendered so clearing it removes it live */}
             {location?.trim() ? (
@@ -348,53 +356,63 @@ export const CMSHeroEditor: React.FC = () => {
         </div>
 
         {/* 76% Stat Card in Preview */}
-        <div className="mt-6 w-full rounded-md border border-white/[0.08] bg-[#141414] p-4 sm:p-5 shadow-lg">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-            <div
-              className="text-4xl sm:text-5xl font-bold tracking-tight shrink-0 select-none"
-              style={brandGradientTextStyle}
-            >
-              {statCard.stat}
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-xs sm:text-sm text-white font-normal leading-snug">
-                {statCard.text}
-              </p>
-              <p className="mt-1 text-[10px] text-gray-400 font-light tracking-wide">
-                {statCard.source}
-              </p>
+        {(statCard?.stat?.trim() || statCard?.text?.trim() || statCard?.source?.trim()) ? (
+          <div className="mt-6 w-full rounded-md border border-white/[0.08] bg-[#141414] p-4 sm:p-5 shadow-lg">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+              {statCard.stat?.trim() ? (
+                <div
+                  className="text-4xl sm:text-5xl font-bold tracking-tight shrink-0 select-none"
+                  style={brandGradientTextStyle}
+                >
+                  {statCard.stat}
+                </div>
+              ) : null}
+              <div className="flex flex-col justify-center">
+                {statCard.text?.trim() ? (
+                  <p className="text-xs sm:text-sm text-white font-normal leading-snug">
+                    {statCard.text}
+                  </p>
+                ) : null}
+                {statCard.source?.trim() ? (
+                  <p className="mt-1 text-[10px] text-gray-400 font-light tracking-wide">
+                    {statCard.source}
+                  </p>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Credibility Strip: 3 Cards in Preview */}
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {credibilityCards.map((card, idx) => (
-            <div
-              key={card.id || idx}
-              className="rounded-md border border-white/[0.08] bg-[#141414] p-3 sm:p-4 flex items-center gap-3"
-            >
-              <div className="h-8 w-8 shrink-0 rounded bg-[#22160d] border border-[#d97736]/30 flex items-center justify-center text-[#d97736]">
-                {idx === 0 ? (
-                  <BookOpen size={16} strokeWidth={1.8} />
-                ) : idx === 1 ? (
-                  <Trophy size={16} strokeWidth={1.8} />
-                ) : (
-                  <TrendingUp size={16} strokeWidth={1.8} />
-                )}
+        {credibilityCards && credibilityCards.length > 0 ? (
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {credibilityCards.map((card, idx) => (
+              <div
+                key={card.id || idx}
+                className="rounded-md border border-white/[0.08] bg-[#141414] p-3 sm:p-4 flex items-center gap-3"
+              >
+                <div className="h-8 w-8 shrink-0 rounded bg-[#22160d] border border-[#d97736]/30 flex items-center justify-center text-[#d97736]">
+                  {idx === 0 ? (
+                    <BookOpen size={16} strokeWidth={1.8} />
+                  ) : idx === 1 ? (
+                    <Trophy size={16} strokeWidth={1.8} />
+                  ) : (
+                    <TrendingUp size={16} strokeWidth={1.8} />
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-medium text-gray-400">{card.label}</p>
+                  <p className="text-xs font-semibold text-white truncate">{card.title}</p>
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="text-[10px] font-medium text-gray-400">{card.label}</p>
-                <p className="text-xs font-semibold text-white truncate">{card.title}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : null}
       </div>
 
-      {/* Form Fields */}
-      <div className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm space-y-7">
-        <form onSubmit={handleSave} className="space-y-7">
+      {/* Form Fields — Redesigned into Spacious, Big Real-Editor Boxes */}
+      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-8">
+        <form onSubmit={handleSave} className="space-y-8">
           {/* Image Uploader Field */}
           <ImageUploaderField
             label="Hero Portrait Photo"
@@ -409,74 +427,87 @@ export const CMSHeroEditor: React.FC = () => {
             ]}
           />
 
-          {/* Eyebrow and CTAs */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+          {/* Eyebrow Header */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
                 Eyebrow Header
               </label>
-              <input
-                type="text"
-                value={formData.eyebrow}
-                onChange={(e) => handleChange("eyebrow", e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
-              />
-              <span className="text-[11px] text-slate-400 mt-1 block">
-                Top category badge above headline
+              <span className="text-[11px] text-slate-400">
+                Category badge shown above headline (leave empty to hide)
+              </span>
+            </div>
+            <input
+              type="text"
+              value={formData.eyebrow ?? ""}
+              placeholder="e.g. INTERNATIONAL KEYNOTE SPEAKER • FOUNDER • OPERATOR • AUTHOR"
+              onChange={(e) => handleChange("eyebrow", e.target.value)}
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+            />
+          </div>
+
+          {/* Primary & Secondary CTA Buttons — Generous Spacing */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 bg-slate-50 rounded-xl border border-slate-200">
+            <div>
+              <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                Primary CTA Button & Destination
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <input
+                  type="text"
+                  value={formData.ctaText ?? ""}
+                  placeholder="Button label (e.g. Work with Ash)"
+                  onChange={(e) => handleChange("ctaText", e.target.value)}
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                />
+                <input
+                  type="text"
+                  value={formData.ctaLink ?? ""}
+                  placeholder="Destination (e.g. /contact)"
+                  onChange={(e) => handleChange("ctaLink", e.target.value)}
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                />
+              </div>
+              <span className="text-[11px] text-slate-400 mt-1.5 block">
+                Main button leading to contact / booking
               </span>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Primary CTA Text & Destination
-              </label>
-              <div className="grid grid-cols-2 gap-2">
-                <input
-                  type="text"
-                  value={formData.ctaText}
-                  placeholder="Button text"
-                  onChange={(e) => handleChange("ctaText", e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
-                />
-                <input
-                  type="text"
-                  value={formData.ctaLink || "/contact"}
-                  placeholder="/contact"
-                  onChange={(e) => handleChange("ctaLink", e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
                 Secondary CTA Button
               </label>
               <input
                 type="text"
-                value={formData.ctaSecondaryText || "Get the Index"}
+                value={formData.ctaSecondaryText ?? ""}
+                placeholder="e.g. Get the Index"
                 onChange={(e) => handleChange("ctaSecondaryText", e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
               />
-              <span className="text-[11px] text-slate-400 mt-1 block">
-                Opens the Global Sales Capability Index modal
+              <span className="text-[11px] text-slate-400 mt-1.5 block">
+                Opens the Global Sales Capability Index modal dialog
               </span>
             </div>
           </div>
 
-          {/* Live Headline Structure */}
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
-            <div className="flex items-center gap-2">
-              <Sparkles size={14} className="text-[#FF781D]" />
-              <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                Live Website Headline (Two Lines with 3 Gradient Spans)
+          {/* Live Headline Structure — Spacious 2x2 Grid for Line 2 */}
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles size={16} className="text-[#FF781D]" />
+                <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Live Website Headline (Two Lines with 3 Gradient Spans)
+                </span>
+              </div>
+              <span className="text-[11px] text-slate-400 hidden sm:inline">
+                Auto-spaced & responsive
               </span>
             </div>
 
             {/* Line 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Line 1 Prefix (Plain text)
                 </label>
                 <input
@@ -484,12 +515,12 @@ export const CMSHeroEditor: React.FC = () => {
                   value={formData.headlineLine1Prefix ?? ""}
                   placeholder="e.g. Find your"
                   onChange={(e) => handleChange("headlineLine1Prefix", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-orange-600 mb-1 flex items-center gap-1">
-                  <Sparkles size={11} />
+                <label className="block text-xs font-semibold text-orange-600 mb-1 flex items-center gap-1">
+                  <Sparkles size={12} />
                   <span>Line 1 Highlight (Brand Gradient)</span>
                 </label>
                 <input
@@ -497,142 +528,151 @@ export const CMSHeroEditor: React.FC = () => {
                   value={formData.headlineLine1Highlight ?? ""}
                   placeholder="e.g. unfair advantage"
                   onChange={(e) => handleChange("headlineLine1Highlight", e.target.value)}
-                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-3.5 py-2.5 bg-orange-50/40 border border-orange-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
             </div>
 
-            {/* Line 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            {/* Line 2 (Spacious 2-column layout — never tiny cramped boxes) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Line 2 Prefix
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Line 2 Prefix (Plain text)
                 </label>
                 <input
                   type="text"
                   value={formData.headlineLine2Prefix ?? ""}
                   placeholder="e.g. in an"
                   onChange={(e) => handleChange("headlineLine2Prefix", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-orange-600 mb-1 flex items-center gap-1">
-                  <Sparkles size={11} />
-                  <span>Highlight 1 (Gradient)</span>
+                <label className="block text-xs font-semibold text-orange-600 mb-1 flex items-center gap-1">
+                  <Sparkles size={12} />
+                  <span>Highlight 1 (Brand Gradient)</span>
                 </label>
                 <input
                   type="text"
                   value={formData.headlineLine2Highlight1 ?? ""}
                   placeholder="e.g. AI-shaped world."
                   onChange={(e) => handleChange("headlineLine2Highlight1", e.target.value)}
-                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-3.5 py-2.5 bg-orange-50/40 border border-orange-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Middle Text (Optional)
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Middle Text (Optional plain text)
                 </label>
                 <input
                   type="text"
                   value={formData.headlineLine2Middle ?? ""}
                   placeholder="Optional middle text"
                   onChange={(e) => handleChange("headlineLine2Middle", e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-orange-600 mb-1 flex items-center gap-1">
-                  <Sparkles size={11} />
-                  <span>Highlight 2 (Optional Gradient)</span>
+                <label className="block text-xs font-semibold text-orange-600 mb-1 flex items-center gap-1">
+                  <Sparkles size={12} />
+                  <span>Highlight 2 (Optional Brand Gradient)</span>
                 </label>
                 <input
                   type="text"
                   value={formData.headlineLine2Highlight2 ?? ""}
                   placeholder="Optional highlight 2"
                   onChange={(e) => handleChange("headlineLine2Highlight2", e.target.value)}
-                  className="w-full px-3 py-2 bg-orange-50/40 border border-orange-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-3.5 py-2.5 bg-orange-50/40 border border-orange-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
               </div>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1 italic">
+            <p className="text-[11px] text-slate-400 italic">
               Spaces between words and highlights are automatically formatted — no need to type manual spaces at start or end.
             </p>
           </div>
 
-          {/* Bio & Location — Big comfortable real-editor boxes */}
-          <div className="space-y-4">
+          {/* Bio & Location — Big Comfortable Real-Editor Textareas */}
+          <div className="space-y-6">
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Introduction Bio Paragraph
-                </label>
-                <span className="text-[11px] text-slate-400">
-                  Full bio paragraph shown directly below the main headline
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Introduction Bio Paragraph (Real Editor Box)
+                  </label>
+                  <span className="text-[11px] text-slate-500 mt-0.5 block">
+                    Main paragraph displayed below the headline. If cleared / left empty, it will be completely hidden from the live website.
+                  </span>
+                </div>
+                <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200 shrink-0">
+                  {formData.bio?.trim() ? `${formData.bio.trim().split(/\s+/).length} words` : "Empty (Hidden)"}
                 </span>
               </div>
               <textarea
-                rows={5}
+                rows={6}
                 value={formData.bio ?? ""}
-                placeholder="Write introduction bio paragraph (or leave empty to hide)..."
+                placeholder="Write introduction bio paragraph here (or leave empty to hide)..."
                 onChange={(e) => handleChange("bio", e.target.value)}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-normal text-slate-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                className="w-full px-4 py-3.5 bg-white border border-slate-300 rounded-xl text-sm font-normal text-slate-900 leading-relaxed shadow-xs focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D] transition-all resize-y min-h-[140px]"
               />
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Location & Global Availability Line
-                </label>
-                <span className="text-[11px] text-slate-400">
-                  Shown beneath action buttons (or leave empty to hide)
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Location & Global Availability Line
+                  </label>
+                  <span className="text-[11px] text-slate-500 mt-0.5 block">
+                    Shown beneath action buttons (leave empty to hide from live site)
+                  </span>
+                </div>
+                <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200 shrink-0">
+                  {formData.location?.trim() ? "Active" : "Empty (Hidden)"}
                 </span>
               </div>
               <textarea
-                rows={2}
+                rows={3}
                 value={formData.location ?? ""}
                 placeholder="e.g. Based between London and Kuala Lumpur. Available globally for keynotes, leadership offsites and executive workshops."
                 onChange={(e) => handleChange("location", e.target.value)}
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-normal text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-xs font-normal text-slate-900 leading-relaxed shadow-xs focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D] transition-all resize-y min-h-[75px]"
               />
             </div>
           </div>
 
-          {/* 76% Capability Stat Card Editor — Big comfortable inputs */}
+          {/* Hero Stat Card (Global Sales Capability Index) — Big Spacious Real-Editor */}
           <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
-            <div className="flex items-center gap-2">
-              <BarChart3 size={16} className="text-[#FF781D]" />
-              <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                Hero Stat Card (Global Sales Capability Index)
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <BarChart3 size={16} className="text-[#FF781D]" />
+                <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Hero Stat Card (Global Sales Capability Index)
+                </span>
+              </div>
+              <span className="text-[11px] text-slate-500">
+                Research capability accolade card
               </span>
             </div>
+
+            {/* Row 1: Stat Number & Source Line */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
-              <div className="md:col-span-3">
+              <div className="md:col-span-4">
                 <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                  Stat Number
+                  Stat Highlight
                 </label>
                 <input
                   type="text"
                   value={formData.statCard?.stat ?? ""}
                   placeholder="e.g. 76%"
                   onChange={(e) => handleStatCardChange("stat", e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-base font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
+                <span className="text-[10px] text-slate-400 mt-1 block">
+                  Large gradient statistic display
+                </span>
               </div>
-              <div className="md:col-span-9">
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                  Description Text (Multi-line real editor box)
-                </label>
-                <textarea
-                  rows={3}
-                  value={formData.statCard?.text ?? ""}
-                  placeholder="e.g. of sales professionals in the Index dataset rated their capability higher than their manager did."
-                  onChange={(e) => handleStatCardChange("text", e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs leading-relaxed text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
-                />
-              </div>
-              <div className="md:col-span-12">
+
+              <div className="md:col-span-8">
                 <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                   Source / Dataset Edition Line
                 </label>
@@ -641,26 +681,48 @@ export const CMSHeroEditor: React.FC = () => {
                   value={formData.statCard?.source ?? ""}
                   placeholder="e.g. Uhubs Global Sales Capability Index 2026 • first edition • April 2026"
                   onChange={(e) => handleStatCardChange("source", e.target.value)}
-                  className="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
+                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                 />
+                <span className="text-[10px] text-slate-400 mt-1 block">
+                  Cites research report edition and release date
+                </span>
               </div>
+            </div>
+
+            {/* Row 2: Description Text — FULL WIDTH REAL MULTI-LINE TEXTAREA */}
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700">
+                  Description Text (Full multi-line editor box)
+                </label>
+                <span className="text-[11px] text-slate-400">
+                  Comfortable multi-line view — no tiny cramped inputs
+                </span>
+              </div>
+              <textarea
+                rows={4}
+                value={formData.statCard?.text ?? ""}
+                placeholder="e.g. of sales professionals in the Index dataset rated their capability higher than their manager did."
+                onChange={(e) => handleStatCardChange("text", e.target.value)}
+                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm leading-relaxed text-slate-900 shadow-xs focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D] resize-y min-h-[90px]"
+              />
             </div>
           </div>
 
           {/* Credibility Strip Editor (3 Cards) */}
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
             <div className="flex items-center gap-2">
-              <Award size={14} className="text-[#FF781D]" />
+              <Award size={16} className="text-[#FF781D]" />
               <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                 Credibility Strip (3 Accolade Cards)
               </span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {(formData.credibilityCards || defaultHeroData.credibilityCards!).map(
                 (card, index) => (
                   <div
                     key={card.id || index}
-                    className="p-3 bg-white rounded-lg border border-slate-200 space-y-2"
+                    className="p-4 bg-white rounded-xl border border-slate-200 space-y-3 shadow-xs"
                   >
                     <div>
                       <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">
@@ -668,11 +730,11 @@ export const CMSHeroEditor: React.FC = () => {
                       </label>
                       <input
                         type="text"
-                        value={card.label}
+                        value={card.label ?? ""}
                         onChange={(e) =>
                           handleCredibilityChange(index, "label", e.target.value)
                         }
-                        className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded text-xs text-slate-800"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                       />
                     </div>
                     <div>
@@ -681,11 +743,11 @@ export const CMSHeroEditor: React.FC = () => {
                       </label>
                       <input
                         type="text"
-                        value={card.title}
+                        value={card.title ?? ""}
                         onChange={(e) =>
                           handleCredibilityChange(index, "title", e.target.value)
                         }
-                        className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded text-xs font-semibold text-slate-900"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF781D]"
                       />
                     </div>
                   </div>
