@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
 
     // 8. For report downloads, return direct PDF download URL
     const downloadToken = isReportDownload ? generateReportToken() : undefined;
-    const downloadUrl = isReportDownload ? "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf" : undefined;
+    const downloadUrl = isReportDownload ? "/Global-Sales-Capability-Index-2026-Uhubs.pdf" : undefined;
 
     return NextResponse.json({
       success: true,
