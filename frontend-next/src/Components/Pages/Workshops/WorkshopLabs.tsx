@@ -123,7 +123,7 @@ const WorkshopLabs: React.FC = () => {
       : workshops;
 
   return (
-    <Section id="workshops">
+    <Section id="workshops" className="scroll-mt-24">
       <div className="flex flex-col gap-12">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionHeading>Three labs. One practical outcome each.</SectionHeading>

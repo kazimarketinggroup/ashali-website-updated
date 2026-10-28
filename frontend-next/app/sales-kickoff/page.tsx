@@ -10,7 +10,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Sales kickoff keynotes and workshops by Ash Ali. Founder experience and sales capability research to give your revenue team direction and advantage in an AI-shaped world.",
   path: "/sales-kickoff",
-  ogImage: "/og/home.png",
+  ogImage: "/og/sales-kickoff.png",
+  ogImageAlt: "Ash Ali, Sales Kickoff Keynote Speaker on Unfair Advantage and AI Transformation",
 });
 
 export default function Page() {

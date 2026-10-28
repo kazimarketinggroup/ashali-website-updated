@@ -6,7 +6,7 @@ import { breadcrumbSchema } from "@/src/constants/structuredData";
 import MalaySiaAndSEA from "@/src/Components/Pages/MalaysiaAndSEA/MalaySiaAndSEA";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Malaysia & Southeast Asia | Ash Ali",
+  title: "Malaysia and Southeast Asia | Ash Ali",
   description:
     "Speaking, advisory and impact work across Malaysia and Southeast Asia. Based between London and Kuala Lumpur.",
   path: "/malaysia-sea",

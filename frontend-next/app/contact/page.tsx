@@ -6,9 +6,9 @@ import { breadcrumbSchema } from "@/src/constants/structuredData";
 import Contact from "@/src/Components/Pages/Contact/Contact";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Work with Ash | Enquiries & Booking",
+  title: "Work with Ash | Enquiries and Booking",
   description:
-    "Enquire about speaking, advisory, media, Malaysia & Southeast Asia opportunities or selected pro-bono impact work.",
+    "Enquire about speaking, advisory, media, Malaysia and Southeast Asia opportunities or Giving Back initiatives.",
   path: "/contact",
   ogImage: "/og/contact.png",
 });

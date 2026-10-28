@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Linkedin } from "lucide-react";
-import { toast } from "sonner";
 
 import { BRAND_GRADIENT_LR } from "../../constants/brandGradient";
-import { api, getApiErrorMessage } from "../../utils/api";
 import { useCMS } from "../../context/CMSContext";
 
 type FooterLink = { label: string; to: string; external?: boolean };
@@ -76,55 +74,20 @@ const SiteFooter: React.FC = () => {
     footer?.bio ||
     "Ash Ali is a British tech entrepreneur, investor, international keynote speaker and co-author of the award winning The Unfair Advantage. He helps leaders and organisations build practical advantage in an AI shaped world. Based between London and Kuala Lumpur; working globally.";
   const locations = footer?.locations || "London • Kuala Lumpur • Global";
-  const newsletterHeading = footer?.newsletterHeading || "Let's keep connected";
-  const newsletterSubtitle =
-    footer?.newsletterSubtitle ||
-    "Ash's thinking on advantage, AI and growth, straight to your inbox.";
   const linkedinUrl = footer?.linkedinUrl || "https://uk.linkedin.com/in/ashali";
   const twitterUrl = footer?.twitterUrl || "https://x.com/Ash_Ali";
   const columns = footer?.columns && footer.columns.length > 0 ? footer.columns : defaultColumns;
   const copyright = footer?.copyright || "2026 © — Ash Ali | All Rights Reserved";
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [honeypot, setHoneypot] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   if (pathname.startsWith("/cmsadmin")) {
     return null;
   }
 
-  const handleSubscribe = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!email.trim()) {
-      toast.error("Please enter your email address.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const response = await api.post("/newsletter/subscribe", {
-        name: name.trim() || undefined,
-        email: email.trim(),
-        website_hp: honeypot,
-      });
-      toast.success(response.data?.message || "Thank you for subscribing!");
-      setName("");
-      setEmail("");
-      setHoneypot("");
-    } catch (error) {
-      toast.error(getApiErrorMessage(error, "Something went wrong. Please try again."));
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto max-w-fluid px-4 pt-12 pb-6 sm:px-6 sm:pt-14 sm:pb-6 lg:px-8 lg:pt-16 lg:pb-6">
-        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-          <div className="max-w-[410px]">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 items-start">
+          <div className="max-w-[440px]">
             <p className="text-[clamp(1.7rem,3vw,2.1rem)] font-semibold leading-none tracking-normal">
               {brandName}
             </p>
@@ -141,63 +104,21 @@ const SiteFooter: React.FC = () => {
               )}
             </div>
 
-            <p className="mt-6 text-[14px] sm:text-[15px] font-normal leading-[2] text-white/86">
+            <p className="mt-6 text-[14px] sm:text-[15px] font-normal leading-[1.9] text-white/80">
               {bio}
             </p>
 
-            <p className="mt-5 text-[13px] font-normal tracking-wide text-white/55">
+            <p className="mt-5 text-[13px] font-normal tracking-wide text-white/50">
               {locations}
             </p>
           </div>
 
-          <div className="min-w-0">
-            <p className="text-[clamp(1.25rem,2vw,1.55rem)] font-semibold leading-tight">
-              {newsletterHeading}
-            </p>
-            <p className="mt-2 text-[13px] font-normal text-white/75">
-              {newsletterSubtitle}
-            </p>
-
-            <form className="mt-5 grid gap-3 sm:grid-cols-[1fr_1fr_auto]" onSubmit={handleSubscribe}>
-              <input
-                type="text"
-                name="website_hp"
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                style={{ position: "absolute", opacity: 0, pointerEvents: "none", zIndex: -1, width: 0, height: 0 }}
-              />
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                className="h-9 min-w-0 bg-white px-6 text-[12px] font-normal text-black outline-none placeholder:text-black/60 focus:ring-1 focus:ring-white"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                className="h-9 min-w-0 bg-white px-6 text-[12px] font-normal text-black outline-none placeholder:text-black/60 focus:ring-1 focus:ring-white"
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="h-9 border border-white bg-transparent px-9 text-[12px] font-normal text-white transition-colors hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-              >
-                {isSubmitting ? "..." : "Subscribe"}
-              </button>
-            </form>
-
-            <div className="mt-9 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div className="min-w-0 lg:pt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
               {columns.map((col) => (
                 <div key={col.heading} className="min-w-0">
-                  <p className="text-[13px] font-semibold text-white">{col.heading}</p>
-                  <ul className="mt-4 space-y-2">
+                  <p className="text-[13px] font-semibold text-white tracking-wide uppercase text-white/90">{col.heading}</p>
+                  <ul className="mt-4 space-y-2.5">
                     {col.links.map((link) => (
                       <li key={link.label}>
                         {link.external ? (

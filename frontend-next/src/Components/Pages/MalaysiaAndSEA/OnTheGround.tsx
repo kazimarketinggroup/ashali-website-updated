@@ -1,4 +1,5 @@
 import React from "react";
+import Image, { StaticImageData } from "next/image";
 
 import image1 from "../../../assets/malaysia/ash-malaysia-stage.png";
 import image2 from "../../../assets/malaysia/unfair-advantage-malaysia-cover.png";
@@ -8,7 +9,7 @@ import { brandGradientTextStyle } from "../../../constants/brandGradient";
 
 interface PhotoItem {
   id: number;
-  src: string;
+  src: StaticImageData;
   alt: string;
   aspectClass: string;
 }
@@ -16,19 +17,19 @@ interface PhotoItem {
 const photos: PhotoItem[] = [
   {
     id: 1,
-    src: image1.src,
+    src: image1,
     alt: "Group photo at a Kuala Lumpur community event",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 2,
-    src: image2.src,
+    src: image2,
     alt: "Ash Ali with attendees holding a book",
     aspectClass: "aspect-[3/4]",
   },
   {
     id: 3,
-    src: image3.src,
+    src: image3,
     alt: "Panel discussion on stage",
     aspectClass: "aspect-[4/3]",
   },
@@ -67,12 +68,14 @@ const OnTheGround: React.FC = () => {
               key={photo.id}
               className="overflow-hidden rounded-xl bg-neutral-800"
             >
-              <div >
-                <img
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <Image
                   src={photo.src}
                   alt={photo.alt}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
                   loading="lazy"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import ashSeaImg from "../../../assets/malaysia/ash-southeast-asia-hero.png";
@@ -40,9 +41,13 @@ const RegionalFocusSection: React.FC = () => {
             transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
             className="overflow-hidden rounded-lg"
           >
-            <img
-              src={ashSeaImg.src}
+            <Image
+              src={ashSeaImg}
               alt="Ash Ali holding The Unfair Advantage in Southeast Asia"
+              width={600}
+              height={450}
+              sizes="(max-width: 1024px) 100vw, 600px"
+              loading="lazy"
               className="aspect-[4/3] w-full object-cover"
               draggable="false"
             />

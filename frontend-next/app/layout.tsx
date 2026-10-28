@@ -6,8 +6,9 @@ import { Toaster } from "sonner";
 import SiteFooter from "@/src/Components/Layouts/SiteFooter";
 import SiteHeader from "@/src/Components/Layouts/SiteHeader";
 import JsonLd from "@/src/Components/Shared/JsonLd";
-import { personSchema } from "@/src/constants/structuredData";
+import { personSchema, uhubsOrganizationSchema } from "@/src/constants/structuredData";
 import { CMSProvider } from "@/src/context/CMSContext";
+import { Analytics } from "@vercel/analytics/react";
 import PageTransition from "./_components/PageTransition";
 import "./globals.css";
 
@@ -78,7 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           )}
       </head>
       <body>
-        <JsonLd schema={[personSchema]} />
+        <JsonLd schema={[personSchema, uhubsOrganizationSchema]} />
         {/*
           Mirrors the old MainLayout wrapper div exactly. `site-root` replaces
           the `#root` selector from index.css — see the note in globals.css.
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
 
           <Toaster position="top-right" richColors />
+          <Analytics />
         </CMSProvider>
       </body>
     </html>

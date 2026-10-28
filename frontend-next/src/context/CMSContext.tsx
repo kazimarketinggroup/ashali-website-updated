@@ -57,6 +57,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           keynotes: parsed.keynotes && parsed.keynotes.length > 0 ? parsed.keynotes : defaultCmsData.keynotes,
           workshops: parsed.workshops && parsed.workshops.length > 0 ? parsed.workshops : defaultCmsData.workshops,
           faqs: parsed.faqs && parsed.faqs.length > 0 ? parsed.faqs : defaultCmsData.faqs,
+          previousProjects: parsed.previousProjects && parsed.previousProjects.length > 0 ? parsed.previousProjects : defaultCmsData.previousProjects,
         });
       }
     } catch {
@@ -94,6 +95,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             keynotes: serverData.keynotes && serverData.keynotes.length > 0 ? serverData.keynotes : defaultCmsData.keynotes,
             workshops: serverData.workshops && serverData.workshops.length > 0 ? serverData.workshops : defaultCmsData.workshops,
             faqs: serverData.faqs && serverData.faqs.length > 0 ? serverData.faqs : defaultCmsData.faqs,
+            previousProjects: serverData.previousProjects && serverData.previousProjects.length > 0 ? serverData.previousProjects : defaultCmsData.previousProjects,
           };
           setCmsData(merged);
           try {

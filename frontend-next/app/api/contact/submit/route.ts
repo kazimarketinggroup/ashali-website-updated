@@ -121,9 +121,9 @@ export async function POST(req: NextRequest) {
       console.warn("Failed to record inquiry into CMS store:", cmsErr);
     }
 
-    // 8. For report downloads, generate a secure time-limited download URL
+    // 8. For report downloads, return direct PDF download URL
     const downloadToken = isReportDownload ? generateReportToken() : undefined;
-    const downloadUrl = downloadToken ? `/api/reports/download?token=${downloadToken}` : undefined;
+    const downloadUrl = isReportDownload ? "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf" : undefined;
 
     return NextResponse.json({
       success: true,

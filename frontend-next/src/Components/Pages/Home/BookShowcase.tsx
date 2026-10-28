@@ -88,7 +88,7 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
               href={as === "h1" ? "#retailers" : "/unfair-advantage"}
               className="min-h-[46px] inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold text-[13px] sm:text-[13.5px] rounded-[3px] transition-colors duration-150 hover:bg-gray-100 shadow-md text-center"
             >
-              Explore the book
+              {as === "h1" ? "Get your copy" : "Explore the book"}
             </Link>
             <a
               target="_blank"

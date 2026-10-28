@@ -52,7 +52,9 @@ export const CapabilityIndexSection = () => {
   */
   const [mounted, setMounted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string>(
+    "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf"
+  );
   const [newsletterOptIn, setNewsletterOptIn] = useState<boolean>(false);
   useEffect(() => setMounted(true), []);
 
@@ -98,6 +100,17 @@ export const CapabilityIndexSection = () => {
       // Non-blocking
     } finally {
       setIsSubmitting(false);
+      // Auto-trigger direct download immediately
+      try {
+        const link = document.createElement("a");
+        link.href = "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf";
+        link.download = "Global-Sales-Capability-Index-2026-Uhubs.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch {
+        // Fallback to manual download button
+      }
     }
   };
 
@@ -382,14 +395,8 @@ export const CapabilityIndexSection = () => {
                     </h3>
 
                     <a
-                      href={downloadUrl || "#"}
+                      href={downloadUrl || "/reports/Global-Sales-Capability-Index-2026-Uhubs.pdf"}
                       download="Global-Sales-Capability-Index-2026-Uhubs.pdf"
-                      onClick={(e) => {
-                        if (!downloadUrl) {
-                          e.preventDefault();
-                          alert("Preparing your download, please wait a moment...");
-                        }
-                      }}
                       className="px-8 py-3.5 bg-[#202326] hover:bg-black text-white font-medium text-[15px] rounded-full shadow-md transition-all duration-200 transform hover:scale-[1.02] inline-flex items-center justify-center mb-8 sm:mb-10 tracking-wide cursor-pointer"
                     >
                       Download Now

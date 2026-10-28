@@ -679,6 +679,39 @@ export const defaultCmsData: CMSData = {
     },
   ],
 
+  previousProjects: [
+    {
+      id: "proj-1",
+      name: "Just Eat",
+      years: "2008 – 2011",
+      description: "First Marketing Director leading early digital acquisition, direct response and rapid national brand scale.",
+      outcome: "Scaled from startup to £1.4B+ IPO on the London Stock Exchange",
+      url: "/portfolio/just-eat",
+      logoUrl: "/assets/about/justeat.png",
+      published: true,
+    },
+    {
+      id: "proj-2",
+      name: "Fare Exchange",
+      years: "2001 – 2008",
+      description: "Co-founded early digital marketing network pioneering algorithmic lead generation across commercial verticals.",
+      outcome: "Bootstrapped to multi-million turnover and successful trade acquisition",
+      url: "/portfolio/fare-exchange",
+      logoUrl: "/assets/about/fare-exchange-logo.png",
+      published: true,
+    },
+    {
+      id: "proj-3",
+      name: "WashPlus",
+      years: "2013 – 2016",
+      description: "Co-founded on-demand mobile dry cleaning and laundry platform modernising local service operations.",
+      outcome: "Expanded city-wide operations across London with proprietary dispatch engine; acquired",
+      url: "/portfolio/wash-plus",
+      logoUrl: "/assets/about/washplus-logo.png",
+      published: true,
+    },
+  ],
+
   media: [
     {
       id: "med-1",

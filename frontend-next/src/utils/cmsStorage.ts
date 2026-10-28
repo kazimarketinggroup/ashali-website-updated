@@ -135,6 +135,7 @@ export function mergeWithDefaults(partial: Partial<CMSData>): CMSData {
     keynotes: hasOutdatedKeynotes ? defaultCmsData.keynotes : (partial.keynotes || defaultCmsData.keynotes),
     workshops: hasOutdatedWorkshops ? defaultCmsData.workshops : (partial.workshops || defaultCmsData.workshops),
     faqs: hasOutdatedFaqs ? defaultCmsData.faqs : (partial.faqs || defaultCmsData.faqs),
+    previousProjects: partial.previousProjects && partial.previousProjects.length > 0 ? partial.previousProjects : defaultCmsData.previousProjects,
   };
 }
 

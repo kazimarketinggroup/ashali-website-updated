@@ -323,6 +323,17 @@ export interface LegalPageContent {
   content: string;
 }
 
+export interface ProjectCard {
+  id: string;
+  name: string;
+  years: string;
+  description: string;
+  outcome: string;
+  url?: string;
+  logoUrl?: string;
+  published?: boolean;
+}
+
 export interface CMSData {
   version: string;
   lastUpdated: string;
@@ -343,6 +354,7 @@ export interface CMSData {
   testimonials: TestimonialItem[];
   metrics: MetricItem[];
   portfolio: PortfolioItem[];
+  previousProjects?: ProjectCard[];
   media: MediaItem[];
   siteSettings: SiteSettings;
   privacyPolicy: LegalPageContent;

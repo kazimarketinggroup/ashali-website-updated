@@ -29,8 +29,22 @@ export const personSchema = {
   sameAs: [
     "https://uk.linkedin.com/in/ashali",
     "https://x.com/Ash_Ali",
+    "https://www.instagram.com/ashaliuk/",
+    "https://www.tiktok.com/@ashaliuk",
     "https://www.amazon.com/stores/Ash-Ali/author/B082V279X1",
   ],
+};
+
+/** Organization schema for Uhubs.ai */
+export const uhubsOrganizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Uhubs",
+  alternateName: "Uhubs.ai",
+  url: "https://www.uhubs.ai",
+  description:
+    "Sales capability platform and intelligence dataset powering sales performance in an AI era.",
+  founder: personSchema,
 };
 
 /** Service / Speaker schema for speaking engagements. */

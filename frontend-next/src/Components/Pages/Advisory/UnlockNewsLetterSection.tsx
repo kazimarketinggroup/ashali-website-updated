@@ -36,7 +36,7 @@ const UnlockNewsletterSection: React.FC = () => {
           </h2>
           <p>Share your organisation, role, the challenge and the kind of support <br /> you're looking for. If it's a fit, we'll set up a conversation.</p>
           <Link
-            href="/contact"
+            href="/contact?type=advisory"
             className="rounded-sm border border-white/75 bg-transparent px-5 py-2 text-[11px] font-normal text-white transition-colors hover:bg-white hover:text-black"
           >
             Work With Ash

@@ -106,9 +106,10 @@ const FIELD_CONFIG: Record<EnquiryType, FieldConfig[]> = {
   advisory: [
     { name: "Name", label: "Name" },
     { name: "Email", label: "Email", type: "email" },
-    { name: "Organisation", label: "Organisation" },
-    { name: "Role", label: "Role / Title (e.g. Founder, CEO, CRO)" },
-    { name: "Challenge", label: "Key challenge or strategic objective" },
+    { name: "Company", label: "Company" },
+    { name: "Stage", label: "Company stage (e.g. Seed, Growth, Enterprise)" },
+    { name: "Role", label: "Role / Title (e.g. Founder, CEO, Board)" },
+    { name: "Decision Being Faced", label: "The decision being faced / Key challenge" },
     { name: "Support Type", label: "Type of support (Advisory, Board, Sprint)" },
     { name: "Timeline", label: "Preferred timeline (e.g. Q1 2026)" },
     { name: "Budget", label: "Indicative budget (optional)" },
@@ -161,6 +162,7 @@ const WIDE_FIELDS = new Set([
   "Why this audience?",
   "Event / Initiative",
   "Challenge",
+  "Decision Being Faced",
   "Opportunity Type",
   "Deadline",
 ]);

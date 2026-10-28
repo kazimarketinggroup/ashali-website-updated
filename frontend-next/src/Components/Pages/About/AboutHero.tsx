@@ -48,8 +48,8 @@ const AboutIntro: React.FC = () => (
         className="object-cover object-[72%_center]"
         draggable="false"
       />
-      <div className="absolute inset-0 bg-black/70 sm:bg-black/55" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
+      <div className="absolute inset-0 bg-black/35 sm:bg-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
     </div>
 
     <div className="relative z-10 mx-auto w-full max-w-fluid px-4 sm:px-6 lg:px-8">

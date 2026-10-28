@@ -6,9 +6,9 @@ import { breadcrumbSchema, personSchema } from "@/src/constants/structuredData";
 import About from "@/src/Components/Pages/About/About";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Ash Ali | Entrepreneur & Keynote Speaker",
+  title: "About Ash Ali | Entrepreneur and Keynote Speaker",
   description:
-    "25 years building what he now speaks about. From inner-city Birmingham to Just Eat UK's first Marketing Director, author and investor.",
+    "Co-author of The Unfair Advantage and co-founder of Uhubs. Ash Ali brings founder experience and sales capability research to keynotes, workshops and advisory in an AI-shaped world.",
   path: "/about",
   ogImage: "/og/about.png",
 });

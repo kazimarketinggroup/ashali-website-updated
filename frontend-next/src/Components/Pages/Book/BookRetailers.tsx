@@ -42,7 +42,7 @@ import Link from "next/link";
 
 const BookRetailers: React.FC = () => {
   return (
-    <section id="retailers" className="bg-black py-16 md:py-24 text-white">
+    <section id="retailers" className="bg-black py-16 md:py-24 text-white scroll-mt-24">
       <div className="mx-auto max-w-fluid px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 14 }}

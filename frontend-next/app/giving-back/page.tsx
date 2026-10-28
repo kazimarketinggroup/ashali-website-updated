@@ -10,7 +10,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Ash Ali offers a limited number of talks each year for schools, education programmes and organisations supporting young people with fewer opportunities.",
   path: "/giving-back",
-  ogImage: "/og/impact.png",
+  ogImage: "/og/giving-back.png",
+  ogImageAlt: "Ash Ali, Giving Back and Unfair Access Initiative",
 });
 
 export default function Page() {

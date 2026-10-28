@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
@@ -91,9 +92,13 @@ const AboutStory: React.FC = () => {
             className="relative mx-auto w-full max-w-[340px] lg:mx-0 lg:max-w-[400px]"
           >
             <div className="relative overflow-hidden rounded-xl border border-white/[0.08] shadow-2xl">
-              <img
-                src={portrait.src}
+              <Image
+                src={portrait}
                 alt="Ash Ali at London Tech Week, Tech Nation Grand Final Winner"
+                width={400}
+                height={480}
+                sizes="(max-width: 1024px) 340px, 400px"
+                loading="lazy"
                 className="block w-full h-auto object-cover"
               />
             </div>

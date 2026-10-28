@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { BRAND_GRADIENT_LR } from "../../../constants/brandGradient";
 
 import malaysiaHero from "../../../assets/malaysia/ash-ali-hasan-kubba-bba-2022-malaysia.png";
@@ -9,10 +10,13 @@ const MalaysiaHero: React.FC = () => {
     <section className="relative overflow-hidden min-h-[600px] lg:min-h-[600px]">
 
       {/* Background Image */}
-      <img
-        src={malaysiaHero.src}
+      <Image
+        src={malaysiaHero}
         alt="Ash Ali in Malaysia and Southeast Asia"
-        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
       />
 
       {/* Dark Overlay */}
