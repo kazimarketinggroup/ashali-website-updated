@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { api, getApiErrorMessage } from "../../../utils/api";
 import { useCMS } from "../../../context/CMSContext";
 import { BRAND_GRADIENT_LR, BRAND_ORANGE } from "../../../constants/brandGradient";
+import { track, ANALYTICS_EVENTS } from "../../../utils/analytics";
 import "react-datepicker/dist/react-datepicker.css";
 
 function IconX({ className }: { className?: string }) {
@@ -291,6 +292,7 @@ export const ContactSection: React.FC = () => {
         details,
         website_hp: honeypot,
       });
+      track(ANALYTICS_EVENTS.contactFormSubmitSuccess, { type: selectedType });
       toast.success(
         response.data?.message ||
           "Thank you! Your enquiry has been submitted. We will be in touch soon.",
@@ -346,7 +348,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Description */}
           <p className="text-gray-300 font-light text-[14px] sm:text-[15px] leading-relaxed max-w-md mb-8">
-            For speaking, advisory, media, Malaysia &amp; Southeast Asia opportunities, or selected pro-bono impact work.
+            For speaking, advisory, media, Malaysia and Southeast Asia opportunities, or Giving Back initiatives.
           </p>
 
           {/* Circular Social Icons */}
@@ -357,7 +359,7 @@ export const ContactSection: React.FC = () => {
             <GradientRingIcon href={twitterUrl} label="Ash Ali on X">
               <IconX className="h-3.5 w-3.5" />
             </GradientRingIcon>
-            <GradientRingIcon href="https://www.tiktok.com/@ashali.author" label="Ash Ali TikTok">
+            <GradientRingIcon href="https://www.tiktok.com/@ashaliuk" label="Ash Ali TikTok">
               <IconTikTok className="h-3.5 w-3.5" />
             </GradientRingIcon>
             <GradientRingIcon href={instagramUrl} label="Ash Ali Instagram">

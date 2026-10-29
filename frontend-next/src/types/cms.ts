@@ -128,6 +128,7 @@ export interface BookShowcaseContent {
   description: string;
   bookCoverImage: string;
   amazonLink: string;
+  academyLink?: string;
   previewLink?: string;
   tags: BookTagItem[];
 }

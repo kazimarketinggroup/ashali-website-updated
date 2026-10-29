@@ -8,7 +8,7 @@ import Contact from "@/src/Components/Pages/Contact/Contact";
 export const metadata: Metadata = pageMetadata({
   title: "Work with Ash | Enquiries and Booking",
   description:
-    "Enquire about speaking, advisory, media, Malaysia and Southeast Asia opportunities or Giving Back initiatives.",
+    "Enquire about keynotes, sales kickoffs, executive workshops and strategic advisory on building practical advantage in an AI and data-driven world.",
   path: "/contact",
   ogImage: "/og/contact.png",
 });

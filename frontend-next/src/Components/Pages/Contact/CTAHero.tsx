@@ -64,7 +64,7 @@ const CTAHero: React.FC = () => {
         >
           For speaking, advisory, media, Malaysia &amp; Southeast Asia{" "}
           <br className="hidden sm:block" />
-          opportunities, or selected pro-bono impact work.
+          opportunities, or Giving Back initiatives.
         </motion.p>
 
       </motion.div>

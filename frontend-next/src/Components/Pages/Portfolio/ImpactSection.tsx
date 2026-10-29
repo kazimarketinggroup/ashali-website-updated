@@ -67,7 +67,7 @@ const ImpactSection: React.FC = () => {
             Ash Ali
           </span>
           , Just Eat UK's First Marketing Director, Played A Key Role In Its
-          $2.44B IPO. A Serial Entrepreneur And Investor, He Co-Founded Uhubs, A
+          £1.5B IPO. A Serial Entrepreneur And Investor, He Co-Founded Uhubs, A
           Fast Growing Startup Helping Revenue Leaders Identify Top Performers.
         </p>
 

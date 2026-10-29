@@ -9,6 +9,7 @@ import reportCover from "../../../assets/home/indexreport.png";
 import { brandGradientTextStyle } from "../../../constants/brandGradient";
 import { api } from "../../../utils/api";
 import { useCMS } from "../../../context/CMSContext";
+import { track, ANALYTICS_EVENTS } from "../../../utils/analytics";
 
 export const CapabilityIndexSection = () => {
   const { cmsData } = useCMS();
@@ -100,6 +101,7 @@ export const CapabilityIndexSection = () => {
       // Non-blocking
     } finally {
       setIsSubmitting(false);
+      track(ANALYTICS_EVENTS.indexReportDownload, { source: "capability_index_modal" });
       // Auto-trigger direct download immediately
       try {
         const link = document.createElement("a");

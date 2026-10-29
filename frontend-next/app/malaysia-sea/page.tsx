@@ -8,10 +8,10 @@ import MalaySiaAndSEA from "@/src/Components/Pages/MalaysiaAndSEA/MalaySiaAndSEA
 export const metadata: Metadata = pageMetadata({
   title: "Malaysia and Southeast Asia | Ash Ali",
   description:
-    "Speaking, advisory and impact work across Malaysia and Southeast Asia. Based between London and Kuala Lumpur.",
+    "Speaking, advisory and Giving Back initiatives across Malaysia and Southeast Asia. Based between London and Kuala Lumpur.",
   path: "/malaysia-sea",
   ogImage: "/og/malaysia-sea.png",
-  ogImageAlt: "Ash Ali, speaking, advisory and impact work across Malaysia and Southeast Asia",
+  ogImageAlt: "Ash Ali, speaking, advisory and Giving Back initiatives across Malaysia and Southeast Asia",
 });
 
 export default function Page() {

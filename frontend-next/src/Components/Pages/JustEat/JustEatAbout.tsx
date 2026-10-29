@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Replace with your actual image path
 import founderImg from "../../../assets/justeat/just-eat-founder.png";
@@ -36,7 +37,7 @@ const JustEatAbout: React.FC = () => {
            <div className="rounded-[24px] overflow-hidden bg-[#1a1a1a]">
   <img
     src={founderImg.src}
-    alt="Ash Ali - Co-founder of Washplus"
+    alt="Ash Ali - First Marketing Director of Just Eat"
     className="w-full h-auto object-cover aspect-[5/3] md:aspect-[4/3] lg:aspect-[1.4/1]"
   />
 </div>
@@ -64,12 +65,12 @@ const JustEatAbout: React.FC = () => {
 
             {/* Button: Sharp edges, small bold text */}
             <div>
-              <a
-                href="#"
+              <Link
+                href="/contact"
                 className="inline-block border border-white px-5 py-2 text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-white hover:text-black transition-all duration-300"
               >
-                Unlock Greatness
-              </a>
+                Work with Ash
+              </Link>
             </div>
           </motion.div>
         </div>

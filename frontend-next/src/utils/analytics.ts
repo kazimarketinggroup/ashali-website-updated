@@ -15,6 +15,8 @@
   payload. Event name plus page context is sufficient.
 */
 
+import { track as vaTrack } from "@vercel/analytics";
+
 export const ANALYTICS_EVENTS = {
   heroWatchReel: "hero_watch_reel",
   heroExploreKeynotesWorkshops: "hero_explore_keynotes_workshops",
@@ -23,6 +25,7 @@ export const ANALYTICS_EVENTS = {
   speakerPackDownload: "speaker_pack_download",
   contactFormStart: "contact_form_start",
   contactFormSubmitSuccess: "contact_form_submit_success",
+  indexReportDownload: "index_report_download",
   bookPurchaseClick: "book_purchase_click",
   uhubsClick: "uhubs_click",
 } as const;
@@ -45,6 +48,14 @@ export function track(event: AnalyticsEvent, payload: AnalyticsPayload = {}) {
     page_path: window.location.pathname,
   };
 
+  // Google Tag Manager / gtag
   w.dataLayer?.push({ event, ...data });
   w.gtag?.("event", event, data);
+
+  // Vercel Analytics Custom Events
+  try {
+    vaTrack(event, data);
+  } catch {
+    // safe fallback if not running on Vercel deployment
+  }
 }

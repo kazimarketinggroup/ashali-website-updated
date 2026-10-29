@@ -93,7 +93,7 @@ const BookShowcase: React.FC<{ as?: "h1" | "h2" }> = ({ as = "h2" }) => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href={bs?.amazonLink || "https://www.theunfairacademy.com/"}
+              href={bs?.academyLink || "https://www.theunfairacademy.com/"}
               className="min-h-[46px] inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/25 text-white font-medium text-[13px] sm:text-[13.5px] rounded-[3px] transition-all duration-150 hover:border-white/60 hover:bg-white/5 text-center"
             >
               The Unfair Academy

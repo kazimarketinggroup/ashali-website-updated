@@ -110,8 +110,8 @@ export const WhatAshIsDoing: React.FC = () => {
             description="A small number of leadership teams each year." 
           />
           <ActivityCard 
-            title="Impact work" 
-            description="Pro-bono talks for young people who need them most." 
+            title="Giving Back" 
+            description="Talks and workshops for schools, young people and community initiatives." 
           />
         </motion.div>
 

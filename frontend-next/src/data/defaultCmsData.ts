@@ -121,9 +121,10 @@ export const defaultCmsData: CMSData = {
     headline: "The Unfair Advantage",
     highlightWord: "Business Book of the Year 2021",
     description:
-      "Co-authored with Hasan Kubba, The Unfair Advantage won Business Book of the Year 2021 and became an international bestseller translated into 10+ languages. It introduces the MILES framework to identify and leverage your hidden competitive strengths.",
+      "Co-authored with Hasan Kubba, The Unfair Advantage won Business Book of the Year 2021 and became an international bestseller translated into 8 languages. It introduces the MILES framework to identify and leverage your hidden competitive strengths.",
     bookCoverImage: "",
     amazonLink: "https://www.amazon.co.uk/Unfair-Advantage-Startup-Success-Predict/dp/1788163311",
+    academyLink: "https://www.theunfairacademy.com/",
     tags: [
       { label: "Business Book of the Year 2021, The Business Book Awards" },
       { label: "Translated worldwide" },
@@ -193,7 +194,7 @@ export const defaultCmsData: CMSData = {
     newsletterSubtitle: "Ash's thinking on advantage, AI and growth, straight to your inbox.",
     linkedinUrl: "https://uk.linkedin.com/in/ashali",
     twitterUrl: "https://x.com/Ash_Ali",
-    instagramUrl: "https://www.instagram.com/ashali",
+    instagramUrl: "https://www.instagram.com/ashaliuk/",
     columns: [
       {
         heading: "Pages",
@@ -223,7 +224,7 @@ export const defaultCmsData: CMSData = {
         ],
       },
     ],
-    copyright: "2026 © — Ash Ali | All Rights Reserved",
+    copyright: "© 2026 Ash Ali. All rights reserved.",
   },
 
   updates: [
@@ -637,7 +638,7 @@ export const defaultCmsData: CMSData = {
       id: "p-1",
       name: "Just Eat UK",
       role: "First Marketing Director",
-      metrics: "Seed to £1.4B+ IPO",
+      metrics: "Seed to £1.5B IPO",
       description:
         "Led early growth and digital customer acquisition strategy, cementing Just Eat as the undisputed market leader in online food delivery across the UK.",
       url: "https://www.just-eat.co.uk/",
@@ -685,7 +686,7 @@ export const defaultCmsData: CMSData = {
       name: "Just Eat",
       years: "2008 – 2011",
       description: "First Marketing Director leading early digital acquisition, direct response and rapid national brand scale.",
-      outcome: "Scaled from startup to £1.4B+ IPO on the London Stock Exchange",
+      outcome: "Scaled from startup to £1.5B IPO on the London Stock Exchange",
       url: "/portfolio/just-eat",
       logoUrl: "/assets/about/justeat.png",
       published: true,
@@ -693,9 +694,9 @@ export const defaultCmsData: CMSData = {
     {
       id: "proj-2",
       name: "Fare Exchange",
-      years: "2001 – 2008",
-      description: "Co-founded early digital marketing network pioneering algorithmic lead generation across commercial verticals.",
-      outcome: "Bootstrapped to multi-million turnover and successful trade acquisition",
+      years: "2012 – 2016",
+      description: "Co-founded performance-based lead generation platform for phone call tracking across commercial transport.",
+      outcome: "Scaled the business to a successful seven-figure exit",
       url: "/portfolio/fare-exchange",
       logoUrl: "/assets/about/fare-exchange-logo.png",
       published: true,
@@ -703,9 +704,9 @@ export const defaultCmsData: CMSData = {
     {
       id: "proj-3",
       name: "WashPlus",
-      years: "2013 – 2016",
-      description: "Co-founded on-demand mobile dry cleaning and laundry platform modernising local service operations.",
-      outcome: "Expanded city-wide operations across London with proprietary dispatch engine; acquired",
+      years: "2015 – 2018",
+      description: "Co-founded on-demand eco-friendly laundry and dry cleaning startup bringing tech innovation to the sector.",
+      outcome: "Scaled operations and completed a successful acquisition",
       url: "/portfolio/wash-plus",
       logoUrl: "/assets/about/washplus-logo.png",
       published: true,

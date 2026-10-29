@@ -77,7 +77,7 @@ const SiteFooter: React.FC = () => {
   const linkedinUrl = footer?.linkedinUrl || "https://uk.linkedin.com/in/ashali";
   const twitterUrl = footer?.twitterUrl || "https://x.com/Ash_Ali";
   const columns = footer?.columns && footer.columns.length > 0 ? footer.columns : defaultColumns;
-  const copyright = footer?.copyright || "2026 © — Ash Ali | All Rights Reserved";
+  const copyright = footer?.copyright || "© 2026 Ash Ali. All rights reserved.";
 
   if (pathname.startsWith("/cmsadmin")) {
     return null;

@@ -8,7 +8,7 @@ import JustEat from "@/src/Components/Pages/JustEat/JustEat";
 export const metadata: Metadata = pageMetadata({
   title: "Just Eat | Ash Ali",
   description:
-    "As Just Eat UK's first Marketing Director, Ash played a key role in the company's growth to a $2.44B IPO.",
+    "As Just Eat UK's first Marketing Director, Ash played a key role in early growth before the company's £1.5B IPO.",
   path: "/portfolio/just-eat",
 });
 

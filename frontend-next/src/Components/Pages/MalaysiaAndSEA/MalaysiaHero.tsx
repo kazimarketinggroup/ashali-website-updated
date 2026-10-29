@@ -60,7 +60,7 @@ const MalaysiaHero: React.FC = () => {
                 className="bg-clip-text text-transparent"
                 style={{ backgroundImage: BRAND_GRADIENT_LR }}
               >
-                Speaking, advisory and impact work
+                Speaking, advisory and Giving Back initiatives
               </span>{" "}
               across Malaysia and Southeast Asia.
             </h1>

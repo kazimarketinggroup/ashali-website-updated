@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Replace with your actual image path
 import founderImg from "../../../assets/washplus/about.png";
@@ -65,12 +66,12 @@ const WashPlusFounder: React.FC = () => {
 
             {/* Button: Sharp edges, small bold text */}
             <div>
-              <a
-                href="#"
+              <Link
+                href="/contact"
                 className="inline-block border border-white px-5 py-2 text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-white hover:text-black transition-all duration-300"
               >
-                Unlock Greatness
-              </a>
+                Work with Ash
+              </Link>
             </div>
           </motion.div>
         </div>

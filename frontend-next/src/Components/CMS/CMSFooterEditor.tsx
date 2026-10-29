@@ -212,7 +212,7 @@ export const CMSFooterEditor: React.FC = () => {
           />
 
           <p className="text-[11px] text-white/60">
-            © {year} {formData.copyright}
+            {formData.copyright}
           </p>
         </div>
       </div>
