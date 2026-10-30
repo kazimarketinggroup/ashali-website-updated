@@ -126,7 +126,7 @@ export const CMSLayout: React.FC<CMSLayoutProps> = ({
         { id: "workshops", label: "Workshops & FAQs", icon: Briefcase },
         { id: "testimonials", label: "Testimonials & Reviews", icon: Users },
         { id: "metrics", label: "Highlights & Metrics", icon: Award },
-        { id: "portfolio", label: "Portfolio & Ventures", icon: Globe },
+        { id: "portfolio", label: "Portfolio & Previous Projects", icon: Globe },
         { id: "media", label: "Media & Press", icon: Video },
       ],
     },
