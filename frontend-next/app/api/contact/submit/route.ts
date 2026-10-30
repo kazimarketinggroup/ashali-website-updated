@@ -7,11 +7,12 @@ export async function POST(req: NextRequest) {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 
     const body = await req.json().catch(() => ({}));
-    const { name, email, type, message, details, website_hp } = body;
+    const { name, email, type, message, details, website_hp, b_blank_field } = body;
     const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
 
     // 1. Honeypot verification: reject bot spam
-    if (website_hp && String(website_hp).trim().length > 0) {
+    const honeypotTrap = b_blank_field !== undefined ? b_blank_field : website_hp;
+    if (honeypotTrap && String(honeypotTrap).trim().length > 0) {
       return NextResponse.json(
         { success: false, message: "Bot submission detected and rejected." },
         { status: 400 }

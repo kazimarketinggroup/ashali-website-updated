@@ -291,6 +291,7 @@ export const ContactSection: React.FC = () => {
         message: message.trim() || undefined,
         details,
         website_hp: honeypot,
+        b_blank_field: honeypot,
       });
       track(ANALYTICS_EVENTS.contactFormSubmitSuccess, { type: selectedType });
       toast.success(
@@ -482,17 +483,19 @@ export const ContactSection: React.FC = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Hidden honeypot field for anti-bot protection */}
-            <input
-              type="text"
-              name="website_hp"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              value={honeypot}
-              onChange={(e) => setHoneypot(e.target.value)}
-              style={{ position: "absolute", opacity: 0, pointerEvents: "none", zIndex: -1, width: 0, height: 0 }}
-            />
+            {/* Hidden honeypot field for anti-bot protection — hidden with display:none so browser autofill ignores it */}
+            <div style={{ display: "none" }} aria-hidden="true">
+              <input
+                type="text"
+                name="b_blank_field"
+                tabIndex={-1}
+                autoComplete="new-password"
+                data-lpignore="true"
+                data-1p-ignore="true"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+            </div>
 
             {/* Textarea */}
             <div className="w-full pt-1">
