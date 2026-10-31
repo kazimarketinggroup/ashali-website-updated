@@ -11,6 +11,7 @@ import { useCMS } from "../../../context/CMSContext";
 import { BRAND_GRADIENT_LR, BRAND_ORANGE } from "../../../constants/brandGradient";
 import { track, ANALYTICS_EVENTS } from "../../../utils/analytics";
 import "react-datepicker/dist/react-datepicker.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function IconX({ className }: { className?: string }) {
   return (
@@ -210,6 +211,10 @@ export const ContactSection: React.FC = () => {
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LcO8gkuAAAAABEhZc9cD_Z53tMIxcJfQuVFWdm1";
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -226,6 +231,7 @@ export const ContactSection: React.FC = () => {
         else if (t === "bulk-book" || t === "bulkbook" || t === "book" || t === "books") setSelectedType("bulk-book");
       }
     }
+    setIsMounted(true);
   }, []);
 
   const categories: { id: EnquiryType; label: string }[] = [
@@ -258,6 +264,8 @@ export const ContactSection: React.FC = () => {
     setIsVirtual(false);
     setMessage("");
     setHoneypot("");
+    recaptchaRef.current?.reset();
+    setRecaptchaToken(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -268,6 +276,11 @@ export const ContactSection: React.FC = () => {
 
     if (!name || !email) {
       toast.error("Please fill in your Name and Email.");
+      return;
+    }
+
+    if (recaptchaSiteKey && !recaptchaToken) {
+      toast.error("Please verify that you are not a robot.");
       return;
     }
 
@@ -292,6 +305,7 @@ export const ContactSection: React.FC = () => {
         details,
         website_hp: honeypot,
         b_blank_field: honeypot,
+        recaptchaToken: recaptchaToken || undefined,
       });
       track(ANALYTICS_EVENTS.contactFormSubmitSuccess, { type: selectedType });
       toast.success(
@@ -506,6 +520,19 @@ export const ContactSection: React.FC = () => {
                 className="w-full h-[110px] rounded-[4px] bg-[#2a2a2a] text-white px-3.5 py-3 text-[13px] font-normal placeholder-gray-400 outline-none border border-transparent hover:border-white/20 focus:border-white/50 focus:bg-[#323232] transition-all duration-200 resize-none"
               />
             </div>
+
+            {/* Google reCAPTCHA Verification */}
+            {isMounted && recaptchaSiteKey && (
+              <div className="pt-2 flex justify-start overflow-x-auto min-h-[78px]">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={recaptchaSiteKey}
+                  theme="dark"
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              </div>
+            )}
 
             {/* Cloudflare Turnstile Verification if configured */}
             {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY &&

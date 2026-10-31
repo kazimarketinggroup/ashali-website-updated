@@ -100,6 +100,47 @@ export async function verifyTurnstileToken(
   }
 }
 
+/**
+ * Google reCAPTCHA verification.
+ * Verifies the token against Google's siteverify API.
+ */
+export async function verifyRecaptchaToken(
+  token: string | null | undefined,
+  ip?: string
+): Promise<boolean> {
+  const secret = process.env.RECAPTCHA_SECRET_KEY || "6LcO8gkuAAAAABGjfHi_fS0cc-Xj3xvzMEQ9sLwo";
+  if (!secret) {
+    return true;
+  }
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const formData = new URLSearchParams();
+    formData.append("secret", secret);
+    formData.append("response", token);
+    if (ip && ip !== "unknown") {
+      formData.append("remoteip", ip);
+    }
+
+    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    const data = await res.json();
+    return Boolean(data.success);
+  } catch (error) {
+    console.error("reCAPTCHA verification error:", error);
+    return false;
+  }
+}
+
 const MAIL_USER = process.env.MAIL_USER || "";
 const MAIL_PASS = process.env.MAIL_PASS || "";
 const OWNER_EMAIL = process.env.CONTACT_OWNER_EMAIL || "ash@ashali.com";

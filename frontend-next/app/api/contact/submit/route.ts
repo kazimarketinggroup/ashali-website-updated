@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkRateLimit, sendTransactionalEmail, verifyTurnstileToken, OWNER_EMAIL } from "@/src/utils/mailer";
+import { checkRateLimit, sendTransactionalEmail, verifyTurnstileToken, verifyRecaptchaToken, OWNER_EMAIL } from "@/src/utils/mailer";
 import { generateReportToken } from "@/src/utils/reportToken";
 
 export async function POST(req: NextRequest) {
@@ -9,6 +9,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => ({}));
     const { name, email, type, message, details, website_hp, b_blank_field } = body;
     const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
+    const recaptchaToken = body.recaptchaToken || body["g-recaptcha-response"];
 
     // 1. Honeypot verification: reject bot spam
     const honeypotTrap = b_blank_field !== undefined ? b_blank_field : website_hp;
@@ -19,7 +20,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Cloudflare Turnstile verification (verifies against Cloudflare API if TURNSTILE_SECRET_KEY is set)
+    // 2. reCAPTCHA verification (verifies against Google API if RECAPTCHA_SECRET_KEY is configured)
+    const isRecaptchaValid = await verifyRecaptchaToken(recaptchaToken, ip);
+    if (!isRecaptchaValid) {
+      return NextResponse.json(
+        { success: false, message: "Security verification failed. Please complete the reCAPTCHA." },
+        { status: 403 }
+      );
+    }
+
+    // 3. Cloudflare Turnstile verification (verifies against Cloudflare API if TURNSTILE_SECRET_KEY is set)
     const isTurnstileValid = await verifyTurnstileToken(turnstileToken, ip);
     if (!isTurnstileValid) {
       return NextResponse.json(
