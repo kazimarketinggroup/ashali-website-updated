@@ -213,36 +213,56 @@ export const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [isLocal, setIsLocal] = useState(false);
+  const [scriptBlocked, setScriptBlocked] = useState(false);
   const recaptchaContainerRef = React.useRef<HTMLDivElement>(null);
   const widgetIdRef = React.useRef<number | null>(null);
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LcO8gkuAAAAABEhZc9cD_Z53tMIxcJfQuVFWdm1";
+
+  // Google official test key (always passes and allows localhost without domain error)
+  const GOOGLE_TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
+  const configuredSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LcO8gkuAAAAABEhZc9cD_Z53tMIxcJfQuVFWdm1";
+  const recaptchaSiteKey = isLocal ? GOOGLE_TEST_SITE_KEY : configuredSiteKey;
 
   const renderRecaptcha = React.useCallback(() => {
-    if (
-      typeof window !== "undefined" &&
-      (window as any).grecaptcha?.render &&
-      recaptchaContainerRef.current &&
-      widgetIdRef.current === null
-    ) {
+    if (typeof window === "undefined" || !recaptchaContainerRef.current) return;
+    const grecaptcha = (window as any).grecaptcha;
+    if (!grecaptcha) return;
+
+    const doRender = () => {
+      if (widgetIdRef.current !== null || !recaptchaContainerRef.current) return;
       try {
         recaptchaContainerRef.current.innerHTML = "";
-        widgetIdRef.current = (window as any).grecaptcha.render(
-          recaptchaContainerRef.current,
-          {
-            sitekey: recaptchaSiteKey,
-            theme: "dark",
-            callback: (token: string) => setRecaptchaToken(token),
-            "expired-callback": () => setRecaptchaToken(null),
-          }
-        );
+        widgetIdRef.current = grecaptcha.render(recaptchaContainerRef.current, {
+          sitekey: recaptchaSiteKey,
+          theme: "dark",
+          callback: (token: string) => setRecaptchaToken(token),
+          "expired-callback": () => setRecaptchaToken(null),
+          "error-callback": () => {
+            console.warn("Google reCAPTCHA error on page.");
+            if (isLocal) {
+              setScriptBlocked(true);
+            }
+          },
+        });
       } catch (err) {
-        // Ignored if already initialized
+        console.warn("Google reCAPTCHA render notice:", err);
       }
+    };
+
+    if (typeof grecaptcha.ready === "function") {
+      grecaptcha.ready(doRender);
+    } else if (typeof grecaptcha.render === "function") {
+      doRender();
     }
-  }, [recaptchaSiteKey]);
+  }, [recaptchaSiteKey, isLocal]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      const host = window.location.hostname;
+      if (host === "localhost" || host === "127.0.0.1" || host.endsWith(".local")) {
+        setIsLocal(true);
+      }
+
       const params = new URLSearchParams(window.location.search);
       const t = params.get("type")?.toLowerCase().trim();
       if (t) {
@@ -260,21 +280,32 @@ export const ContactSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isMounted) {
-      if ((window as any).grecaptcha?.render && widgetIdRef.current === null) {
-        renderRecaptcha();
-      } else {
-        const interval = setInterval(() => {
-          if ((window as any).grecaptcha?.render && widgetIdRef.current === null) {
-            renderRecaptcha();
-          }
-          if (widgetIdRef.current !== null) {
-            clearInterval(interval);
-          }
-        }, 250);
-        return () => clearInterval(interval);
-      }
+    if (!isMounted) return;
+
+    if (typeof (window as any).grecaptcha?.ready === "function" && widgetIdRef.current === null) {
+      renderRecaptcha();
+      return;
     }
+
+    const interval = setInterval(() => {
+      if (typeof (window as any).grecaptcha?.ready === "function" && widgetIdRef.current === null) {
+        renderRecaptcha();
+      }
+      if (widgetIdRef.current !== null) {
+        clearInterval(interval);
+      }
+    }, 250);
+
+    const timeout = setTimeout(() => {
+      if (widgetIdRef.current === null && !(window as any).grecaptcha) {
+        setScriptBlocked(true);
+      }
+    }, 2500);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, [isMounted, renderRecaptcha]);
 
   const categories: { id: EnquiryType; label: string }[] = [
@@ -326,9 +357,16 @@ export const ContactSection: React.FC = () => {
       return;
     }
 
-    if (recaptchaSiteKey && !recaptchaToken) {
-      toast.error("Please verify that you are not a robot.");
-      return;
+    let effectiveToken = recaptchaToken;
+    if (recaptchaSiteKey && !effectiveToken) {
+      if (isLocal) {
+        // Auto-assign dev token on localhost so developer is never blocked
+        effectiveToken = "dev-localhost-bypass-token";
+        setRecaptchaToken(effectiveToken);
+      } else {
+        toast.error("Please verify that you are not a robot.");
+        return;
+      }
     }
 
     const details = Object.fromEntries(
@@ -352,7 +390,7 @@ export const ContactSection: React.FC = () => {
         details,
         website_hp: honeypot,
         b_blank_field: honeypot,
-        recaptchaToken: recaptchaToken || undefined,
+        recaptchaToken: effectiveToken || undefined,
       });
       track(ANALYTICS_EVENTS.contactFormSubmitSuccess, { type: selectedType });
       toast.success(
@@ -575,11 +613,43 @@ export const ContactSection: React.FC = () => {
                   src="https://www.google.com/recaptcha/api.js?render=explicit"
                   strategy="afterInteractive"
                   onLoad={renderRecaptcha}
+                  onError={() => {
+                    if (isLocal) setScriptBlocked(true);
+                  }}
                 />
                 <div
                   ref={recaptchaContainerRef}
                   className="min-h-[78px] flex items-center overflow-x-auto"
                 />
+
+                {/* Localhost developer helper */}
+                {isLocal && (
+                  <div className="mt-1 mb-2 p-2.5 rounded bg-[#1e232a] border border-[#2d3748] text-[12px] flex flex-wrap items-center justify-between gap-2 text-gray-300">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span>
+                        <strong>Localhost:</strong>{" "}
+                        {recaptchaToken
+                          ? "reCAPTCHA verified"
+                          : scriptBlocked
+                          ? "Script blocked (ad-blocker/offline) — Dev bypass enabled"
+                          : "Google reCAPTCHA dev mode active"}
+                      </span>
+                    </span>
+                    {!recaptchaToken && (
+                      <button
+                        type="button"
+                        onClick={() => setRecaptchaToken("dev-localhost-bypass-token")}
+                        className="px-2.5 py-1 text-[11px] font-semibold bg-emerald-500 hover:bg-emerald-400 text-black rounded transition-colors cursor-pointer"
+                      >
+                        Pass reCAPTCHA (Dev)
+                      </button>
+                    )}
+                    {recaptchaToken && (
+                      <span className="text-emerald-400 font-semibold text-[11px]">✓ Verified</span>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 
