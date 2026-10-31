@@ -11,7 +11,7 @@ import { useCMS } from "../../../context/CMSContext";
 import { BRAND_GRADIENT_LR, BRAND_ORANGE } from "../../../constants/brandGradient";
 import { track, ANALYTICS_EVENTS } from "../../../utils/analytics";
 import "react-datepicker/dist/react-datepicker.css";
-import ReCAPTCHA from "react-google-recaptcha";
+import Script from "next/script";
 
 function IconX({ className }: { className?: string }) {
   return (
@@ -211,10 +211,35 @@ export const ContactSection: React.FC = () => {
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const recaptchaContainerRef = React.useRef<HTMLDivElement>(null);
+  const widgetIdRef = React.useRef<number | null>(null);
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LcO8gkuAAAAABEhZc9cD_Z53tMIxcJfQuVFWdm1";
+
+  const renderRecaptcha = React.useCallback(() => {
+    if (
+      typeof window !== "undefined" &&
+      (window as any).grecaptcha?.render &&
+      recaptchaContainerRef.current &&
+      widgetIdRef.current === null
+    ) {
+      try {
+        recaptchaContainerRef.current.innerHTML = "";
+        widgetIdRef.current = (window as any).grecaptcha.render(
+          recaptchaContainerRef.current,
+          {
+            sitekey: recaptchaSiteKey,
+            theme: "dark",
+            callback: (token: string) => setRecaptchaToken(token),
+            "expired-callback": () => setRecaptchaToken(null),
+          }
+        );
+      } catch (err) {
+        // Ignored if already initialized
+      }
+    }
+  }, [recaptchaSiteKey]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -233,6 +258,24 @@ export const ContactSection: React.FC = () => {
     }
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      if ((window as any).grecaptcha?.render && widgetIdRef.current === null) {
+        renderRecaptcha();
+      } else {
+        const interval = setInterval(() => {
+          if ((window as any).grecaptcha?.render && widgetIdRef.current === null) {
+            renderRecaptcha();
+          }
+          if (widgetIdRef.current !== null) {
+            clearInterval(interval);
+          }
+        }, 250);
+        return () => clearInterval(interval);
+      }
+    }
+  }, [isMounted, renderRecaptcha]);
 
   const categories: { id: EnquiryType; label: string }[] = [
     { id: "speaking", label: "Speaking / Keynote" },
@@ -264,7 +307,11 @@ export const ContactSection: React.FC = () => {
     setIsVirtual(false);
     setMessage("");
     setHoneypot("");
-    recaptchaRef.current?.reset();
+    if (widgetIdRef.current !== null && (window as any).grecaptcha?.reset) {
+      try {
+        (window as any).grecaptcha.reset(widgetIdRef.current);
+      } catch (e) {}
+    }
     setRecaptchaToken(null);
   };
 
@@ -522,14 +569,16 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Google reCAPTCHA Verification */}
-            {isMounted && recaptchaSiteKey && (
-              <div className="pt-2 flex justify-start overflow-x-auto min-h-[78px]">
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={recaptchaSiteKey}
-                  theme="dark"
-                  onChange={(token) => setRecaptchaToken(token)}
-                  onExpired={() => setRecaptchaToken(null)}
+            {recaptchaSiteKey && (
+              <div className="pt-2">
+                <Script
+                  src="https://www.google.com/recaptcha/api.js?render=explicit"
+                  strategy="afterInteractive"
+                  onLoad={renderRecaptcha}
+                />
+                <div
+                  ref={recaptchaContainerRef}
+                  className="min-h-[78px] flex items-center overflow-x-auto"
                 />
               </div>
             )}
